@@ -1,0 +1,82 @@
+<!-- FILE NAME: id.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BGPS Launcher - Manual ID</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background-color: #1c1c1e;
+            --primary-text-color: #f0f0f0;
+            --secondary-text-color: #a0a0a0;
+            --accent-green: #00ff00;
+            --input-bg-color: #555555;
+        }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes shake {
+            10%, 90% { transform: translateX(-1px); } 20%, 80% { transform: translateX(2px); }
+            30%, 50%, 70% { transform: translateX(-4px); } 40%, 60% { transform: translateX(4px); }
+        }
+        body {
+            font-family: 'Poppins', sans-serif; background-color: var(--background-color); color: var(--primary-text-color);
+            display: flex; flex-direction: column; justify-content: space-between; align-items: center; height: 100vh; margin: 0; padding: 30px; box-sizing: border-box;
+        }
+        .header { width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; font-size: 28px; font-weight: 600; }
+        .logo-dots { display: flex; align-items: baseline; margin-right: 12px; }
+        .dot { width: 8px; height: 8px; background-color: #ccc; border-radius: 50%; margin-right: 5px; }
+        .dot:first-child { width: 13px; height: 13px; }
+        .nav-link { color: var(--secondary-text-color); text-decoration: none; font-size: 18px; font-weight: 600; display: flex; align-items: center; transition: color 0.3s ease; }
+        .nav-link:hover { color: var(--primary-text-color); }
+        .nav-link .arrow { font-size: 24px; margin-right: 8px; }
+        .main-content { display: flex; flex-direction: column; align-items: center; gap: 25px; margin-top: -60px; }
+        .main-content h2 { font-size: 28px; font-weight: 700; margin-bottom: 10px; animation: fadeInUp 0.5s ease-out; }
+        .input-container {
+            width: 450px; max-width: 90%; background-color: var(--input-bg-color); border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); animation: fadeInUp 0.5s ease-out 0.2s; animation-fill-mode: both;
+        }
+        .input-container.error { animation: shake 0.5s ease-in-out; }
+        #gameIdInput {
+            width: 100%; border: none; background: transparent; color: #e0e0e0; font-size: 16px; outline: none; text-align: center;
+            padding: 18px 25px; box-sizing: border-box; font-family: 'Poppins', sans-serif;
+        }
+        #gameIdInput::placeholder { color: #c0c0c0; opacity: 0.8; }
+        .enter-game-button {
+            padding: 15px 40px; background-color: var(--accent-green); color: #212121; border: none; border-radius: 30px;
+            font-size: 22px; font-weight: 700; cursor: pointer; transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 255, 0, 0.4); animation: fadeInUp 0.5s ease-out 0.4s; animation-fill-mode: both;
+        }
+        .enter-game-button:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0, 255, 0, 0.5); }
+        .footer { height: 20px; }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <div class="logo-dots"><div class="dot"></div><div class="dot"></div></div>
+            BGPSLauncher
+        </div>
+        <a href="index.html" class="nav-link"><span class="arrow">←</span> Back to Home</a>
+    </header>
+
+    <div class="main-content">
+        <h2>Enter Game ID</h2>
+        <div class="input-container">
+            <input type="text" id="gameIdInput" placeholder="e.g g1000, 1001..">
+        </div>
+        <button class="enter-game-button" onclick="enterGame()">Enter Game</button>
+    </div>
+
+    <div class="footer"></div>
+
+    <script>
+  const _0x551859=_0x1f0d;(function(_0x1a6434,_0x535566){const _0x4cbda1=_0x1f0d,_0x20446e=_0x1a6434();while(!![]){try{const _0x50ed15=-parseInt(_0x4cbda1(0x1ca))/0x1*(-parseInt(_0x4cbda1(0x1cc))/0x2)+-parseInt(_0x4cbda1(0x1be))/0x3*(-parseInt(_0x4cbda1(0x1b8))/0x4)+parseInt(_0x4cbda1(0x1c9))/0x5*(parseInt(_0x4cbda1(0x1b6))/0x6)+-parseInt(_0x4cbda1(0x1c2))/0x7+parseInt(_0x4cbda1(0x1c4))/0x8*(parseInt(_0x4cbda1(0x1c6))/0x9)+-parseInt(_0x4cbda1(0x1bc))/0xa+-parseInt(_0x4cbda1(0x1c7))/0xb;if(_0x50ed15===_0x535566)break;else _0x20446e['push'](_0x20446e['shift']());}catch(_0x4e2585){_0x20446e['push'](_0x20446e['shift']());}}}(_0x2431,0xb06c1));function _0x1f0d(_0x145419,_0x21b927){const _0x243175=_0x2431();return _0x1f0d=function(_0x1f0dfb,_0x435ff6){_0x1f0dfb=_0x1f0dfb-0x1b6;let _0x16f7c6=_0x243175[_0x1f0dfb];return _0x16f7c6;},_0x1f0d(_0x145419,_0x21b927);}const inputContainer=document[_0x551859(0x1bf)]('.input-container'),gameIdInput=document['getElementById'](_0x551859(0x1cd));function _0x2431(){const _0x2450f8=['1308qkZBzA','gameIdInput','toLowerCase','6889182Wiyzru','classList','212404awHPCB','trim','remove','blockmango://com.sandboxol.blockymods.official/android/page=gamedetail:','10268320EsSMnE','href','48LHBwzN','querySelector','addEventListener','add','2243171WudpTF','error','8sLRYjM','keypress','12996063zxoMrY','15846380qFpblV','preventDefault','5cGikzV','105dQWbtQ','key'];_0x2431=function(){return _0x2450f8;};return _0x2431();}function enterGame(){const _0x3a579a=_0x551859;inputContainer[_0x3a579a(0x1b7)][_0x3a579a(0x1ba)](_0x3a579a(0x1c3));const _0x2220d0=gameIdInput['value'][_0x3a579a(0x1b9)]();if(_0x2220d0){let _0x5e97bf=_0x2220d0;!_0x2220d0[_0x3a579a(0x1ce)]()['startsWith']('g')&&!isNaN(_0x2220d0)&&(_0x5e97bf='g'+_0x2220d0);const _0x30e3b8=_0x3a579a(0x1bb)+_0x5e97bf;window['location'][_0x3a579a(0x1bd)]=_0x30e3b8;}else inputContainer[_0x3a579a(0x1b7)][_0x3a579a(0x1c1)]('error');}gameIdInput[_0x551859(0x1c0)](_0x551859(0x1c5),function(_0x28d8aa){const _0x29f3b1=_0x551859;_0x28d8aa[_0x29f3b1(0x1cb)]==='Enter'&&(_0x28d8aa[_0x29f3b1(0x1c8)](),enterGame());});
+    </script>
+
+</body>
+</html>
