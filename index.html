@@ -15,9 +15,7 @@
             --accent-green: #00ff00;
             --card-bg-color: #2c2c2e;
         }
-
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
         body {
             font-family: 'Poppins', sans-serif;
             background-color: var(--background-color);
@@ -30,7 +28,6 @@
             margin: 0;
             text-align: center;
         }
-        
         .logo {
             display: flex;
             align-items: center;
@@ -38,21 +35,17 @@
             font-weight: 700;
             animation: fadeInUp 0.5s ease-out;
         }
-
         .logo-dots {
             display: flex;
             align-items: baseline;
             margin-right: 15px;
         }
-
         .dot {
             width: 12px; height: 12px;
             background-color: #ccc;
             border-radius: 50%; margin-right: 6px;
         }
-
         .dot:first-child { width: 18px; height: 18px; }
-        
         h1 {
             font-size: 24px;
             font-weight: 400;
@@ -61,7 +54,6 @@
             animation: fadeInUp 0.5s ease-out 0.2s;
             animation-fill-mode: both;
         }
-        
         .button-container {
             display: flex;
             flex-direction: column;
@@ -69,7 +61,6 @@
             animation: fadeInUp 0.5s ease-out 0.4s;
             animation-fill-mode: both;
         }
-        
         .btn {
             display: inline-block;
             text-decoration: none;
@@ -81,43 +72,34 @@
             width: 300px;
             box-sizing: border-box;
         }
-        
         .btn-primary {
             background-color: var(--accent-green);
             color: #121212;
             box-shadow: 0 5px 20px rgba(0, 255, 0, 0.3);
         }
-        
         .btn-primary:hover {
             transform: translateY(-4px);
             box-shadow: 0 8px 25px rgba(0, 255, 0, 0.5);
         }
-        
         .btn-secondary {
             background: var(--card-bg-color);
             color: var(--primary-text-color);
         }
-
         .btn-secondary:hover {
             background: #3a3a3c;
             transform: translateY(-2px);
         }
-
     </style>
 </head>
 <body>
-
     <div class="logo">
         <div class="logo-dots"><div class="dot"></div><div class="dot"></div></div>
         BGPSLauncher
     </div>
-    
     <h1>Your Gateway to Blockman Go</h1>
-    
     <div class="button-container">
         <a href="games.html" class="btn btn-primary">Browse Games</a>
         <a href="id.html" class="btn btn-secondary">Enter Manual ID</a>
     </div>
-
 </body>
 </html>
