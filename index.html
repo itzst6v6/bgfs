@@ -27,6 +27,8 @@
             height: 100vh;
             margin: 0;
             text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
         }
         .logo {
             display: flex;
@@ -64,12 +66,13 @@
         .btn {
             display: inline-block;
             text-decoration: none;
-            padding: 18px 60px;
+            padding: 18px 40px;
             border-radius: 30px;
             font-size: 22px;
             font-weight: 700;
             transition: all 0.3s ease;
-            width: 300px;
+            width: 320px;
+            max-width: 100%;
             box-sizing: border-box;
         }
         .btn-primary {
@@ -89,6 +92,12 @@
             background: #3a3a3c;
             transform: translateY(-2px);
         }
+
+        @media (max-width: 480px) {
+            .logo { font-size: 36px; }
+            h1 { font-size: 18px; }
+            .btn { font-size: 18px; padding: 16px 30px; }
+        }
     </style>
 </head>
 <body>
@@ -96,10 +105,14 @@
         <div class="logo-dots"><div class="dot"></div><div class="dot"></div></div>
         BGPSLauncher
     </div>
+    
     <h1>Your Gateway to Blockman Go</h1>
+    
     <div class="button-container">
+        <a href="https://github.com/itzst6v6/bgps/releases/download/release/app-release.apk" class="btn btn-primary">Download Launcher APK</a>
         <a href="games.html" class="btn btn-primary">Browse Games</a>
         <a href="id.html" class="btn btn-secondary">Enter Manual ID</a>
     </div>
+
 </body>
 </html>
