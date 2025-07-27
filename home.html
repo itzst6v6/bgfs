@@ -1,0 +1,123 @@
+<!-- FILE NAME: index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BGPS Launcher</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background-color: #1c1c1e;
+            --primary-text-color: #f0f0f0;
+            --accent-green: #00ff00;
+            --card-bg-color: #2c2c2e;
+        }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--primary-text-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 48px;
+            font-weight: 700;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .logo-dots {
+            display: flex;
+            align-items: baseline;
+            margin-right: 15px;
+        }
+
+        .dot {
+            width: 12px; height: 12px;
+            background-color: #ccc;
+            border-radius: 50%; margin-right: 6px;
+        }
+
+        .dot:first-child { width: 18px; height: 18px; }
+        
+        h1 {
+            font-size: 24px;
+            font-weight: 400;
+            color: #a0a0a0;
+            margin: 15px 0 40px 0;
+            animation: fadeInUp 0.5s ease-out 0.2s;
+            animation-fill-mode: both;
+        }
+        
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            animation: fadeInUp 0.5s ease-out 0.4s;
+            animation-fill-mode: both;
+        }
+        
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: 18px 60px;
+            border-radius: 30px;
+            font-size: 22px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            width: 300px;
+            box-sizing: border-box;
+        }
+        
+        .btn-primary {
+            background-color: var(--accent-green);
+            color: #121212;
+            box-shadow: 0 5px 20px rgba(0, 255, 0, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 255, 0, 0.5);
+        }
+        
+        .btn-secondary {
+            background: var(--card-bg-color);
+            color: var(--primary-text-color);
+        }
+
+        .btn-secondary:hover {
+            background: #3a3a3c;
+            transform: translateY(-2px);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="logo">
+        <div class="logo-dots"><div class="dot"></div><div class="dot"></div></div>
+        BGPSLauncher
+    </div>
+    
+    <h1>Your Gateway to Blockman Go</h1>
+    
+    <div class="button-container">
+        <a href="games.html" class="btn btn-primary">Browse Games</a>
+        <a href="id.html" class="btn btn-secondary">Enter Manual ID</a>
+    </div>
+
+</body>
+</html>
