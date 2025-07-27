@@ -4,100 +4,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BGPS Launcher</title>
+    <title>BGPS Launcher - Home</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="The ultimate launcher for Blockman Go. Browse featured games, enter a manual ID, or download the native APK for the best experience.">
+    <meta name="keywords" content="Blockman Go, BGPS, Launcher, Bed Wars, Egg War, Mobile Games, BG, BMGO">
+    <meta name="author" content="BGPS Launcher Team">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="BGPS Launcher - Home">
+    <meta property="og:description" content="The ultimate launcher for Blockman Go. Browse featured games or enter a manual ID.">
+    <meta property="og:type" content="website">
+    <!-- Replace "https://your-website-url.com" with your actual domain -->
+    <meta property="og:url" content="https://your-website-url.com/">
+    <!-- Replace this with a link to your 1200x630 social preview image -->
+    <meta property="og:image" content="https://your-website-url.com/social-preview.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="BGPS Launcher - Home">
+    <meta name="twitter:description" content="The ultimate launcher for Blockman Go. Browse featured games or enter a manual ID.">
+    <meta name="twitter:image" content="https://your-website-url.com/social-preview.png">
+
+    <!-- Theme Color for Mobile Browsers -->
+    <meta name="theme-color" content="#1c1c1e">
+
+    <!-- Favicon (self-contained SVG) -->
+    <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%231c1c1e" stroke="%2300ff00" stroke-width="10"/><circle cx="35" cy="50" r="10" fill="%23cccccc"/><circle cx="65" cy="50" r="7" fill="%23cccccc"/></svg>'>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --background-color: #1c1c1e;
-            --primary-text-color: #f0f0f0;
-            --accent-green: #00ff00;
-            --card-bg-color: #2c2c2e;
-        }
+        :root { --background-color: #1c1c1e; --primary-text-color: #f0f0f0; --accent-green: #00ff00; --card-bg-color: #2c2c2e; }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--background-color);
-            color: var(--primary-text-color);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            text-align: center;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        .logo {
-            display: flex;
-            align-items: center;
-            font-size: 48px;
-            font-weight: 700;
-            animation: fadeInUp 0.5s ease-out;
-        }
-        .logo-dots {
-            display: flex;
-            align-items: baseline;
-            margin-right: 15px;
-        }
-        .dot {
-            width: 12px; height: 12px;
-            background-color: #ccc;
-            border-radius: 50%; margin-right: 6px;
-        }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--background-color); color: var(--primary-text-color); display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; margin: 0; text-align: center; padding: 20px; box-sizing: border-box; }
+        .logo { display: flex; align-items: center; font-size: 48px; font-weight: 700; animation: fadeInUp 0.5s ease-out; }
+        .logo-dots { display: flex; align-items: baseline; margin-right: 15px; }
+        .dot { width: 12px; height: 12px; background-color: #ccc; border-radius: 50%; margin-right: 6px; }
         .dot:first-child { width: 18px; height: 18px; }
-        h1 {
-            font-size: 24px;
-            font-weight: 400;
-            color: #a0a0a0;
-            margin: 15px 0 40px 0;
-            animation: fadeInUp 0.5s ease-out 0.2s;
-            animation-fill-mode: both;
-        }
-        .button-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            animation: fadeInUp 0.5s ease-out 0.4s;
-            animation-fill-mode: both;
-        }
-        .btn {
-            display: inline-block;
-            text-decoration: none;
-            padding: 18px 40px;
-            border-radius: 30px;
-            font-size: 22px;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            width: 320px;
-            max-width: 100%;
-            box-sizing: border-box;
-        }
-        .btn-primary {
-            background-color: var(--accent-green);
-            color: #121212;
-            box-shadow: 0 5px 20px rgba(0, 255, 0, 0.3);
-        }
-        .btn-primary:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(0, 255, 0, 0.5);
-        }
-        .btn-secondary {
-            background: var(--card-bg-color);
-            color: var(--primary-text-color);
-        }
-        .btn-secondary:hover {
-            background: #3a3a3c;
-            transform: translateY(-2px);
-        }
-
-        @media (max-width: 480px) {
-            .logo { font-size: 36px; }
-            h1 { font-size: 18px; }
-            .btn { font-size: 18px; padding: 16px 30px; }
-        }
+        h1 { font-size: 24px; font-weight: 400; color: #a0a0a0; margin: 15px 0 40px 0; animation: fadeInUp 0.5s ease-out 0.2s; animation-fill-mode: both; }
+        .button-container { display: flex; flex-direction: column; gap: 20px; animation: fadeInUp 0.5s ease-out 0.4s; animation-fill-mode: both; }
+        .btn { display: inline-block; text-decoration: none; padding: 18px 40px; border-radius: 30px; font-size: 22px; font-weight: 700; transition: all 0.3s ease; width: 320px; max-width: 100%; box-sizing: border-box; }
+        .btn-primary { background-color: var(--accent-green); color: #121212; box-shadow: 0 5px 20px rgba(0, 255, 0, 0.3); }
+        .btn-primary:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(0, 255, 0, 0.5); }
+        .btn-secondary { background: var(--card-bg-color); color: var(--primary-text-color); }
+        .btn-secondary:hover { background: #3a3a3c; transform: translateY(-2px); }
+        @media (max-width: 480px) { .logo { font-size: 36px; } h1 { font-size: 18px; } .btn { font-size: 18px; padding: 16px 30px; } }
     </style>
 </head>
 <body>
@@ -105,14 +58,11 @@
         <div class="logo-dots"><div class="dot"></div><div class="dot"></div></div>
         BGPSLauncher
     </div>
-    
     <h1>Your Gateway to Blockman Go</h1>
-    
     <div class="button-container">
         <a href="https://github.com/itzst6v6/bgps/releases/download/release/app-release.apk" class="btn btn-primary">Download Launcher APK</a>
         <a href="games.html" class="btn btn-primary">Browse Games</a>
         <a href="id.html" class="btn btn-secondary">Enter Manual ID</a>
     </div>
-
 </body>
 </html>
