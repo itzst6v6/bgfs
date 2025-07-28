@@ -1,0 +1,143 @@
+<!-- FILE NAME: dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - BGPS Launcher</title>
+
+    <!-- Meta Tags -->
+    <meta name="description" content="The central dashboard for the BGPS Launcher. Access all tools, including the game browser, manual ID launcher, and invite creator.">
+    <meta name="keywords" content="Blockman Go, BGPS, Launcher, Dashboard, Tools, Bed Wars, Egg War, Mobile Games">
+    <meta name="author" content="BGPS Launcher Team">
+    <meta name="theme-color" content="#1c1c1e">
+    <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%231c1c1e" stroke="%2300ff00" stroke-width="10"/><circle cx="35" cy="50" r="10" fill="%23cccccc"/><circle cx="65" cy="50" r="7" fill="%23cccccc"/></svg>'>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background-color: #1c1c1e;
+            --card-bg-color: #2c2c2e;
+            --primary-text-color: #f0f0f0;
+            --secondary-text-color: #a0a0a0;
+            --accent-green: #00ff00;
+            --border-color: #444;
+        }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        
+        body { font-family: 'Poppins', sans-serif; background-color: var(--background-color); color: var(--primary-text-color); margin: 0; padding: 30px; box-sizing: border-box; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; animation: fadeInUp 0.5s ease-out; }
+        .logo { display: flex; align-items: center; font-size: 28px; font-weight: 600; text-decoration: none; color: var(--primary-text-color); }
+        .logo-dots { display: flex; align-items: baseline; margin-right: 12px; }
+        .dot { width: 8px; height: 8px; background-color: #ccc; border-radius: 50%; margin-right: 5px; }
+        .dot:first-child { width: 13px; height: 13px; }
+        .nav-link { color: var(--secondary-text-color); text-decoration: none; font-size: 18px; font-weight: 600; display: flex; align-items: center; transition: color 0.3s ease; }
+        .nav-link:hover { color: var(--primary-text-color); }
+        .nav-link .arrow { font-size: 24px; margin-right: 8px; }
+
+        .main-title { font-size: 36px; font-weight: 700; margin-bottom: 50px; text-align: center; animation: fadeInUp 0.5s ease-out 0.2s; animation-fill-mode: both; }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            animation: fadeInUp 0.5s ease-out 0.4s;
+            animation-fill-mode: both;
+        }
+
+        .tool-card {
+            background-color: var(--card-bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: left;
+            text-decoration: none;
+            color: var(--primary-text-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: block;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0, 255, 0, 0.15);
+        }
+
+        .tool-card svg {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 20px;
+            color: var(--accent-green);
+        }
+
+        .tool-card h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0 0 10px 0;
+        }
+
+        .tool-card p {
+            font-size: 16px;
+            color: var(--secondary-text-color);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .header { margin-bottom: 30px; }
+            .logo { font-size: 24px; }
+            .nav-link { font-size: 16px; }
+            .main-title { font-size: 30px; margin-bottom: 40px; }
+            .tools-grid { gap: 20px; grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="header">
+            <a href="index.html" class="logo">
+                <div class="logo-dots"><div class="dot"></div><div class="dot"></div></div>
+                BGPSLauncher
+            </a>
+            <a href="index.html" class="nav-link"><span class="arrow">←</span> Back to Home</a>
+        </header>
+
+        <main>
+            <h1 class="main-title">Dashboard</h1>
+            <div class="tools-grid">
+                <!-- Explore Games Card -->
+                <a href="games.html" class="tool-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
+                    </svg>
+                    <h3>Explore Games</h3>
+                    <p>Browse a list of featured games and launch them with a single click.</p>
+                </a>
+                
+                <!-- Enter Manual ID Card -->
+                <a href="id.html" class="tool-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 8.25h13.5m-13.5 7.5h13.5m-1.5-13.5l-3.75 3.75m3.75-3.75L16.5 12" />
+                    </svg>
+                    <h3>Enter Manual ID</h3>
+                    <p>Have a game ID? Enter it here to launch any game directly.</p>
+                </a>
+                
+                <!-- Invite Creator Card -->
+                <a href="invitecreator.html" class="tool-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+                    </svg>
+                    <h3>Invite Creator</h3>
+                    <p>Generate a shareable link for any game to invite your friends.</p>
+                </a>
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>
