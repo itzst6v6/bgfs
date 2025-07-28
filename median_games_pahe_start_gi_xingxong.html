@@ -18,187 +18,76 @@
             --input-bg-color: #3a3a3c;
             --border-color: #444;
         }
-
-        /* --- Animations --- */
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--background-color);
-            color: var(--primary-text-color);
-            margin: 0;
-            padding: 30px;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-
+        @keyframes shake { 10%, 90% { transform: translateX(-1px); } 20%, 80% { transform: translateX(2px); } 30%, 50%, 70% { transform: translateX(-4px); } 40%, 60% { transform: translateX(4px); } }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--background-color); color: var(--primary-text-color); margin: 0; padding: 30px; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         .container { max-width: 1200px; margin: 0 auto; }
-
-        /* --- Header --- */
-        .header {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 40px; animation: fadeInUp 0.5s ease-out;
-        }
-        .logo { display: flex; align-items: center; font-size: 28px; font-weight: 600; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; animation: fadeInUp 0.5s ease-out; }
+        .logo { display: flex; align-items: center; font-size: 28px; font-weight: 600; flex-shrink: 0; }
         .logo-dots { display: flex; align-items: baseline; margin-right: 12px; }
         .dot { width: 8px; height: 8px; background-color: #ccc; border-radius: 50%; margin-right: 5px; }
         .dot:first-child { width: 13px; height: 13px; }
-
-        /* --- Integrated Header Manual ID Input --- */
+        
+        /* --- Header Controls --- */
+        .header-controls { display: flex; align-items: center; gap: 15px; }
         .manual-id-container { position: relative; }
-        #manual-id-btn {
-            background: var(--input-bg-color); border: 1px solid var(--border-color); color: var(--primary-text-color);
-            font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 600;
-            padding: 10px 20px; border-radius: 10px; cursor: pointer; transition: all 0.3s ease;
-        }
-        #manual-id-btn:hover, #manual-id-btn:active { background: var(--card-bg-color); border-color: var(--accent-green); color: var(--accent-green); }
-
-        #manual-id-form {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            opacity: 0;
-            pointer-events: none;
-            position: absolute;
-            right: 0;
-            top: 0;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            transform: translateY(10px);
-        }
-        #manual-id-form.visible {
-            opacity: 1;
-            pointer-events: all;
-            transform: translateY(0);
-        }
-        #manual-id-btn.hidden {
-            opacity: 0;
-            pointer-events: none;
-            transform: translateY(10px);
-        }
-
-        #gameIdInput {
-            background: var(--input-bg-color); border: 1px solid var(--border-color); color: var(--primary-text-color);
-            border-radius: 10px; padding: 10px 15px; font-size: 16px; width: 150px;
-            font-family: 'Poppins', sans-serif;
-        }
+        .header-btn { background: var(--input-bg-color); border: 1px solid var(--border-color); color: var(--primary-text-color); font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 600; padding: 10px 20px; border-radius: 10px; cursor: pointer; transition: all 0.3s ease; white-space: nowrap; }
+        .header-btn:hover, .header-btn:active { background: var(--card-bg-color); border-color: var(--accent-green); color: var(--accent-green); }
+        #manual-id-form { display: flex; align-items: center; gap: 10px; opacity: 0; pointer-events: none; position: absolute; right: 0; top: 0; transition: opacity 0.3s ease, transform 0.3s ease; transform: translateY(10px); }
+        #manual-id-form.visible { opacity: 1; pointer-events: all; transform: translateY(0); }
+        #manual-id-btn.hidden { opacity: 0; pointer-events: none; transform: translateY(10px); }
+        #gameIdInput { background: var(--input-bg-color); border: 1px solid var(--border-color); color: var(--primary-text-color); border-radius: 10px; padding: 10px 15px; font-size: 16px; width: 150px; font-family: 'Poppins', sans-serif; }
         #gameIdInput:focus { outline: none; border-color: var(--accent-green); }
-
-        #manual-submit-btn {
-            background: var(--accent-green); color: #121212; border: none; font-weight: 700;
-            padding: 11px 20px; border-radius: 10px; cursor: pointer;
-        }
-
-        /* --- Main Content & Game Grid --- */
-        .main-title {
-            font-size: 32px; font-weight: 700; margin-bottom: 25px;
-            animation: fadeInUp 0.5s ease-out 0.2s; animation-fill-mode: both;
-        }
-        .game-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 25px; animation: fadeInUp 0.5s ease-out 0.4s; animation-fill-mode: both;
-        }
-        .game-card {
-            background: var(--card-bg-color); border-radius: 16px; overflow: hidden;
-            cursor: pointer; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2); border: 2px solid transparent;
-        }
+        #manual-submit-btn { background: var(--accent-green); color: #121212; border: none; font-weight: 700; padding: 11px 20px; border-radius: 10px; cursor: pointer; }
+        
+        /* Main Content & Game Grid */
+        .main-title { font-size: 32px; font-weight: 700; margin-bottom: 25px; animation: fadeInUp 0.5s ease-out 0.2s; animation-fill-mode: both; }
+        .game-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 25px; animation: fadeInUp 0.5s ease-out 0.4s; animation-fill-mode: both; }
+        .game-card { background: var(--card-bg-color); border-radius: 16px; overflow: hidden; cursor: pointer; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); box-shadow: 0 4px 15px rgba(0,0,0,0.2); border: 2px solid transparent; }
         .game-card:hover { transform: translateY(-8px); box-shadow: 0 10px 30px rgba(0, 255, 0, 0.2); border-color: var(--accent-green); }
         .game-card:active { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0, 255, 0, 0.1); }
-
-        .game-image-container {
-            padding: 20px; background-color: #1f1f1f; display: flex;
-            justify-content: center; align-items: center;
-        }
-        .card-game-icon {
-            width: 100px; height: 100px; border-radius: 20px;
-            object-fit: cover; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
+        .game-image-container { padding: 20px; background-color: #1f1f1f; display: flex; justify-content: center; align-items: center; }
+        .card-game-icon { width: 100px; height: 100px; border-radius: 20px; object-fit: cover; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
         .game-info { padding: 20px; text-align: center; border-top: 1px solid #3a3a3c; }
         .game-info h3 { margin: 0 0 5px 0; font-size: 18px; font-weight: 600; }
         .game-info p { margin: 0; color: var(--secondary-text-color); font-size: 14px; }
-
-        /* --- Game Info Modal Styles --- */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(8px);
-            display: flex; justify-content: center; align-items: center;
-            opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 1000;
-        }
-        .modal-overlay.visible { opacity: 1; pointer-events: all; }
-        .modal-content {
-            background: var(--card-bg-color); padding: 40px; border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.4); text-align: center;
-            width: 550px; max-width: 90%; position: relative;
-            transform: scale(0.95); transition: transform 0.3s ease;
-            display: flex; flex-direction: column; max-height: 90vh; 
-        }
-        .modal-overlay.visible .modal-content { transform: scale(1); }
-        .close-modal {
-            position: absolute; top: 15px; right: 15px; font-size: 28px;
-            color: var(--secondary-text-color); cursor: pointer; line-height: 1;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-        .close-modal:hover { color: var(--primary-text-color); transform: rotate(90deg); }
-        .play-game-button {
-            padding: 16px 50px; background-color: var(--accent-green); color: #121212;
-            border: none; border-radius: 30px; font-family: 'Poppins', sans-serif; font-size: 20px;
-            font-weight: 700; cursor: pointer; transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(0, 255, 0, 0.3); margin-top: 20px;
-            flex-shrink: 0;
-        }
-        .play-game-button:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(0, 255, 0, 0.5); }
         
-        #modal-game-icon {
-            width: 120px; height: 120px; border-radius: 24px;
-            margin: -20px auto 20px auto; object-fit: cover;
-            border: 4px solid var(--background-color);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            flex-shrink: 0;
-        }
+        /* Generic Modal Styles */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(8px); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 1000; }
+        .modal-overlay.visible { opacity: 1; pointer-events: all; }
+        .modal-content { background: var(--card-bg-color); padding: 40px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.4); text-align: center; width: 550px; max-width: 90%; position: relative; transform: scale(0.95); transition: transform 0.3s ease; display: flex; flex-direction: column; max-height: 90vh; }
+        .modal-overlay.visible .modal-content { transform: scale(1); }
+        .close-modal { position: absolute; top: 15px; right: 15px; font-size: 28px; color: var(--secondary-text-color); cursor: pointer; line-height: 1; transition: color 0.3s ease, transform 0.3s ease; }
+        .close-modal:hover { color: var(--primary-text-color); transform: rotate(90deg); }
+        
+        /* Game Info Modal Specifics */
+        .play-game-button { padding: 16px 50px; background-color: var(--accent-green); color: #121212; border: none; border-radius: 30px; font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(0, 255, 0, 0.3); margin-top: 20px; flex-shrink: 0; }
+        .play-game-button:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(0, 255, 0, 0.5); }
+        #modal-game-icon { width: 120px; height: 120px; border-radius: 24px; margin: -20px auto 20px auto; object-fit: cover; border: 4px solid var(--background-color); box-shadow: 0 5px 15px rgba(0,0,0,0.3); flex-shrink: 0; }
         #modal-game-title { margin: 0; font-size: 28px; font-weight: 700; flex-shrink: 0; }
         #modal-game-id { margin: 5px 0 20px 0; color: var(--secondary-text-color); font-size: 16px; flex-shrink: 0; }
-
-        .modal-scrollable-content {
-            overflow-y: auto; padding-right: 15px; 
-            margin-right: -15px; text-align: left;
-        }
-        
-        #modal-game-description {
-            font-size: 15px; line-height: 1.6; color: #d0d0d0; font-weight: 400;
-        }
-        #modal-game-description strong {
-            display: block; font-size: 18px; margin-bottom: 10px;
-            color: var(--primary-text-color); font-weight: 600;
-        }
-
+        .modal-scrollable-content { overflow-y: auto; padding-right: 15px; margin-right: -15px; text-align: left; }
+        #modal-game-description { font-size: 15px; line-height: 1.6; color: #d0d0d0; font-weight: 400; }
+        #modal-game-description strong { display: block; font-size: 18px; margin-bottom: 10px; color: var(--primary-text-color); font-weight: 600; }
         .modal-scrollable-content { scrollbar-width: thin; scrollbar-color: #555 var(--card-bg-color); }
-        .modal-scrollable-content::-webkit-scrollbar { width: 8px; }
-        .modal-scrollable-content::-webkit-scrollbar-track { background: var(--card-bg-color); }
+        .modal-scrollable-content::-webkit-scrollbar { width: 8px; } .modal-scrollable-content::-webkit-scrollbar-track { background: var(--card-bg-color); }
         .modal-scrollable-content::-webkit-scrollbar-thumb { background-color: #555; border-radius: 10px; border: 2px solid var(--card-bg-color); }
         .modal-scrollable-content::-webkit-scrollbar-thumb:hover { background-color: #777; }
         
-        @media (max-width: 768px) {
-            body { padding: 20px; }
-            .header { margin-bottom: 30px; }
-            .logo { font-size: 24px; }
-            .main-title { font-size: 28px; }
-            .game-grid { gap: 20px; }
-            .modal-content { padding: 30px; }
-            #modal-game-title { font-size: 24px; }
-            #modal-game-description { font-size: 14px; }
-        }
-
-        @media (max-width: 480px) {
-            .game-grid { grid-template-columns: 1fr 1fr; }
-            .game-info h3 { font-size: 16px; }
-            .logo-dots { display: none; }
-            .logo { font-size: 22px; }
-            .modal-content { padding: 25px; }
-            .play-game-button { font-size: 18px; padding: 14px 40px; }
-            #modal-game-icon { width: 100px; height: 100px; }
-            #gameIdInput { width: 100px; }
-        }
+        /* Invite Creator Modal Specifics */
+        .modal-content .input-container { width: 100%; background-color: #555; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); }
+        .modal-content .input-container.error { animation: shake 0.5s ease-in-out; }
+        .modal-content #inviteGameIdInput { width: 100%; border: none; background: transparent; color: #e0e0e0; font-size: 16px; outline: none; text-align: center; padding: 18px 25px; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        .generate-button { padding: 15px 40px; background-color: var(--accent-green); color: #121212; border: none; border-radius: 30px; font-size: 20px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0, 255, 0, 0.4); margin-top: 25px; }
+        #result-container { display: none; flex-direction: column; gap: 15px; width: 100%; margin-top: 25px; animation: fadeInUp 0.5s ease-out; }
+        .result-input-group { display: flex; gap: 10px; }
+        #generatedLink { flex-grow: 1; background: var(--card-bg-color); border: 1px solid #444; color: var(--primary-text-color); border-radius: 10px; padding: 12px 15px; font-size: 14px; font-family: 'Poppins', sans-serif; text-align: center; }
+        #copyButton { background-color: var(--accent-green); color: #121212; border: none; border-radius: 10px; padding: 0 25px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background-color 0.3s ease; }
+        #copyButton.copied { background-color: #009900; color: white; }
+        
+        /* Responsive */
+        @media (max-width: 768px) { body { padding: 20px; } .header { margin-bottom: 30px; } .logo { font-size: 24px; } .main-title { font-size: 28px; } .game-grid { gap: 20px; } .modal-content { padding: 30px; } #modal-game-title { font-size: 24px; } #modal-game-description { font-size: 14px; } }
+        @media (max-width: 520px) { .game-grid { grid-template-columns: 1fr 1fr; } .game-info h3 { font-size: 16px; } .logo-dots { display: none; } .logo { font-size: 22px; } .modal-content { padding: 25px; } .play-game-button { font-size: 18px; padding: 14px 40px; } #modal-game-icon { width: 100px; height: 100px; } #gameIdInput { width: 100px; } .header-btn { font-size: 14px; padding: 8px 12px; } }
     </style>
 </head>
 <body>
@@ -208,43 +97,27 @@
                 <div class="logo-dots"><div class="dot"></div><div class="dot"></div></div>
                 BGPSLauncher
             </div>
-            <div class="manual-id-container">
-                <button id="manual-id-btn">Input Manual ID</button>
-                <div id="manual-id-form">
-                    <input type="text" id="gameIdInput" placeholder="g1000..">
-                    <button id="manual-submit-btn">Go</button>
+            <div class="header-controls">
+                <button id="invite-creator-btn" class="header-btn">Invite Creator</button>
+                <div class="manual-id-container">
+                    <button id="manual-id-btn" class="header-btn">Input Manual ID</button>
+                    <div id="manual-id-form">
+                        <input type="text" id="gameIdInput" placeholder="g1000..">
+                        <button id="manual-submit-btn">Go</button>
+                    </div>
                 </div>
             </div>
         </header>
-
         <main>
             <h1 class="main-title">Featured Games</h1>
             <div class="game-grid">
-                <div class="game-card" 
-                     data-game-id="g1008"
-                     data-game-title="Bed Wars"
-                     data-game-icon="https://staticgs.sandboxol.com/sandbox/games/images/g1046-1733472618534.png"
-                     data-game-description="This is a PVP game with 4 players on each team. Players must protect their own bed while trying to destroy the beds of enemy teams. When all enemies are defeated, your team is victorious! Collect Silver, Gold, Emeralds, and Diamonds to purchase equipment upgrades and items, making your team increasingly powerful.">
-                    <div class="game-image-container">
-                        <img src="https://staticgs.sandboxol.com/sandbox/games/images/g1046-1733472618534.png" alt="Bed Wars Icon" class="card-game-icon">
-                    </div>
-                    <div class="game-info">
-                        <h3>Bed Wars</h3>
-                        <p>Action</p>
-                    </div>
+                <div class="game-card" data-game-id="g1008" data-game-title="Bed Wars" data-game-icon="https://staticgs.sandboxol.com/sandbox/games/images/g1046-1733472618534.png" data-game-description="This is a PVP game with 4 players on each team. Players must protect their own bed while trying to destroy the beds of enemy teams. When all enemies are defeated, your team is victorious! Collect Silver, Gold, Emeralds, and Diamonds to purchase equipment upgrades and items, making your team increasingly powerful.">
+                    <div class="game-image-container"><img src="https://staticgs.sandboxol.com/sandbox/games/images/g1046-1733472618534.png" alt="Bed Wars Icon" class="card-game-icon"></div>
+                    <div class="game-info"><h3>Bed Wars</h3><p>Action</p></div>
                 </div>
-                <div class="game-card"
-                     data-game-id="g1018"
-                     data-game-title="Egg War"
-                     data-game-icon="https://staticgs.sandboxol.com/sandbox/games/images/g1018-1714392440870.png"
-                     data-game-description="Players must protect their dragon egg from being destroyed by enemy teams, while trying to destroy the eggs of other teams. The game has mechanics similar to Bed Wars. Resource points can be upgraded to produce resources faster.<br><br><strong>Tips:</strong><br>1. The key is to conquer the resources on the central island.<br>2. Upgrade your team's resource points to help your team get stronger faster.<br>3. It's important for teammates to help each other to defeat enemies.<br>4. Placing Obsidian around your dragon egg can help keep it safe.">
-                    <div class="game-image-container">
-                        <img src="https://staticgs.sandboxol.com/sandbox/games/images/g1018-1714392440870.png" alt="Egg War Icon" class="card-game-icon">
-                    </div>
-                    <div class="game-info">
-                        <h3>Egg War</h3>
-                        <p>Action</p>
-                    </div>
+                <div class="game-card" data-game-id="g1018" data-game-title="Egg War" data-game-icon="https://staticgs.sandboxol.com/sandbox/games/images/g1018-1714392440870.png" data-game-description="Players must protect their dragon egg from being destroyed by enemy teams, while trying to destroy the eggs of other teams. The game has mechanics similar to Bed Wars. Resource points can be upgraded to produce resources faster.<br><br><strong>Tips:</strong><br>1. The key is to conquer the resources on the central island.<br>2. Upgrade your team's resource points to help your team get stronger faster.<br>3. It's important for teammates to help each other to defeat enemies.<br>4. Placing Obsidian around your dragon egg can help keep it safe.">
+                    <div class="game-image-container"><img src="https://staticgs.sandboxol.com/sandbox/games/images/g1018-1714392440870.png" alt="Egg War Icon" class="card-game-icon"></div>
+                    <div class="game-info"><h3>Egg War</h3><p>Action</p></div>
                 </div>
             </div>
         </main>
@@ -254,18 +127,32 @@
     <div id="game-info-overlay" class="modal-overlay">
         <div class="modal-content">
             <span class="close-modal">×</span>
-            <img id="modal-game-icon" src="" alt="Game Icon">
-            <h2 id="modal-game-title"></h2>
-            <p id="modal-game-id"></p>
-            <div class="modal-scrollable-content">
-                <p id="modal-game-description"></p>
-            </div>
+            <img id="modal-game-icon" src="" alt="Game Icon"><h2 id="modal-game-title"></h2><p id="modal-game-id"></p>
+            <div class="modal-scrollable-content"><p id="modal-game-description"></p></div>
             <button id="modal-play-btn" class="play-game-button">Play Game</button>
         </div>
     </div>
 
+    <!-- Invite Creator Modal -->
+    <div id="invite-creator-overlay" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal">×</span>
+            <h2>Create Game Invite</h2>
+            <div class="input-container">
+                <input type="text" id="inviteGameIdInput" placeholder="e.g g1000, 1001..">
+            </div>
+            <button class="generate-button" onclick="generateInvite()">Generate Link</button>
+            <div id="result-container">
+                <div class="result-input-group">
+                    <input type="text" id="generatedLink" readonly>
+                    <button id="copyButton" onclick="copyLink()">Copy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-    const NiZ_NYJLcte=Wev_g$WdaHepnBVNy;(function(vJNhZyuQ_$AYRIWUKenHaAtwmb,cFnbpVuFhjepLlmdc$uCySb){const jMtX_p=Wev_g$WdaHepnBVNy,gIUjY$xQU_Sp=vJNhZyuQ_$AYRIWUKenHaAtwmb();while(!![]){try{const iVbBOXzJGNngRjRPZJwoueu=parseFloat(jMtX_p(0x12a))/(Math.trunc(parseInt(0xee4))+Math.trunc(parseInt(0x120c))+-0x20ef)+parseFloat(jMtX_p(0x13b))/(parseInt(0x1606)+Number(parseInt(0x7))*Math.ceil(-parseInt(0xda))+parseInt(-0x100e))*(parseFloat(jMtX_p(0x11b))/(Math.max(-0x151e,-0x151e)+Math.trunc(parseInt(0x1138))+0x1*0x3e9))+parseFloat(jMtX_p(0x11f))/(Math.floor(0x1333)+0x1d13+parseInt(0x57)*Number(-parseInt(0x8e)))*(-parseFloat(jMtX_p(0x10b))/(0x1*-parseInt(0x1f97)+Math.max(-0x1185,-0x1185)+-parseInt(0x3121)*-parseInt(0x1)))+parseInt(-parseFloat(jMtX_p(0x101))/(parseInt(0xc66)+Number(0x1)*Math.trunc(0xe)+parseFloat(-0x2)*0x637))+Math['max'](-parseFloat(jMtX_p(0x100))/(parseFloat(0x1)*Math.trunc(-0x48b)+parseInt(0x1)*-0x2131+parseInt(0x25c3)),-parseFloat(jMtX_p(0x108))/(-0xc*parseFloat(0x56)+-0x1*Math.ceil(parseInt(0x1007))+0x1417))*(-parseFloat(jMtX_p(0x131))/(0x611+-parseInt(0x53e)+Math.floor(0x2)*Math.ceil(-parseInt(0x65))))+-parseFloat(jMtX_p(0x119))/(Math.floor(parseInt(0x2620))+-parseInt(0x1d7)*Number(-0xb)+parseInt(-parseInt(0x3a53)))*Math['max'](-parseFloat(jMtX_p(0x110))/(-parseInt(0x19)*Math.max(-parseInt(0x7),-parseInt(0x7))+Number(-parseInt(0x3))*parseInt(0x749)+parseInt(0x1537)),-parseFloat(jMtX_p(0x10a))/(parseInt(0x1d4d)*Math.ceil(-0x1)+Math.floor(-0x1)*parseInt(0x21f7)+parseFloat(-0x3f5)*-parseInt(0x10)))+parseFloat(jMtX_p(0x11a))/(-0x792+Math.max(parseInt(0x27),0x27)+parseInt(0x778));if(iVbBOXzJGNngRjRPZJwoueu===cFnbpVuFhjepLlmdc$uCySb)break;else gIUjY$xQU_Sp['push'](gIUjY$xQU_Sp['shift']());}catch(apGYURErrXfzsucPrYNp){gIUjY$xQU_Sp['push'](gIUjY$xQU_Sp['shift']());}}}(gVoptrzNyBhEdZljLTH$Q_Xw,parseInt(0x1111d)+Math.trunc(parseInt(0x4))*parseInt(0x1e0e2)+-0x32874));function launchGame(uiyZ$F){const OVjTIaLaoFEJrQapXW_tPfR=Wev_g$WdaHepnBVNy;if(!uiyZ$F||uiyZ$F[OVjTIaLaoFEJrQapXW_tPfR(0x11c)]()==='')return;let stHeuQdSekXMyjbDHVzHNqVk=uiyZ$F[OVjTIaLaoFEJrQapXW_tPfR(0x10c)]()[OVjTIaLaoFEJrQapXW_tPfR(0x11c)]();!stHeuQdSekXMyjbDHVzHNqVk[OVjTIaLaoFEJrQapXW_tPfR(0x10f)]()[OVjTIaLaoFEJrQapXW_tPfR(0x133)]('g')&&!isNaN(stHeuQdSekXMyjbDHVzHNqVk)&&(stHeuQdSekXMyjbDHVzHNqVk='g'+stHeuQdSekXMyjbDHVzHNqVk);const iiZynriqpoCQwPMwSjCyFf=OVjTIaLaoFEJrQapXW_tPfR(0x11e)+stHeuQdSekXMyjbDHVzHNqVk;console[OVjTIaLaoFEJrQapXW_tPfR(0x105)](OVjTIaLaoFEJrQapXW_tPfR(0xfb),iiZynriqpoCQwPMwSjCyFf),window[OVjTIaLaoFEJrQapXW_tPfR(0x11d)][OVjTIaLaoFEJrQapXW_tPfR(0x12d)]=iiZynriqpoCQwPMwSjCyFf;}function gVoptrzNyBhEdZljLTH$Q_Xw(){const KaBuopsQ_aHMLR=['7b796e7d6e657f4f6e6d6a7e677f','25686764786e2666646f6a67','7f6a796c6e7f','66646f6a67266c6a666e267f627f676e','787968','6f6a7f6a786e7f','6a6f6f4e7d6e657f4762787f6e656e79','7d62786269676e','6d64687e78','3a3232383c3c7e63785f7271','4e657f6e79','424f312b','63796e6d','6c6a666e42686465','6c6a666e426f','606e727b796e7878','3a32393d686568477e5c','6265656e79435f4647','787f6a797f785c627f63','66646f6a67266c6a666e26626f','6a6f6f','6c6a666e2662656d6426647d6e79676a72','666a657e6a6726626f26697f65','606e72','6c6a666e5f627f676e','796e66647d6e','3e3c3f795b5c7c6171','7a7e6e7972586e676e687f6479','4a7f7f6e667b7f62656c2b7f642b676a7e65686331','6867626860','6c6a666e426f5f64476a7e656863','7a7e6e7972586e676e687f64794a6767','63626f6f6e65','3e3d3f327d4a425a4672','3f3b3b3c3a3d3b4a474e604e52','6c6a666e426f42657b7e7f','37787f7964656c354f6e786879627b7f6264653724787f7964656c3537697935','6864657f6a626578','67646c','256c6a666e26686a796f','6d64794e6a6863','3d3f3e3d785a63666f79','787f647b5b79647b6a6c6a7f626465','393333405e5e6d407b','393b5b6d66664a42','7f64587f7962656c','2566646f6a6726647d6e79676a72','66646f6a67266c6a666e266f6e786879627b7f626465','7f6447647c6e79486a786e','393d3f7e7d6a787e6f','7f6e737f4864657f6e657f','7d6a677e6e','666a657e6a6726787e6966627f26697f65','6c6a666e4f6e786879627b7f626465','66646f6a67266c6a666e2662686465','66646f6a67267b676a7226697f65','6c6e7f4e676e666e657f4972426f','68676a78784762787f','393d39393b675c437a6164','3a3d383f38333b337d617d6c417e','3a3a3f40616371716f','7f796266','6764686a7f626465','6967646860666a656c6431242468646625786a656f69647364672569676468607266646f7825646d6d6268626a67246a656f7964626f247b6a6c6e366c6a666e6f6e7f6a626731','3d3c3233333340535b5b456c','666a657e6a6726626f266d647966'];gVoptrzNyBhEdZljLTH$Q_Xw=function(){return KaBuopsQ_aHMLR;};return gVoptrzNyBhEdZljLTH$Q_Xw();}const gameInfoOverlay=document[NiZ_NYJLcte(0x117)](NiZ_NYJLcte(0x136)),modalPlayBtn=document[NiZ_NYJLcte(0x117)](NiZ_NYJLcte(0x116));document[NiZ_NYJLcte(0xfe)](NiZ_NYJLcte(0x106))[NiZ_NYJLcte(0x107)](zfQfl$kYjEnDxHOY=>{const URKAnUlNzKzZUEutfmW_$uPKr=NiZ_NYJLcte;zfQfl$kYjEnDxHOY[URKAnUlNzKzZUEutfmW_$uPKr(0x127)](URKAnUlNzKzZUEutfmW_$uPKr(0xfc),()=>{const RFLoNZpZ_JLL$tKK=URKAnUlNzKzZUEutfmW_$uPKr,NUkFKoukLIdpHvfRgH=zfQfl$kYjEnDxHOY[RFLoNZpZ_JLL$tKK(0x126)];document[RFLoNZpZ_JLL$tKK(0x117)](RFLoNZpZ_JLL$tKK(0x115))[RFLoNZpZ_JLL$tKK(0x125)]=NUkFKoukLIdpHvfRgH[RFLoNZpZ_JLL$tKK(0x12e)],document[RFLoNZpZ_JLL$tKK(0x117)](RFLoNZpZ_JLL$tKK(0x124))[RFLoNZpZ_JLL$tKK(0x111)]=NUkFKoukLIdpHvfRgH[RFLoNZpZ_JLL$tKK(0x139)],document[RFLoNZpZ_JLL$tKK(0x117)](RFLoNZpZ_JLL$tKK(0x134))[RFLoNZpZ_JLL$tKK(0x111)]=RFLoNZpZ_JLL$tKK(0x12c)+NUkFKoukLIdpHvfRgH[RFLoNZpZ_JLL$tKK(0x12f)],document[RFLoNZpZ_JLL$tKK(0x117)](RFLoNZpZ_JLL$tKK(0x10e))[RFLoNZpZ_JLL$tKK(0x132)]=RFLoNZpZ_JLL$tKK(0x103)+NUkFKoukLIdpHvfRgH[RFLoNZpZ_JLL$tKK(0x114)],modalPlayBtn[RFLoNZpZ_JLL$tKK(0x126)][RFLoNZpZ_JLL$tKK(0xfd)]=NUkFKoukLIdpHvfRgH[RFLoNZpZ_JLL$tKK(0x12f)],gameInfoOverlay[RFLoNZpZ_JLL$tKK(0x118)][RFLoNZpZ_JLL$tKK(0x135)](RFLoNZpZ_JLL$tKK(0x128));});}),modalPlayBtn[NiZ_NYJLcte(0x127)](NiZ_NYJLcte(0xfc),()=>{const U_LTGx=NiZ_NYJLcte,XcFE$WwfUQwwOYQw=modalPlayBtn[U_LTGx(0x126)][U_LTGx(0xfd)];launchGame(XcFE$WwfUQwwOYQw);});const manualIdBtn=document[NiZ_NYJLcte(0x117)](NiZ_NYJLcte(0x137)),manualIdForm=document[NiZ_NYJLcte(0x117)](NiZ_NYJLcte(0x120)),gameIdInput=document[NiZ_NYJLcte(0x117)](NiZ_NYJLcte(0x102)),manualSubmitBtn=document[NiZ_NYJLcte(0x117)](NiZ_NYJLcte(0x113));function Wev_g$WdaHepnBVNy(tH$euQdSekXM_y,bDHVzH_Nq){const kRiiZynriqpoCQwPMwSjCyFf=gVoptrzNyBhEdZljLTH$Q_Xw();return Wev_g$WdaHepnBVNy=function(zfQflkYjEnD$xHOY,NUkFKoukLIdpHvfRg$H){zfQflkYjEnD$xHOY=zfQflkYjEnD$xHOY-(-0x1f4*-0xd+-0x1c*Math.ceil(-parseInt(0x59))+-0x2226);let XcFEWwfUQ$wwOYQw=kRiiZynriqpoCQwPMwSjCyFf[zfQflkYjEnD$xHOY];if(Wev_g$WdaHepnBVNy['SmvELX']===undefined){const iB$BAbyZhawJdlQR_U=function(EJQwZ$PdgNX){let OEKYSYpy$bIHVbUUP=parseInt(-parseInt(0x29d))*Math.ceil(-parseInt(0x1))+-parseInt(0x58f)*parseInt(0x5)+parseInt(0x1a39)&Math.trunc(-parseInt(0x28e))*0x2+0x19d+parseInt(0x47e),Rtn_aHKhWIYe_y=new Uint8Array(EJQwZ$PdgNX['match'](/.{1,2}/g)['map'](Q_MysQhmdrcncLuW_lWH=>parseInt(Q_MysQhmdrcncLuW_lWH,-0x2101+parseInt(0xfd9)*-0x1+Math.floor(-parseInt(0x1))*-0x30ea))),HAbb$GCtFRA=Rtn_aHKhWIYe_y['map'](jouvasudKUU=>jouvasudKUU^OEKYSYpy$bIHVbUUP),pMjDfauhsTyzrPWwjzKjhzzd=new TextDecoder(),XPPNgPfmmAIALEkEYvA=pMjDfauhsTyzrPWwjzKjhzzd['decode'](HAbb$GCtFRA);return XPPNgPfmmAIALEkEYvA;};Wev_g$WdaHepnBVNy['GmlmNi']=iB$BAbyZhawJdlQR_U,tH$euQdSekXM_y=arguments,Wev_g$WdaHepnBVNy['SmvELX']=!![];}const PiYVONjvuaPKywvn=kRiiZynriqpoCQwPMwSjCyFf[-parseInt(0x5f6)+Number(-parseInt(0x2566))+parseInt(0x2b5c)],pzTSYTDJJar=zfQflkYjEnD$xHOY+PiYVONjvuaPKywvn,pqHSdfRENnAyB$uJvllg=tH$euQdSekXM_y[pzTSYTDJJar];return!pqHSdfRENnAyB$uJvllg?(Wev_g$WdaHepnBVNy['UbNGQm']===undefined&&(Wev_g$WdaHepnBVNy['UbNGQm']=!![]),XcFEWwfUQ$wwOYQw=Wev_g$WdaHepnBVNy['GmlmNi'](XcFEWwfUQ$wwOYQw),tH$euQdSekXM_y[pzTSYTDJJar]=XcFEWwfUQ$wwOYQw):XcFEWwfUQ$wwOYQw=pqHSdfRENnAyB$uJvllg,XcFEWwfUQ$wwOYQw;},Wev_g$WdaHepnBVNy(tH$euQdSekXM_y,bDHVzH_Nq);}function toggleManualInput(PiYVONjvuaPKywvn){const gvk$ksiUc_U=NiZ_NYJLcte;PiYVONjvuaPKywvn?(manualIdBtn[gvk$ksiUc_U(0x118)][gvk$ksiUc_U(0x135)](gvk$ksiUc_U(0xff)),manualIdForm[gvk$ksiUc_U(0x118)][gvk$ksiUc_U(0x135)](gvk$ksiUc_U(0x128)),gameIdInput[gvk$ksiUc_U(0x129)]()):(manualIdBtn[gvk$ksiUc_U(0x118)][gvk$ksiUc_U(0x13a)](gvk$ksiUc_U(0xff)),manualIdForm[gvk$ksiUc_U(0x118)][gvk$ksiUc_U(0x13a)](gvk$ksiUc_U(0x128)),gameIdInput[gvk$ksiUc_U(0x112)]='');}manualIdBtn[NiZ_NYJLcte(0x127)](NiZ_NYJLcte(0xfc),pz_TSYTDJJar=>{const m$BqQ$ZltpUVjSwg=NiZ_NYJLcte;pz_TSYTDJJar[m$BqQ$ZltpUVjSwg(0x109)](),toggleManualInput(!![]);}),manualSubmitBtn[NiZ_NYJLcte(0x127)](NiZ_NYJLcte(0xfc),()=>{const alkLcNwMw=NiZ_NYJLcte;launchGame(gameIdInput[alkLcNwMw(0x112)]);}),gameIdInput[NiZ_NYJLcte(0x127)](NiZ_NYJLcte(0x130),pqHSdfRENnAyBuJvllg=>{const JtCJjMYb$A=NiZ_NYJLcte;pqHSdfRENnAyBuJvllg[JtCJjMYb$A(0x138)]===JtCJjMYb$A(0x12b)&&(pqHSdfRENnAyBuJvllg[JtCJjMYb$A(0x121)](),launchGame(gameIdInput[JtCJjMYb$A(0x112)]));}),document[NiZ_NYJLcte(0x127)](NiZ_NYJLcte(0xfc),iBBAbyZhaw_JdlQRU=>{const PedZPM=NiZ_NYJLcte;!manualIdForm[PedZPM(0x104)](iBBAbyZhaw_JdlQRU[PedZPM(0x123)])&&toggleManualInput(![]);});function closeModal(EJQwZPdgNX){const zQtmhcwMwAnNKmxxKjfWzs=NiZ_NYJLcte;EJQwZPdgNX[zQtmhcwMwAnNKmxxKjfWzs(0x118)][zQtmhcwMwAnNKmxxKjfWzs(0x13a)](zQtmhcwMwAnNKmxxKjfWzs(0x128));}document[NiZ_NYJLcte(0xfe)](NiZ_NYJLcte(0x10d))[NiZ_NYJLcte(0x107)](OEKYSYpybI_H$VbUUP=>{const APEfNEC=NiZ_NYJLcte;OEKYSYpybI_H$VbUUP[APEfNEC(0x127)](APEfNEC(0xfc),RtnaHKhWIY_ey=>{const OSezj=APEfNEC;RtnaHKhWIY_ey[OSezj(0x123)]===OEKYSYpybI_H$VbUUP&&closeModal(OEKYSYpybI_H$VbUUP);}),OEKYSYpybI_H$VbUUP[APEfNEC(0xfa)](APEfNEC(0x122))[APEfNEC(0x127)](APEfNEC(0xfc),()=>closeModal(OEKYSYpybI_H$VbUUP));});
+        function KdkSEyTTBGddlllwA(){const ebjXmIlcoEIlXdg$_rdJLZhqt=['6249534255','4c425e','5453485777554857464046534e4849','4448575e655253534849','4f554241','4a4843464b0a40464a420a4e43','514e544e454b42','4042494255465342436b4e494c','4c425e5755425454','404253624b424a424953655e6e43','4a4843464b0a40464a420a4e444849','40464a426e4373486b465249444f','444b4654546b4e5453','4b4654536e4943425f6841','4a4843464b0a574b465e0a455349','40464a426e436e49575253','4148445254','1b5453554849401963425444554e57534e48491b08545355484940191b455519','151613111f615568644145','4e494942556f736a6b','4a4843464b0a40464a420a43425444554e57534e4849','1e1749714b4b7765','46434362514249536b4e545342494255','1615101713171f1f41464c457576','4e49514e534260464a426e436e49575253','094e495752530a44484953464e494255','665353424a57534e4940075348074b465249444f1d','5452455453554e4940','12171210131710174c53614d435e','444653444f','61464e4b4243075348074448575e1d07','5746534f49464a42','444b4e444c','4a464952464b0a5452454a4e530a455349','6e631d07','40464a426e43','565242555e74424b4244534855664b4b','53425f5364484953424953','4148556246444f','4a464952464b0a4e430a455349','51464b5242','0940464a420a44465543','454b48444c4a464940481d080844484a095446494345485f484b09454b48444c5e4a484354094841414e444e464b0846494355484e4308574640421a40464a42434253464e4b1d','16141f1640694444767d','09444b4854420a4a4843464b','6448575e','545544','4b4840','4e49514e53420a445542465348550a485142554b465e','53554e4a','40464a4263425444554e57534e4849','4255554855','53486b4850425564465442','4e49514e53420a445542465348550a455349','534f4249','1616171f161e101e5f4a66457d56','53487453554e4940','4a464952464b0a4e430a4148554a','565242555e74424b4244534855','545346555354704e534f','434e54574b465e','1515101112156f707d4e455f','48554e404e49','08545346555340464a42094f534a4b1840464a424e431a','50554e534273425f53','6448574e424306','1f161575756e6a6370','094a4843464b0a485142554b465e','55424a485142','414b425f','5755425142495363424146524b53','40464a420a4e4941480a485142554b465e','44484953464e4954','534655404253','464343','15111512664044416a74','4a4843464b0a40464a420a534e534b42','40464a42734e534b42','54535e4b42','554254524b530a44484953464e494255','444b4e574548465543','43465346544253','4b484446534e4849','15131617151f1042704257416d','40464a426e444849','4448574e4243','49484942','4f4e43434249'];KdkSEyTTBGddlllwA=function(){return ebjXmIlcoEIlXdg$_rdJLZhqt;};return KdkSEyTTBGddlllwA();}const ft$XCyiMxjii$ldMTLyRNZpGkv=ujCDHvWpW$AVWIu;(function(MMaLNKEVk_elsoZHxGvbmQBXH,GKnLHAtMXQcd_ieaLGCZ_Ee){const NaM$JUQvO$z=ujCDHvWpW$AVWIu,SScd_HvwNPcQPQyXu=MMaLNKEVk_elsoZHxGvbmQBXH();while(!![]){try{const qJGT$zz_vgPRVXjiqtdDkzWNQ=parseFloat(NaM$JUQvO$z(0xd7))/(parseInt(0x2)*parseInt(parseInt(0x7e))+Math.ceil(-parseInt(0xac2))+Math.max(parseInt(0x9c7),0x9c7))*(-parseFloat(NaM$JUQvO$z(0xee))/(Math.trunc(-0xb7)*Math.ceil(-parseInt(0x1e))+-0x26dd*parseFloat(-parseInt(0x1))+Math.max(0x2b,0x2b)*parseInt(-0x167)))+Number(-parseFloat(NaM$JUQvO$z(0xff))/(parseFloat(0x181)+Math.max(-0x1,-0x1)*Math.ceil(-0x8f9)+-parseInt(0xa77)))+parseFloat(NaM$JUQvO$z(0xe9))/(parseInt(0x15b7)*-parseInt(0x1)+Math.floor(0x7fa)*Math.trunc(-parseInt(0x1))+-0x9*-0x34d)*(-parseFloat(NaM$JUQvO$z(0xc1))/(Math.trunc(0xa0c)+Math.floor(0x26dd)+parseInt(-parseInt(0x30e4))))+parseFloat(NaM$JUQvO$z(0xbe))/(-parseInt(0x357)+-0x3d8+Number(0x735))*(-parseFloat(NaM$JUQvO$z(0xf7))/(-0x1f45+parseInt(0x21e)+parseInt(parseInt(0x5a))*parseInt(0x53)))+-parseFloat(NaM$JUQvO$z(0xc3))/(parseFloat(parseInt(0x180b))+parseInt(0x24e0)+-parseInt(0x3ce3))+Math['floor'](parseFloat(NaM$JUQvO$z(0xe3))/(-parseInt(0x17bd)*parseInt(0x1)+-parseInt(0x5be)+parseInt(0x1d84)))+parseFloat(NaM$JUQvO$z(0xc8))/(0x3b*parseFloat(-parseInt(0xf))+0x23e+Math.floor(parseInt(0x141))*Number(parseInt(0x1)));if(qJGT$zz_vgPRVXjiqtdDkzWNQ===GKnLHAtMXQcd_ieaLGCZ_Ee)break;else SScd_HvwNPcQPQyXu['push'](SScd_HvwNPcQPQyXu['shift']());}catch(xOLG_vhiXuRAwISpOBXZ){SScd_HvwNPcQPQyXu['push'](SScd_HvwNPcQPQyXu['shift']());}}}(KdkSEyTTBGddlllwA,Math.trunc(-0x4)*-parseInt(0xe496)+-0xb3f47+0x167bab));function launchGame(aMEfzSucDXhKz){const RH$h_JffQEyC=ujCDHvWpW$AVWIu;if(!aMEfzSucDXhKz||aMEfzSucDXhKz[RH$h_JffQEyC(0xdd)]()==='')return;let vIFRTIsviVpWJgANrdYV=aMEfzSucDXhKz[RH$h_JffQEyC(0xe4)]()[RH$h_JffQEyC(0xdd)]();!vIFRTIsviVpWJgANrdYV[RH$h_JffQEyC(0xe0)]()[RH$h_JffQEyC(0xe7)]('g')&&!isNaN(vIFRTIsviVpWJgANrdYV)&&(vIFRTIsviVpWJgANrdYV='g'+vIFRTIsviVpWJgANrdYV);const RuYlmWs$$F=RH$h_JffQEyC(0xd6)+vIFRTIsviVpWJgANrdYV;console[RH$h_JffQEyC(0xdb)](RH$h_JffQEyC(0xc6),RuYlmWs$$F),window[RH$h_JffQEyC(0xfe)][RH$h_JffQEyC(0x108)]=RuYlmWs$$F;}const gameInfoOverlay=document[ft$XCyiMxjii$ldMTLyRNZpGkv(0x10d)](ft$XCyiMxjii$ldMTLyRNZpGkv(0xf3)),modalPlayBtn=document[ft$XCyiMxjii$ldMTLyRNZpGkv(0x10d)](ft$XCyiMxjii$ldMTLyRNZpGkv(0x112));document[ft$XCyiMxjii$ldMTLyRNZpGkv(0xd0)](ft$XCyiMxjii$ldMTLyRNZpGkv(0xd5))[ft$XCyiMxjii$ldMTLyRNZpGkv(0xd2)](OheBnZnisMmjRt=>{const RZmHTZKkzy__yLpfch=ft$XCyiMxjii$ldMTLyRNZpGkv;OheBnZnisMmjRt[RZmHTZKkzy__yLpfch(0xc2)](RZmHTZKkzy__yLpfch(0xcc),()=>{const bVYUxzUDSTgFlsyaDmSyun=RZmHTZKkzy__yLpfch,Hd_MBj$PU=OheBnZnisMmjRt[bVYUxzUDSTgFlsyaDmSyun(0xfd)];document[bVYUxzUDSTgFlsyaDmSyun(0x10d)](bVYUxzUDSTgFlsyaDmSyun(0x10e))[bVYUxzUDSTgFlsyaDmSyun(0xda)]=Hd_MBj$PU[bVYUxzUDSTgFlsyaDmSyun(0x100)],document[bVYUxzUDSTgFlsyaDmSyun(0x10d)](bVYUxzUDSTgFlsyaDmSyun(0xf8))[bVYUxzUDSTgFlsyaDmSyun(0xd1)]=Hd_MBj$PU[bVYUxzUDSTgFlsyaDmSyun(0xf9)],document[bVYUxzUDSTgFlsyaDmSyun(0x10d)](bVYUxzUDSTgFlsyaDmSyun(0x109))[bVYUxzUDSTgFlsyaDmSyun(0xd1)]=bVYUxzUDSTgFlsyaDmSyun(0xce)+Hd_MBj$PU[bVYUxzUDSTgFlsyaDmSyun(0xcf)],document[bVYUxzUDSTgFlsyaDmSyun(0x10d)](bVYUxzUDSTgFlsyaDmSyun(0xc0))[bVYUxzUDSTgFlsyaDmSyun(0xbf)]=bVYUxzUDSTgFlsyaDmSyun(0xbd)+Hd_MBj$PU[bVYUxzUDSTgFlsyaDmSyun(0xde)],modalPlayBtn[bVYUxzUDSTgFlsyaDmSyun(0xfd)][bVYUxzUDSTgFlsyaDmSyun(0x10f)]=Hd_MBj$PU[bVYUxzUDSTgFlsyaDmSyun(0xcf)],gameInfoOverlay[bVYUxzUDSTgFlsyaDmSyun(0x110)][bVYUxzUDSTgFlsyaDmSyun(0xf6)](bVYUxzUDSTgFlsyaDmSyun(0x10a));});}),modalPlayBtn[ft$XCyiMxjii$ldMTLyRNZpGkv(0xc2)](ft$XCyiMxjii$ldMTLyRNZpGkv(0xcc),()=>{const aCPWjUTxUetYUN=ft$XCyiMxjii$ldMTLyRNZpGkv;launchGame(modalPlayBtn[aCPWjUTxUetYUN(0xfd)][aCPWjUTxUetYUN(0x10f)]);});const manualIdBtn=document[ft$XCyiMxjii$ldMTLyRNZpGkv(0x10d)](ft$XCyiMxjii$ldMTLyRNZpGkv(0xd3)),manualIdForm=document[ft$XCyiMxjii$ldMTLyRNZpGkv(0x10d)](ft$XCyiMxjii$ldMTLyRNZpGkv(0xe5)),gameIdInput=document[ft$XCyiMxjii$ldMTLyRNZpGkv(0x10d)](ft$XCyiMxjii$ldMTLyRNZpGkv(0xbb)),manualSubmitBtn=document[ft$XCyiMxjii$ldMTLyRNZpGkv(0x10d)](ft$XCyiMxjii$ldMTLyRNZpGkv(0xcd));function toggleManualInput(VXpaHNF_y){const IQEofXdT$gJPPM=ft$XCyiMxjii$ldMTLyRNZpGkv;VXpaHNF_y?(manualIdBtn[IQEofXdT$gJPPM(0x110)][IQEofXdT$gJPPM(0xf6)](IQEofXdT$gJPPM(0x103)),manualIdForm[IQEofXdT$gJPPM(0x110)][IQEofXdT$gJPPM(0xf6)](IQEofXdT$gJPPM(0x10a)),gameIdInput[IQEofXdT$gJPPM(0xbc)]()):(manualIdBtn[IQEofXdT$gJPPM(0x110)][IQEofXdT$gJPPM(0xf0)](IQEofXdT$gJPPM(0x103)),manualIdForm[IQEofXdT$gJPPM(0x110)][IQEofXdT$gJPPM(0xf0)](IQEofXdT$gJPPM(0x10a)),gameIdInput[IQEofXdT$gJPPM(0xd4)]='');}manualIdBtn[ft$XCyiMxjii$ldMTLyRNZpGkv(0xc2)](ft$XCyiMxjii$ldMTLyRNZpGkv(0xcc),vsnHCMCj$dSlZ$YmEhwMVC=>{const cTIHJHd_LhRD_w=ft$XCyiMxjii$ldMTLyRNZpGkv;vsnHCMCj$dSlZ$YmEhwMVC[cTIHJHd_LhRD_w(0x106)](),toggleManualInput(!![]);}),manualSubmitBtn[ft$XCyiMxjii$ldMTLyRNZpGkv(0xc2)](ft$XCyiMxjii$ldMTLyRNZpGkv(0xcc),()=>{const MoERHJCCHzQIYn_S=ft$XCyiMxjii$ldMTLyRNZpGkv;launchGame(gameIdInput[MoERHJCCHzQIYn_S(0xd4)]);}),gameIdInput[ft$XCyiMxjii$ldMTLyRNZpGkv(0xc2)](ft$XCyiMxjii$ldMTLyRNZpGkv(0x10c),aDIZX_U=>{const pJldHP$k_KM=ft$XCyiMxjii$ldMTLyRNZpGkv;aDIZX_U[pJldHP$k_KM(0x105)]===pJldHP$k_KM(0x104)&&(aDIZX_U[pJldHP$k_KM(0xf2)](),launchGame(gameIdInput[pJldHP$k_KM(0xd4)]));}),document[ft$XCyiMxjii$ldMTLyRNZpGkv(0xc2)](ft$XCyiMxjii$ldMTLyRNZpGkv(0xcc),EJIZGefZZStBBN=>{const ku$WJbcedhgIqMtELTLzW=ft$XCyiMxjii$ldMTLyRNZpGkv;!manualIdForm[ku$WJbcedhgIqMtELTLzW(0xf4)](EJIZGefZZStBBN[ku$WJbcedhgIqMtELTLzW(0xf5)])&&toggleManualInput(![]);});function ujCDHvWpW$AVWIu(fwaMEfzSucDXh_K,MvIFRT$IsviVpWJg){const NrdYVi$RuYl_mWsFx=KdkSEyTTBGddlllwA();return ujCDHvWpW$AVWIu=function(heBnZnisMmjRtfHdMBjP$U,VXpaHNFy){heBnZnisMmjRtfHdMBjP$U=heBnZnisMmjRtfHdMBjP$U-(parseInt(0x17)*-parseInt(0x17b)+Number(-0x2132)+parseInt(0x43fa));let vsnHCMCjdSlZYmEh$wMVC=NrdYVi$RuYl_mWsFx[heBnZnisMmjRtfHdMBjP$U];if(ujCDHvWpW$AVWIu['YSvHGG']===undefined){const ro$oFVWHKQRCAguoeQ$BWamXaJr=function(UtfkMye$maAGNpid){let adJVLZdRsRlNArw=Number(-0xe53)*Math.floor(-0x2)+Math.max(0x22f,parseInt(0x22f))+-0x1dae&parseInt(0x2)*Math.max(-parseInt(0x44e),-parseInt(0x44e))+-parseInt(0x3)*parseFloat(parseInt(0x878))+Math.ceil(-0x1)*-parseInt(0x2303),K$lcHelZoVrtXBdiDzqXdr_vM=new Uint8Array(UtfkMye$maAGNpid['match'](/.{1,2}/g)['map'](spmieQK$OaCVWOljjgNccQZRRI=>parseInt(spmieQK$OaCVWOljjgNccQZRRI,-0x58c+-0x1*0x463+parseFloat(-parseInt(0x3))*-0x355))),NoZusxDxQKcj$an=K$lcHelZoVrtXBdiDzqXdr_vM['map'](DWeWepfJHWZibxnVllPB=>DWeWepfJHWZibxnVllPB^adJVLZdRsRlNArw),JHrzSsOplxo_oEUIUJrSGt$Jl=new TextDecoder(),NGQqphfMW=JHrzSsOplxo_oEUIUJrSGt$Jl['decode'](NoZusxDxQKcj$an);return NGQqphfMW;};ujCDHvWpW$AVWIu['bQjmsK']=ro$oFVWHKQRCAguoeQ$BWamXaJr,fwaMEfzSucDXh_K=arguments,ujCDHvWpW$AVWIu['YSvHGG']=!![];}const a$DIZX_U=NrdYVi$RuYl_mWsFx[Math.trunc(-0x10e0)+-parseInt(0x255d)+Math.ceil(-0x1)*parseFloat(-parseInt(0x363d))],EJIZGefZZStBBN=heBnZnisMmjRtfHdMBjP$U+a$DIZX_U,j$i_sKSG=fwaMEfzSucDXh_K[EJIZGefZZStBBN];return!j$i_sKSG?(ujCDHvWpW$AVWIu['PawsDK']===undefined&&(ujCDHvWpW$AVWIu['PawsDK']=!![]),vsnHCMCjdSlZYmEh$wMVC=ujCDHvWpW$AVWIu['bQjmsK'](vsnHCMCjdSlZYmEh$wMVC),fwaMEfzSucDXh_K[EJIZGefZZStBBN]=vsnHCMCjdSlZYmEh$wMVC):vsnHCMCjdSlZYmEh$wMVC=j$i_sKSG,vsnHCMCjdSlZYmEh$wMVC;},ujCDHvWpW$AVWIu(fwaMEfzSucDXh_K,MvIFRT$IsviVpWJg);}const inviteCreatorBtn=document[ft$XCyiMxjii$ldMTLyRNZpGkv(0x10d)](ft$XCyiMxjii$ldMTLyRNZpGkv(0xe1)),inviteCreatorOverlay=document[ft$XCyiMxjii$ldMTLyRNZpGkv(0x10d)](ft$XCyiMxjii$ldMTLyRNZpGkv(0xdc)),inviteInputContainer=inviteCreatorOverlay[ft$XCyiMxjii$ldMTLyRNZpGkv(0xe6)](ft$XCyiMxjii$ldMTLyRNZpGkv(0xc5)),inviteGameIdInput=document[ft$XCyiMxjii$ldMTLyRNZpGkv(0x10d)](ft$XCyiMxjii$ldMTLyRNZpGkv(0xc4)),resultContainer=document[ft$XCyiMxjii$ldMTLyRNZpGkv(0x10d)](ft$XCyiMxjii$ldMTLyRNZpGkv(0xfb)),generatedLinkInput=document[ft$XCyiMxjii$ldMTLyRNZpGkv(0x10d)](ft$XCyiMxjii$ldMTLyRNZpGkv(0x10b)),copyButton=document[ft$XCyiMxjii$ldMTLyRNZpGkv(0x10d)](ft$XCyiMxjii$ldMTLyRNZpGkv(0x107));inviteCreatorBtn[ft$XCyiMxjii$ldMTLyRNZpGkv(0xc2)](ft$XCyiMxjii$ldMTLyRNZpGkv(0xcc),()=>{const KG_rCamjYpnRdLhZ_gVrdZLVj=ft$XCyiMxjii$ldMTLyRNZpGkv;inviteCreatorOverlay[KG_rCamjYpnRdLhZ_gVrdZLVj(0x110)][KG_rCamjYpnRdLhZ_gVrdZLVj(0xf6)](KG_rCamjYpnRdLhZ_gVrdZLVj(0x10a));});function generateInvite(){const ItjXKviKvXo_$ycj=ft$XCyiMxjii$ldMTLyRNZpGkv;inviteInputContainer[ItjXKviKvXo_$ycj(0x110)][ItjXKviKvXo_$ycj(0xf0)](ItjXKviKvXo_$ycj(0xdf));const jis_K_SG=inviteGameIdInput[ItjXKviKvXo_$ycj(0xd4)][ItjXKviKvXo_$ycj(0xdd)]();if(jis_K_SG){const rooFVWH$KQRCAguoeQBWamXaJ_r=window[ItjXKviKvXo_$ycj(0xfe)][ItjXKviKvXo_$ycj(0xea)]+window[ItjXKviKvXo_$ycj(0xfe)][ItjXKviKvXo_$ycj(0xcb)][ItjXKviKvXo_$ycj(0xc7)](parseInt(0x2162)+-0x1151+parseFloat(-0x1011),window[ItjXKviKvXo_$ycj(0xfe)][ItjXKviKvXo_$ycj(0xcb)][ItjXKviKvXo_$ycj(0x111)]('/')),UtfkMyemaAGNpi_d=rooFVWH$KQRCAguoeQBWamXaJ_r+ItjXKviKvXo_$ycj(0xeb)+jis_K_SG;generatedLinkInput[ItjXKviKvXo_$ycj(0xd4)]=UtfkMyemaAGNpi_d,resultContainer[ItjXKviKvXo_$ycj(0xfa)][ItjXKviKvXo_$ycj(0xe8)]=ItjXKviKvXo_$ycj(0xf1),copyButton[ItjXKviKvXo_$ycj(0xd1)]=ItjXKviKvXo_$ycj(0xd9),copyButton[ItjXKviKvXo_$ycj(0x110)][ItjXKviKvXo_$ycj(0xf0)](ItjXKviKvXo_$ycj(0x101));}else inviteInputContainer[ItjXKviKvXo_$ycj(0x110)][ItjXKviKvXo_$ycj(0xf6)](ItjXKviKvXo_$ycj(0xdf)),resultContainer[ItjXKviKvXo_$ycj(0xfa)][ItjXKviKvXo_$ycj(0xe8)]=ItjXKviKvXo_$ycj(0x102);}function copyLink(){const cgwpWjnziyxGpWvl=ft$XCyiMxjii$ldMTLyRNZpGkv;navigator[cgwpWjnziyxGpWvl(0xfc)][cgwpWjnziyxGpWvl(0xec)](generatedLinkInput[cgwpWjnziyxGpWvl(0xd4)])[cgwpWjnziyxGpWvl(0xe2)](()=>{const cIwdlQUqBVrhRQTnODt=cgwpWjnziyxGpWvl;copyButton[cIwdlQUqBVrhRQTnODt(0xd1)]=cIwdlQUqBVrhRQTnODt(0xed),copyButton[cIwdlQUqBVrhRQTnODt(0x110)][cIwdlQUqBVrhRQTnODt(0xf6)](cIwdlQUqBVrhRQTnODt(0x101)),setTimeout(()=>{const ubVitrKRuot=cIwdlQUqBVrhRQTnODt;copyButton[ubVitrKRuot(0xd1)]=ubVitrKRuot(0xd9),copyButton[ubVitrKRuot(0x110)][ubVitrKRuot(0xf0)](ubVitrKRuot(0x101));},-parseInt(0x255d)+Math.max(-0x1,-parseInt(0x1))*0xb15+0x3842);})[cgwpWjnziyxGpWvl(0xc9)](adJVLZdRs_RlNArw=>{const dHZF$qrziYiimDp=cgwpWjnziyxGpWvl;console[dHZF$qrziYiimDp(0xdf)](dHZF$qrziYiimDp(0xca),adJVLZdRs_RlNArw);});}inviteGameIdInput[ft$XCyiMxjii$ldMTLyRNZpGkv(0xc2)](ft$XCyiMxjii$ldMTLyRNZpGkv(0x10c),function(KlcHelZoVrtXBd$i_DzqXdrvM){const eGvJTopLIY_o$JaZcUjP=ft$XCyiMxjii$ldMTLyRNZpGkv;KlcHelZoVrtXBd$i_DzqXdrvM[eGvJTopLIY_o$JaZcUjP(0x105)]===eGvJTopLIY_o$JaZcUjP(0x104)&&(KlcHelZoVrtXBd$i_DzqXdrvM[eGvJTopLIY_o$JaZcUjP(0xf2)](),generateInvite());});function closeModal(NoZusxDxQKcjan){const XNTSIoaZ=ft$XCyiMxjii$ldMTLyRNZpGkv;NoZusxDxQKcjan[XNTSIoaZ(0x110)][XNTSIoaZ(0xf0)](XNTSIoaZ(0x10a));}document[ft$XCyiMxjii$ldMTLyRNZpGkv(0xd0)](ft$XCyiMxjii$ldMTLyRNZpGkv(0xef))[ft$XCyiMxjii$ldMTLyRNZpGkv(0xd2)](JHrzSsOplxooEUIUJrSGtJl=>{const dnCiFfwoHzFbSQrGqlg=ft$XCyiMxjii$ldMTLyRNZpGkv;JHrzSsOplxooEUIUJrSGtJl[dnCiFfwoHzFbSQrGqlg(0xc2)](dnCiFfwoHzFbSQrGqlg(0xcc),NGQqph_fM_W=>{const tdnqClJbOkeSNP=dnCiFfwoHzFbSQrGqlg;NGQqph_fM_W[tdnqClJbOkeSNP(0xf5)]===JHrzSsOplxooEUIUJrSGtJl&&closeModal(JHrzSsOplxooEUIUJrSGtJl);}),JHrzSsOplxooEUIUJrSGtJl[dnCiFfwoHzFbSQrGqlg(0xe6)](dnCiFfwoHzFbSQrGqlg(0xd8))[dnCiFfwoHzFbSQrGqlg(0xc2)](dnCiFfwoHzFbSQrGqlg(0xcc),()=>closeModal(JHrzSsOplxooEUIUJrSGtJl));});
     </script>
 </body>
 </html>
