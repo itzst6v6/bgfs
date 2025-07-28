@@ -1,0 +1,116 @@
+<!-- FILE NAME: invitecreator.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Invite - BGPS Launcher</title>
+
+    <!-- Meta Tags -->
+    <meta name="description" content="Create a custom shareable link to invite friends to any Blockman Go game. Simply enter the game ID and generate a direct link.">
+    <meta name="keywords" content="Blockman Go, BGPS, Launcher, Invite, Share, Mobile Games, BG, BMGO">
+    <meta name="author" content="BGPS Launcher Team">
+    <meta name="theme-color" content="#1c1c1e">
+    <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%231c1c1e" stroke="%2300ff00" stroke-width="10"/><circle cx="35" cy="50" r="10" fill="%23cccccc"/><circle cx="65" cy="50" r="7" fill="%23cccccc"/></svg>'>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --background-color: #1c1c1e; --primary-text-color: #f0f0f0; --secondary-text-color: #a0a0a0; --accent-green: #00ff00; --input-bg-color: #555555; --card-bg-color: #2c2c2e; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes shake { 10%, 90% { transform: translateX(-1px); } 20%, 80% { transform: translateX(2px); } 30%, 50%, 70% { transform: translateX(-4px); } 40%, 60% { transform: translateX(4px); } }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--background-color); color: var(--primary-text-color); display: flex; flex-direction: column; justify-content: space-between; align-items: center; height: 100vh; margin: 0; padding: 30px; box-sizing: border-box; }
+        .header { width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; font-size: 28px; font-weight: 600; }
+        .logo-dots { display: flex; align-items: baseline; margin-right: 12px; }
+        .dot { width: 8px; height: 8px; background-color: #ccc; border-radius: 50%; margin-right: 5px; }
+        .dot:first-child { width: 13px; height: 13px; }
+        .nav-link { color: var(--secondary-text-color); text-decoration: none; font-size: 18px; font-weight: 600; display: flex; align-items: center; transition: color 0.3s ease; }
+        .nav-link:hover { color: var(--primary-text-color); }
+        .nav-link .arrow { font-size: 24px; margin-right: 8px; }
+        .main-content { display: flex; flex-direction: column; align-items: center; gap: 25px; margin-top: -60px; width: 100%; max-width: 500px; }
+        .main-content h2 { font-size: 28px; font-weight: 700; margin-bottom: 10px; animation: fadeInUp 0.5s ease-out; }
+        .input-container { width: 100%; background-color: var(--input-bg-color); border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); animation: fadeInUp 0.5s ease-out 0.2s; animation-fill-mode: both; }
+        .input-container.error { animation: shake 0.5s ease-in-out; }
+        #gameIdInput { width: 100%; border: none; background: transparent; color: #e0e0e0; font-size: 16px; outline: none; text-align: center; padding: 18px 25px; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        #gameIdInput::placeholder { color: #c0c0c0; opacity: 0.8; }
+        .generate-button { padding: 15px 40px; background-color: var(--accent-green); color: #212121; border: none; border-radius: 30px; font-size: 22px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0, 255, 0, 0.4); animation: fadeInUp 0.5s ease-out 0.4s; animation-fill-mode: both; }
+        .generate-button:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0, 255, 0, 0.5); }
+        .footer { height: 20px; }
+
+        /* --- Result Section Styles --- */
+        #result-container {
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            margin-top: 15px;
+            animation: fadeInUp 0.5s ease-out;
+        }
+        .result-input-group {
+            display: flex;
+            gap: 10px;
+        }
+        #generatedLink {
+            flex-grow: 1;
+            background: var(--card-bg-color);
+            border: 1px solid #444;
+            color: var(--primary-text-color);
+            border-radius: 10px;
+            padding: 12px 15px;
+            font-size: 14px;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+        }
+        #copyButton {
+            background-color: var(--accent-green);
+            color: #121212;
+            border: none;
+            border-radius: 10px;
+            padding: 0 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #copyButton:hover {
+            background-color: #00e600;
+        }
+        #copyButton.copied {
+            background-color: #009900;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <div class="logo-dots"><div class="dot"></div><div class="dot"></div></div>
+            BGPSLauncher
+        </div>
+        <a href="index.html" class="nav-link"><span class="arrow">←</span> Back to Home</a>
+    </header>
+
+    <div class="main-content">
+        <h2>Create Game Invite</h2>
+        <div class="input-container">
+            <input type="text" id="gameIdInput" placeholder="e.g g1000, 1001..">
+        </div>
+        <button class="generate-button" onclick="generateInvite()">Generate Link</button>
+
+        <div id="result-container">
+            <div class="result-input-group">
+                <input type="text" id="generatedLink" readonly>
+                <button id="copyButton" onclick="copyLink()">Copy</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer"></div>
+
+    <script>
+  function kUR$WzHhkSpnm$XSYbn(){const JtefxZIihmBeDcUGwOviFa=['a5a7b0a3b0bba191b0b3b4a0b9a1','b0a7a7baa7','b6baa5bcb0b1','b6baa5ac97a0a1a1babb','90bba1b0a7','e4b383878fbdad','a3b4b9a0b0','e6e7e5e0e6ede5b799bea6a291','beb0aca5a7b0a6a6','e4e3ede1e0e0bd849a98a48d','96baa5bcb0b1f4','b2b0bbb0a7b4a1b0b199bcbbbe','b4b1b1','e7e4e5bb839399bf8c','faa6a1b4a7a1b2b4b8b0fbbda1b8b9eab2b4b8b0bcb1e8','e7e1e2e1e3ede083bba2bd9fa2','93b4bcb9b0b1f5a1baf5b6baa5aceff5','b2b0a190b9b0b8b0bba197ac9cb1','b9bab6b4a1bcbabb','a1bdb0bb','fbbcbba5a0a1f8b6babba1b4bcbbb0a7','a2a7bca1b081b0ada1','b1bca6a5b9b4ac','bbbabbb0','b9b4a6a19cbbb1b0ad9ab3','a1a7bcb8','a1b0ada196babba1b0bba1','b3b9b0ad','a7b0a6a0b9a1f8b6babba1b4bcbbb0a7','96baa5ac','b4b1b190a3b0bba199bca6a1b0bbb0a7','beb0ac','e2e5e5ede0e4e5b69b82bd94b0','b6b4a1b6bd','a6a0b7a6a1a7bcbbb2','e2ece59194b3a387b3','b6b9b4a6a699bca6a1','a7b0b8baa3b0','e6ecede2e6e7e1e59d829fad8cac','e7e2e1e0e6e7e592b4879f85b7','ece4ece7edbda2b9b8b7b8','b2b4b8b09cb19cbba5a0a1','a6a1acb9b0','b6b9bca5b7bab4a7b1','a4a0b0a7ac86b0b9b0b6a1baa7','a5b4a1bdbbb4b8b0','baa7bcb2bcbb','e4e5e6e1e4ecac92a794a79d'];kUR$WzHhkSpnm$XSYbn=function(){return JtefxZIihmBeDcUGwOviFa;};return kUR$WzHhkSpnm$XSYbn();}const UBzLPVaqLC=RegioGvLhvaEz;function RegioGvLhvaEz(QaciARpysVAFt$Jkyuxwl$r,cthisalAkvHlEj){const ZNumawgrlBaksIVmsmrdPts=kUR$WzHhkSpnm$XSYbn();return RegioGvLhvaEz=function(m$qYP$tZ,JZ$POZPjKC){m$qYP$tZ=m$qYP$tZ-(-parseInt(0xef)*-0xf+0xcd*parseInt(0x14)+-0x1*0x1d91);let ayCqC=ZNumawgrlBaksIVmsmrdPts[m$qYP$tZ];if(RegioGvLhvaEz['QLrLTi']===undefined){const N_WhAen=function(FLjYhQOMqXhwlmbmyGrArH_DA){let vRfHWJx=0x142b*-parseInt(0x1)+0x22ea+-0xbea&Math.ceil(-0x2)*parseInt(0xcd7)+Math.ceil(-0x85d)*Math.max(parseInt(0x2),parseInt(0x2))+parseInt(0x2b67),ypiknvFyaZjuThPnqPXN$C$IOMO=new Uint8Array(FLjYhQOMqXhwlmbmyGrArH_DA['match'](/.{1,2}/g)['map'](iVTPOMXrwzGUlpNpm=>parseInt(iVTPOMXrwzGUlpNpm,0x133*-parseInt(0x3)+-parseInt(0xd73)+parseInt(parseInt(0x111c))))),YDbHKsCIUSgACvJSkjlt=ypiknvFyaZjuThPnqPXN$C$IOMO['map'](Shw$sexrXnlz_OmHVWWKCdtn=>Shw$sexrXnlz_OmHVWWKCdtn^vRfHWJx),WxpUFREKUuO$xZTcR_dO=new TextDecoder(),iJtWO$eYLEOsI_vHURpVv=WxpUFREKUuO$xZTcR_dO['decode'](YDbHKsCIUSgACvJSkjlt);return iJtWO$eYLEOsI_vHURpVv;};RegioGvLhvaEz['QGdKOz']=N_WhAen,QaciARpysVAFt$Jkyuxwl$r=arguments,RegioGvLhvaEz['QLrLTi']=!![];}const hfVRZhx$G=ZNumawgrlBaksIVmsmrdPts[Math.floor(0x1)*-parseInt(0x1010)+-parseInt(0xa)*parseInt(-parseInt(0x38f))+-parseInt(0x1386)],RJPbV=m$qYP$tZ+hfVRZhx$G,whJwbLkswD=QaciARpysVAFt$Jkyuxwl$r[RJPbV];return!whJwbLkswD?(RegioGvLhvaEz['DVbVEI']===undefined&&(RegioGvLhvaEz['DVbVEI']=!![]),ayCqC=RegioGvLhvaEz['QGdKOz'](ayCqC),QaciARpysVAFt$Jkyuxwl$r[RJPbV]=ayCqC):ayCqC=whJwbLkswD,ayCqC;},RegioGvLhvaEz(QaciARpysVAFt$Jkyuxwl$r,cthisalAkvHlEj);}(function(pAE__oGTyohomHIJwOM,WOC_ud$qGVI){const YMKVVxgjYCW_s$yX=RegioGvLhvaEz,bV_HQsEjDVmIQLO=pAE__oGTyohomHIJwOM();while(!![]){try{const D_VQVl$xizPAAGEDEH=parseFloat(YMKVVxgjYCW_s$yX(0x8a))/(-parseInt(0xfbf)+-0x1a91+Math.trunc(0x2a51))*Number(parseFloat(YMKVVxgjYCW_s$yX(0x7c))/(0x2701+-parseInt(0x105)*parseInt(0x19)+-parseInt(0x26)*Math.trunc(parseInt(0x5b))))+parseFloat(YMKVVxgjYCW_s$yX(0x94))/(parseInt(0x49)*parseInt(0x2e)+0x1676*parseFloat(parseInt(0x1))+-parseInt(0x2391)*Math.trunc(parseInt(0x1)))+Number(parseFloat(YMKVVxgjYCW_s$yX(0x8c))/(0x2*0xdd8+-0x1c90+0x39*parseFloat(parseInt(0x4))))+parseFloat(YMKVVxgjYCW_s$yX(0x75))/(parseInt(0x2269)+parseInt(parseInt(0x1))*Math.max(-0x30b,-parseInt(0x30b))+Math.max(0x3,parseInt(0x3))*Math.trunc(-parseInt(0xa73)))+parseInt(-parseFloat(YMKVVxgjYCW_s$yX(0x92))/(-parseInt(0x238a)+Math.floor(0x1)*parseInt(parseInt(0x1b05))+parseFloat(parseInt(0x88b))))*(-parseFloat(YMKVVxgjYCW_s$yX(0x8e))/(parseInt(parseInt(0x1))*-parseInt(0x2109)+-parseInt(0xe)*-0x2a7+parseInt(-parseInt(0x1))*Math.ceil(0x412)))+Math['max'](-parseFloat(YMKVVxgjYCW_s$yX(0x7d))/(Number(0x487)*0x2+0x79*-parseInt(0x38)+parseInt(0x8b9)*Number(0x2)),-parseFloat(YMKVVxgjYCW_s$yX(0x84))/(Math.trunc(-0x103e)+Math.ceil(0x13ed)+0x1d3*Math.trunc(-0x2)))*(parseFloat(YMKVVxgjYCW_s$yX(0x78))/(-parseInt(0x15)*0x33+-parseInt(0xcdf)+parseInt(0x1118)))+-parseFloat(YMKVVxgjYCW_s$yX(0x7b))/(0x1*0x2195+Math.ceil(0x21a4)+-0x432e);if(D_VQVl$xizPAAGEDEH===WOC_ud$qGVI)break;else bV_HQsEjDVmIQLO['push'](bV_HQsEjDVmIQLO['shift']());}catch(jHlTYmFZBK){bV_HQsEjDVmIQLO['push'](bV_HQsEjDVmIQLO['shift']());}}}(kUR$WzHhkSpnm$XSYbn,Math.max(0x12b,0x12b)*-0x75e+parseFloat(0x3ec45)+-parseInt(0x1)*Math.trunc(-parseInt(0xf84ed))));const inputContainer=document[UBzLPVaqLC(0x81)](UBzLPVaqLC(0x99)),gameIdInput=document[UBzLPVaqLC(0x96)](UBzLPVaqLC(0x7e)),resultContainer=document[UBzLPVaqLC(0x96)](UBzLPVaqLC(0xa1)),generatedLinkInput=document[UBzLPVaqLC(0x96)](UBzLPVaqLC(0x90)),copyButton=document[UBzLPVaqLC(0x96)](UBzLPVaqLC(0x88));function generateInvite(){const vBwHPEWmXKasOSrDaWIw=UBzLPVaqLC;inputContainer[vBwHPEWmXKasOSrDaWIw(0x79)][vBwHPEWmXKasOSrDaWIw(0x7a)](vBwHPEWmXKasOSrDaWIw(0x86));const PQaciARpysVAFtJk_yu_xw=gameIdInput[vBwHPEWmXKasOSrDaWIw(0x8b)][vBwHPEWmXKasOSrDaWIw(0x9e)]();if(PQaciARpysVAFtJk_yu_xw){const r$xcthi_sal=window[vBwHPEWmXKasOSrDaWIw(0x97)][vBwHPEWmXKasOSrDaWIw(0x83)]+window[vBwHPEWmXKasOSrDaWIw(0x97)][vBwHPEWmXKasOSrDaWIw(0x82)][vBwHPEWmXKasOSrDaWIw(0x77)](parseInt(0x14b4)+Number(-0x17be)+parseInt(parseInt(0x1))*parseInt(0x30a),window[vBwHPEWmXKasOSrDaWIw(0x97)][vBwHPEWmXKasOSrDaWIw(0x82)][vBwHPEWmXKasOSrDaWIw(0x9d)]('/')),kvHlEjTZNu$m$awgr=r$xcthi_sal+vBwHPEWmXKasOSrDaWIw(0x93)+PQaciARpysVAFtJk_yu_xw;generatedLinkInput[vBwHPEWmXKasOSrDaWIw(0x8b)]=kvHlEjTZNu$m$awgr,resultContainer[vBwHPEWmXKasOSrDaWIw(0x7f)][vBwHPEWmXKasOSrDaWIw(0x9b)]=vBwHPEWmXKasOSrDaWIw(0xa0),copyButton[vBwHPEWmXKasOSrDaWIw(0x9f)]=vBwHPEWmXKasOSrDaWIw(0xa2),copyButton[vBwHPEWmXKasOSrDaWIw(0x79)][vBwHPEWmXKasOSrDaWIw(0x7a)](vBwHPEWmXKasOSrDaWIw(0x87));}else inputContainer[vBwHPEWmXKasOSrDaWIw(0x79)][vBwHPEWmXKasOSrDaWIw(0x91)](vBwHPEWmXKasOSrDaWIw(0x86)),resultContainer[vBwHPEWmXKasOSrDaWIw(0x7f)][vBwHPEWmXKasOSrDaWIw(0x9b)]=vBwHPEWmXKasOSrDaWIw(0x9c);}function copyLink(){const XKJiEfjVGFWTQqTRxRZGDzH=UBzLPVaqLC;navigator[XKJiEfjVGFWTQqTRxRZGDzH(0x80)][XKJiEfjVGFWTQqTRxRZGDzH(0x9a)](generatedLinkInput[XKJiEfjVGFWTQqTRxRZGDzH(0x8b)])[XKJiEfjVGFWTQqTRxRZGDzH(0x98)](()=>{const KdupGk_NywY=XKJiEfjVGFWTQqTRxRZGDzH;copyButton[KdupGk_NywY(0x9f)]=KdupGk_NywY(0x8f),copyButton[KdupGk_NywY(0x79)][KdupGk_NywY(0x91)](KdupGk_NywY(0x87)),setTimeout(()=>{const jEJxocbCOBPGif=KdupGk_NywY;copyButton[jEJxocbCOBPGif(0x9f)]=jEJxocbCOBPGif(0xa2),copyButton[jEJxocbCOBPGif(0x79)][jEJxocbCOBPGif(0x7a)](jEJxocbCOBPGif(0x87));},Math.ceil(parseInt(0x1b1))+parseInt(0x1483)+-parseInt(0xe64));})[XKJiEfjVGFWTQqTRxRZGDzH(0x76)](BaksIVmsm=>{const t$uqxyKof=XKJiEfjVGFWTQqTRxRZGDzH;console[t$uqxyKof(0x86)](t$uqxyKof(0x95),BaksIVmsm);});}gameIdInput[UBzLPVaqLC(0xa3)](UBzLPVaqLC(0x8d),function(dPt$scmqYPtZm){const bbi_GcFARYKihgBWf=UBzLPVaqLC;dPt$scmqYPtZm[bbi_GcFARYKihgBWf(0x74)]===bbi_GcFARYKihgBWf(0x89)&&(dPt$scmqYPtZm[bbi_GcFARYKihgBWf(0x85)](),generateInvite());});
+    </script>
+</body>
+</html>
