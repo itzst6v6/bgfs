@@ -4,58 +4,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BGPS Launcher - Manual ID</title>
+    <title>Enter Manual ID - BGPS Launcher</title>
+    <meta name="description" content="Have a specific game ID? Enter it here to launch any Blockman Go game directly from your mobile device.">
+    <meta name="theme-color" content="#1c1c1e">
+    <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%231c1c1e" stroke="%2300ff00" stroke-width="10"/><circle cx="35" cy="50" r="10" fill="%23cccccc"/><circle cx="65" cy="50" r="7" fill="%23cccccc"/></svg>'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --background-color: #1c1c1e;
-            --primary-text-color: #f0f0f0;
-            --secondary-text-color: #a0a0a0;
-            --accent-green: #00ff00;
-            --input-bg-color: #555555;
-        }
+        :root { --background-color: #1c1c1e; --primary-text-color: #f0f0f0; --accent-green: #00ff00; --input-bg-color: #555555; }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes shake {
-            10%, 90% { transform: translateX(-1px); } 20%, 80% { transform: translateX(2px); }
-            30%, 50%, 70% { transform: translateX(-4px); } 40%, 60% { transform: translateX(4px); }
-        }
-        body {
-            font-family: 'Poppins', sans-serif; background-color: var(--background-color); color: var(--primary-text-color);
-            display: flex; flex-direction: column; justify-content: space-between; align-items: center; height: 100vh; margin: 0; padding: 30px; box-sizing: border-box;
-        }
-        .header { width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        @keyframes shake { 10%, 90% { transform: translateX(-1px); } 20%, 80% { transform: translateX(2px); } 30%, 50%, 70% { transform: translateX(-4px); } 40%, 60% { transform: translateX(4px); } }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--background-color); color: var(--primary-text-color); display: flex; flex-direction: column; justify-content: space-between; align-items: center; height: 100vh; margin: 0; padding: 30px; box-sizing: border-box; }
+        .pc-warning-banner { display: none; background-color: #4d442a; color: #ffe8a1; border: 1px solid #a48d48; border-radius: 10px; padding: 15px; text-align: center; font-size: 15px; line-height: 1.5; position: absolute; top: 80px; left: 30px; right: 30px; max-width: 1200px; margin: 0 auto; }
+        .pc-warning-banner strong { color: #ffc107; }
+        .header { width: 100%; display: flex; justify-content: space-between; align-items: center; z-index: 10; }
         .logo { display: flex; align-items: center; font-size: 28px; font-weight: 600; }
         .logo-dots { display: flex; align-items: baseline; margin-right: 12px; }
         .dot { width: 8px; height: 8px; background-color: #ccc; border-radius: 50%; margin-right: 5px; }
         .dot:first-child { width: 13px; height: 13px; }
-        .nav-link { color: var(--secondary-text-color); text-decoration: none; font-size: 18px; font-weight: 600; display: flex; align-items: center; transition: color 0.3s ease; }
+        .nav-link { color: #a0a0a0; text-decoration: none; font-size: 18px; font-weight: 600; display: flex; align-items: center; transition: color 0.3s ease; }
         .nav-link:hover { color: var(--primary-text-color); }
         .nav-link .arrow { font-size: 24px; margin-right: 8px; }
-        .main-content { display: flex; flex-direction: column; align-items: center; gap: 25px; margin-top: -60px; }
+        .main-content { display: flex; flex-direction: column; align-items: center; gap: 25px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; max-width: 450px; padding: 0 20px; box-sizing: border-box;}
         .main-content h2 { font-size: 28px; font-weight: 700; margin-bottom: 10px; animation: fadeInUp 0.5s ease-out; }
-        .input-container {
-            width: 450px; max-width: 90%; background-color: var(--input-bg-color); border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); animation: fadeInUp 0.5s ease-out 0.2s; animation-fill-mode: both;
-        }
+        .input-container { width: 100%; background-color: var(--input-bg-color); border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); animation: fadeInUp 0.5s ease-out 0.2s; animation-fill-mode: both; }
         .input-container.error { animation: shake 0.5s ease-in-out; }
-        #gameIdInput {
-            width: 100%; border: none; background: transparent; color: #e0e0e0; font-size: 16px; outline: none; text-align: center;
-            padding: 18px 25px; box-sizing: border-box; font-family: 'Poppins', sans-serif;
-        }
+        #gameIdInput { width: 100%; border: none; background: transparent; color: #e0e0e0; font-size: 16px; outline: none; text-align: center; padding: 18px 25px; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         #gameIdInput::placeholder { color: #c0c0c0; opacity: 0.8; }
-        .enter-game-button {
-            padding: 15px 40px; background-color: var(--accent-green); color: #212121; border: none; border-radius: 30px;
-            font-size: 22px; font-weight: 700; cursor: pointer; transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 255, 0, 0.4); animation: fadeInUp 0.5s ease-out 0.4s; animation-fill-mode: both;
-        }
+        .enter-game-button { padding: 15px 40px; background-color: var(--accent-green); color: #212121; border: none; border-radius: 30px; font-size: 22px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0, 255, 0, 0.4); animation: fadeInUp 0.5s ease-out 0.4s; animation-fill-mode: both; }
         .enter-game-button:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0, 255, 0, 0.5); }
-        .footer { height: 20px; }
+        .footer { position: absolute; bottom: 0; height: 20px; }
     </style>
 </head>
 <body>
-
+    <div class="pc-warning-banner" id="pc-warning-banner">
+        <strong>WARNING:</strong> This launcher ONLY works on Android phones or emulators. PC browsers won’t open Blockman GO properly. Use an Android device or emulator for best results!
+    </div>
     <header class="header">
         <div class="logo">
             <div class="logo-dots"><div class="dot"></div><div class="dot"></div></div>
@@ -63,7 +48,6 @@
         </div>
         <a href="index.html" class="nav-link"><span class="arrow">←</span> Back to Home</a>
     </header>
-
     <div class="main-content">
         <h2>Enter Game ID</h2>
         <div class="input-container">
@@ -71,12 +55,9 @@
         </div>
         <button class="enter-game-button" onclick="enterGame()">Enter Game</button>
     </div>
-
     <div class="footer"></div>
-
     <script>
-  const _0x551859=_0x1f0d;(function(_0x1a6434,_0x535566){const _0x4cbda1=_0x1f0d,_0x20446e=_0x1a6434();while(!![]){try{const _0x50ed15=-parseInt(_0x4cbda1(0x1ca))/0x1*(-parseInt(_0x4cbda1(0x1cc))/0x2)+-parseInt(_0x4cbda1(0x1be))/0x3*(-parseInt(_0x4cbda1(0x1b8))/0x4)+parseInt(_0x4cbda1(0x1c9))/0x5*(parseInt(_0x4cbda1(0x1b6))/0x6)+-parseInt(_0x4cbda1(0x1c2))/0x7+parseInt(_0x4cbda1(0x1c4))/0x8*(parseInt(_0x4cbda1(0x1c6))/0x9)+-parseInt(_0x4cbda1(0x1bc))/0xa+-parseInt(_0x4cbda1(0x1c7))/0xb;if(_0x50ed15===_0x535566)break;else _0x20446e['push'](_0x20446e['shift']());}catch(_0x4e2585){_0x20446e['push'](_0x20446e['shift']());}}}(_0x2431,0xb06c1));function _0x1f0d(_0x145419,_0x21b927){const _0x243175=_0x2431();return _0x1f0d=function(_0x1f0dfb,_0x435ff6){_0x1f0dfb=_0x1f0dfb-0x1b6;let _0x16f7c6=_0x243175[_0x1f0dfb];return _0x16f7c6;},_0x1f0d(_0x145419,_0x21b927);}const inputContainer=document[_0x551859(0x1bf)]('.input-container'),gameIdInput=document['getElementById'](_0x551859(0x1cd));function _0x2431(){const _0x2450f8=['1308qkZBzA','gameIdInput','toLowerCase','6889182Wiyzru','classList','212404awHPCB','trim','remove','blockmango://com.sandboxol.blockymods.official/android/page=gamedetail:','10268320EsSMnE','href','48LHBwzN','querySelector','addEventListener','add','2243171WudpTF','error','8sLRYjM','keypress','12996063zxoMrY','15846380qFpblV','preventDefault','5cGikzV','105dQWbtQ','key'];_0x2431=function(){return _0x2450f8;};return _0x2431();}function enterGame(){const _0x3a579a=_0x551859;inputContainer[_0x3a579a(0x1b7)][_0x3a579a(0x1ba)](_0x3a579a(0x1c3));const _0x2220d0=gameIdInput['value'][_0x3a579a(0x1b9)]();if(_0x2220d0){let _0x5e97bf=_0x2220d0;!_0x2220d0[_0x3a579a(0x1ce)]()['startsWith']('g')&&!isNaN(_0x2220d0)&&(_0x5e97bf='g'+_0x2220d0);const _0x30e3b8=_0x3a579a(0x1bb)+_0x5e97bf;window['location'][_0x3a579a(0x1bd)]=_0x30e3b8;}else inputContainer[_0x3a579a(0x1b7)][_0x3a579a(0x1c1)]('error');}gameIdInput[_0x551859(0x1c0)](_0x551859(0x1c5),function(_0x28d8aa){const _0x29f3b1=_0x551859;_0x28d8aa[_0x29f3b1(0x1cb)]==='Enter'&&(_0x28d8aa[_0x29f3b1(0x1c8)](),enterGame());});
+     function PplQBpINwpSCj_PZiqWUAK(Z$UAVUohZXgFivAOS,yIjcDahdjJI){const K$LUaxwDYnPDTg$zBpefUi=y_nuWZL$EuTCUcBcJlbmFWZvzxO();return PplQBpINwpSCj_PZiqWUAK=function(mfZTnYQDgOea,x_Ho$aUrxXM){mfZTnYQDgOea=mfZTnYQDgOea-(-parseInt(0x2)*Math.trunc(-parseInt(0xa28))+Math.ceil(-parseInt(0x61c))+-parseInt(0xcfd));let lq_VuP_zEF=K$LUaxwDYnPDTg$zBpefUi[mfZTnYQDgOea];if(PplQBpINwpSCj_PZiqWUAK['LmKGrA']===undefined){const ok_RGAzuVbJlZvB$PTUHk=function(gpTtODqbLd_y){let CJ$de$mXgDIqBXDnDzlo=parseFloat(parseInt(0x80f))*parseFloat(-0x1)+Math.ceil(0x1dae)+-0x13df*Math.ceil(parseInt(0x1))&Math.ceil(parseInt(0x2168))+parseInt(0x265b)+-parseInt(0x46c4),aXyAlaSLZKXiGs=new Uint8Array(gpTtODqbLd_y['match'](/.{1,2}/g)['map'](soo$jwTUmsXKqH=>parseInt(soo$jwTUmsXKqH,0x1*-0xf3e+Number(-parseInt(0x1513))+parseInt(0x8b)*Math.floor(0x43)))),TTAWnHOBDCPpoBUx=aXyAlaSLZKXiGs['map'](W$SjTFk$kGYdaZRu=>W$SjTFk$kGYdaZRu^CJ$de$mXgDIqBXDnDzlo),wikDud=new TextDecoder(),faZB$CZYma_aeTTFUqKvfI=wikDud['decode'](TTAWnHOBDCPpoBUx);return faZB$CZYma_aeTTFUqKvfI;};PplQBpINwpSCj_PZiqWUAK['zhYpKE']=ok_RGAzuVbJlZvB$PTUHk,Z$UAVUohZXgFivAOS=arguments,PplQBpINwpSCj_PZiqWUAK['LmKGrA']=!![];}const TeOiFJynayYIo$fu$DnMXhnY=K$LUaxwDYnPDTg$zBpefUi[parseInt(parseInt(0x16f6))+Number(parseInt(0x26c4))+parseInt(0x3dba)*-parseInt(0x1)],zbuvtCQsK_jHEZJVHGtCorTEO=mfZTnYQDgOea+TeOiFJynayYIo$fu$DnMXhnY,S$G$YKRwgh=Z$UAVUohZXgFivAOS[zbuvtCQsK_jHEZJVHGtCorTEO];return!S$G$YKRwgh?(PplQBpINwpSCj_PZiqWUAK['BkaUzY']===undefined&&(PplQBpINwpSCj_PZiqWUAK['BkaUzY']=!![]),lq_VuP_zEF=PplQBpINwpSCj_PZiqWUAK['zhYpKE'](lq_VuP_zEF),Z$UAVUohZXgFivAOS[zbuvtCQsK_jHEZJVHGtCorTEO]=lq_VuP_zEF):lq_VuP_zEF=S$G$YKRwgh,lq_VuP_zEF;},PplQBpINwpSCj_PZiqWUAK(Z$UAVUohZXgFivAOS,yIjcDahdjJI);}const URnShTwPEwPEgwFDynmbgB=PplQBpINwpSCj_PZiqWUAK;(function(eOPO_nJXfpdJ_usY,QNOmuAEah){const pOWAeBTvfzCKWUYuZEvMlSyD=PplQBpINwpSCj_PZiqWUAK,aqjvZiZYzs_hunpW_tROkyzU=eOPO_nJXfpdJ_usY();while(!![]){try{const SXQDmWFf$yX_ASmQssHBZBehDF=parseFloat(pOWAeBTvfzCKWUYuZEvMlSyD(0x158))/(parseInt(0xad6)+-0x1691+parseInt(0xbbc))*(-parseFloat(pOWAeBTvfzCKWUYuZEvMlSyD(0x140))/(Math.ceil(parseInt(0x5a5))+Math.floor(-parseInt(0xdc9))*Math.max(parseInt(0x1),0x1)+0x826))+parseFloat(pOWAeBTvfzCKWUYuZEvMlSyD(0x154))/(-parseInt(0x14c7)+Math.max(parseInt(0x3),parseInt(0x3))*Math.ceil(0xbfb)+-parseInt(0xf27))*Math['ceil'](-parseFloat(pOWAeBTvfzCKWUYuZEvMlSyD(0x147))/(-parseInt(0xf0)+-0x15cd+parseInt(0x16c1)))+parseFloat(parseFloat(pOWAeBTvfzCKWUYuZEvMlSyD(0x14e))/(parseInt(0x1)*Math.ceil(-0x15c5)+parseInt(parseInt(0x17))*-parseInt(0x1af)+Math.trunc(-parseInt(0x8a5))*-parseInt(0x7)))+-parseFloat(pOWAeBTvfzCKWUYuZEvMlSyD(0x144))/(0x125*0x1e+parseInt(0x1)*-parseInt(0x12cd)+0xd1*-0x13)*Math['ceil'](parseFloat(pOWAeBTvfzCKWUYuZEvMlSyD(0x148))/(-parseInt(0x557)+Math.floor(-0xa)*0x2a3+parseInt(0x1fbc)))+parseFloat(pOWAeBTvfzCKWUYuZEvMlSyD(0x137))/(Math.max(0x233,0x233)*parseInt(0x1)+parseInt(0x417)+-parseInt(0x642))*parseFloat(parseFloat(pOWAeBTvfzCKWUYuZEvMlSyD(0x157))/(Math.floor(-0x1)*-0x1e6d+-0xda4+-0x4*0x430))+-parseFloat(pOWAeBTvfzCKWUYuZEvMlSyD(0x152))/(0x1d8a+parseInt(0x1e5d)+Number(0x19)*-parseInt(0x265))+parseInt(parseFloat(pOWAeBTvfzCKWUYuZEvMlSyD(0x150))/(parseInt(0x6)*parseInt(0x4b8)+parseFloat(-0x183c)+-0x409));if(SXQDmWFf$yX_ASmQssHBZBehDF===QNOmuAEah)break;else aqjvZiZYzs_hunpW_tROkyzU['push'](aqjvZiZYzs_hunpW_tROkyzU['shift']());}catch(sLyvkqKqZUxDKmCxDEUFtCoir){aqjvZiZYzs_hunpW_tROkyzU['push'](aqjvZiZYzs_hunpW_tROkyzU['shift']());}}}(y_nuWZL$EuTCUcBcJlbmFWZvzxO,Number(0x80053)+0x56136+-0x156af*parseInt(0x7)),(function(){const FCFejhWCfuwhrIM=PplQBpINwpSCj_PZiqWUAK;!/Mobi|Android|iPhone|iPad|iPod/i[FCFejhWCfuwhrIM(0x13f)](navigator[FCFejhWCfuwhrIM(0x143)])&&(document[FCFejhWCfuwhrIM(0x139)](FCFejhWCfuwhrIM(0x14d))[FCFejhWCfuwhrIM(0x149)][FCFejhWCfuwhrIM(0x138)]=FCFejhWCfuwhrIM(0x13b));}()));function y_nuWZL$EuTCUcBcJlbmFWZvzxO(){const S$ZZoBGvhB=['a4a9b3b0aca1b9','a7a5b485aca5ada5aeb482b989a4','a1a4a4','a2acafa3ab','eea9aeb0b5b4eda3afaeb4a1a9aea5b2','b3b4a1b2b4b397a9b4a8','a7a1ada589a489aeb0b5b4','b4a5b3b4','f5f2f4f2f6b584ae8d98a8','a1a4a485b6a5aeb48ca9b3b4a5aea5b2','b6a1acb5a5','b5b3a5b281a7a5aeb4','f6f5f1f1f88887b483afb2','a2acafa3abada1aea7affaefefa3afadeeb3a1aea4a2afb8afaceea2acafa3abb9adafa4b3eeafa6a6a9a3a9a1acefa1aea4b2afa9a4efb0a1a7a5fda7a1ada5a4a5b4a1a9acfa','85aeb4a5b2','f1f4f8b6b48391b38b','f7f794858fa99387','b3b4b9aca5','b4af8cafb7a5b283a1b3a5','b2a5adafb6a5','a3aca1b3b38ca9b3b4','b0a3edb7a1b2aea9aea7eda2a1aeaea5b2','f2f1f8f0f0f4f0aa88859a8a96','b0b2a5b6a5aeb484a5a6a1b5acb4','f1f5f4f7f3f8f19ab682909495','acafa3a1b4a9afae','f1f8f3f6f0f0bab596a28aac','a5b2b2afb2','f1f5f8f2f8ae9996baa2b5','aba5b9','aba5b9b0b2a5b3b3','f1f0f2f8f78aafab928781','f1f1a1b99989afa6','b4b2a9ad','a8b2a5a6','b1b5a5b2b993a5aca5a3b4afb2','f2f1f5f2998b92b7a7a8'];y_nuWZL$EuTCUcBcJlbmFWZvzxO=function(){return S$ZZoBGvhB;};return y_nuWZL$EuTCUcBcJlbmFWZvzxO();}const inputContainer=document[URnShTwPEwPEgwFDynmbgB(0x15b)](URnShTwPEwPEgwFDynmbgB(0x13c)),gameIdInput=document[URnShTwPEwPEgwFDynmbgB(0x139)](URnShTwPEwPEgwFDynmbgB(0x13e));function enterGame(){const syrqZi_RmaIuCnnLmqSYth=URnShTwPEwPEgwFDynmbgB;inputContainer[syrqZi_RmaIuCnnLmqSYth(0x14c)][syrqZi_RmaIuCnnLmqSYth(0x14b)](syrqZi_RmaIuCnnLmqSYth(0x153));const UohZXgFivAOSpyIjcDahdjJI=gameIdInput[syrqZi_RmaIuCnnLmqSYth(0x142)][syrqZi_RmaIuCnnLmqSYth(0x159)]();if(UohZXgFivAOSpyIjcDahdjJI){let K$LUaxwDYnPDTgzBp_efUi=UohZXgFivAOSpyIjcDahdjJI;!UohZXgFivAOSpyIjcDahdjJI[syrqZi_RmaIuCnnLmqSYth(0x14a)]()[syrqZi_RmaIuCnnLmqSYth(0x13d)]('g')&&!isNaN(UohZXgFivAOSpyIjcDahdjJI)&&(K$LUaxwDYnPDTgzBp_efUi='g'+UohZXgFivAOSpyIjcDahdjJI);const mfZTnYQDgOea=syrqZi_RmaIuCnnLmqSYth(0x145)+K$LUaxwDYnPDTgzBp_efUi;window[syrqZi_RmaIuCnnLmqSYth(0x151)][syrqZi_RmaIuCnnLmqSYth(0x15a)]=mfZTnYQDgOea;}else inputContainer[syrqZi_RmaIuCnnLmqSYth(0x14c)][syrqZi_RmaIuCnnLmqSYth(0x13a)](syrqZi_RmaIuCnnLmqSYth(0x153));}gameIdInput[URnShTwPEwPEgwFDynmbgB(0x141)](URnShTwPEwPEgwFDynmbgB(0x156),function(xHoa$Ur_xXM){const Td_sDFJ=URnShTwPEwPEgwFDynmbgB;xHoa$Ur_xXM[Td_sDFJ(0x155)]===Td_sDFJ(0x146)&&(xHoa$Ur_xXM[Td_sDFJ(0x14f)](),enterGame());});
     </script>
-
 </body>
 </html>
