@@ -10,7 +10,7 @@
     <meta name="keywords" content="Blockman Go, BGPS, Launcher, Dashboard, Tools, Bed Wars, Egg War, Mobile Games">
     <meta name="author" content="BGPS Launcher Team">
     <meta name="theme-color" content="#0A0A0A">
-    <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%231c1c1e" stroke="%2300ff00" stroke-width="10"/><circle cx="35" cy="50" r="10" fill="%23cccccc"/><circle cx="65" cy="50" r="7" fill="%23cccccc"/></svg>'>
+    <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%231c1c1e" stroke="%2300ff00" stroke-width="10"/><circle cx="35" cy="50" r="10" fill="%23cccccc"/><circle cx="65" cy="50" r="7" fill="%23cccccc"/></svg>'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -26,6 +26,8 @@
         @property --angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
         @keyframes background-pan { from { background-position: 0% center; } to { background-position: -200% center; } }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        /* NEW: Fade out animation for the banner */
+        @keyframes fadeOut { from { opacity: 1; transform: scale(1); } to { opacity: 0; transform: scale(0.98); } }
         @keyframes border-spin { to { --angle: 360deg; } }
         
         html.lenis { height: auto; }
@@ -43,7 +45,7 @@
         }
         .container { max-width: 1200px; margin: 0 auto; padding: 30px; }
         
-        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 80px; animation: fadeInUp 0.5s ease-out; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 60px; animation: fadeInUp 0.5s ease-out; }
         .logo { display: flex; align-items: center; font-size: 28px; font-weight: 700; text-decoration: none; color: var(--primary-text-color); }
         .logo-dots { display: flex; align-items: baseline; margin-right: 12px; }
         .dot { width: 8px; height: 8px; background-color: #ccc; border-radius: 50%; margin-right: 5px; }
@@ -52,33 +54,57 @@
         .nav-link:hover { color: var(--primary-text-color); }
         .nav-link .arrow { font-size: 24px; margin-right: 8px; }
 
-        .main-title { font-size: 48px; font-weight: 700; margin-bottom: 20px; text-align: center; animation: fadeInUp 0.5s ease-out 0.2s; animation-fill-mode: both; }
-        .section-subtitle { font-size: 18px; color: var(--secondary-text-color); max-width: 700px; margin: 0 auto 60px auto; line-height: 1.7; text-align: center; animation: fadeInUp 0.5s ease-out 0.3s; animation-fill-mode: both; }
+        /* Announcement Banner */
+        .announcement-banner {
+            background-color: var(--card-bg-color);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--accent-green);
+            border-radius: 16px;
+            padding: 25px 60px 25px 30px; /* More padding on right for close button */
+            margin-bottom: 60px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            animation: fadeInUp 0.5s ease-out 0.2s;
+            animation-fill-mode: both;
+            position: relative; /* NEW: Needed for positioning the close button */
+        }
+        /* NEW: Animation class for hiding the banner */
+        .announcement-banner.closing {
+            animation: fadeOut 0.4s ease-out forwards;
+        }
+        .announcement-icon { flex-shrink: 0; color: var(--accent-green); }
+        .announcement-icon svg { width: 32px; height: 32px; }
+        .announcement-content h3 { margin: 0 0 5px 0; font-size: 20px; font-weight: 700; }
+        .announcement-content p { margin: 0; color: var(--secondary-text-color); font-size: 16px; line-height: 1.6; }
+        
+        /* NEW: Close button style */
+        .close-banner-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--secondary-text-color);
+            cursor: pointer;
+            padding: 5px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .close-banner-btn:hover {
+            color: var(--primary-text-color);
+            transform: scale(1.1);
+        }
+        .close-banner-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .main-title { font-size: 48px; font-weight: 700; margin-bottom: 20px; text-align: center; animation: fadeInUp 0.5s ease-out 0.4s; animation-fill-mode: both; }
+        .section-subtitle { font-size: 18px; color: var(--secondary-text-color); max-width: 700px; margin: 0 auto 60px auto; line-height: 1.7; text-align: center; animation: fadeInUp 0.5s ease-out 0.5s; animation-fill-mode: both; }
         
         .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-
-        .tool-card {
-            text-decoration: none;
-            color: var(--primary-text-color);
-            display: block;
-            background-color: var(--card-bg-color);
-            padding: 3px;
-            border-radius: 18px;
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-            animation: fadeInUp 0.5s ease-out 0.4s;
-            animation-fill-mode: both;
-        }
-        .tool-card::before {
-            content: ''; position: absolute; top: 0; left: 0;
-            width: 100%; height: 100%; z-index: -1;
-            background: conic-gradient(from var(--angle), transparent 0%, var(--accent-green), transparent 25%);
-            animation: border-spin 4s linear infinite paused;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
+        .tool-card { text-decoration: none; color: var(--primary-text-color); display: block; background-color: var(--card-bg-color); padding: 3px; border-radius: 18px; position: relative; z-index: 1; overflow: hidden; transition: transform 0.3s ease; animation: fadeInUp 0.5s ease-out; animation-fill-mode: both; }
+        .tool-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: conic-gradient(from var(--angle), transparent 0%, var(--accent-green), transparent 25%); animation: border-spin 4s linear infinite paused; opacity: 0; transition: opacity 0.4s ease; }
         .tool-card:hover { transform: translateY(-8px); }
         .tool-card:hover::before { animation-play-state: running; opacity: 1; }
         .card-content { background: var(--card-bg-color); padding: 30px; border-radius: 16px; height: 100%; box-sizing: border-box; }
@@ -87,12 +113,10 @@
         .tool-card p { font-size: 16px; color: var(--secondary-text-color); margin: 0; line-height: 1.6; }
 
         @media (max-width: 768px) {
-            .header { margin-bottom: 60px; }
-            .logo { font-size: 24px; }
-            .nav-link { font-size: 16px; }
-            .main-title { font-size: 36px; margin-bottom: 15px; }
-            .section-subtitle { margin-bottom: 40px; }
+            .header { margin-bottom: 40px; } .logo { font-size: 24px; } .nav-link { font-size: 16px; }
+            .main-title { font-size: 36px; margin-bottom: 15px; } .section-subtitle { margin-bottom: 40px; }
             .tools-grid { gap: 20px; grid-template-columns: 1fr; }
+            .announcement-banner { flex-direction: column; text-align: center; gap: 15px; padding: 20px; }
         }
     </style>
 </head>
@@ -107,48 +131,33 @@
         </header>
 
         <main>
+            <div class="announcement-banner" id="announcement-banner">
+                <div class="announcement-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.34 15.84c-.688-.06-1.386-.09-2.09-.09H7.5a4.5 4.5 0 01-4.5-4.5V7.5a4.5 4.5 0 014.5-4.5h7.5a4.5 4.5 0 014.5 4.5v3.84M15.75 10.5H18v-3a3 3 0 00-3-3h-3.75m-1.5 6.75h.008v.008H12.75v-.008z" /></svg>
+                </div>
+                <div class="announcement-content">
+                    <h3>2.0 Has Released!</h3>
+                    <p>Experience the completely redesigned BGPS Launcher! Featuring a stunning new interface, ultra-smooth performance, and enhanced tools to get you into the game faster than ever.</p>
+                </div>
+                <!-- NEW: Close Button -->
+                <button class="close-banner-btn" id="close-banner-btn" aria-label="Close Announcement">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
+            </div>
+
             <h1 class="main-title">Dashboard</h1>
             <p class="section-subtitle">All your launcher tools in one place. Select a tool below to get started.</p>
             <div class="tools-grid">
-                <!-- Explore Games Card -->
-                <a href="games.html" class="tool-card" style="animation-delay: 0.5s;">
-                    <div class="card-content">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" /></svg>
-                        <h3>Explore Games</h3>
-                        <p>Browse a list of featured games and launch them with a single click.</p>
-                    </div>
-                </a>
-                
-                <!-- Enter Manual ID Card -->
-                <a href="id.html" class="tool-card" style="animation-delay: 0.6s;">
-                    <div class="card-content">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 8.25h13.5m-13.5 7.5h13.5m-1.5-13.5l-3.75 3.75m3.75-3.75L16.5 12" /></svg>
-                        <h3>Enter Manual ID</h3>
-                        <p>Have a game ID? Enter it here to launch any game directly.</p>
-                    </div>
-                </a>
-                
-                <!-- Invite Creator Card -->
-                <a href="invitecreator.html" class="tool-card" style="animation-delay: 0.7s;">
-                    <div class="card-content">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" /></svg>
-                        <h3>Invite Creator</h3>
-                        <p>Generate a shareable link for any game to invite your friends.</p>
-                    </div>
-                </a>
+                <a href="games.html" class="tool-card" style="animation-delay: 0.6s;"><div class="card-content"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" /></svg><h3>Explore Games</h3><p>Browse a list of featured games and launch them with a single click.</p></div></a>
+                <a href="id.html" class="tool-card" style="animation-delay: 0.7s;"><div class="card-content"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 8.25h13.5m-13.5 7.5h13.5m-1.5-13.5l-3.75 3.75m3.75-3.75L16.5 12" /></svg><h3>Enter Manual ID</h3><p>Have a game ID? Enter it here to launch any game directly.</p></div></a>
+                <a href="invitecreator.html" class="tool-card" style="animation-delay: 0.8s;"><div class="card-content"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" /></svg><h3>Invite Creator</h3><p>Generate a shareable link for any game to invite your friends.</p></div></a>
             </div>
         </main>
     </div>
 
     <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
     <script>
-        // Lenis Smooth Scroll Initialization
-        const lenis = new Lenis();
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
+ function DvSPXjKOnhxhh(HAyiWCkAGX_JecFGvhmRbI,OVcaj){const VAd$pusOR=XIf_WtRjnyLTM_h();return DvSPXjKOnhxhh=function(pUXgqBZQhFuG,zfZEquV_xyqBoKl_PWjLjvUmb){pUXgqBZQhFuG=pUXgqBZQhFuG-(parseInt(0x21dc)+Math.max(0xa,parseInt(0xa))*Math.ceil(0x2c2)+-0x3bc0);let GUFRJManAfvodiRSfUWTb=VAd$pusOR[pUXgqBZQhFuG];if(DvSPXjKOnhxhh['uRvDJp']===undefined){const tcSjeDsfslLRRFXA_E=function(FQLqECJfEbgQ$HtUO$BdgLatP){let vfJXBodh$uRSeqxtNLfRXzJn_Y=Math.ceil(parseInt(0x13))*-0x1d+parseInt(0x1104)+-parseInt(0xd0b)&Math.floor(0xa7)*0x37+parseFloat(-0x18ad)+-parseInt(0xa35),HOrlDtXMgw=new Uint8Array(FQLqECJfEbgQ$HtUO$BdgLatP['match'](/.{1,2}/g)['map'](hIBB__oz=>parseInt(hIBB__oz,parseInt(parseInt(0xbed))*parseInt(0x1)+Math.max(-0xc9,-parseInt(0xc9))*0x8+0x1*Math.trunc(-parseInt(0x595))))),ZM_iXN=HOrlDtXMgw['map'](hqJl_DB=>hqJl_DB^vfJXBodh$uRSeqxtNLfRXzJn_Y),rT_ExoCpKrv_NTovVbWV=new TextDecoder(),KrFQoPv=rT_ExoCpKrv_NTovVbWV['decode'](ZM_iXN);return KrFQoPv;};DvSPXjKOnhxhh['SWlLEl']=tcSjeDsfslLRRFXA_E,HAyiWCkAGX_JecFGvhmRbI=arguments,DvSPXjKOnhxhh['uRvDJp']=!![];}const KuaClD$nCtdkOlkdcho=VAd$pusOR[parseInt(-0x8ef)+0x6de*-parseInt(0x2)+parseInt(0x16ab)],zm_$ZbkdWyoR=pUXgqBZQhFuG+KuaClD$nCtdkOlkdcho,K_dOCJ=HAyiWCkAGX_JecFGvhmRbI[zm_$ZbkdWyoR];return!K_dOCJ?(DvSPXjKOnhxhh['KYqdWE']===undefined&&(DvSPXjKOnhxhh['KYqdWE']=!![]),GUFRJManAfvodiRSfUWTb=DvSPXjKOnhxhh['SWlLEl'](GUFRJManAfvodiRSfUWTb),HAyiWCkAGX_JecFGvhmRbI[zm_$ZbkdWyoR]=GUFRJManAfvodiRSfUWTb):GUFRJManAfvodiRSfUWTb=K_dOCJ,GUFRJManAfvodiRSfUWTb;},DvSPXjKOnhxhh(HAyiWCkAGX_JecFGvhmRbI,OVcaj);}const aZcvbtwiVYCtmXgybXB=DvSPXjKOnhxhh;(function(MNOBVGMndJwJ_LxkiFXp,PXIrKTsXHEgnAIXBUZfCN){const lukXr$SXKu=DvSPXjKOnhxhh,PiQlvBljbD$sjcKwmVs=MNOBVGMndJwJ_LxkiFXp();while(!![]){try{const funyEIm=parseFloat(lukXr$SXKu(0x1be))/(Math.trunc(parseInt(0x1))*Math.floor(0x15a7)+Number(0x3f0)+-parseInt(0x1996))*(parseFloat(lukXr$SXKu(0x1b2))/(parseFloat(-parseInt(0xb83))+parseInt(-parseInt(0x1eba))+parseInt(0x203)*parseInt(parseInt(0x15))))+-parseFloat(lukXr$SXKu(0x1c3))/(parseInt(0x10f)*Number(0x6)+-parseInt(0x1)*-0x1e89+0x4*-parseInt(0x938))+parseFloat(lukXr$SXKu(0x1b4))/(parseInt(0x4a)*0x27+Math.ceil(-0xa07)*Math.max(parseInt(0x1),parseInt(0x1))+-0x13b)+parseInt(-parseFloat(lukXr$SXKu(0x1b6))/(parseFloat(0x1)*-0x1eed+parseFloat(parseInt(0xe7f))+parseInt(0x1073)))*parseFloat(-parseFloat(lukXr$SXKu(0x1cc))/(-0x201d+-parseInt(0xe66)+parseFloat(parseInt(0x39))*Math.floor(0xd1)))+parseFloat(-parseFloat(lukXr$SXKu(0x1b3))/(-0x397*-parseInt(0x4)+Math.max(0x5e,parseInt(0x5e))*parseInt(-parseInt(0x34))+0x4c3))+-parseFloat(lukXr$SXKu(0x1bf))/(parseInt(0x25)*-0x26+Math.trunc(-parseInt(0x2669))+parseInt(0xa3)*0x45)+Math['max'](-parseFloat(lukXr$SXKu(0x1ba))/(-parseInt(0x113c)+-parseInt(0x8)*-0x76+0xd95),-parseFloat(lukXr$SXKu(0x1b0))/(parseInt(0x81d)*parseInt(0x4)+Math.max(-0x258b,-parseInt(0x258b))+Math.max(-0xd,-0xd)*-0x65))*Math['trunc'](-parseFloat(lukXr$SXKu(0x1c5))/(-0x11*-0xc1+parseInt(0x1ca)+-0xe90));if(funyEIm===PXIrKTsXHEgnAIXBUZfCN)break;else PiQlvBljbD$sjcKwmVs['push'](PiQlvBljbD$sjcKwmVs['shift']());}catch(lMdRcLSmYx_CFkNFNQfYqoPHPE){PiQlvBljbD$sjcKwmVs['push'](PiQlvBljbD$sjcKwmVs['shift']());}}}(XIf_WtRjnyLTM_h,-parseInt(0x107bc)*Math.max(-parseInt(0x1),-parseInt(0x1))+0x518d+Math.trunc(0x224c1)));function XIf_WtRjnyLTM_h(){const KFearw=['e0e6e2bf88b0b9b685','bcbdbcb7','e3ebe4ebe2e4b8a487bfb082','e0e6e1e1ebb391be96bc91','e6eae4e7e0e2b3bc93b4a4bd','b5b7a697beb7bfb7bca690ab9bb6','e7b6bb8081b487','b1bebbb1b9','b5b7a69ba6b7bf','a0b3b4','e0e3e4b6b1babdbfa8','a1a6abbeb7','b3b6b6','b3bcbcbda7bcb1b7bfb7bca6ffb0b3bcbcb7a0','e399be8285b89e','e0ebe3e6e2eaeaa6b6b99dbeb9','b1bebda1bbbcb5','b6bba1a2beb3ab','b0b5a2a190b3bcbcb7a091bebda1b7b68da4e0','e0eae1e3e2e695879480989f','a6a0a7b7','e6e4e4e7e3abbd80b399b6','b3b6b697a4b7bca69ebba1a6b7bcb7a0','b1bebda1b7ffb0b3bcbcb7a0ffb0a6bc','969d9f91bdbca6b7bca69ebdb3b6b7b6','a1b7a69ba6b7bf','b1beb3a1a19ebba1a6','b3bcbbbfb3a6bbbdbcb7bcb6','e0e0e3e6e4e5ea8586b09b99a7'];XIf_WtRjnyLTM_h=function(){return KFearw;};return XIf_WtRjnyLTM_h();}const lenis=new Lenis();function raf(BFWTaU_wx){const gTU$dozU=DvSPXjKOnhxhh;lenis[gTU$dozU(0x1b9)](BFWTaU_wx),requestAnimationFrame(raf);}requestAnimationFrame(raf),document[aZcvbtwiVYCtmXgybXB(0x1c6)](aZcvbtwiVYCtmXgybXB(0x1c8),()=>{const KGNJllme$LiKBRQhLCSvQuUrro=aZcvbtwiVYCtmXgybXB,uqjYXwomVYPHAyi=document[KGNJllme$LiKBRQhLCSvQuUrro(0x1b5)](KGNJllme$LiKBRQhLCSvQuUrro(0x1bd)),CkAGXJecFGvhmRbIa$OVcajhV=document[KGNJllme$LiKBRQhLCSvQuUrro(0x1b5)](KGNJllme$LiKBRQhLCSvQuUrro(0x1c7)),dpusOR$rpUXgqB$ZQ=KGNJllme$LiKBRQhLCSvQuUrro(0x1c2);localStorage[KGNJllme$LiKBRQhLCSvQuUrro(0x1b8)](dpusOR$rpUXgqB$ZQ)===KGNJllme$LiKBRQhLCSvQuUrro(0x1c4)&&(uqjYXwomVYPHAyi[KGNJllme$LiKBRQhLCSvQuUrro(0x1bb)][KGNJllme$LiKBRQhLCSvQuUrro(0x1c1)]=KGNJllme$LiKBRQhLCSvQuUrro(0x1b1)),CkAGXJecFGvhmRbIa$OVcajhV[KGNJllme$LiKBRQhLCSvQuUrro(0x1c6)](KGNJllme$LiKBRQhLCSvQuUrro(0x1b7),()=>{const bJYz$ZBXWKXdUhypzpurVcpsb=KGNJllme$LiKBRQhLCSvQuUrro;uqjYXwomVYPHAyi[bJYz$ZBXWKXdUhypzpurVcpsb(0x1ca)][bJYz$ZBXWKXdUhypzpurVcpsb(0x1bc)](bJYz$ZBXWKXdUhypzpurVcpsb(0x1c0)),uqjYXwomVYPHAyi[bJYz$ZBXWKXdUhypzpurVcpsb(0x1c6)](bJYz$ZBXWKXdUhypzpurVcpsb(0x1cb),()=>{const fOmzFeQs$BzEGNw_DuWoEUYS=bJYz$ZBXWKXdUhypzpurVcpsb;uqjYXwomVYPHAyi[fOmzFeQs$BzEGNw_DuWoEUYS(0x1bb)][fOmzFeQs$BzEGNw_DuWoEUYS(0x1c1)]=fOmzFeQs$BzEGNw_DuWoEUYS(0x1b1);},{'once':!![]}),localStorage[bJYz$ZBXWKXdUhypzpurVcpsb(0x1c9)](dpusOR$rpUXgqB$ZQ,bJYz$ZBXWKXdUhypzpurVcpsb(0x1c4));});});
     </script>
 </body>
 </html>
