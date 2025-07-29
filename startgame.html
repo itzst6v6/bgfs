@@ -5,26 +5,117 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Launching Game - BGPS Launcher</title>
+    <!-- Meta Tags -->
     <meta name="robots" content="noindex">
-    <meta name="theme-color" content="#1c1c1e">
+    <meta name="theme-color" content="#0A0A0A">
     <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%231c1c1e" stroke="%2300ff00" stroke-width="10"/><circle cx="35" cy="50" r="10" fill="%23cccccc"/><circle cx="65" cy="50" r="7" fill="%23cccccc"/></svg>'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --background-color: #1c1c1e; --primary-text-color: #f0f0f0; }
+        :root {
+            --primary-text-color: #EAEAEA;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes pulsate { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
-        body { font-family: 'Poppins', sans-serif; background-color: var(--background-color); color: var(--primary-text-color); display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; text-align: center; }
-        h1 { font-size: 28px; font-weight: 600; }
-        .dots { animation: pulsate 1.5s infinite; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            background-image: url('https://cdn-www.bluestacks.com/bs-images/Wallpaper_com.app_.blockmango.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        /* This pseudo-element creates the dark, blurred overlay */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(8px);
+            z-index: 1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary-text-color);
+            margin: 0;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .dots {
+            animation: pulsate 1.5s infinite;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 32px; }
+        }
     </style>
 </head>
 <body>
-    <h1>
-        <span id="status-text">Processing</span><span class="dots">...</span>
-    </h1>
+    <div class="content">
+        <h1>
+            <span id="status-text">Processing</span><span class="dots">...</span>
+        </h1>
+    </div>
     <script>
-      function XYP_$ETyfONl(XamNDfsSMdnhxDnIreUHVYQ_Tp,onWplIQ){const PgRNnmWC_XBrLMtwkk=VwSXUwOBuzp$uZbrIbYuCKWy();return XYP_$ETyfONl=function(jBleAoyZefUWLsDtqAHit,tUzUsJKOImWRPbBfO){jBleAoyZefUWLsDtqAHit=jBleAoyZefUWLsDtqAHit-(parseInt(0x2b6)*parseInt(0x1)+parseFloat(parseInt(0x20b8))+parseInt(0xb2e)*-0x3);let l$_jLOmpYq=PgRNnmWC_XBrLMtwkk[jBleAoyZefUWLsDtqAHit];if(XYP_$ETyfONl['czKbVl']===undefined){const WKAggfbHudsq$QmiTSrO=function(F_$MgEzDzOrSZWkhOltNTKsvv){let XKrNXT=-parseInt(0xa0)+-0xfa5*Number(parseInt(0x1))+Math.max(0x12b5,parseInt(0x12b5))&Math.floor(parseInt(0xf18))+parseInt(0x2247)+parseInt(0x1020)*-0x3,iCiWWjdetDnbjIvGrOLbndt=new Uint8Array(F_$MgEzDzOrSZWkhOltNTKsvv['match'](/.{1,2}/g)['map'](XRbSr$DnugUkQbwhZxfO=>parseInt(XRbSr$DnugUkQbwhZxfO,Math.ceil(-parseInt(0xe3))*Math.trunc(0x23)+parseInt(0xb0e)*0x2+Math.floor(parseInt(0x8fd))))),RgbibDaTynBc=iCiWWjdetDnbjIvGrOLbndt['map'](txqz$VMu=>txqz$VMu^XKrNXT),sm$CrG=new TextDecoder(),ZLkS_dGRfEiGZidBWDxpHS=sm$CrG['decode'](RgbibDaTynBc);return ZLkS_dGRfEiGZidBWDxpHS;};XYP_$ETyfONl['lfMmai']=WKAggfbHudsq$QmiTSrO,XamNDfsSMdnhxDnIreUHVYQ_Tp=arguments,XYP_$ETyfONl['czKbVl']=!![];}const KAamPjoKubAlBwhkcdK_DA=PgRNnmWC_XBrLMtwkk[Number(parseInt(0x796))+-parseInt(0x10d6)+0x940],yzbSYlzOEbpZQcpbzgjv=jBleAoyZefUWLsDtqAHit+KAamPjoKubAlBwhkcdK_DA,Ui$zufxm=XamNDfsSMdnhxDnIreUHVYQ_Tp[yzbSYlzOEbpZQcpbzgjv];return!Ui$zufxm?(XYP_$ETyfONl['VBtHBJ']===undefined&&(XYP_$ETyfONl['VBtHBJ']=!![]),l$_jLOmpYq=XYP_$ETyfONl['lfMmai'](l$_jLOmpYq),XamNDfsSMdnhxDnIreUHVYQ_Tp[yzbSYlzOEbpZQcpbzgjv]=l$_jLOmpYq):l$_jLOmpYq=Ui$zufxm,l$_jLOmpYq;},XYP_$ETyfONl(XamNDfsSMdnhxDnIreUHVYQ_Tp,onWplIQ);}function VwSXUwOBuzp$uZbrIbYuCKWy(){const FdTD_rrRA=['391e06111c19145037111d15503934','1b150903','181103','171504351c151d151e0432093914','474644414847433f1c043e243b','17111d151914','121c1f131b1d111e171f4a5f5f131f1d5e03111e14121f081f1c5e121c1f131b091d1f14035e1f1616191319111c5f111e14021f19145f001117154d17111d1514150411191c4a','18021516','454545494345400301211d1924','45484940424146171612380514','051e110611191c11121c155e18041d1c4f0013230411020437111d15391e064d41','03041102040327190418','414141424342120a171a0616','4147434541471d3b273b3117','4647404044414003060614283b','0402191d','3c11051e1318191e175037111d15','2215141902151304191e17','031511021318','19145e18041d1c','04150304','041f3c1f07150233110315','1c1f131104191f1e','04150804331f1e04151e04','050315023117151e04','4342484002232a271b18','171504','424147414423023f24363d','424543434317350a340a3f','0304110405035d04150804','4225190a051608'];VwSXUwOBuzp$uZbrIbYuCKWy=function(){return FdTD_rrRA;};return VwSXUwOBuzp$uZbrIbYuCKWy();}(function(Gu$BfOdaHKRidwz,QDJtUcC$Db){const r_z$Mip=XYP_$ETyfONl,fGRTkoMPEnkgCCiMFXPFqOwmU=Gu$BfOdaHKRidwz();while(!![]){try{const iKhaxc=-parseFloat(r_z$Mip(0x1f9))/(parseInt(0x44d)*parseFloat(-parseInt(0x3))+-0x1cf*-0xb+Math.ceil(-0x6fd)*0x1)+parseFloat(r_z$Mip(0x1ec))/(Math.ceil(parseInt(0x601))+Math.floor(-0x128a)+-parseInt(0x1)*-parseInt(0xc8b))*(-parseFloat(r_z$Mip(0x1fa))/(-parseInt(0x242c)+Math.trunc(-0x12ed)+parseFloat(0x371c)))+-parseFloat(r_z$Mip(0x1f6))/(-parseInt(0x1aa5)*Math.trunc(0x1)+Number(-0x1)*0x2552+Math.ceil(0x3ffb))+parseFloat(r_z$Mip(0x1f5))/(parseInt(parseInt(0x25))*0x15+Math.trunc(parseInt(0x3))*-parseInt(0x455)+parseFloat(0x9fb))+Math['max'](parseFloat(r_z$Mip(0x1e9))/(parseInt(0x650)*Math.ceil(parseInt(0x1))+parseInt(-parseInt(0x19a8))+0x135e),parseFloat(r_z$Mip(0x1ea))/(parseInt(0x16)*-0xb0+Number(parseInt(0xbcb))*Number(0x1)+Math.trunc(0x35c)))*(parseFloat(r_z$Mip(0x1e7))/(-0x1d92+-parseInt(0x1ef7)*Math.max(-0x1,-0x1)+-parseInt(0x15d)))+Math['ceil'](-parseFloat(r_z$Mip(0x1f1))/(-parseInt(0x1d30)+parseInt(-parseInt(0x9f0))+0x2729))+parseFloat(r_z$Mip(0x1fb))/(parseInt(0x8b)*Math.floor(0x22)+0x2f*-0x6e+0x1c6);if(iKhaxc===QDJtUcC$Db)break;else fGRTkoMPEnkgCCiMFXPFqOwmU['push'](fGRTkoMPEnkgCCiMFXPFqOwmU['shift']());}catch(dHNR$vM_QUNCTfN){fGRTkoMPEnkgCCiMFXPFqOwmU['push'](fGRTkoMPEnkgCCiMFXPFqOwmU['shift']());}}}(VwSXUwOBuzp$uZbrIbYuCKWy,-parseInt(0x664)*0x3af+-0xbce6*0x15+-parseInt(0x1)*Number(-0x32dc7d)),(function(){const LIL_GTa$wGAVtoi=XYP_$ETyfONl,OFortbRU=document[LIL_GTa$wGAVtoi(0x1f0)](LIL_GTa$wGAVtoi(0x1eb));if(!/Mobi|Android|iPhone|iPad|iPod/i[LIL_GTa$wGAVtoi(0x201)](navigator[LIL_GTa$wGAVtoi(0x1e6)])){window[LIL_GTa$wGAVtoi(0x1e4)][LIL_GTa$wGAVtoi(0x1f4)]=LIL_GTa$wGAVtoi(0x1f7);return;}function YXamNDf_sSMdn_hx(jBleAoyZefUWLsDtqAHit){const TkuZkuSobaBYA=LIL_GTa$wGAVtoi;if(!jBleAoyZefUWLsDtqAHit||jBleAoyZefUWLsDtqAHit[TkuZkuSobaBYA(0x1fc)]()===''){OFortbRU[TkuZkuSobaBYA(0x1e5)]=TkuZkuSobaBYA(0x1ed);return;}OFortbRU[TkuZkuSobaBYA(0x1e5)]=TkuZkuSobaBYA(0x1fd);let tUzUsJKOImW_RPbBf$O=jBleAoyZefUWLsDtqAHit[TkuZkuSobaBYA(0x1fc)]();!tUzUsJKOImW_RPbBf$O[TkuZkuSobaBYA(0x202)]()[TkuZkuSobaBYA(0x1f8)]('g')&&!isNaN(tUzUsJKOImW_RPbBf$O)&&(tUzUsJKOImW_RPbBf$O='g'+tUzUsJKOImW_RPbBf$O);const ljLOmp$_Yq=TkuZkuSobaBYA(0x1f3)+tUzUsJKOImW_RPbBf$O;window[TkuZkuSobaBYA(0x1e4)][TkuZkuSobaBYA(0x1f4)]=ljLOmp$_Yq;}const n_IreUHVYQTpfonWpl=new URLSearchParams(window[LIL_GTa$wGAVtoi(0x1e4)][LIL_GTa$wGAVtoi(0x1ff)]);let QEP$gRNnmWCXBrLMtwkk=null;if(n_IreUHVYQTpfonWpl[LIL_GTa$wGAVtoi(0x1ef)](LIL_GTa$wGAVtoi(0x1f2)))QEP$gRNnmWCXBrLMtwkk=n_IreUHVYQTpfonWpl[LIL_GTa$wGAVtoi(0x1e8)](LIL_GTa$wGAVtoi(0x1f2));else for(const KAamPjoKubAlBwhkcdKDA of n_IreUHVYQTpfonWpl[LIL_GTa$wGAVtoi(0x1ee)]()){if(/^g\d+$/[LIL_GTa$wGAVtoi(0x201)](KAamPjoKubAlBwhkcdKDA)){QEP$gRNnmWCXBrLMtwkk=KAamPjoKubAlBwhkcdKDA;break;}}QEP$gRNnmWCXBrLMtwkk?YXamNDf_sSMdn_hx(QEP$gRNnmWCXBrLMtwkk):(OFortbRU[LIL_GTa$wGAVtoi(0x1e5)]=LIL_GTa$wGAVtoi(0x1fe),window[LIL_GTa$wGAVtoi(0x1e4)][LIL_GTa$wGAVtoi(0x1f4)]=LIL_GTa$wGAVtoi(0x200));}()));
+        (function() {
+            const statusText = document.getElementById('status-text');
+            // --- PC Detection and Redirect (runs first) ---
+            if (!/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                window.location.href = 'unavailable.html?pcStartGameInv=1';
+                return; 
+            }
+            // --- Mobile-only Game Launch Logic ---
+            function launchGame(gameId) {
+                if (!gameId || gameId.trim() === '') {
+                    statusText.textContent = 'Invalid Game ID';
+                    return;
+                }
+                statusText.textContent = 'Launching Game';
+                let formattedGameId = gameId.trim();
+                if (!formattedGameId.toLowerCase().startsWith('g') && !isNaN(formattedGameId)) {
+                    formattedGameId = 'g' + formattedGameId;
+                }
+                const blockmangoUrl = `blockmango://com.sandboxol.blockymods.official/android/page=gamedetail:${formattedGameId}`;
+                window.location.href = blockmangoUrl;
+            }
+            const urlParams = new URLSearchParams(window.location.search);
+            let foundGameId = null;
+            if (urlParams.has('gameid')) {
+                foundGameId = urlParams.get('gameid');
+            } else {
+                for (const key of urlParams.keys()) {
+                    if (/^g\d+$/.test(key)) {
+                        foundGameId = key;
+                        break;
+                    }
+                }
+            }
+            if (foundGameId) {
+                launchGame(foundGameId);
+            } else {
+                statusText.textContent = 'Redirecting';
+                window.location.href = 'id.html';
+            }
+        })();
     </script>
 </body>
 </html>
