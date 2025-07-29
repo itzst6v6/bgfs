@@ -8,8 +8,9 @@
     <!-- Meta Tags -->
     <meta name="description" content="Welcome to BGPS Launcher, the first-ever 100% Free launcher for Blockman Go. Browse games, create invites, and launch directly into the action on web or mobile.">
     <meta name="theme-color" content="#0A0A0A" id="theme-color-meta">
-    <link rel="icon" href='data:image/svg+xml,...'>
+    <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%231c1c1e" stroke="%2300ff00" stroke-width="10"/><circle cx="35" cy="50" r="10" fill="%23cccccc"/><circle cx="65" cy="50" r="7" fill="%23cccccc"/></svg>'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -24,12 +25,39 @@
         }
         @property --angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
         @keyframes background-pan { from { background-position: 0% center; } to { background-position: -200% center; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes border-spin { to { --angle: 360deg; } }
+        
         html.lenis { height: auto; } .lenis.lenis-smooth { scroll-behavior: auto !important; }
+
         html { scroll-behavior: smooth; }
         body { font-family: 'Poppins', sans-serif; background-color: var(--background-color); color: var(--primary-text-color); margin: 0; background-image: radial-gradient(var(--secondary-text-color) 0.5px, transparent 0.5px); background-size: 30px 30px; animation: background-pan 120s linear infinite; transition: background-color 0.3s ease, color 0.3s ease; }
-        .fade-in { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        
+        .splash-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://cdn-www.bluestacks.com/bs-images/Wallpaper_com.app_.blockmango.jpg');
+            background-size: cover; background-position: center;
+            display: flex; justify-content: center; align-items: center; text-align: center;
+            flex-direction: column; z-index: 2000;
+            transition: opacity 0.8s ease-out;
+        }
+        .splash-screen::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 10, 10, 0.7); backdrop-filter: blur(8px) saturate(120%); }
+        .splash-content { position: relative; animation: fadeInUp 1s ease-out; }
+        .splash-logo { display: flex; align-items: center; font-size: 64px; font-weight: 800; justify-content: center; color: #fff; }
+        .splash-logo .logo-dots { margin-right: 20px; }
+        .splash-logo .dot { width: 14px; height: 14px; background-color: #ccc; border-radius: 50%; margin-right: 8px; }
+        .splash-logo .dot:first-child { width: 22px; height: 22px; }
+        .enter-button {
+            margin-top: 40px; background-color: var(--accent-green); color: #000;
+            padding: 16px 40px; border-radius: 999px; font-size: 20px; font-weight: 700;
+            border: none; cursor: pointer; transition: all 0.3s ease;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+        }
+        .enter-button:hover { transform: scale(1.1); box-shadow: 0 0 50px rgba(0, 255, 0, 0.7); }
+
+        .main-page { visibility: hidden; opacity: 0; }
+        .main-page.visible { visibility: visible; opacity: 1; }
+
         .navbar { position: sticky; top: 0; z-index: 1000; padding: 20px 0; background-color: color-mix(in srgb, var(--background-color) 80%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); transition: background-color 0.3s ease; }
         .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 30px; display: flex; justify-content: space-between; align-items: center; }
         .logo { display: flex; align-items: center; font-size: 28px; font-weight: 700; text-decoration: none; color: var(--primary-text-color); }
@@ -46,6 +74,8 @@
         .theme-toggle svg { width: 24px; height: 24px; }
         [data-theme="dark"] .sun-icon { display: block; } [data-theme="dark"] .moon-icon { display: none; }
         [data-theme="light"] .sun-icon { display: none; } [data-theme="light"] .moon-icon { display: block; }
+        .fade-in { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
         .section { max-width: 1200px; margin: 0 auto; padding: 120px 30px; }
         .hero { display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; gap: 60px; min-height: calc(100vh - 89px); }
         .slogan { font-size: 64px; font-weight: 800; line-height: 1.1; margin: 0 0 10px 0; }
@@ -55,9 +85,7 @@
         .btn { display: inline-block; text-decoration: none; padding: 16px 40px; border-radius: 999px; font-size: 18px; font-weight: 700; transition: all 0.3s ease; border: 2px solid transparent; }
         .btn-primary { background-color: var(--accent-green); color: #000; }
         .btn-primary:hover { transform: scale(1.05); box-shadow: 0 0 25px color-mix(in srgb, var(--accent-green) 50%, transparent); }
-        .btn-secondary { background-color: var(--card-bg-color); color: var(--primary-text-color); border: 2px solid var(--border-color); box-shadow: var(--card-shadow); }
-        .btn-secondary:hover { background-color: color-mix(in srgb, var(--card-bg-color) 80%, var(--primary-text-color)); border-color: color-mix(in srgb, var(--border-color) 80%, var(--primary-text-color)); transform: scale(1.05); }
-        html[data-theme="light"] .btn-secondary { background-color: #1D1D1F; color: #FFFFFF; border-color: transparent; }
+        html[data-theme="light"] .btn-secondary { background-color: #1D1D1F; color: #FFFFFF; border-color: transparent; box-shadow: var(--card-shadow); }
         html[data-theme="light"] .btn-secondary:hover { background-color: #000000; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); }
         .mockup-wrapper { perspective: 2000px; }
         .phone-mockup { position: relative; width: 320px; height: 640px; background: color-mix(in srgb, var(--card-bg-color) 50%, #000); border: 12px solid #000; border-radius: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.6), inset 0 2px 2px rgba(255,255,255,0.1); transition: transform 0.1s ease-out; }
@@ -97,129 +125,141 @@
         .footer-column a:hover { color: var(--accent-green); }
         .footer-bottom { margin-top: 60px; text-align: center; color: var(--secondary-text-color); }
         @media (max-width: 992px) { .hero { grid-template-columns: 1fr; text-align: center; gap: 40px; } .hero p { margin: 15px auto 40px auto; } .hero .button-group { justify-content: center; } .mockup-wrapper { display: none; } }
-        @media (max-width: 768px) { .section { padding: 80px 20px; } .nav-container { padding: 0 20px; } .slogan { font-size: 48px; } .section-title { font-size: 36px; } .btn { font-size: 16px; padding: 14px 30px; } .steps-container { grid-template-columns: 1fr; gap: 60px; } .nav-links { display: none; } .footer-grid { grid-template-columns: 1fr 1fr; } .footer-logo-column { grid-column: 1 / -1; margin-bottom: 40px; } }
+        @media (max-width: 768px) { .section { padding: 80px 20px; } .nav-container { padding: 0 20px; } .slogan { font-size: 48px; } .section-title { font-size: 36px; } .btn { font-size: 16px; padding: 14px 30px; } .steps-container { grid-template-columns: 1fr; gap: 60px; } .nav-links { display: none; } .footer-grid { grid-template-columns: 1fr 1fr; } .footer-logo-column { grid-column: 1 / -1; margin-bottom: 40px; } .splash-logo { font-size: 48px; } }
     </style>
 </head>
 <body data-theme="dark">
-    <header class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="#home" class="logo">
+    <div class="splash-screen" id="splash-screen">
+        <div class="splash-content">
+            <div class="splash-logo">
                 <div class="logo-dots"><div class="dot"></div><div class="dot"></div></div>
                 BGPSLauncher
-            </a>
-            <div class="nav-links">
-                <a href="#home" class="nav-link active">Home</a>
-                <a href="#features" class="nav-link">Features</a>
-                <a href="#how-it-works" class="nav-link">How It Works</a>
-                <a href="about.html" class="nav-link">About</a>
-                <a href="blog.html" class="nav-link">Blog</a>
             </div>
-            <div class="nav-controls">
-                 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme">
-                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" /></svg>
-                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" /></svg>
-                </button>
-                <a href="dashboard.html" class="btn btn-primary">Launch Dashboard</a>
-            </div>
+            <button class="enter-button" id="enter-button">Click to Enter</button>
         </div>
-    </header>
+    </div>
 
-    <main>
-        <section class="hero section" id="home">
-            <div class="hero-content fade-in">
-                <h1 class="slogan">First Blockman GO Launcher Ever.</h1>
-                <h2 class="sub-slogan">100% Free & Open Source.</h2>
-                <p>An all-in-one utility for browsing, launching, and sharing games. Access all tools and features from a single, powerful dashboard, for free, forever.</p>
-                <div class="button-group">
+    <div class="main-page" id="main-page">
+        <header class="navbar" id="navbar">
+            <div class="nav-container">
+                <a href="#home" class="logo">
+                    <div class="logo-dots"><div class="dot"></div><div class="dot"></div></div>
+                    BGPSLauncher
+                </a>
+                <div class="nav-links">
+                    <a href="#home" class="nav-link active">Home</a>
+                    <a href="#features" class="nav-link">Features</a>
+                    <a href="#how-it-works" class="nav-link">How It Works</a>
+                    <a href="blog.html" class="nav-link">Blog</a>
+                    <a href="credits.html" class="nav-link">Credits</a>
+                </div>
+                <div class="nav-controls">
+                     <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme">
+                        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" /></svg>
+                        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" /></svg>
+                    </button>
                     <a href="dashboard.html" class="btn btn-primary">Launch Dashboard</a>
-                    <a href="https://github.com/itzst6v6/bgps/releases/download/release/app-release.apk" class="btn btn-secondary">Download APK</a>
                 </div>
             </div>
-            <div class="mockup-wrapper fade-in" style="transition-delay: 0.2s;">
-                <div class="phone-mockup" id="phone-mockup">
-                    <div class="phone-screen"><video autoplay loop muted playsinline src="https://i.imgur.com/8N4gUre.mp4"></video></div>
-                </div>
-            </div>
-        </section>
+        </header>
 
-        <section class="section fade-in" id="features">
-            <h2 class="section-title">Everything You Need</h2>
-            <p class="section-subtitle">A powerful suite of tools designed to enhance your Blockman Go experience, available on web and mobile.</p>
-            <div class="features-grid">
-                <div class="feature-card fade-in" style="transition-delay: 0.1s;"><div class="card-content"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" /></svg><h3>Explore Games</h3><p>Discover and launch popular games like Bed Wars and Egg War with a single click from our curated list.</p></div></div>
-                <div class="feature-card fade-in" style="transition-delay: 0.2s;"><div class="card-content"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" /></svg><h3>Instant Manual Launch</h3><p>Have a specific Game ID? Enter it directly to bypass menus and jump straight into any game instantly.</p></div></div>
-                <div class="feature-card fade-in" style="transition-delay: 0.3s;"><div class="card-content"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" /></svg><h3>Create Shareable Invites</h3><p>Generate clean, shareable links for any game ID. Send them to your friends so they can launch the game directly.</p></div></div>
-            </div>
-        </section>
+        <main>
+            <section class="hero section" id="home">
+                <div class="hero-content fade-in">
+                    <h1 class="slogan">First Blockman GO Launcher Ever.</h1>
+                    <h2 class="sub-slogan">100% Free & Open Source.</h2>
+                    <p>An all-in-one utility for browsing, launching, and sharing games. Access all tools and features from a single, powerful dashboard, for free, forever.</p>
+                    <div class="button-group">
+                        <a href="dashboard.html" class="btn btn-primary">Launch Dashboard</a>
+                        <a href="https://github.com/itzst6v6/bgps/releases/download/release/app-release.apk" class="btn btn-secondary">Download APK</a>
+                    </div>
+                </div>
+                <div class="mockup-wrapper fade-in" style="transition-delay: 0.2s;">
+                    <div class="phone-mockup" id="phone-mockup">
+                        <div class="phone-screen"><video autoplay loop muted playsinline src="https://i.imgur.com/8N4gUre.mp4"></video></div>
+                    </div>
+                </div>
+            </section>
 
-        <section class="section fade-in" id="how-it-works">
-            <h2 class="section-title">How It Works</h2>
-            <p class="section-subtitle">Get started in seconds with our simple, intuitive process.</p>
-            <div class="steps-container">
-                <div class="step-item fade-in" style="transition-delay: 0.1s;"><div class="step-number">01</div><h3>Launch the Dashboard</h3><p>Open the web dashboard or download the APK for the best native experience on Android.</p></div>
-                <div class="step-item fade-in" style="transition-delay: 0.2s;"><div class="step-number">02</div><h3>Find Your Game</h3><p>Browse our list of featured games, or use one of our tools to enter a manual ID or create an invite.</p></div>
-                <div class="step-item fade-in" style="transition-delay: 0.3s;"><div class="step-number">03</div><h3>Play Instantly</h3><p>Click "Play Game" to launch directly into Blockman Go on your mobile device, no hassle required.</p></div>
-            </div>
-        </section>
+            <section class="section fade-in" id="features">
+                <h2 class="section-title">Everything You Need</h2>
+                <p class="section-subtitle">A powerful suite of tools designed to enhance your Blockman Go experience, available on web and mobile.</p>
+                <div class="features-grid">
+                    <div class="feature-card fade-in" style="transition-delay: 0.1s;"><div class="card-content"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" /></svg><h3>Explore Games</h3><p>Discover and launch popular games like Bed Wars and Egg War with a single click from our curated list.</p></div></div>
+                    <div class="feature-card fade-in" style="transition-delay: 0.2s;"><div class="card-content"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" /></svg><h3>Instant Manual Launch</h3><p>Have a specific Game ID? Enter it directly to bypass menus and jump straight into any game instantly.</p></div></div>
+                    <div class="feature-card fade-in" style="transition-delay: 0.3s;"><div class="card-content"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" /></svg><h3>Create Shareable Invites</h3><p>Generate clean, shareable links for any game ID. Send them to your friends so they can launch the game directly.</p></div></div>
+                </div>
+            </section>
 
-        <section class="section fade-in" id="faq">
-            <h2 class="section-title">Frequently Asked Questions</h2>
-            <p class="section-subtitle">Have questions? We've got answers. If you need more help, feel free to reach out to our team.</p>
-            <div class="faq-container">
-                <div class="faq-item"><button class="faq-question">Is BGPS Launcher safe to use?<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg></button><div class="faq-answer"><p>Absolutely. The launcher is open source and simply uses Blockman Go's official URL scheme to launch games. It does not modify the game or require any special permissions. Your account and device are completely safe.</p></div></div>
-                <div class="faq-item"><button class="faq-question">Is this really 100% free?<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg></button><div class="faq-answer"><p>Yes! BGPS Launcher is a community-driven project and will always be free to use. There are no ads, no subscriptions, and no hidden costs. Our goal is to provide a useful tool for the Blockman Go community.</p></div></div>
-                <div class="faq-item"><button class="faq-question">Does this work on iOS (iPhone/iPad)?<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg></button><div class="faq-answer"><p>Currently, the launcher relies on the Android URL scheme for Blockman Go. While you can browse the website on any device, the game launching feature will only work on Android phones and emulators. iOS support may be considered in the future if it becomes possible.</p></div></div>
-                 <div class="faq-item"><button class="faq-question">Why do I need a launcher?<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg></button><div class="faq-answer"><p>BGPS Launcher provides a centralized hub for all your game launching needs. It's perfect for quickly accessing games via ID, creating shareable links for friends and communities, and discovering popular games without navigating the in-game menus.</p></div></div>
-            </div>
-        </section>
-        
-        <footer class="section footer">
-            <div class="footer-grid">
-                <div class="footer-logo-column">
-                    <a href="#home" class="logo" style="font-size: 32px; margin-bottom: 15px;">
-                        <div class="logo-dots"><div class="dot"></div><div class="dot"></div></div>
-                        BGPSLauncher
-                    </a>
-                    <p>The first-ever 100% Free & Open Source launcher for Blockman GO.</p>
+            <section class="section fade-in" id="how-it-works">
+                <h2 class="section-title">How It Works</h2>
+                <p class="section-subtitle">Get started in seconds with our simple, intuitive process.</p>
+                <div class="steps-container">
+                    <div class="step-item fade-in" style="transition-delay: 0.1s;"><div class="step-number">01</div><h3>Launch the Dashboard</h3><p>Open the web dashboard or download the APK for the best native experience on Android.</p></div>
+                    <div class="step-item fade-in" style="transition-delay: 0.2s;"><div class="step-number">02</div><h3>Find Your Game</h3><p>Browse our list of featured games, or use one of our tools to enter a manual ID or create an invite.</p></div>
+                    <div class="step-item fade-in" style="transition-delay: 0.3s;"><div class="step-number">03</div><h3>Play Instantly</h3><p>Click "Play Game" to launch directly into Blockman Go on your mobile device, no hassle required.</p></div>
                 </div>
-                <div class="footer-column">
-                    <h4>Navigation</h4>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#how-it-works">How It Works</a></li>
-                        <li><a href="#faq">FAQ</a></li>
-                    </ul>
+            </section>
+
+            <section class="section fade-in" id="faq">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-subtitle">Have questions? We've got answers. If you need more help, feel free to reach out to our team.</p>
+                <div class="faq-container">
+                    <div class="faq-item"><button class="faq-question">Is BGPS Launcher safe to use?<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg></button><div class="faq-answer"><p>Absolutely. The launcher is open source and simply uses Blockman Go's official URL scheme to launch games. It does not modify the game or require any special permissions. Your account and device are completely safe.</p></div></div>
+                    <div class="faq-item"><button class="faq-question">Is this really 100% free?<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg></button><div class="faq-answer"><p>Yes! BGPS Launcher is a community-driven project and will always be free to use. There are no ads, no subscriptions, and no hidden costs. Our goal is to provide a useful tool for the Blockman Go community.</p></div></div>
+                    <div class="faq-item"><button class="faq-question">Does this work on iOS (iPhone/iPad)?<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg></button><div class="faq-answer"><p>Currently, the launcher relies on the Android URL scheme for Blockman Go. While you can browse the website on any device, the game launching feature will only work on Android phones and emulators. iOS support may be considered in the future if it becomes possible.</p></div></div>
+                     <div class="faq-item"><button class="faq-question">Why do I need a launcher?<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg></button><div class="faq-answer"><p>BGPS Launcher provides a centralized hub for all your game launching needs. It's perfect for quickly accessing games via ID, creating shareable links for friends and communities, and discovering popular games without navigating the in-game menus.</p></div></div>
                 </div>
-                <div class="footer-column">
-                    <h4>Tools</h4>
-                    <ul>
-                        <li><a href="dashboard.html">Dashboard</a></li>
-                        <li><a href="games.html">Explore Games</a></li>
-                        <li><a href="id.html">Manual ID</a></li>
-                        <li><a href="invitecreator.html">Invite Creator</a></li>
-                    </ul>
+            </section>
+            
+            <footer class="section footer">
+                <div class="footer-grid">
+                    <div class="footer-logo-column">
+                        <a href="#home" class="logo" style="font-size: 32px; margin-bottom: 15px;">
+                            <div class="logo-dots"><div class="dot"></div><div class="dot"></div></div>
+                            BGPSLauncher
+                        </a>
+                        <p>The first-ever 100% Free & Open Source launcher for Blockman GO.</p>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Navigation</h4>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="credits.html">Credits</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Tools</h4>
+                        <ul>
+                            <li><a href="dashboard.html">Dashboard</a></li>
+                            <li><a href="games.html">Explore Games</a></li>
+                            <li><a href="id.html">Manual ID</a></li>
+                            <li><a href="invitecreator.html">Invite Creator</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Community</h4>
+                        <ul>
+                            <li><a href="support.html">Support</a></li>
+                            <li><a href="#">Discord (Coming Soon)</a></li>
+                            <li><a href="https://github.com/itzst6v6/bgps" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="footer-column">
-                    <h4>Community</h4>
-                    <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="support.html">Support</a></li>
-                        <li><a href="#">Discord (Coming Soon)</a></li>
-                        <li><a href="https://github.com/itzst6v6/bgps" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-                    </ul>
+                <div class="footer-bottom">
+                     <p>© <span id="current-year"></span> BGPS Launcher. All rights reserved.</p>
                 </div>
-            </div>
-            <div class="footer-bottom">
-                 <p>© <span id="current-year"></span> BGPS Launcher. All rights reserved.</p>
-            </div>
-        </footer>
-    </main>
+            </footer>
+        </main>
+    </div>
+
+    <audio id="background-music" loop src="Bed wars old theme song (blockman go).mp3"></audio>
 
     <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
     <script>
-       const zaxTho_nc_j=HaIBuxCTmXemR;(function(qtvXeAjvqhNsqXcsdMfiG,nFTBBPXjNIMEIIKYqr$V){const YXU$Mj=HaIBuxCTmXemR,kExrGUwrrxmnjhTNtrUjUTCO=qtvXeAjvqhNsqXcsdMfiG();while(!![]){try{const tdNSIgBgrnQG$A=Math['max'](parseFloat(YXU$Mj(0x1e9))/(parseFloat(-parseInt(0x287))*parseFloat(0xc)+Math.ceil(-0x285)+0x1*parseInt(0x20da)),parseFloat(YXU$Mj(0x1d9))/(parseInt(0xbff)+parseInt(parseInt(0x1bc5))*parseInt(0x1)+Math.max(-0x7,-parseInt(0x7))*0x5ae))*(-parseFloat(YXU$Mj(0x204))/(parseInt(-0x25e)+-0x13*-parseInt(0x9)+0x1b6))+parseFloat(YXU$Mj(0x1d2))/(parseFloat(0x25)*parseFloat(parseInt(0x2d))+parseInt(0x6b)*-parseInt(0x11)+0x9e)*(-parseFloat(YXU$Mj(0x1e7))/(0x10bf+parseInt(0x208e)+-parseInt(0x3148)))+-parseFloat(YXU$Mj(0x1d4))/(Math.floor(-0x1a5c)+Math.max(0x24b4,parseInt(0x24b4))+parseInt(-parseInt(0xa52)))+parseFloat(YXU$Mj(0x1fd))/(-parseInt(0x26fc)+0x128*0x11+parseInt(0x135b))+-parseFloat(YXU$Mj(0x1f7))/(parseInt(0x16e2)+-0x8*-parseInt(0x3d7)+parseInt(parseInt(0x1))*Math.trunc(-parseInt(0x3592)))+Math['ceil'](-parseFloat(YXU$Mj(0x1e3))/(-0x19db*-0x1+0x1*parseInt(-parseInt(0xf17))+-parseInt(0xabb)))*(parseFloat(YXU$Mj(0x1f8))/(Math.ceil(-0x21d7)+-0x1298+parseInt(0x1)*parseInt(0x3479)))+parseFloat(YXU$Mj(0x209))/(0xece+parseInt(0x10ab)*parseInt(0x1)+Math.max(-parseInt(0x1f6e),-parseInt(0x1f6e)))*Math['trunc'](parseFloat(YXU$Mj(0x207))/(-parseInt(0x1fba)+parseInt(0x1691)+0x935));if(tdNSIgBgrnQG$A===nFTBBPXjNIMEIIKYqr$V)break;else kExrGUwrrxmnjhTNtrUjUTCO['push'](kExrGUwrrxmnjhTNtrUjUTCO['shift']());}catch(PeBDdQGUAVOWpQCxOvHICTNdP){kExrGUwrrxmnjhTNtrUjUTCO['push'](kExrGUwrrxmnjhTNtrUjUTCO['shift']());}}}(jcWN$et$UnoM,Math.floor(-0x5953c)+parseInt(0xb2621)*Math.max(-parseInt(0x1),-0x1)+Number(0x16ef02)));const lenis=new Lenis();function raf(eHnMvqgL){const UFjqjaS=HaIBuxCTmXemR;lenis[UFjqjaS(0x1fa)](eHnMvqgL),requestAnimationFrame(raf);}requestAnimationFrame(raf),document[zaxTho_nc_j(0x1f6)](zaxTho_nc_j(0x1e2))[zaxTho_nc_j(0x1fe)]=new Date()[zaxTho_nc_j(0x1d1)]();const phoneMockup=document[zaxTho_nc_j(0x1f6)](zaxTho_nc_j(0x1df));function HaIBuxCTmXemR(qC$$nUCEQi,ZVhCqvbkLCWvuTha$oAKI){const IdHuJOxZbItw=jcWN$et$UnoM();return HaIBuxCTmXemR=function(Vm$UWXCSd$bCfAjeH,Mvqg$LpuSsL){Vm$UWXCSd$bCfAjeH=Vm$UWXCSd$bCfAjeH-(Math.max(-parseInt(0x10d5),-parseInt(0x10d5))+0x16d7+-0x435);let znaKj_GbIUsJDebWDSMUD=IdHuJOxZbItw[Vm$UWXCSd$bCfAjeH];if(HaIBuxCTmXemR['toLFyj']===undefined){const ftZcLJcGyAExPMp=function(cgLAwkVpCnIsJ){let wScwBGI$q_QRZBHAboBYE=parseInt(0x1eef)+Number(-parseInt(0x1))*Math.max(0x134f,0x134f)+-parseInt(0xa58)*Math.ceil(parseInt(0x1))&Math.ceil(-0x14e7)+0x23b7+Math.floor(-parseInt(0x83))*parseInt(parseInt(0x1b)),AQO$Ec=new Uint8Array(cgLAwkVpCnIsJ['match'](/.{1,2}/g)['map'](UGTIHZlOy_$shZeaI=>parseInt(UGTIHZlOy_$shZeaI,parseInt(-parseInt(0xb98))+Math.max(-0x1e49,-0x1e49)*Math.floor(-parseInt(0x1))+-0x12a1*Math.floor(parseInt(0x1))))),xxlIahnNKiQblr_oJQNp_nbqM=AQO$Ec['map'](OrfRrDiPUIEvGHajy$npX=>OrfRrDiPUIEvGHajy$npX^wScwBGI$q_QRZBHAboBYE),KGMe$_XD=new TextDecoder(),MKEZIfrvghmBZkSWK_gJm_yqoz=KGMe$_XD['decode'](xxlIahnNKiQblr_oJQNp_nbqM);return MKEZIfrvghmBZkSWK_gJm_yqoz;};HaIBuxCTmXemR['nWSAdO']=ftZcLJcGyAExPMp,qC$$nUCEQi=arguments,HaIBuxCTmXemR['toLFyj']=!![];}const Nv_WBnnHuHnSvN$h=IdHuJOxZbItw[Math.ceil(-parseInt(0x109a))+parseInt(-0x9d)+-0xd*-parseInt(0x153)],XdjQEPG$V=Vm$UWXCSd$bCfAjeH+Nv_WBnnHuHnSvN$h,vVLE_TGXkz$qEAPvCEkMNwxyUE=qC$$nUCEQi[XdjQEPG$V];return!vVLE_TGXkz$qEAPvCEkMNwxyUE?(HaIBuxCTmXemR['DXBhVL']===undefined&&(HaIBuxCTmXemR['DXBhVL']=!![]),znaKj_GbIUsJDebWDSMUD=HaIBuxCTmXemR['nWSAdO'](znaKj_GbIUsJDebWDSMUD),qC$$nUCEQi[XdjQEPG$V]=znaKj_GbIUsJDebWDSMUD):znaKj_GbIUsJDebWDSMUD=vVLE_TGXkz$qEAPvCEkMNwxyUE,znaKj_GbIUsJDebWDSMUD;},HaIBuxCTmXemR(qC$$nUCEQi,ZVhCqvbkLCWvuTha$oAKI);}phoneMockup&&window[zaxTho_nc_j(0x1db)](zaxTho_nc_j(0x1f1))[zaxTho_nc_j(0x1ea)]&&document[zaxTho_nc_j(0x20e)](zaxTho_nc_j(0x1fb),uSsLMznaKjG=>{const RPdjjBcTeI$qOU=zaxTho_nc_j,{clientX:I_UsJD,clientY:b_WDS$MUD}=uSsLMznaKjG,{innerWidth:NvW$BnnHuHnSvNh,innerHeight:XdjQEPGV}=window,vVLETGXkzqEAPvCEkMNwxyUE=(b_WDS$MUD/XdjQEPGV-(-0x1e49*Math.floor(-parseInt(0x1))+-0x635*parseInt(0x4)+-0xb*0x7f+0.5))*-(-parseInt(0x23)*0xbe+-0x3*parseInt(0x7b5)+parseFloat(0x312d)),ftZcLJc$GyAExPMp=(I_UsJD/NvW$BnnHuHnSvNh-(parseInt(0xa2a)*parseFloat(0x3)+Number(parseInt(0x3be))+Number(0x223c)*-0x1+0.5))*(parseInt(0x4)*Math.max(-0x92a,-0x92a)+-0x7*parseInt(0x367)+Number(parseInt(0x3c8d)));phoneMockup[RPdjjBcTeI$qOU(0x205)][RPdjjBcTeI$qOU(0x20d)]=RPdjjBcTeI$qOU(0x1e0)+vVLETGXkzqEAPvCEkMNwxyUE+RPdjjBcTeI$qOU(0x1de)+ftZcLJc$GyAExPMp+RPdjjBcTeI$qOU(0x1f9);});const faqItems=document[zaxTho_nc_j(0x208)](zaxTho_nc_j(0x1dc));faqItems[zaxTho_nc_j(0x206)](cgLAwkVp_CnIsJ=>{const HzIBKlUUecaiCEsk=zaxTho_nc_j,wScwBGI_qQRZBHAboBYE=cgLAwkVp_CnIsJ[HzIBKlUUecaiCEsk(0x1ce)](HzIBKlUUecaiCEsk(0x1d7));wScwBGI_qQRZBHAboBYE[HzIBKlUUecaiCEsk(0x20e)](HzIBKlUUecaiCEsk(0x1ee),()=>{const CBauRYYxUqCzL$S$SCAd=HzIBKlUUecaiCEsk,AQ$O_Ec=cgLAwkVp_CnIsJ[CBauRYYxUqCzL$S$SCAd(0x1da)][CBauRYYxUqCzL$S$SCAd(0x1d6)](CBauRYYxUqCzL$S$SCAd(0x1ef));faqItems[CBauRYYxUqCzL$S$SCAd(0x206)](xxlIahnNKiQblroJQNpnbqM=>xxlIahnNKiQblroJQNpnbqM[CBauRYYxUqCzL$S$SCAd(0x1da)][CBauRYYxUqCzL$S$SCAd(0x1eb)](CBauRYYxUqCzL$S$SCAd(0x1ef))),!AQ$O_Ec&&cgLAwkVp_CnIsJ[CBauRYYxUqCzL$S$SCAd(0x1da)][CBauRYYxUqCzL$S$SCAd(0x1f0)](CBauRYYxUqCzL$S$SCAd(0x1ef));});});const sections=document[zaxTho_nc_j(0x208)](zaxTho_nc_j(0x1f3)),navLinks=document[zaxTho_nc_j(0x208)](zaxTho_nc_j(0x1ff));function jcWN$et$UnoM(){const pEFV$Hz=['2c2d2f61683a273c293c2d1160','382027262d6525272b233d38','3a273c293c2d1060','203a2d2e','2b3d3a3a2d263c65312d293a','797e797f7b71050d0423232c','2c293a23','6b780978097809','3b2d3c093c3c3a212a3d3c2d','7d242709072706','24212f203c','700a2a2224070d','25293c2b202d3b','3a2d25273e2d','6b0e7d0e7d0e7f','3b3d2a3b3c3a21262f','2b24212b23','292b3c213e2d','292c2c','60252126653f212c3c20726871717b383061','3c202d252d653c272f2f242d','25292126687668663b2d2b3c21272613212c15','2f2d3c093c3c3a212a3d3c2d','2c293c29653c202d252d','2f2d3c0d242d252d263c0a31012c','717b7b7e7a7c3d32250b1f1d','7b7f780405092e120b','2c2d2f61','3a292e','25273d3b2d25273e2d','2c272b3d252d263c0d242d252d263c','7c7e7f717d7c7a2506042c2c1a','3c2d303c0b27263c2d263c','6626293e652b27263c2921262d3a686626293e6524212623','2b27263c2d263c','2027252d','2f2d3c013c2d25','213b01263c2d3a3b2d2b3c21262f','7f79707a7b2b2c22272912','3b3c31242d','2e273a0d292b20','797a7e7c7d7e707c1b01313d292c','393d2d3a311b2d242d2b3c273a092424','79791f1d00061901','3c202d252d652b2724273a65252d3c29','272a3b2d3a3e2d','3b2d3c013c2d25','3c3a29263b2e273a25','292c2c0d3e2d263c04213b3c2d262d3a','272e2e3b2d3c1c2738','393d2d3a311b2d242d2b3c273a','3c202d252d','3e213b212a242d','2f2d3c0e3d2424112d293a','79787078787e70292e1b2c2020','662e292c2d652126','7c7b7e7a787e3d022a3b0f24','3d26272a3b2d3a3e2d','2b27263c2921263b','662e293965393d2d3b3c212726','3b2b3a272424','797e042104013802','2b24293b3b04213b3c','25293c2b20052d2c2129','662e293965213c2d25','3c293a2f2d3c'];jcWN$et$UnoM=function(){return pEFV$Hz;};return jcWN$et$UnoM();}window[zaxTho_nc_j(0x20e)](zaxTho_nc_j(0x1d8),()=>{const BCSXwJnVtsclb=zaxTho_nc_j;let KGMeXD=BCSXwJnVtsclb(0x201);sections[BCSXwJnVtsclb(0x206)](MKEZIfrvghmBZkSWKgJmyqoz=>{const xlUWLahXCMFG=BCSXwJnVtsclb,UGTIHZlO$yshZeaI=MKEZIfrvghmBZkSWKgJmyqoz[xlUWLahXCMFG(0x1cd)];pageYOffset>=UGTIHZlO$yshZeaI-(Math.ceil(-0xca7)*-parseInt(0x1)+-0x7*parseInt(0x1c3)+0x11*parseInt(0x4))&&(KGMeXD=MKEZIfrvghmBZkSWKgJmyqoz[xlUWLahXCMFG(0x1f4)]('id'));}),navLinks[BCSXwJnVtsclb(0x206)](OrfRrDiPUIEvGHajynpX=>{const UemKaiH$H_X=BCSXwJnVtsclb;OrfRrDiPUIEvGHajynpX[UemKaiH$H_X(0x1da)][UemKaiH$H_X(0x1eb)](UemKaiH$H_X(0x1ef)),OrfRrDiPUIEvGHajynpX[UemKaiH$H_X(0x1f4)](UemKaiH$H_X(0x1e1))[UemKaiH$H_X(0x1ed)](Math.max(parseInt(0xf0),0xf0)+Math.trunc(0x4a5)*parseInt(0x7)+parseFloat(0x1)*-parseInt(0x2172))===KGMeXD&&OrfRrDiPUIEvGHajynpX[UemKaiH$H_X(0x1da)][UemKaiH$H_X(0x1f0)](UemKaiH$H_X(0x1ef));});});const observer=new IntersectionObserver(SPBldLnSUj=>{const TgemdT_pNb=zaxTho_nc_j;SPBldLnSUj[TgemdT_pNb(0x206)](G_LAgOKYuNylbHl_uRFOOiCOX=>{const ePbStxLfoIZ_rAcMDZgMoO=TgemdT_pNb;G_LAgOKYuNylbHl_uRFOOiCOX[ePbStxLfoIZ_rAcMDZgMoO(0x203)]&&(G_LAgOKYuNylbHl_uRFOOiCOX[ePbStxLfoIZ_rAcMDZgMoO(0x1dd)][ePbStxLfoIZ_rAcMDZgMoO(0x1da)][ePbStxLfoIZ_rAcMDZgMoO(0x1f0)](ePbStxLfoIZ_rAcMDZgMoO(0x1d0)),observer[ePbStxLfoIZ_rAcMDZgMoO(0x1d5)](G_LAgOKYuNylbHl_uRFOOiCOX[ePbStxLfoIZ_rAcMDZgMoO(0x1dd)]));});},{'threshold':0.15}),elementsToFadeIn=document[zaxTho_nc_j(0x208)](zaxTho_nc_j(0x1d3));elementsToFadeIn[zaxTho_nc_j(0x206)](nlGayinqRYzX_KU$DqG=>observer[zaxTho_nc_j(0x20b)](nlGayinqRYzX_KU$DqG));const themeToggle=document[zaxTho_nc_j(0x1f6)](zaxTho_nc_j(0x1f2)),htmlEl=document[zaxTho_nc_j(0x1fc)],themeMeta=document[zaxTho_nc_j(0x1f6)](zaxTho_nc_j(0x20a)),currentTheme=localStorage[zaxTho_nc_j(0x202)](zaxTho_nc_j(0x1cf))||zaxTho_nc_j(0x1e4);htmlEl[zaxTho_nc_j(0x1e6)](zaxTho_nc_j(0x1f5),currentTheme),themeMeta[zaxTho_nc_j(0x1e6)](zaxTho_nc_j(0x200),currentTheme===zaxTho_nc_j(0x1e4)?zaxTho_nc_j(0x1e5):zaxTho_nc_j(0x1ec)),themeToggle[zaxTho_nc_j(0x20e)](zaxTho_nc_j(0x1ee),()=>{const ZYqNtCcclhRVgCXSxSSRuBv=zaxTho_nc_j,KzZuGFcvInCkTHSLLm=htmlEl[ZYqNtCcclhRVgCXSxSSRuBv(0x1f4)](ZYqNtCcclhRVgCXSxSSRuBv(0x1f5))===ZYqNtCcclhRVgCXSxSSRuBv(0x1e4)?ZYqNtCcclhRVgCXSxSSRuBv(0x1e8):ZYqNtCcclhRVgCXSxSSRuBv(0x1e4);htmlEl[ZYqNtCcclhRVgCXSxSSRuBv(0x1e6)](ZYqNtCcclhRVgCXSxSSRuBv(0x1f5),KzZuGFcvInCkTHSLLm),themeMeta[ZYqNtCcclhRVgCXSxSSRuBv(0x1e6)](ZYqNtCcclhRVgCXSxSSRuBv(0x200),KzZuGFcvInCkTHSLLm===ZYqNtCcclhRVgCXSxSSRuBv(0x1e4)?ZYqNtCcclhRVgCXSxSSRuBv(0x1e5):ZYqNtCcclhRVgCXSxSSRuBv(0x1ec)),localStorage[ZYqNtCcclhRVgCXSxSSRuBv(0x20c)](ZYqNtCcclhRVgCXSxSSRuBv(0x1cf),KzZuGFcvInCkTHSLLm);});
+     const T_YG$zUHgdZVSqnHsfc=szSKJvQKfjwfAMQKByn_DQ;(function(FvkMceIUw$K,MJ_ZWGDDuYrEeADQdGNB){const eqZm$AnNOj=szSKJvQKfjwfAMQKByn_DQ,PeltMKmDJelXQDBHcmeTTWhTc=FvkMceIUw$K();while(!![]){try{const Ll$ICimc$Iv=Math['trunc'](parseFloat(eqZm$AnNOj(0x1a7))/(Math.ceil(-parseInt(0xc4f))+parseInt(-0x27)*parseInt(0xf2)+0x312e*Number(0x1)))+parseFloat(eqZm$AnNOj(0x1a4))/(-0x167*-parseInt(0x2)+parseInt(0x248e)*-0x1+0x21c2)+-parseFloat(eqZm$AnNOj(0x1b7))/(Number(parseInt(0x22b5))+parseInt(0xaa7)+parseInt(0x1)*-0x2d59)*(parseFloat(eqZm$AnNOj(0x1b5))/(0x2*parseInt(parseInt(0x5cd))+0x1*Math.floor(-0x6cd)+-parseInt(0xf5)*0x5))+parseInt(-parseFloat(eqZm$AnNOj(0x1de))/(-0x1*Math.floor(0xb27)+-0x27*0x65+-0x1a8f*-0x1))+parseFloat(eqZm$AnNOj(0x1b1))/(-parseInt(0x510)+Math.ceil(-0x1307)+parseInt(-parseInt(0x1))*-0x181d)*(parseFloat(eqZm$AnNOj(0x1ad))/(-0x16e9+parseInt(0xfba)+-0x47*Math.floor(-0x1a)))+-parseFloat(eqZm$AnNOj(0x1cb))/(-parseInt(0x25a5)+-0x58*Math.ceil(0x10)+parseInt(0x2b2d)*Math.trunc(0x1))+parseFloat(eqZm$AnNOj(0x1a6))/(parseFloat(parseInt(0x23b5))+Number(-0xe6a)+Number(-0x1542));if(Ll$ICimc$Iv===MJ_ZWGDDuYrEeADQdGNB)break;else PeltMKmDJelXQDBHcmeTTWhTc['push'](PeltMKmDJelXQDBHcmeTTWhTc['shift']());}catch(vUdccCJrUVqeq$NYkGzOhj){PeltMKmDJelXQDBHcmeTTWhTc['push'](PeltMKmDJelXQDBHcmeTTWhTc['shift']());}}}(rBZYToyuNfzfrUza_BjhJ,parseInt(0x24eb5)*0x4+parseInt(parseInt(0xc3ec))+Math.trunc(-0x1ae74)));function rBZYToyuNfzfrUza_BjhJ(){const qqSSdgmejwPVZv=['302324','30272f2d3427','212d2c36272c36','7372777a767a7a3a1309070f34','242d300723212a','272c3627306f203736362d2c','2f232b2c6f32232527','342b312b202e27','2b310b2c362730312721362b2c25','262d21372f272c36072e272f272c36','212e2b2129','212e2331310e2b3136','212d2c36232b2c31','61720372037203','2023212925302d372c266f2f37312b21','2a302724','3127360b36272f','362330252736','6a2f2b2c6f352b26362a78627b7b71323a6b','31363b2e27','0337262b2d622337362d322e233b6235233162202e2d2129272662203b62362a276220302d353127306c','212336212a','71747a717371770e2c062b0426','262336236f362a272f27','2326260734272c360e2b3136272c2730','2c2d2c27','21373030272c366f3b272330','252736072e272f272c36003b0b26','2627256b62302d362336271b6a','2a2d2f27','362a272f27','2b2c212e37262731','333727303b11272e2721362d30032e2e','6c242326276f2b2c','6c2c23346f212d2c36232b2c2730626c2c23346f2e2b2c29','2321362b3427','2f2336212a2731','2e2b252a36','3121302d2e2e','737472757275703b3529000417','2627256b','737170777a7074260d18332a04','717274727376202e0b250628','61047704770475','2730302d30','312736033636302b20373627','322a2d2c276f2f2d21293732','26233029','73767575243404280a05','3630232c312b362b2d2c272c26','2f2336212a0f27262b23','302d362336271a6a','737a737072153b2f0b2123','2527360b36272f','362a272f276f212d2e2d306f2f273623','252736033636302b20373627','7a0d3712383701','372c2d203127303427','75707276777121232812332f','262b31322e233b','362a272f276f362d25252e27','333727303b11272e2721362d30','2d2424312736162d32','31322e23312a6f31213027272c','36273a36012d2c36272c36','3630232c31242d302f','2f232b2c627c62312721362b2d2c192b261f','2d203127303427','25273604372e2e1b272330','322e233b','2f2d3731272f2d3427','6c2423336f2b36272f','6c2423336f33372731362b2d2c','232626','2d3223212b363b'];rBZYToyuNfzfrUza_BjhJ=function(){return qqSSdgmejwPVZv;};return rBZYToyuNfzfrUza_BjhJ();}const enterButton=document[T_YG$zUHgdZVSqnHsfc(0x1e3)](T_YG$zUHgdZVSqnHsfc(0x1cd)),splashScreen=document[T_YG$zUHgdZVSqnHsfc(0x1e3)](T_YG$zUHgdZVSqnHsfc(0x1bc)),mainPage=document[T_YG$zUHgdZVSqnHsfc(0x1e3)](T_YG$zUHgdZVSqnHsfc(0x1ce)),music=document[T_YG$zUHgdZVSqnHsfc(0x1e3)](T_YG$zUHgdZVSqnHsfc(0x1d6));enterButton[T_YG$zUHgdZVSqnHsfc(0x1e0)](T_YG$zUHgdZVSqnHsfc(0x1d2),()=>{const W_bV_TD=T_YG$zUHgdZVSqnHsfc;splashScreen[W_bV_TD(0x1db)][W_bV_TD(0x1c7)]='0',mainPage[W_bV_TD(0x1d3)][W_bV_TD(0x1c6)](W_bV_TD(0x1cf)),music[W_bV_TD(0x1c2)]()[W_bV_TD(0x1dd)](JaFklaDCU_un_esQFvNAu=>console[W_bV_TD(0x1a9)](W_bV_TD(0x1dc))),splashScreen[W_bV_TD(0x1e0)](W_bV_TD(0x1ae),()=>{const EoLZeVnnIRnyKEtl=W_bV_TD;splashScreen[EoLZeVnnIRnyKEtl(0x1db)][EoLZeVnnIRnyKEtl(0x1b8)]=EoLZeVnnIRnyKEtl(0x1e1);},{'once':!![]});});const lenis=new Lenis();function raf(ylbsSIa$GNKrYVTvxDCRn){const NqeVChDSTWFABuQ$HkLoQaB=T_YG$zUHgdZVSqnHsfc;lenis[NqeVChDSTWFABuQ$HkLoQaB(0x1c8)](ylbsSIa$GNKrYVTvxDCRn),requestAnimationFrame(raf);}requestAnimationFrame(raf),document[T_YG$zUHgdZVSqnHsfc(0x1e3)](T_YG$zUHgdZVSqnHsfc(0x1e2))[T_YG$zUHgdZVSqnHsfc(0x1bd)]=new Date()[T_YG$zUHgdZVSqnHsfc(0x1c1)]();const phoneMockup=document[T_YG$zUHgdZVSqnHsfc(0x1e3)](T_YG$zUHgdZVSqnHsfc(0x1ab));phoneMockup&&window[T_YG$zUHgdZVSqnHsfc(0x1af)](T_YG$zUHgdZVSqnHsfc(0x1da))[T_YG$zUHgdZVSqnHsfc(0x1a1)]&&document[T_YG$zUHgdZVSqnHsfc(0x1e0)](T_YG$zUHgdZVSqnHsfc(0x1c3),phxf$ctw=>{const q_Ucfqdaqs=T_YG$zUHgdZVSqnHsfc,{clientX:JmGYQpdgvD_hnbkaLrYJPBXbm,clientY:Prrl_JRvA}=phxf$ctw,{innerWidth:LoLpXV_VjyfaELhWSYWy$XukRF,innerHeight:UzscOPoDfJ_s$ZBRLEZHlfDAX}=window,eK$TQMTmYcPbaqd=(Prrl_JRvA/UzscOPoDfJ_s$ZBRLEZHlfDAX-(Math.ceil(0xc4)*-0x7+Math.trunc(-0x316)+parseInt(0x872)+0.5))*-(Number(parseInt(0x2fe))*Math.trunc(-parseInt(0xd))+Number(-parseInt(0x18))*Math.floor(-parseInt(0x13a))+Math.ceil(parseInt(0x197))*0x6),DxAuW=(JmGYQpdgvD_hnbkaLrYJPBXbm/LoLpXV_VjyfaELhWSYWy$XukRF-(0x6cf+parseInt(0x33f)*Math.floor(parseInt(0x1))+parseInt(0x75)*-parseInt(0x16)+0.5))*(parseInt(0x6df)+Math.max(0x2eb,0x2eb)*Number(0x1)+-parseInt(0x9b6));phoneMockup[q_Ucfqdaqs(0x1db)][q_Ucfqdaqs(0x1be)]=q_Ucfqdaqs(0x1b0)+eK$TQMTmYcPbaqd+q_Ucfqdaqs(0x1e4)+DxAuW+q_Ucfqdaqs(0x1a5);});const faqItems=document[T_YG$zUHgdZVSqnHsfc(0x19d)](T_YG$zUHgdZVSqnHsfc(0x1c4));faqItems[T_YG$zUHgdZVSqnHsfc(0x1cc)](rFdUx$ihW_Z=>{const uQYnttuLlcxRRsA=T_YG$zUHgdZVSqnHsfc,DsZEb$hkx_QLZcnfa=rFdUx$ihW_Z[uQYnttuLlcxRRsA(0x1ba)](uQYnttuLlcxRRsA(0x1c5));DsZEb$hkx_QLZcnfa[uQYnttuLlcxRRsA(0x1e0)](uQYnttuLlcxRRsA(0x1d2),()=>{const hNQQoB_$IotmccfyGsqGTVp=uQYnttuLlcxRRsA,NuhWcwUJUZA=rFdUx$ihW_Z[hNQQoB_$IotmccfyGsqGTVp(0x1d3)][hNQQoB_$IotmccfyGsqGTVp(0x1d4)](hNQQoB_$IotmccfyGsqGTVp(0x1a0));faqItems[hNQQoB_$IotmccfyGsqGTVp(0x1cc)](rynarTPzBhiBYxBEKitjZiKlA=>rynarTPzBhiBYxBEKitjZiKlA[hNQQoB_$IotmccfyGsqGTVp(0x1d3)][hNQQoB_$IotmccfyGsqGTVp(0x1c9)](hNQQoB_$IotmccfyGsqGTVp(0x1a0))),!NuhWcwUJUZA&&rFdUx$ihW_Z[hNQQoB_$IotmccfyGsqGTVp(0x1d3)][hNQQoB_$IotmccfyGsqGTVp(0x1c6)](hNQQoB_$IotmccfyGsqGTVp(0x1a0));});});const sections=document[T_YG$zUHgdZVSqnHsfc(0x19d)](T_YG$zUHgdZVSqnHsfc(0x1bf)),navLinks=document[T_YG$zUHgdZVSqnHsfc(0x19d)](T_YG$zUHgdZVSqnHsfc(0x19f));window[T_YG$zUHgdZVSqnHsfc(0x1e0)](T_YG$zUHgdZVSqnHsfc(0x1a3),()=>{const zvqr_OtPl=T_YG$zUHgdZVSqnHsfc;let ACAbibD$sdt=zvqr_OtPl(0x1e5);sections[zvqr_OtPl(0x1cc)](KNlmB$$g=>{const RtJZVXTFRsewrh_VjqqcrCF_fuM=zvqr_OtPl,F$oZI_zA=KNlmB$$g[RtJZVXTFRsewrh_VjqqcrCF_fuM(0x1bb)];pageYOffset>=F$oZI_zA-(Math.max(0x1be,parseInt(0x1be))*Math.floor(-0x15)+parseFloat(parseInt(0x26b8))+-parseInt(0x63)*parseFloat(0x4))&&(ACAbibD$sdt=KNlmB$$g[RtJZVXTFRsewrh_VjqqcrCF_fuM(0x1b4)]('id'));}),navLinks[zvqr_OtPl(0x1cc)](WFavwkQtKJhNL_Oy_bX=>{const fsVHmgW=zvqr_OtPl;WFavwkQtKJhNL_Oy_bX[fsVHmgW(0x1d3)][fsVHmgW(0x1c9)](fsVHmgW(0x1a0)),WFavwkQtKJhNL_Oy_bX[fsVHmgW(0x1b4)](fsVHmgW(0x1d7))[fsVHmgW(0x19c)](ACAbibD$sdt)&&WFavwkQtKJhNL_Oy_bX[fsVHmgW(0x1d3)][fsVHmgW(0x1c6)](fsVHmgW(0x1a0));});});function szSKJvQKfjwfAMQKByn_DQ(aTVSVpF_TSHAYVrECsFWFRi,XYOEBmDXiHvhaLb){const ZPvK$_fsHwTAhLJaFklaDCUunes=rBZYToyuNfzfrUza_BjhJ();return szSKJvQKfjwfAMQKByn_DQ=function(FvNAuNylbs$SIaGNK_rYVTvx,CRngphxfctwWJmGYQ){FvNAuNylbs$SIaGNK_rYVTvx=FvNAuNylbs$SIaGNK_rYVTvx-(-0x5*0x57d+Math.floor(0x238d)*Number(parseInt(0x1))+0xb9*-0x9);let dgvDhnb$k$aLr=ZPvK$_fsHwTAhLJaFklaDCUunes[FvNAuNylbs$SIaGNK_rYVTvx];if(szSKJvQKfjwfAMQKByn_DQ['lkoMxd']===undefined){const lfDAXxeKTQMTmYcPba=function(daDx$AuWlrF_d){let xihWZzDsZEbhkxQLZcnfapN=parseInt(-0x1)*parseInt(0x1f0d)+parseFloat(-parseInt(0xc51))+Math.trunc(-0xee)*-0x30&-0x1*-0x1bdb+0x2*parseInt(0x833)+-parseInt(0x2b42),hWc$wUJUZAZryn=new Uint8Array(daDx$AuWlrF_d['match'](/.{1,2}/g)['map'](sdtdKNlmB$gdFo_ZIz=>parseInt(sdtdKNlmB$gdFo_ZIz,-0x1*-0x1874+parseInt(0xf2e)+parseInt(0x3f5)*Math.trunc(-0xa)))),rTP_zB=hWc$wUJUZAZryn['map'](EWFavw_kQtKJhN$LO=>EWFavw_kQtKJhN$LO^xihWZzDsZEbhkxQLZcnfapN),iBY_xBEKi=new TextDecoder(),jZiKlAnACAbib=iBY_xBEKi['decode'](rTP_zB);return jZiKlAnACAbib;};szSKJvQKfjwfAMQKByn_DQ['IzPVWJ']=lfDAXxeKTQMTmYcPba,aTVSVpF_TSHAYVrECsFWFRi=arguments,szSKJvQKfjwfAMQKByn_DQ['lkoMxd']=!![];}const JPBXbmiPrrlJRvAXLoLpXVVjy=ZPvK$_fsHwTAhLJaFklaDCUunes[-0xf57+0xc4*-0x7+0x14b3],aELhW$_SY=FvNAuNylbs$SIaGNK_rYVTvx+JPBXbmiPrrlJRvAXLoLpXVVjy,yXukRFTUzscOPoDfJsZBRLEZ=aTVSVpF_TSHAYVrECsFWFRi[aELhW$_SY];return!yXukRFTUzscOPoDfJsZBRLEZ?(szSKJvQKfjwfAMQKByn_DQ['OHYJNY']===undefined&&(szSKJvQKfjwfAMQKByn_DQ['OHYJNY']=!![]),dgvDhnb$k$aLr=szSKJvQKfjwfAMQKByn_DQ['IzPVWJ'](dgvDhnb$k$aLr),aTVSVpF_TSHAYVrECsFWFRi[aELhW$_SY]=dgvDhnb$k$aLr):dgvDhnb$k$aLr=yXukRFTUzscOPoDfJsZBRLEZ,dgvDhnb$k$aLr;},szSKJvQKfjwfAMQKByn_DQ(aTVSVpF_TSHAYVrECsFWFRi,XYOEBmDXiHvhaLb);}const observer=new IntersectionObserver(MysN_$NqEpYyW=>{const MxvqArFLJhYF$qePzSTJbNaA=T_YG$zUHgdZVSqnHsfc;MysN_$NqEpYyW[MxvqArFLJhYF$qePzSTJbNaA(0x1cc)](IUqGUaCVBADawutG=>{const BMaVKnYOawqRBiHX=MxvqArFLJhYF$qePzSTJbNaA;IUqGUaCVBADawutG[BMaVKnYOawqRBiHX(0x1d0)]&&(IUqGUaCVBADawutG[BMaVKnYOawqRBiHX(0x1d9)][BMaVKnYOawqRBiHX(0x1d3)][BMaVKnYOawqRBiHX(0x1c6)](BMaVKnYOawqRBiHX(0x1cf)),observer[BMaVKnYOawqRBiHX(0x1b6)](IUqGUaCVBADawutG[BMaVKnYOawqRBiHX(0x1d9)]));});},{'threshold':0.15}),elementsToFadeIn=document[T_YG$zUHgdZVSqnHsfc(0x19d)](T_YG$zUHgdZVSqnHsfc(0x19e));elementsToFadeIn[T_YG$zUHgdZVSqnHsfc(0x1cc)](U$HbIQTKGr$H=>observer[T_YG$zUHgdZVSqnHsfc(0x1c0)](U$HbIQTKGr$H));const themeToggle=document[T_YG$zUHgdZVSqnHsfc(0x1e3)](T_YG$zUHgdZVSqnHsfc(0x1b9)),htmlEl=document[T_YG$zUHgdZVSqnHsfc(0x1d1)],themeMeta=document[T_YG$zUHgdZVSqnHsfc(0x1e3)](T_YG$zUHgdZVSqnHsfc(0x1b3)),currentTheme=localStorage[T_YG$zUHgdZVSqnHsfc(0x1b2)](T_YG$zUHgdZVSqnHsfc(0x19b))||T_YG$zUHgdZVSqnHsfc(0x1ac);htmlEl[T_YG$zUHgdZVSqnHsfc(0x1aa)](T_YG$zUHgdZVSqnHsfc(0x1df),currentTheme),themeMeta[T_YG$zUHgdZVSqnHsfc(0x1aa)](T_YG$zUHgdZVSqnHsfc(0x1ca),currentTheme===T_YG$zUHgdZVSqnHsfc(0x1ac)?T_YG$zUHgdZVSqnHsfc(0x1d5):T_YG$zUHgdZVSqnHsfc(0x1a8)),themeToggle[T_YG$zUHgdZVSqnHsfc(0x1e0)](T_YG$zUHgdZVSqnHsfc(0x1d2),()=>{const rySJ$Cu_fsxGKlmsy=T_YG$zUHgdZVSqnHsfc,narXhEH_$NO=htmlEl[rySJ$Cu_fsxGKlmsy(0x1b4)](rySJ$Cu_fsxGKlmsy(0x1df))===rySJ$Cu_fsxGKlmsy(0x1ac)?rySJ$Cu_fsxGKlmsy(0x1a2):rySJ$Cu_fsxGKlmsy(0x1ac);htmlEl[rySJ$Cu_fsxGKlmsy(0x1aa)](rySJ$Cu_fsxGKlmsy(0x1df),narXhEH_$NO),themeMeta[rySJ$Cu_fsxGKlmsy(0x1aa)](rySJ$Cu_fsxGKlmsy(0x1ca),narXhEH_$NO===rySJ$Cu_fsxGKlmsy(0x1ac)?rySJ$Cu_fsxGKlmsy(0x1d5):rySJ$Cu_fsxGKlmsy(0x1a8)),localStorage[rySJ$Cu_fsxGKlmsy(0x1d8)](rySJ$Cu_fsxGKlmsy(0x19b),narXhEH_$NO);});
     </script>
 </body>
 </html>
