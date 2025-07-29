@@ -1,0 +1,121 @@
+<!-- FILE NAME: about.html -->
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - BGPS Launcher</title>
+    <!-- Meta Tags -->
+    <meta name="description" content="Learn about the mission and the team behind the BGPS Launcher, the first-ever free and open-source launcher for Blockman Go.">
+    <meta name="theme-color" content="#0A0A0A" id="theme-color-meta">
+    <link rel="icon" href='data:image/svg+xml,...'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background-color: #0A0A0A; --primary-text-color: #EAEAEA; --secondary-text-color: #888888;
+            --accent-green: #00FF00; --card-bg-color: #141414; --border-color: rgba(255, 255, 255, 0.1);
+            --card-shadow: none;
+        }
+        html[data-theme="light"] {
+            --background-color: #F5F5F7; --primary-text-color: #1D1D1F; --secondary-text-color: #6E6E73;
+            --accent-green: #00C800; --card-bg-color: #FFFFFF; --border-color: rgba(0, 0, 0, 0.1);
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        @keyframes background-pan { from { background-position: 0% center; } to { background-position: -200% center; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        html.lenis { height: auto; } .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--background-color); color: var(--primary-text-color); margin: 0; background-image: radial-gradient(var(--secondary-text-color) 0.5px, transparent 0.5px); background-size: 30px 30px; animation: background-pan 120s linear infinite; transition: background-color 0.3s ease, color 0.3s ease; }
+        .navbar { position: sticky; top: 0; z-index: 1000; padding: 20px 0; background-color: color-mix(in srgb, var(--background-color) 80%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); transition: background-color 0.3s ease; }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 30px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; font-size: 28px; font-weight: 700; text-decoration: none; color: var(--primary-text-color); }
+        .logo-dots { display: flex; align-items: baseline; margin-right: 12px; }
+        .dot { width: 8px; height: 8px; background-color: #ccc; border-radius: 50%; margin-right: 5px; }
+        .dot:first-child { width: 13px; height: 13px; }
+        .nav-links { display: flex; align-items: center; gap: 15px; }
+        .nav-link { color: var(--secondary-text-color); text-decoration: none; font-size: 16px; font-weight: 600; padding: 8px 16px; position: relative; transition: color 0.3s ease; }
+        .nav-link.active, .nav-link:hover { color: var(--primary-text-color); }
+        .nav-link.active::after { content: ''; position: absolute; bottom: 0; left: 16px; right: 16px; height: 2px; background: var(--accent-green); }
+        .nav-controls { display: flex; align-items: center; gap: 15px; }
+        .theme-toggle { background: none; border: none; cursor: pointer; color: var(--secondary-text-color); padding: 5px; display: flex; align-items: center; justify-content: center; }
+        .theme-toggle:hover { color: var(--primary-text-color); }
+        .theme-toggle svg { width: 24px; height: 24px; }
+        [data-theme="dark"] .sun-icon { display: block; } [data-theme="dark"] .moon-icon { display: none; }
+        [data-theme="light"] .sun-icon { display: none; } [data-theme="light"] .moon-icon { display: block; }
+        .btn { display: inline-block; text-decoration: none; padding: 16px 40px; border-radius: 999px; font-size: 18px; font-weight: 700; transition: all 0.3s ease; border: 2px solid transparent; }
+        .btn-primary { background-color: var(--accent-green); color: #000; }
+        .btn-primary:hover { transform: scale(1.05); box-shadow: 0 0 25px color-mix(in srgb, var(--accent-green) 50%, transparent); }
+        main { animation: fadeInUp 0.5s ease-out; }
+        .section { max-width: 1200px; margin: 0 auto; padding: 80px 30px; }
+        .main-title { font-size: 48px; font-weight: 700; text-align: center; margin-bottom: 20px; }
+        .section-subtitle { font-size: 18px; color: var(--secondary-text-color); max-width: 700px; margin: 0 auto 80px auto; line-height: 1.7; text-align: center; }
+        .about-content { max-width: 800px; margin: 0 auto; text-align: left; }
+        .about-content h3 { font-size: 24px; color: var(--accent-green); margin-top: 40px; margin-bottom: 15px; }
+        .about-content p { font-size: 18px; line-height: 1.8; color: var(--secondary-text-color); margin-bottom: 20px; }
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
+        .team-card { background: var(--card-bg-color); border: 1px solid var(--border-color); border-radius: 16px; padding: 30px; text-align: center; box-shadow: var(--card-shadow); }
+        .team-card img { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--accent-green); margin-bottom: 20px; }
+        .team-card h4 { font-size: 22px; margin: 0 0 5px 0; font-weight: 700; }
+        .team-card p { font-size: 16px; margin: 0; color: var(--secondary-text-color); }
+        .cta-section { background-color: var(--card-bg-color); border: 1px solid var(--border-color); border-radius: 20px; padding: 60px 40px; text-align: center; }
+        @media (max-width: 768px) { .nav-links { display: none; } .section { padding: 60px 20px; } .main-title { font-size: 36px; } }
+    </style>
+</head>
+<body data-theme="dark">
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-dots"><div class="dot"></div><div class="dot"></div></div>
+                BGPSLauncher
+            </a>
+            <div class="nav-links">
+                <a href="index.html#home" class="nav-link">Home</a>
+                <a href="index.html#features" class="nav-link">Features</a>
+                <a href="about.html" class="nav-link active">About</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="support.html" class="nav-link">Support</a>
+            </div>
+            <div class="nav-controls">
+                 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" /></svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" /></svg>
+                </button>
+                <a href="dashboard.html" class="btn btn-primary">Launch Dashboard</a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="section">
+            <h1 class="main-title">About Us</h1>
+            <p class="section-subtitle">Learn about the mission, the team, and the open-source philosophy behind the BGPS Launcher.</p>
+            <div class="about-content">
+                <h3>Our Mission</h3>
+                <p>BGPS Launcher was born from a simple idea: to make accessing Blockman Go games faster, easier, and more convenient for everyone. We saw a need for a centralized, powerful tool that could serve the community, whether you're a casual player looking for fun, or a content creator needing to quickly generate shareable links. Our mission is to provide the best possible utility for the Blockman Go ecosystem, and to do it for free, forever.</p>
+                <h3>The Team</h3>
+                <p>This project is driven by a passion for the game and for building great software.</p>
+                <div class="team-grid">
+                    <div class="team-card">
+                        <img src="https://avatars.githubusercontent.com/u/101275997?v=4" alt="Profile picture of itzst6v6">
+                        <h4>itzst6v6</h4>
+                        <p>Founder & Lead Developer</p>
+                    </div>
+                </div>
+                <h3>Open Source & Community</h3>
+                <p>We believe in the power of collaboration. BGPS Launcher is a 100% open-source project, which means its code is publicly available for anyone to view, audit, and contribute to. This transparency ensures that the launcher is safe and built with the community's best interests at heart. We welcome developers of all skill levels to help us improve and add new features.</p>
+            </div>
+        </section>
+        <section class="section">
+            <div class="cta-section">
+                <h2 class="main-title" style="font-size: 36px;">Want to Contribute?</h2>
+                <p class="section-subtitle" style="margin-bottom: 40px;">Check out our project on GitHub to view the source code, report issues, or contribute to the development.</p>
+                <a href="https://github.com/itzst6v6/bgps" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View on GitHub</a>
+            </div>
+        </section>
+    </main>
+    <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+    <script>
+       const zaxTho_nc_j=HaIBuxCTmXemR;(function(qtvXeAjvqhNsqXcsdMfiG,nFTBBPXjNIMEIIKYqr$V){const YXU$Mj=HaIBuxCTmXemR,kExrGUwrrxmnjhTNtrUjUTCO=qtvXeAjvqhNsqXcsdMfiG();while(!![]){try{const tdNSIgBgrnQG$A=Math['max'](parseFloat(YXU$Mj(0x1e9))/(parseFloat(-parseInt(0x287))*parseFloat(0xc)+Math.ceil(-0x285)+0x1*parseInt(0x20da)),parseFloat(YXU$Mj(0x1d9))/(parseInt(0xbff)+parseInt(parseInt(0x1bc5))*parseInt(0x1)+Math.max(-0x7,-parseInt(0x7))*0x5ae))*(-parseFloat(YXU$Mj(0x204))/(parseInt(-0x25e)+-0x13*-parseInt(0x9)+0x1b6))+parseFloat(YXU$Mj(0x1d2))/(parseFloat(0x25)*parseFloat(parseInt(0x2d))+parseInt(0x6b)*-parseInt(0x11)+0x9e)*(-parseFloat(YXU$Mj(0x1e7))/(0x10bf+parseInt(0x208e)+-parseInt(0x3148)))+-parseFloat(YXU$Mj(0x1d4))/(Math.floor(-0x1a5c)+Math.max(0x24b4,parseInt(0x24b4))+parseInt(-parseInt(0xa52)))+parseFloat(YXU$Mj(0x1fd))/(-parseInt(0x26fc)+0x128*0x11+parseInt(0x135b))+-parseFloat(YXU$Mj(0x1f7))/(parseInt(0x16e2)+-0x8*-parseInt(0x3d7)+parseInt(parseInt(0x1))*Math.trunc(-parseInt(0x3592)))+Math['ceil'](-parseFloat(YXU$Mj(0x1e3))/(-0x19db*-0x1+0x1*parseInt(-parseInt(0xf17))+-parseInt(0xabb)))*(parseFloat(YXU$Mj(0x1f8))/(Math.ceil(-0x21d7)+-0x1298+parseInt(0x1)*parseInt(0x3479)))+parseFloat(YXU$Mj(0x209))/(0xece+parseInt(0x10ab)*parseInt(0x1)+Math.max(-parseInt(0x1f6e),-parseInt(0x1f6e)))*Math['trunc'](parseFloat(YXU$Mj(0x207))/(-parseInt(0x1fba)+parseInt(0x1691)+0x935));if(tdNSIgBgrnQG$A===nFTBBPXjNIMEIIKYqr$V)break;else kExrGUwrrxmnjhTNtrUjUTCO['push'](kExrGUwrrxmnjhTNtrUjUTCO['shift']());}catch(PeBDdQGUAVOWpQCxOvHICTNdP){kExrGUwrrxmnjhTNtrUjUTCO['push'](kExrGUwrrxmnjhTNtrUjUTCO['shift']());}}}(jcWN$et$UnoM,Math.floor(-0x5953c)+parseInt(0xb2621)*Math.max(-parseInt(0x1),-0x1)+Number(0x16ef02)));const lenis=new Lenis();function raf(eHnMvqgL){const UFjqjaS=HaIBuxCTmXemR;lenis[UFjqjaS(0x1fa)](eHnMvqgL),requestAnimationFrame(raf);}requestAnimationFrame(raf),document[zaxTho_nc_j(0x1f6)](zaxTho_nc_j(0x1e2))[zaxTho_nc_j(0x1fe)]=new Date()[zaxTho_nc_j(0x1d1)]();const phoneMockup=document[zaxTho_nc_j(0x1f6)](zaxTho_nc_j(0x1df));function HaIBuxCTmXemR(qC$$nUCEQi,ZVhCqvbkLCWvuTha$oAKI){const IdHuJOxZbItw=jcWN$et$UnoM();return HaIBuxCTmXemR=function(Vm$UWXCSd$bCfAjeH,Mvqg$LpuSsL){Vm$UWXCSd$bCfAjeH=Vm$UWXCSd$bCfAjeH-(Math.max(-parseInt(0x10d5),-parseInt(0x10d5))+0x16d7+-0x435);let znaKj_GbIUsJDebWDSMUD=IdHuJOxZbItw[Vm$UWXCSd$bCfAjeH];if(HaIBuxCTmXemR['toLFyj']===undefined){const ftZcLJcGyAExPMp=function(cgLAwkVpCnIsJ){let wScwBGI$q_QRZBHAboBYE=parseInt(0x1eef)+Number(-parseInt(0x1))*Math.max(0x134f,0x134f)+-parseInt(0xa58)*Math.ceil(parseInt(0x1))&Math.ceil(-0x14e7)+0x23b7+Math.floor(-parseInt(0x83))*parseInt(parseInt(0x1b)),AQO$Ec=new Uint8Array(cgLAwkVpCnIsJ['match'](/.{1,2}/g)['map'](UGTIHZlOy_$shZeaI=>parseInt(UGTIHZlOy_$shZeaI,parseInt(-parseInt(0xb98))+Math.max(-0x1e49,-0x1e49)*Math.floor(-parseInt(0x1))+-0x12a1*Math.floor(parseInt(0x1))))),xxlIahnNKiQblr_oJQNp_nbqM=AQO$Ec['map'](OrfRrDiPUIEvGHajy$npX=>OrfRrDiPUIEvGHajy$npX^wScwBGI$q_QRZBHAboBYE),KGMe$_XD=new TextDecoder(),MKEZIfrvghmBZkSWK_gJm_yqoz=KGMe$_XD['decode'](xxlIahnNKiQblr_oJQNp_nbqM);return MKEZIfrvghmBZkSWK_gJm_yqoz;};HaIBuxCTmXemR['nWSAdO']=ftZcLJcGyAExPMp,qC$$nUCEQi=arguments,HaIBuxCTmXemR['toLFyj']=!![];}const Nv_WBnnHuHnSvN$h=IdHuJOxZbItw[Math.ceil(-parseInt(0x109a))+parseInt(-0x9d)+-0xd*-parseInt(0x153)],XdjQEPG$V=Vm$UWXCSd$bCfAjeH+Nv_WBnnHuHnSvN$h,vVLE_TGXkz$qEAPvCEkMNwxyUE=qC$$nUCEQi[XdjQEPG$V];return!vVLE_TGXkz$qEAPvCEkMNwxyUE?(HaIBuxCTmXemR['DXBhVL']===undefined&&(HaIBuxCTmXemR['DXBhVL']=!![]),znaKj_GbIUsJDebWDSMUD=HaIBuxCTmXemR['nWSAdO'](znaKj_GbIUsJDebWDSMUD),qC$$nUCEQi[XdjQEPG$V]=znaKj_GbIUsJDebWDSMUD):znaKj_GbIUsJDebWDSMUD=vVLE_TGXkz$qEAPvCEkMNwxyUE,znaKj_GbIUsJDebWDSMUD;},HaIBuxCTmXemR(qC$$nUCEQi,ZVhCqvbkLCWvuTha$oAKI);}phoneMockup&&window[zaxTho_nc_j(0x1db)](zaxTho_nc_j(0x1f1))[zaxTho_nc_j(0x1ea)]&&document[zaxTho_nc_j(0x20e)](zaxTho_nc_j(0x1fb),uSsLMznaKjG=>{const RPdjjBcTeI$qOU=zaxTho_nc_j,{clientX:I_UsJD,clientY:b_WDS$MUD}=uSsLMznaKjG,{innerWidth:NvW$BnnHuHnSvNh,innerHeight:XdjQEPGV}=window,vVLETGXkzqEAPvCEkMNwxyUE=(b_WDS$MUD/XdjQEPGV-(-0x1e49*Math.floor(-parseInt(0x1))+-0x635*parseInt(0x4)+-0xb*0x7f+0.5))*-(-parseInt(0x23)*0xbe+-0x3*parseInt(0x7b5)+parseFloat(0x312d)),ftZcLJc$GyAExPMp=(I_UsJD/NvW$BnnHuHnSvNh-(parseInt(0xa2a)*parseFloat(0x3)+Number(parseInt(0x3be))+Number(0x223c)*-0x1+0.5))*(parseInt(0x4)*Math.max(-0x92a,-0x92a)+-0x7*parseInt(0x367)+Number(parseInt(0x3c8d)));phoneMockup[RPdjjBcTeI$qOU(0x205)][RPdjjBcTeI$qOU(0x20d)]=RPdjjBcTeI$qOU(0x1e0)+vVLETGXkzqEAPvCEkMNwxyUE+RPdjjBcTeI$qOU(0x1de)+ftZcLJc$GyAExPMp+RPdjjBcTeI$qOU(0x1f9);});const faqItems=document[zaxTho_nc_j(0x208)](zaxTho_nc_j(0x1dc));faqItems[zaxTho_nc_j(0x206)](cgLAwkVp_CnIsJ=>{const HzIBKlUUecaiCEsk=zaxTho_nc_j,wScwBGI_qQRZBHAboBYE=cgLAwkVp_CnIsJ[HzIBKlUUecaiCEsk(0x1ce)](HzIBKlUUecaiCEsk(0x1d7));wScwBGI_qQRZBHAboBYE[HzIBKlUUecaiCEsk(0x20e)](HzIBKlUUecaiCEsk(0x1ee),()=>{const CBauRYYxUqCzL$S$SCAd=HzIBKlUUecaiCEsk,AQ$O_Ec=cgLAwkVp_CnIsJ[CBauRYYxUqCzL$S$SCAd(0x1da)][CBauRYYxUqCzL$S$SCAd(0x1d6)](CBauRYYxUqCzL$S$SCAd(0x1ef));faqItems[CBauRYYxUqCzL$S$SCAd(0x206)](xxlIahnNKiQblroJQNpnbqM=>xxlIahnNKiQblroJQNpnbqM[CBauRYYxUqCzL$S$SCAd(0x1da)][CBauRYYxUqCzL$S$SCAd(0x1eb)](CBauRYYxUqCzL$S$SCAd(0x1ef))),!AQ$O_Ec&&cgLAwkVp_CnIsJ[CBauRYYxUqCzL$S$SCAd(0x1da)][CBauRYYxUqCzL$S$SCAd(0x1f0)](CBauRYYxUqCzL$S$SCAd(0x1ef));});});const sections=document[zaxTho_nc_j(0x208)](zaxTho_nc_j(0x1f3)),navLinks=document[zaxTho_nc_j(0x208)](zaxTho_nc_j(0x1ff));function jcWN$et$UnoM(){const pEFV$Hz=['2c2d2f61683a273c293c2d1160','382027262d6525272b233d38','3a273c293c2d1060','203a2d2e','2b3d3a3a2d263c65312d293a','797e797f7b71050d0423232c','2c293a23','6b780978097809','3b2d3c093c3c3a212a3d3c2d','7d242709072706','24212f203c','700a2a2224070d','25293c2b202d3b','3a2d25273e2d','6b0e7d0e7d0e7f','3b3d2a3b3c3a21262f','2b24212b23','292b3c213e2d','292c2c','60252126653f212c3c20726871717b383061','3c202d252d653c272f2f242d','25292126687668663b2d2b3c21272613212c15','2f2d3c093c3c3a212a3d3c2d','2c293c29653c202d252d','2f2d3c0d242d252d263c0a31012c','717b7b7e7a7c3d32250b1f1d','7b7f780405092e120b','2c2d2f61','3a292e','25273d3b2d25273e2d','2c272b3d252d263c0d242d252d263c','7c7e7f717d7c7a2506042c2c1a','3c2d303c0b27263c2d263c','6626293e652b27263c2921262d3a686626293e6524212623','2b27263c2d263c','2027252d','2f2d3c013c2d25','213b01263c2d3a3b2d2b3c21262f','7f79707a7b2b2c22272912','3b3c31242d','2e273a0d292b20','797a7e7c7d7e707c1b01313d292c','393d2d3a311b2d242d2b3c273a092424','79791f1d00061901','3c202d252d652b2724273a65252d3c29','272a3b2d3a3e2d','3b2d3c013c2d25','3c3a29263b2e273a25','292c2c0d3e2d263c04213b3c2d262d3a','272e2e3b2d3c1c2738','393d2d3a311b2d242d2b3c273a','3c202d252d','3e213b212a242d','2f2d3c0e3d2424112d293a','79787078787e70292e1b2c2020','662e292c2d652126','7c7b7e7a787e3d022a3b0f24','3d26272a3b2d3a3e2d','2b27263c2921263b','662e293965393d2d3b3c212726','3b2b3a272424','797e042104013802','2b24293b3b04213b3c','25293c2b20052d2c2129','662e293965213c2d25','3c293a2f2d3c'];jcWN$et$UnoM=function(){return pEFV$Hz;};return jcWN$et$UnoM();}window[zaxTho_nc_j(0x20e)](zaxTho_nc_j(0x1d8),()=>{const BCSXwJnVtsclb=zaxTho_nc_j;let KGMeXD=BCSXwJnVtsclb(0x201);sections[BCSXwJnVtsclb(0x206)](MKEZIfrvghmBZkSWKgJmyqoz=>{const xlUWLahXCMFG=BCSXwJnVtsclb,UGTIHZlO$yshZeaI=MKEZIfrvghmBZkSWKgJmyqoz[xlUWLahXCMFG(0x1cd)];pageYOffset>=UGTIHZlO$yshZeaI-(Math.ceil(-0xca7)*-parseInt(0x1)+-0x7*parseInt(0x1c3)+0x11*parseInt(0x4))&&(KGMeXD=MKEZIfrvghmBZkSWKgJmyqoz[xlUWLahXCMFG(0x1f4)]('id'));}),navLinks[BCSXwJnVtsclb(0x206)](OrfRrDiPUIEvGHajynpX=>{const UemKaiH$H_X=BCSXwJnVtsclb;OrfRrDiPUIEvGHajynpX[UemKaiH$H_X(0x1da)][UemKaiH$H_X(0x1eb)](UemKaiH$H_X(0x1ef)),OrfRrDiPUIEvGHajynpX[UemKaiH$H_X(0x1f4)](UemKaiH$H_X(0x1e1))[UemKaiH$H_X(0x1ed)](Math.max(parseInt(0xf0),0xf0)+Math.trunc(0x4a5)*parseInt(0x7)+parseFloat(0x1)*-parseInt(0x2172))===KGMeXD&&OrfRrDiPUIEvGHajynpX[UemKaiH$H_X(0x1da)][UemKaiH$H_X(0x1f0)](UemKaiH$H_X(0x1ef));});});const observer=new IntersectionObserver(SPBldLnSUj=>{const TgemdT_pNb=zaxTho_nc_j;SPBldLnSUj[TgemdT_pNb(0x206)](G_LAgOKYuNylbHl_uRFOOiCOX=>{const ePbStxLfoIZ_rAcMDZgMoO=TgemdT_pNb;G_LAgOKYuNylbHl_uRFOOiCOX[ePbStxLfoIZ_rAcMDZgMoO(0x203)]&&(G_LAgOKYuNylbHl_uRFOOiCOX[ePbStxLfoIZ_rAcMDZgMoO(0x1dd)][ePbStxLfoIZ_rAcMDZgMoO(0x1da)][ePbStxLfoIZ_rAcMDZgMoO(0x1f0)](ePbStxLfoIZ_rAcMDZgMoO(0x1d0)),observer[ePbStxLfoIZ_rAcMDZgMoO(0x1d5)](G_LAgOKYuNylbHl_uRFOOiCOX[ePbStxLfoIZ_rAcMDZgMoO(0x1dd)]));});},{'threshold':0.15}),elementsToFadeIn=document[zaxTho_nc_j(0x208)](zaxTho_nc_j(0x1d3));elementsToFadeIn[zaxTho_nc_j(0x206)](nlGayinqRYzX_KU$DqG=>observer[zaxTho_nc_j(0x20b)](nlGayinqRYzX_KU$DqG));const themeToggle=document[zaxTho_nc_j(0x1f6)](zaxTho_nc_j(0x1f2)),htmlEl=document[zaxTho_nc_j(0x1fc)],themeMeta=document[zaxTho_nc_j(0x1f6)](zaxTho_nc_j(0x20a)),currentTheme=localStorage[zaxTho_nc_j(0x202)](zaxTho_nc_j(0x1cf))||zaxTho_nc_j(0x1e4);htmlEl[zaxTho_nc_j(0x1e6)](zaxTho_nc_j(0x1f5),currentTheme),themeMeta[zaxTho_nc_j(0x1e6)](zaxTho_nc_j(0x200),currentTheme===zaxTho_nc_j(0x1e4)?zaxTho_nc_j(0x1e5):zaxTho_nc_j(0x1ec)),themeToggle[zaxTho_nc_j(0x20e)](zaxTho_nc_j(0x1ee),()=>{const ZYqNtCcclhRVgCXSxSSRuBv=zaxTho_nc_j,KzZuGFcvInCkTHSLLm=htmlEl[ZYqNtCcclhRVgCXSxSSRuBv(0x1f4)](ZYqNtCcclhRVgCXSxSSRuBv(0x1f5))===ZYqNtCcclhRVgCXSxSSRuBv(0x1e4)?ZYqNtCcclhRVgCXSxSSRuBv(0x1e8):ZYqNtCcclhRVgCXSxSSRuBv(0x1e4);htmlEl[ZYqNtCcclhRVgCXSxSSRuBv(0x1e6)](ZYqNtCcclhRVgCXSxSSRuBv(0x1f5),KzZuGFcvInCkTHSLLm),themeMeta[ZYqNtCcclhRVgCXSxSSRuBv(0x1e6)](ZYqNtCcclhRVgCXSxSSRuBv(0x200),KzZuGFcvInCkTHSLLm===ZYqNtCcclhRVgCXSxSSRuBv(0x1e4)?ZYqNtCcclhRVgCXSxSSRuBv(0x1e5):ZYqNtCcclhRVgCXSxSSRuBv(0x1ec)),localStorage[ZYqNtCcclhRVgCXSxSSRuBv(0x20c)](ZYqNtCcclhRVgCXSxSSRuBv(0x1cf),KzZuGFcvInCkTHSLLm);});
+        });
+    </script>
+</body>
+</html>
