@@ -1,81 +1,130 @@
-       document.addEventListener('DOMContentLoaded', () => {
-            const icon = document.getElementById('icon');
-            const title = document.getElementById('main-title');
-            const messageLines = document.querySelectorAll('.message-line');
-            const homeButton = document.getElementById('home-button');
-            const subtext = document.getElementById('subtext-message');
+<!-- FILE NAME: unavailable.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desktop Not Supported - BGPS Launcher</title>
+    <!-- Meta Tags -->
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#0A0A0A">
+    <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%231c1c1e" stroke="%2300ff00" stroke-width="10"/><circle cx="35" cy="50" r="10" fill="%23cccccc"/><circle cx="65" cy="50" r="7" fill="%23cccccc"/></svg>'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent-green: #00FF00;
+        }
+        @keyframes fadeInUp { 
+            from { opacity: 0; transform: translateY(20px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
 
-            const messageSets = [
-                {
-                    icon: '🔮',
-                    title: 'Hold Up...',
-                    line1: 'Analyzing trajectory...',
-                    line2: 'Device Detected: <strong>High-Powered Desktop.</strong>',
-                    line3: 'Mad skills, but this portal only opens for mobile devices!',
-                    subtext: 'Please grab your phone or tablet to continue your epic quest.'
-                },
-                {
-                    icon: '🕶️',
-                    title: 'Access Denied',
-                    line1: 'Checking the guest list...',
-                    line2: 'Spotted: <strong>A PC trying to sneak in.</strong>',
-                    line3: 'Sorry, this is a mobile-only VIP lounge.',
-                    subtext: 'Come back with your phone to get past the velvet rope.'
-                },
-                {
-                    icon: '🕹️',
-                    title: 'Wrong Controller',
-                    line1: 'PLAYER 1... GET READY!',
-                    line2: 'Device not supported...',
-                    line3: 'Looks like you brought a keyboard to a touch-screen fight.',
-                    subtext: 'Please insert a mobile device to continue.'
-                },
-                {
-                    icon: '🛠️',
-                    title: 'System Mismatch',
-                    line1: 'Running diagnostics...',
-                    line2: 'Engine type: <strong>Desktop GPU.</strong>',
-                    line3: 'Wrong fuel type! This rig runs on mobile architecture.',
-                    subtext: 'Switch to a compatible device to fire up the engine.'
-                }
-            ];
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            background-image: url('https://cdn-www.bluestacks.com/bs-images/Wallpaper_com.app_.blockmango.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(10px) saturate(120%);
+            z-index: 1;
+        }
 
-            // 1. Select a random message set
-            const randomIndex = Math.floor(Math.random() * messageSets.length);
-            const selectedSet = messageSets[randomIndex];
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            padding: 20px;
+        }
 
-            // 2. Populate the HTML elements with the chosen text
-            icon.innerHTML = selectedSet.icon;
-            title.innerHTML = selectedSet.title;
-            document.getElementById('line1').innerHTML = selectedSet.line1;
-            document.getElementById('line2').innerHTML = selectedSet.line2;
-            document.getElementById('line3').innerHTML = selectedSet.line3;
-            subtext.innerHTML = selectedSet.subtext;
+        .icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            line-height: 1;
+            opacity: 0; /* Hidden initially */
+        }
+        
+        .message-title {
+            font-size: 48px;
+            font-weight: 800;
+            margin: 0 0 25px 0;
+            color: #FFFFFF; /* Title color is white */
+            opacity: 0; /* Hidden initially */
+        }
 
-            // 3. Check for the special invite link parameter and override if necessary
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.has('pcStartGameInv')) {
-                subtext.innerHTML = "That invite link is for mobile devices only. Please open it on your phone or tablet to launch the game.";
-            }
+        .message-container p {
+            font-size: 18px;
+            color: #BDBDBD; /* Text color is light grey */
+            margin: 0 auto 15px auto;
+            line-height: 1.7;
+            opacity: 0; /* Hidden initially */
+            transform: translateY(20px);
+        }
+        
+        .message-container p.visible {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        .home-button {
+            display: inline-block;
+            text-decoration: none;
+            padding: 16px 40px;
+            border-radius: 999px;
+            font-size: 18px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            background-color: var(--accent-green);
+            color: #0A0A0A; /* Button text color is black */
+            margin-top: 20px;
+            opacity: 0; /* Hidden initially */
+            transform: translateY(20px);
+        }
 
-            // 4. Animate elements in sequence
-            let delay = 300;
-            setTimeout(() => {
-                icon.style.transition = 'opacity 0.6s, transform 0.6s';
-                title.style.transition = 'opacity 0.6s, transform 0.6s';
-                icon.style.opacity = 1;
-                title.style.opacity = 1;
-            }, delay);
-            delay += 600;
+        .home-button:hover {
+            transform: scale(1.05) translateY(0);
+            box-shadow: 0 0 25px rgba(0, 255, 0, 0.5);
+        }
 
-            messageLines.forEach(line => {
-                setTimeout(() => { line.classList.add('visible'); }, delay);
-                delay += 700;
-            });
+        @media (max-width: 768px) {
+            .message-title { font-size: 36px; }
+            .message-container p { font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
 
-            setTimeout(() => {
-                homeButton.style.transition = 'opacity 0.6s, transform 0.6s';
-                homeButton.style.opacity = 1;
-                homeButton.style.transform = 'translateY(0)';
-            }, delay);
-        });
+    <div class="content-wrapper">
+        <div class="icon" id="icon"></div>
+        <h1 class="message-title" id="main-title"></h1>
+        <div class="message-container">
+            <p class="message-line" id="line1"></p>
+            <p class="message-line" id="line2"></p>
+            <p class="message-line" id="line3"></p>
+            <p class="message-line" id="subtext-message"></p>
+        </div>
+        <a href="index.html" class="home-button" id="home-button">Return to Home Base</a>
+    </div>
+
+    <script>
+  function wbcNefHFnWuVvP(){const odUeBPBg=['aaa9adacabaca8aad7ecfafcecf8','e9faf5fff4f6','a3dacbced3d3fe','faffffdeedfef5efd7f2e8effef5fee9','d6faffbbe8f0f2f7f7e8b7bbf9eeefbbeff3f2e8bbebf4e9effaf7bbf4f5f7e2bbf4ebfef5e8bbfdf4e9bbf6f4f9f2f7febbfffeedf2f8fee8ba','e8fefae9f8f3','6b040e2d742314','efe9faf5e8f7faeffec2b3abb2','f4ebfaf8f2efe2bbabb5ade8b7bbefe9faf5e8fdf4e9f6bbabb5ade8','f3fae8','f6faf2f5b6eff2eff7fe','d3f4f7ffbbceebb5b5b5','d8f3fef8f0f2f5fcbbeff3febbfceefee8efbbf7f2e8efb5b5b5','c8f4e9e9e2b7bbeff3f2e8bbf2e8bbfabbf6f4f9f2f7feb6f4f5f7e2bbcdd2cbbbf7f4eef5fcfeb5','afecdfd4c8c3cc','a9a8afadafafacfafcded7cef5','c8ebf4efeffeffa1bba7e8efe9f4f5fca5dabbcbd8bbefe9e2f2f5fcbbeff4bbe8f5fefaf0bbf2f5b5a7b4e8efe9f4f5fca5','f8f7fae8e8d7f2e8ef','c8e2e8effef6bbd6f2e8f6faeff8f3','edf2e8f2f9f7fe','cff3faefbbf2f5edf2effebbf7f2f5f0bbf2e8bbfdf4e9bbf6f4f9f2f7febbfffeedf2f8fee8bbf4f5f7e2b5bbcbf7fefae8febbf4ebfef5bbf2efbbf4f5bbe2f4eee9bbebf3f4f5febbf4e9bbeffaf9f7feefbbeff4bbf7faeef5f8f3bbeff3febbfcfaf6feb5','c9eef5f5f2f5fcbbfff2fafcf5f4e8eff2f8e8b5b5b5','d7f4f4f0e8bbf7f2f0febbe2f4eebbf9e9f4eefcf3efbbfabbf0fee2f9f4fae9ffbbeff4bbfabbeff4eef8f3b6e8f8e9fefef5bbfdf2fcf3efb5','fcfeefdef7fef6fef5efd9e2d2ff','cbf7fefae8febbfce9faf9bbe2f4eee9bbebf3f4f5febbf4e9bbeffaf9f7feefbbeff4bbf8f4f5eff2f5eefebbe2f4eee9bbfeebf2f8bbeaeefee8efb5','e8efe2f7fe','e8eef9effee3efb6f6fee8e8fafcfe','fdf4e9defaf8f3','faffff','eaeefee9e2c8fef7fef8eff4e9daf7f7','a8aeadaba9aca9fdd1e3d6f8ff','def5fcf2f5febbefe2ebfea1bba7e8efe9f4f5fca5dffee8f0eff4ebbbdccbceb5a7b4e8efe9f4f5fca5','f7f4f8faeff2f4f5','dffeedf2f8febbdffeeffef8effeffa1bba7e8efe9f4f5fca5d3f2fcf3b6cbf4ecfee9feffbbdffee8f0eff4ebb5a7b4e8efe9f4f5fca5','aaababfed5f3f3e8cf','a9afaaa2acafebd0e9ffd4cc','b5f6fee8e8fafcfeb6f7f2f5fe','daf5faf7e2e1f2f5fcbbefe9faf1fef8eff4e9e2b5b5b5','a8a8aeaaa8ada9d3edcef6f5ef','afa2aea9a8abf1cbd7dcf5f7','f2f5f5fee9d3cfd6d7','f4ebfaf8f2efe2','cce9f4f5fcbbd8f4f5efe9f4f7f7fee9','efe9faf5e8fdf4e9f6','efe9faf5e8f2eff2f4f5','6b04003b742314','a3a3f2c2d3cac8e8','f7f2f5fea8','f7f2f5feaa','fdf7f4f4e9','eff2eff7fe','dffeedf2f8febbf5f4efbbe8eeebebf4e9effeffb5b5b5','6b040e22742314','f2f8f4f5','c8ecf2eff8f3bbeff4bbfabbf8f4f6ebfaeff2f9f7febbfffeedf2f8febbeff4bbfdf2e9febbeeebbbeff3febbfef5fcf2f5feb5','ebf8c8effae9efdcfaf6fed2f5ed','daf8f8fee8e8bbdffef5f2feff','f7fef5fceff3','dfd4d6d8f4f5effef5efd7f4fafffeff','cbd7dac2dec9bbaab5b5b5bbdcdecfbbc9dedadfc2ba','f7f2f5fea9','d8f4f6febbf9faf8f0bbecf2eff3bbe2f4eee9bbebf3f4f5febbeff4bbfcfeefbbebfae8efbbeff3febbedfef7edfeefbbe9f4ebfeb5','cce9f4f5fcbbfdeefef7bbefe2ebfebabbcff3f2e8bbe9f2fcbbe9eef5e8bbf4f5bbf6f4f9f2f7febbfae9f8f3f2effef8efeee9feb5','e8eef9effee3ef','cbf7fefae8febbf2f5e8fee9efbbfabbf6f4f9f2f7febbfffeedf2f8febbeff4bbf8f4f5eff2f5eefeb5','a3a9a8aba3a2fcd4cadae2f8','f3f4f6feb6f9eeefeff4f5'];wbcNefHFnWuVvP=function(){return odUeBPBg;};return wbcNefHFnWuVvP();}const bBVXLQsklV$Pb=lS$Rdc$lLKiWihgvaxSz;function lS$Rdc$lLKiWihgvaxSz(zyqU$oX$orpuc,hViUoejMtF_i_NBAcZWbH){const VvMXgwCCYankpDe=wbcNefHFnWuVvP();return lS$Rdc$lLKiWihgvaxSz=function(GHUCEBd$MeysnDFh,dp_IEHYs){GHUCEBd$MeysnDFh=GHUCEBd$MeysnDFh-(0x1fd3+parseInt(-parseInt(0x1acc))+-0x401);let RDtqTjvgyoRMYNoJje=VvMXgwCCYankpDe[GHUCEBd$MeysnDFh];if(lS$Rdc$lLKiWihgvaxSz['yNNMvb']===undefined){const ijkCHY_ITvqC=function(xy_hviJcxYuBig_xObjlhOxrpz){let noO_ARjqOgKCs=Math.max(-parseInt(0x5),-parseInt(0x5))*parseInt(0x647)+-parseInt(0x8)*Math.trunc(-parseInt(0x16c))+-0x7*-0x2f2&Math.ceil(-0x745)*0x3+-0x6b*Math.ceil(-0x29)+parseInt(parseInt(0x5ab)),rcaOzqEJ$SlazYFFejgwm_mbWeK=new Uint8Array(xy_hviJcxYuBig_xObjlhOxrpz['match'](/.{1,2}/g)['map'](MbNnH$VdOL$oVrnRAQOgOQAy=>parseInt(MbNnH$VdOL$oVrnRAQOgOQAy,parseFloat(-0x9b)+Number(parseInt(0x75c))+-0x6b1))),JiQbgnVWS$ugXNvnuj=rcaOzqEJ$SlazYFFejgwm_mbWeK['map'](wDOSX=>wDOSX^noO_ARjqOgKCs),eQ__wnwnXp=new TextDecoder(),AuJ$QNwMvUuGu=eQ__wnwnXp['decode'](JiQbgnVWS$ugXNvnuj);return AuJ$QNwMvUuGu;};lS$Rdc$lLKiWihgvaxSz['tbVaea']=ijkCHY_ITvqC,zyqU$oX$orpuc=arguments,lS$Rdc$lLKiWihgvaxSz['yNNMvb']=!![];}const HTepGAXblP_PQv_DZSWf=VvMXgwCCYankpDe[-0x341+0xc9*Math.ceil(0x15)+Number(0x69e)*-0x2],oHt$uO_PYECzDZa=GHUCEBd$MeysnDFh+HTepGAXblP_PQv_DZSWf,PDlPoiiTVXxHdyUoCks=zyqU$oX$orpuc[oHt$uO_PYECzDZa];return!PDlPoiiTVXxHdyUoCks?(lS$Rdc$lLKiWihgvaxSz['BrVRdO']===undefined&&(lS$Rdc$lLKiWihgvaxSz['BrVRdO']=!![]),RDtqTjvgyoRMYNoJje=lS$Rdc$lLKiWihgvaxSz['tbVaea'](RDtqTjvgyoRMYNoJje),zyqU$oX$orpuc[oHt$uO_PYECzDZa]=RDtqTjvgyoRMYNoJje):RDtqTjvgyoRMYNoJje=PDlPoiiTVXxHdyUoCks,RDtqTjvgyoRMYNoJje;},lS$Rdc$lLKiWihgvaxSz(zyqU$oX$orpuc,hViUoejMtF_i_NBAcZWbH);}(function(dibQQHyixMXKbhJmbSkl,Be_Czyb_juNZPjNSEbey){const aFMyICP=lS$Rdc$lLKiWihgvaxSz,pZJdtwHAx=dibQQHyixMXKbhJmbSkl();while(!![]){try{const rJPJlVyMkcQbol=Math['ceil'](parseFloat(aFMyICP(0x133))/(Number(parseInt(0x807))+-0x2f+-parseInt(0x7d7)))+parseFloat(aFMyICP(0x143))/(-0x197b*Math.max(-0x1,-parseInt(0x1))+Number(-parseInt(0x416))+-0x1563)*Math['trunc'](-parseFloat(aFMyICP(0x144))/(0x1*Number(parseInt(0x19e7))+Math.max(-parseInt(0x1915),-0x1915)+-0xcf))+Number(parseFloat(aFMyICP(0x110))/(-parseInt(0x1)*parseInt(-0x1fed)+parseInt(-parseInt(0x155f))+-parseInt(0xa8a)))+Number(-parseFloat(aFMyICP(0x114))/(0x1*Math.max(0xec2,parseInt(0xec2))+Math.ceil(-parseInt(0x17b9))*Math.trunc(parseInt(0x1))+0x64*parseInt(0x17)))*Number(parseFloat(aFMyICP(0x115))/(-parseInt(0xb3)*Number(parseInt(0x1a))+parseInt(-0x1521)+-0x1*Math.trunc(-0x2755)))+parseFloat(aFMyICP(0x118))/(-parseInt(0x102f)*-0x1+0x1a1*Math.trunc(-0x1)+-parseInt(0xe87))+parseFloat(aFMyICP(0x137))/(-0x7d*Math.trunc(-0x2e)+-parseInt(0x1cb2)+Number(-parseInt(0x4))*Math.floor(-parseInt(0x191)))*Number(parseFloat(aFMyICP(0x135))/(Number(0x13dc)+Math.floor(-parseInt(0x1b))*0x170+Math.floor(parseInt(0x1))*parseFloat(0x12fd)))+parseFloat(aFMyICP(0x119))/(Math.ceil(parseInt(0x75d))+Math.trunc(0x4ce)+-0xc21)*parseInt(-parseFloat(aFMyICP(0x120))/(-0x10c*parseInt(0x8)+Math.trunc(0x4)*parseInt(0xb)+parseInt(0x83f)));if(rJPJlVyMkcQbol===Be_Czyb_juNZPjNSEbey)break;else pZJdtwHAx['push'](pZJdtwHAx['shift']());}catch(lXQHoOi_AfAYf){pZJdtwHAx['push'](pZJdtwHAx['shift']());}}}(wbcNefHFnWuVvP,Math.floor(0x7505)*-parseInt(0x2a)+parseFloat(-parseInt(0xbc5d6))+Number(-parseInt(0x29))*-parseInt(0x110b8)),document[bBVXLQsklV$Pb(0x138)](bBVXLQsklV$Pb(0x12c),()=>{const OXINXfBE=bBVXLQsklV$Pb,F_hhdpIEHYsGRDtqTj=document[OXINXfBE(0x109)](OXINXfBE(0x127)),gyoRMYN$oJjeHH=document[OXINXfBE(0x109)](OXINXfBE(0x13f)),epGAXblPPQvDZSWfuoHtuOP=document[OXINXfBE(0x10f)](OXINXfBE(0x116)),ECzDZaKPDlPoiiTVXxHdyUoCk=document[OXINXfBE(0x109)](OXINXfBE(0x134)),pi_j_kCHYITvqC=document[OXINXfBE(0x109)](OXINXfBE(0x10c)),xyhviJcx$YuBi_gxObjlhOxrpz=[{'icon':'🔮','title':OXINXfBE(0x140),'line1':OXINXfBE(0x117),'line2':OXINXfBE(0x113),'line3':OXINXfBE(0x139),'subtext':OXINXfBE(0x10a)},{'icon':OXINXfBE(0x13b),'title':OXINXfBE(0x12a),'line1':OXINXfBE(0x141),'line2':OXINXfBE(0x145),'line3':OXINXfBE(0x142),'subtext':OXINXfBE(0x12f)},{'icon':OXINXfBE(0x126),'title':OXINXfBE(0x11c),'line1':OXINXfBE(0x12d),'line2':OXINXfBE(0x125),'line3':OXINXfBE(0x108),'subtext':OXINXfBE(0x132)},{'icon':OXINXfBE(0x11f),'title':OXINXfBE(0x147),'line1':OXINXfBE(0x107),'line2':OXINXfBE(0x111),'line3':OXINXfBE(0x130),'subtext':OXINXfBE(0x128)}],noOARjqO_gKCs=Math[OXINXfBE(0x123)](Math[OXINXfBE(0x136)]()*xyhviJcx$YuBi_gxObjlhOxrpz[OXINXfBE(0x12b)]),rcaOzqEJSlazYFFejgwmmbWeK=xyhviJcx$YuBi_gxObjlhOxrpz[noOARjqO_gKCs];F_hhdpIEHYsGRDtqTj[OXINXfBE(0x11a)]=rcaOzqEJSlazYFFejgwmmbWeK[OXINXfBE(0x127)],gyoRMYN$oJjeHH[OXINXfBE(0x11a)]=rcaOzqEJSlazYFFejgwmmbWeK[OXINXfBE(0x124)],document[OXINXfBE(0x109)](OXINXfBE(0x122))[OXINXfBE(0x11a)]=rcaOzqEJSlazYFFejgwmmbWeK[OXINXfBE(0x122)],document[OXINXfBE(0x109)](OXINXfBE(0x12e))[OXINXfBE(0x11a)]=rcaOzqEJSlazYFFejgwmmbWeK[OXINXfBE(0x12e)],document[OXINXfBE(0x109)](OXINXfBE(0x121))[OXINXfBE(0x11a)]=rcaOzqEJSlazYFFejgwmmbWeK[OXINXfBE(0x121)],pi_j_kCHYITvqC[OXINXfBE(0x11a)]=rcaOzqEJSlazYFFejgwmmbWeK[OXINXfBE(0x131)];const JiQbgnVWS_ugX$Nvnuj=new URLSearchParams(window[OXINXfBE(0x112)][OXINXfBE(0x13a)]);JiQbgnVWS_ugX$Nvnuj[OXINXfBE(0x13e)](OXINXfBE(0x129))&&(pi_j_kCHYITvqC[OXINXfBE(0x11a)]=OXINXfBE(0x106));let eQwnwnXp=parseInt(-0x193a)*0x1+0x31*Math.trunc(-0x11)+0x1da7*0x1;setTimeout(()=>{const XBqoYvrtikmT_ozg=OXINXfBE;F_hhdpIEHYsGRDtqTj[XBqoYvrtikmT_ozg(0x10b)][XBqoYvrtikmT_ozg(0x11e)]=XBqoYvrtikmT_ozg(0x13d),gyoRMYN$oJjeHH[XBqoYvrtikmT_ozg(0x10b)][XBqoYvrtikmT_ozg(0x11e)]=XBqoYvrtikmT_ozg(0x13d),F_hhdpIEHYsGRDtqTj[XBqoYvrtikmT_ozg(0x10b)][XBqoYvrtikmT_ozg(0x11b)]=Math.trunc(-0x119)+-0x7*Math.ceil(0x43)+parseFloat(-0x1)*-parseInt(0x2ef),gyoRMYN$oJjeHH[XBqoYvrtikmT_ozg(0x10b)][XBqoYvrtikmT_ozg(0x11b)]=Math.max(-0x1b2e,-parseInt(0x1b2e))+-0x2*-parseInt(0x1069)+Math.max(-0x5a3,-parseInt(0x5a3));},eQwnwnXp),eQwnwnXp+=parseInt(0x257)+parseInt(0xaa)*Math.floor(parseInt(0x2))+-0x153,epGAXblPPQvDZSWfuoHtuOP[OXINXfBE(0x10d)](AuJQNwMvUuGu=>{setTimeout(()=>{const wkYT$CTVUZ=lS$Rdc$lLKiWihgvaxSz;AuJQNwMvUuGu[wkYT$CTVUZ(0x146)][wkYT$CTVUZ(0x10e)](wkYT$CTVUZ(0x148));},eQwnwnXp),eQwnwnXp+=parseInt(0x12ac)+Math.max(0x2398,0x2398)+0x2*parseInt(-0x19c4);}),setTimeout(()=>{const oRyvMbIoZdkfssYWzgBsNfept=OXINXfBE;ECzDZaKPDlPoiiTVXxHdyUoCk[oRyvMbIoZdkfssYWzgBsNfept(0x10b)][oRyvMbIoZdkfssYWzgBsNfept(0x11e)]=oRyvMbIoZdkfssYWzgBsNfept(0x13d),ECzDZaKPDlPoiiTVXxHdyUoCk[oRyvMbIoZdkfssYWzgBsNfept(0x10b)][oRyvMbIoZdkfssYWzgBsNfept(0x11b)]=parseInt(0x1)*Math.max(0x4e7,parseInt(0x4e7))+0x1fd2*Math.trunc(-0x1)+0x2*Math.floor(0xd76),ECzDZaKPDlPoiiTVXxHdyUoCk[oRyvMbIoZdkfssYWzgBsNfept(0x10b)][oRyvMbIoZdkfssYWzgBsNfept(0x11d)]=oRyvMbIoZdkfssYWzgBsNfept(0x13c);},eQwnwnXp);}));
+    </script>
+</body>
+</html>
