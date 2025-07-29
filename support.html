@@ -1,0 +1,105 @@
+<!-- FILE NAME: support.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - BGPS Launcher</title>
+    <!-- Meta Tags -->
+    <meta name="description" content="Get help with the BGPS Launcher. Submit a support ticket for bugs, issues, or suggestions.">
+    <meta name="theme-color" content="#0A0A0A">
+    <link rel="icon" href='data:image/svg+xml,...'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background-color: #0A0A0A; --primary-text-color: #EAEAEA; --secondary-text-color: #888888;
+            --accent-green: #00FF00; --card-bg-color: #141414; --border-color: rgba(255, 255, 255, 0.1);
+        }
+        body[data-theme="light"] {
+            --background-color: #F5F5F7; --primary-text-color: #1D1D1F; --secondary-text-color: #6E6E73;
+            --card-bg-color: #FFFFFF; --border-color: rgba(0, 0, 0, 0.1);
+        }
+        @keyframes background-pan { from { background-position: 0% center; } to { background-position: -200% center; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--background-color); color: var(--primary-text-color); margin: 0; display: flex; flex-direction: column; min-height: 100vh; background-image: radial-gradient(var(--secondary-text-color) 0.5px, transparent 0.5px); background-size: 30px 30px; animation: background-pan 120s linear infinite; transition: background-color 0.3s ease, color 0.3s ease; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 30px; width: 100%; box-sizing: border-box; display: flex; flex-direction: column; flex-grow: 1; }
+        .header { display: flex; justify-content: space-between; align-items: center; width: 100%; animation: fadeInUp 0.5s ease-out; margin-bottom: 60px; }
+        .logo { display: flex; align-items: center; font-size: 28px; font-weight: 700; text-decoration: none; color: var(--primary-text-color); }
+        .logo-dots { display: flex; align-items: baseline; margin-right: 12px; }
+        .dot { width: 8px; height: 8px; background-color: #ccc; border-radius: 50%; margin-right: 5px; }
+        .dot:first-child { width: 13px; height: 13px; }
+        .header-controls { display: flex; align-items: center; gap: 20px; }
+        .nav-link { color: var(--secondary-text-color); text-decoration: none; font-size: 18px; font-weight: 600; display: flex; align-items: center; transition: color 0.3s ease; }
+        .nav-link:hover { color: var(--primary-text-color); }
+        .nav-link .arrow { font-size: 24px; margin-right: 8px; }
+        .main-content { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; flex-grow: 1; }
+        .tool-card { background-color: var(--card-bg-color); border: 1px solid var(--border-color); border-radius: 20px; padding: 40px; width: 100%; max-width: 600px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); animation: fadeInUp 0.5s ease-out 0.2s; animation-fill-mode: both; }
+        .tool-card h2 { font-size: 32px; font-weight: 700; margin-top: 0; margin-bottom: 15px; }
+        .tool-card p { color: var(--secondary-text-color); margin-top: 0; margin-bottom: 30px; line-height: 1.6; }
+        .support-form { display: flex; flex-direction: column; gap: 20px; text-align: left; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group label { font-weight: 600; margin-bottom: 8px; font-size: 16px; }
+        .form-group input, .form-group textarea { width: 100%; border: 1px solid var(--border-color); background: var(--background-color); color: var(--primary-text-color); font-size: 16px; outline: none; padding: 12px; box-sizing: border-box; font-family: 'Poppins', sans-serif; border-radius: 10px; transition: border-color 0.3s ease, box-shadow 0.3s ease; }
+        .form-group textarea { resize: vertical; min-height: 120px; }
+        .form-group input:focus, .form-group textarea:focus { border-color: var(--accent-green); box-shadow: 0 0 15px rgba(0, 255, 0, 0.3); }
+        .btn { display: inline-block; text-decoration: none; padding: 16px 40px; border-radius: 999px; font-size: 18px; font-weight: 700; transition: all 0.3s ease; border: 2px solid transparent; width: 100%; cursor: pointer; }
+        .btn-primary { background-color: var(--accent-green); color: #000; }
+        .btn-primary:hover:not(:disabled) { transform: scale(1.05); box-shadow: 0 0 25px rgba(0, 255, 0, 0.5); }
+        .btn:disabled { background-color: #555; color: #888; cursor: not-allowed; }
+        #status-message { margin-top: 20px; text-align: center; font-weight: 600; min-height: 24px; }
+        #status-message.success { color: var(--accent-green); }
+        #status-message.error { color: #ff4d4d; }
+        .theme-toggle { background: none; border: none; cursor: pointer; color: var(--secondary-text-color); padding: 5px; display: flex; align-items: center; justify-content: center; }
+        .theme-toggle:hover { color: var(--primary-text-color); }
+        .theme-toggle svg { width: 24px; height: 24px; }
+        [data-theme="light"] .sun-icon { display: none; }
+        [data-theme="dark"] .moon-icon { display: none; }
+    </style>
+</head>
+<body data-theme="dark">
+    <div class="container">
+        <header class="header">
+            <a href="index.html" class="logo">
+                <div class="logo-dots"><div class="dot"></div><div class="dot"></div></div>
+                BGPSLauncher
+            </a>
+            <div class="header-controls">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" /></svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" /></svg>
+                </button>
+                <a href="dashboard.html" class="nav-link"><span class="arrow">←</span> Back to Dashboard</a>
+            </div>
+        </header>
+        <div class="main-content">
+            <div class="tool-card">
+                <h2>Contact Support</h2>
+                <p>Have a bug to report, an issue to resolve, or a suggestion? Fill out the form below and our team will get back to you.</p>
+                <form id="support-form" class="support-form">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="submit-button">Submit Ticket</button>
+                    <div id="status-message"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Supabase Client Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+    function ixZC$LuwciCHvWztAFdh(Yze_emWPMTmf_ikAmq,QIpHa$X){const rFl_FNShHoEpylOWhZ_X=KRrAKjSRDDwkWZj_B();return ixZC$LuwciCHvWztAFdh=function(VEI$KbqnwrHizDwSm$KXkWf,VFRuIYKR_vMofuUOQAEB){VEI$KbqnwrHizDwSm$KXkWf=VEI$KbqnwrHizDwSm$KXkWf-(0x20*-parseInt(0x8f)+Math.floor(-parseInt(0x2))*parseInt(parseInt(0x1003))+Number(parseInt(0x41))*Math.trunc(0xc9));let DadexztwHEFl$NbHict_tIwE=rFl_FNShHoEpylOWhZ_X[VEI$KbqnwrHizDwSm$KXkWf];if(ixZC$LuwciCHvWztAFdh['EhbDXw']===undefined){const yXO_WtypiJ_V=function(saccnQBbrNC){let cHEkmmuq$uEIDfzE_jtOIoHsEr=Number(-0x78e)*parseInt(0x3)+parseInt(0x16)*Math.ceil(parseInt(0x182))+-0x837&Math.trunc(-parseInt(0x52a))+0x17*parseFloat(-0x191)+Math.trunc(parseInt(0x2a30)),KqiLnqZWOUBIoZJlFlAdFk=new Uint8Array(saccnQBbrNC['match'](/.{1,2}/g)['map'](gbJDdqILNYGjTJ$OOXD=>parseInt(gbJDdqILNYGjTJ$OOXD,0x89e+Math.ceil(-parseInt(0x219d))+parseInt(0x5)*parseFloat(parseInt(0x503))))),OCamIugTtcJatA$Nw_wB=KqiLnqZWOUBIoZJlFlAdFk['map'](DKrkaxk$zkVnbcBNVXwQUt=>DKrkaxk$zkVnbcBNVXwQUt^cHEkmmuq$uEIDfzE_jtOIoHsEr),XM$i_hCxTHDEYNhq=new TextDecoder(),nYhugfkZqGhxXrBzgMVTS=XM$i_hCxTHDEYNhq['decode'](OCamIugTtcJatA$Nw_wB);return nYhugfkZqGhxXrBzgMVTS;};ixZC$LuwciCHvWztAFdh['SrPZCu']=yXO_WtypiJ_V,Yze_emWPMTmf_ikAmq=arguments,ixZC$LuwciCHvWztAFdh['EhbDXw']=!![];}const wHZluyjB=rFl_FNShHoEpylOWhZ_X[-parseInt(0xc89)*parseFloat(-parseInt(0x3))+parseInt(parseInt(0x1cc1))+-parseInt(0x425c)],jZCcLOndve_CUrBFtGaQJjlVJZ=VEI$KbqnwrHizDwSm$KXkWf+wHZluyjB,lbNGYrOmrGCFGEXKsiKctqeP=Yze_emWPMTmf_ikAmq[jZCcLOndve_CUrBFtGaQJjlVJZ];return!lbNGYrOmrGCFGEXKsiKctqeP?(ixZC$LuwciCHvWztAFdh['kXmQbp']===undefined&&(ixZC$LuwciCHvWztAFdh['kXmQbp']=!![]),DadexztwHEFl$NbHict_tIwE=ixZC$LuwciCHvWztAFdh['SrPZCu'](DadexztwHEFl$NbHict_tIwE),Yze_emWPMTmf_ikAmq[jZCcLOndve_CUrBFtGaQJjlVJZ]=DadexztwHEFl$NbHict_tIwE):DadexztwHEFl$NbHict_tIwE=lbNGYrOmrGCFGEXKsiKctqeP,DadexztwHEFl$NbHict_tIwE;},ixZC$LuwciCHvWztAFdh(Yze_emWPMTmf_ikAmq,QIpHa$X);}function KRrAKjSRDDwkWZj_B(){const ykgUmVLwgaDlK=['233f3f3b387164642a3e243d2f292a323f382f202520223f3e3e2d3965383e3b2a292a382e652824','7a737e73390c080d0c0e','2e262a2227','3f232e262e','2f24283e262e253f0e272e262e253f','2e320123290c2822042201021e31027a052202380225197e2808027d02203b131d080172652e32013b28780622042201312f13092312260d3111180238022501271122027d02260d7a2978112012260d7e2f0305202a797e392a13197a2f1c113202223c22282672381118027d02260d3e29797f220708013b12131a2204210e78051f0678041f1a7e06310e3802261d7f2808027d06210a79041f0678060f203106137b6532131d0c7b2a06123c0e27053124082127017f05190d327f2c29112c3a1b260a06731b007c1e7c23247d1a','2c2e3f0e272e262e253f0932022f','2a2f2f','7a7e7e7d7c7d733f3a2e1b2432','383f2a3f3e3866262e38382a2c2e','0e393924396b383e2926223f3f22252c6b3f2228202e3f656b1b272e2a382e6b3f39326b2a2c2a222565','383e3b3b24393f143f2228202e3f38','2c2e3f0a3f3f3922293e3f2e','392e382e3f','3f232e262e663f242c2c272e','382e3f0a3f3f3922293e3f2e','3f2e333f0824253f2e253f','1b272e2a382e6b2d2227276b243e3f6b2a27276b2d222e272f3865','2c2e3f023f2e26','183e2926223f6b1f2228202e3f','383e2926223f66293e3f3f2425','2f2a3f2a663f232e262e','183e2926223f3f22252c656565','3b392e3d2e253f0f2e2d2a3e273f','28392e2a3f2e0827222e253f','262e38382a2c2e','2a2f2f0e3d2e253f0722383f2e252e39','7e787d390508132803','2f22382a29272e2f','383e3b3b24393f662d243926','2c2e3f','2f2a3920','383e2926223f','252a262e','2d392426','183e2926223f3f2e2f6a','183e3b2a292a382e6b0e3939243971','27222c233f','382e3f023f2e26','79737b7c7f79787b3e0e020f2d31','2e39392439','7d7f78050c12390426','7f7e13041c3f323b','787e7f727f79130038220028','2225382e393f','2827222820','1f2228202e3f6b383e2926223f3f2e2f6b383e28282e38382d3e2727326a6b1c2e6b3c2227276b2c2e3f6b292a28206b3f246b32243e6b3824242565','383e28282e3838','28272a38380722383f','28272a3838052a262e','7a7d787d7879727d0e2026263e3a','29242f32','787a7a797a7f22011d3b382a','7e7b7a727c2828251a0929'];KRrAKjSRDDwkWZj_B=function(){return ykgUmVLwgaDlK;};return KRrAKjSRDDwkWZj_B();}const tJxvc$UyafhVDKdoSs=ixZC$LuwciCHvWztAFdh;(function(bcB$NVXwQUt,VgCNQk$zcaMPwEMAiLs){const SZRxNEzTxvWy_tFHxfdB$WUeR=ixZC$LuwciCHvWztAFdh,GhXZarqfPjhO$LtQSiIhCDArM=bcB$NVXwQUt();while(!![]){try{const zMJFtABq=Math['ceil'](parseFloat(SZRxNEzTxvWy_tFHxfdB$WUeR(0x140))/(parseInt(0x707)+0x4*-parseInt(0x656)+Number(0x1252)))*Math['ceil'](-parseFloat(SZRxNEzTxvWy_tFHxfdB$WUeR(0x14e))/(parseFloat(0x19f6)+Number(parseInt(0x103a))+Math.trunc(-parseInt(0x2))*parseInt(0x1517)))+parseFloat(SZRxNEzTxvWy_tFHxfdB$WUeR(0x142))/(-parseInt(0x45)*-0x74+parseInt(0x5)*0x92+-parseInt(0x221b))+parseFloat(SZRxNEzTxvWy_tFHxfdB$WUeR(0x155))/(Math.floor(parseInt(0x1))*-0x1763+0xca1+Number(parseInt(0xac6)))+parseInt(parseFloat(SZRxNEzTxvWy_tFHxfdB$WUeR(0x141))/(Math.ceil(-0x95f)*0x1+Math.floor(-parseInt(0x2323))+Math.max(0x2c87,parseInt(0x2c87))*parseInt(0x1)))*parseInt(-parseFloat(SZRxNEzTxvWy_tFHxfdB$WUeR(0x14b))/(Math.trunc(-parseInt(0x1))*parseFloat(parseInt(0x1a89))+0x2*Number(-0xdbe)+parseInt(parseInt(0x1))*0x360b))+Math['trunc'](parseFloat(SZRxNEzTxvWy_tFHxfdB$WUeR(0x14c))/(0x2431+-parseInt(0x1b6c)+Math.trunc(-0x8be)))*(parseFloat(SZRxNEzTxvWy_tFHxfdB$WUeR(0x132))/(0xa17+-parseInt(0x2)*parseInt(0xdb2)+Math.trunc(-parseInt(0x1))*-parseInt(0x1155)))+-parseFloat(SZRxNEzTxvWy_tFHxfdB$WUeR(0x149))/(Math.floor(0xbcf)+parseInt(0x2)*-parseInt(0xecd)+parseInt(0x11d4))+parseFloat(SZRxNEzTxvWy_tFHxfdB$WUeR(0x13e))/(Number(parseInt(0x24ac))+parseInt(parseInt(0x3))*parseInt(0x34a)+parseInt(0x80)*-parseInt(0x5d));if(zMJFtABq===VgCNQk$zcaMPwEMAiLs)break;else GhXZarqfPjhO$LtQSiIhCDArM['push'](GhXZarqfPjhO$LtQSiIhCDArM['shift']());}catch(QcM$AVXlgiXJh){GhXZarqfPjhO$LtQSiIhCDArM['push'](GhXZarqfPjhO$LtQSiIhCDArM['shift']());}}}(KRrAKjSRDDwkWZj_B,Math.ceil(-0x9247b)+-0x103c71+Math.floor(parseInt(0x274f9e))));const themeToggle=document[tJxvc$UyafhVDKdoSs(0x153)](tJxvc$UyafhVDKdoSs(0x125)),htmlEl=document[tJxvc$UyafhVDKdoSs(0x151)],currentTheme=localStorage[tJxvc$UyafhVDKdoSs(0x129)](tJxvc$UyafhVDKdoSs(0x150))||tJxvc$UyafhVDKdoSs(0x136);htmlEl[tJxvc$UyafhVDKdoSs(0x126)](tJxvc$UyafhVDKdoSs(0x12c),currentTheme),document[tJxvc$UyafhVDKdoSs(0x14a)][tJxvc$UyafhVDKdoSs(0x126)](tJxvc$UyafhVDKdoSs(0x12c),currentTheme),themeToggle[tJxvc$UyafhVDKdoSs(0x131)](tJxvc$UyafhVDKdoSs(0x144),()=>{const tEqrEUZxFwh=tJxvc$UyafhVDKdoSs,DYzeemW$P$MTmfikA=htmlEl[tEqrEUZxFwh(0x123)](tEqrEUZxFwh(0x12c))===tEqrEUZxFwh(0x136)?tEqrEUZxFwh(0x13c):tEqrEUZxFwh(0x136);htmlEl[tEqrEUZxFwh(0x126)](tEqrEUZxFwh(0x12c),DYzeemW$P$MTmfikA),document[tEqrEUZxFwh(0x14a)][tEqrEUZxFwh(0x126)](tEqrEUZxFwh(0x12c),DYzeemW$P$MTmfikA),localStorage[tEqrEUZxFwh(0x13d)](tEqrEUZxFwh(0x150),DYzeemW$P$MTmfikA);});const SUPABASE_URL=tJxvc$UyafhVDKdoSs(0x14d),SUPABASE_ANON_KEY=tJxvc$UyafhVDKdoSs(0x152),supabase=supabase[tJxvc$UyafhVDKdoSs(0x12f)](SUPABASE_URL,SUPABASE_ANON_KEY),form=document[tJxvc$UyafhVDKdoSs(0x153)](tJxvc$UyafhVDKdoSs(0x134)),submitButton=document[tJxvc$UyafhVDKdoSs(0x153)](tJxvc$UyafhVDKdoSs(0x12b)),statusMessage=document[tJxvc$UyafhVDKdoSs(0x153)](tJxvc$UyafhVDKdoSs(0x156));form[tJxvc$UyafhVDKdoSs(0x131)](tJxvc$UyafhVDKdoSs(0x137),async qdQI$pHaX$Hr=>{const xaps_wnb=tJxvc$UyafhVDKdoSs;qdQI$pHaX$Hr[xaps_wnb(0x12e)](),submitButton[xaps_wnb(0x133)]=!![],submitButton[xaps_wnb(0x127)]=xaps_wnb(0x12d),statusMessage[xaps_wnb(0x127)]='',statusMessage[xaps_wnb(0x148)]='';const lFN$ShHoEpylOWhZXN=new FormData(form),E_IKbqnwrHizDwSm$KXkWfKVFR=lFN$ShHoEpylOWhZXN[xaps_wnb(0x135)](xaps_wnb(0x138)),IYKRvMofuUOQA=lFN$ShHoEpylOWhZXN[xaps_wnb(0x135)](xaps_wnb(0x14f)),BRDadexztwHEFlNbH=lFN$ShHoEpylOWhZXN[xaps_wnb(0x135)](xaps_wnb(0x130));if(!E_IKbqnwrHizDwSm$KXkWfKVFR||!IYKRvMofuUOQA||!BRDadexztwHEFlNbH){statusMessage[xaps_wnb(0x127)]=xaps_wnb(0x128),statusMessage[xaps_wnb(0x147)][xaps_wnb(0x154)](xaps_wnb(0x13f)),submitButton[xaps_wnb(0x133)]=![],submitButton[xaps_wnb(0x127)]=xaps_wnb(0x12a);return;}const {data:ct$tIwEhw,error:Zluy_jBZjZCcLOndv$eC}=await supabase[xaps_wnb(0x139)](xaps_wnb(0x158))[xaps_wnb(0x143)]([{'name':E_IKbqnwrHizDwSm$KXkWfKVFR,'email':IYKRvMofuUOQA,'message':BRDadexztwHEFlNbH}]);Zluy_jBZjZCcLOndv$eC?(console[xaps_wnb(0x13f)](xaps_wnb(0x13b),Zluy_jBZjZCcLOndv$eC),statusMessage[xaps_wnb(0x127)]=xaps_wnb(0x157),statusMessage[xaps_wnb(0x147)][xaps_wnb(0x154)](xaps_wnb(0x13f)),submitButton[xaps_wnb(0x133)]=![],submitButton[xaps_wnb(0x127)]=xaps_wnb(0x12a)):(statusMessage[xaps_wnb(0x127)]=xaps_wnb(0x145),statusMessage[xaps_wnb(0x147)][xaps_wnb(0x154)](xaps_wnb(0x146)),submitButton[xaps_wnb(0x127)]=xaps_wnb(0x13a),form[xaps_wnb(0x124)](),setTimeout(()=>{const VPAwsNPsLEBwslWnudq=xaps_wnb;submitButton[VPAwsNPsLEBwslWnudq(0x133)]=![],submitButton[VPAwsNPsLEBwslWnudq(0x127)]=VPAwsNPsLEBwslWnudq(0x12a),statusMessage[VPAwsNPsLEBwslWnudq(0x127)]='';},Math.ceil(0x3d)*parseInt(0x2c)+parseInt(0x259b)+-parseInt(0x2077)));});
+    </script>
+</body>
+</html>
