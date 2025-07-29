@@ -1,91 +1,74 @@
 <!-- FILE NAME: index.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BGPS Launcher - The First Blockman GO Launcher</title>
     <!-- Meta Tags -->
     <meta name="description" content="Welcome to BGPS Launcher, the first-ever 100% Free launcher for Blockman Go. Browse games, create invites, and launch directly into the action on web or mobile.">
-    <meta name="keywords" content="Blockman Go, BGPS, Launcher, Free, Bed Wars, Egg War, Mobile Games, BG, BMGO">
-    <meta name="author" content="BGPS Launcher Team">
-    <meta property="og:title" content="BGPS Launcher - 100% Free">
-    <meta property="og:description" content="The first-ever launcher for Blockman Go. Browse featured games, create invites, or enter a manual ID for free.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://your-website-url.com/">
-    <meta property="og:image" content="https://your-website-url.com/social-preview.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="theme-color" content="#0A0A0A">
-    <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%231c1c1e" stroke="%2300ff00" stroke-width="10"/><circle cx="35" cy="50" r="10" fill="%23cccccc"/><circle cx="65" cy="50" r="7" fill="%23cccccc"/></svg>'>
+    <meta name="theme-color" content="#0A0A0A" id="theme-color-meta">
+    <link rel="icon" href='data:image/svg+xml,...'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --background-color: #0A0A0A;
-            --primary-text-color: #EAEAEA;
-            --secondary-text-color: #888888;
-            --accent-green: #00FF00;
-            --card-bg-color: #141414;
-            --border-color: rgba(255, 255, 255, 0.1);
+            --background-color: #0A0A0A; --primary-text-color: #EAEAEA; --secondary-text-color: #888888;
+            --accent-green: #00FF00; --card-bg-color: #141414; --border-color: rgba(255, 255, 255, 0.1);
+            --card-shadow: none;
+        }
+        html[data-theme="light"] {
+            --background-color: #F5F5F7; --primary-text-color: #1D1D1F; --secondary-text-color: #6E6E73;
+            --accent-green: #00C800; --card-bg-color: #FFFFFF; --border-color: rgba(0, 0, 0, 0.1);
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
         @property --angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
         @keyframes background-pan { from { background-position: 0% center; } to { background-position: -200% center; } }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes border-spin { to { --angle: 360deg; } }
-        
-        html.lenis { height: auto; }
-        .lenis.lenis-smooth { scroll-behavior: auto !important; }
-
+        html.lenis { height: auto; } .lenis.lenis-smooth { scroll-behavior: auto !important; }
         html { scroll-behavior: smooth; }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--background-color);
-            color: var(--primary-text-color);
-            margin: 0;
-            background-image: radial-gradient(var(--secondary-text-color) 0.5px, transparent 0.5px);
-            background-size: 30px 30px;
-            animation: background-pan 120s linear infinite;
-        }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--background-color); color: var(--primary-text-color); margin: 0; background-image: radial-gradient(var(--secondary-text-color) 0.5px, transparent 0.5px); background-size: 30px 30px; animation: background-pan 120s linear infinite; transition: background-color 0.3s ease, color 0.3s ease; }
         .fade-in { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-        .navbar { position: sticky; top: 0; z-index: 1000; padding: 20px 0; background-color: rgba(10, 10, 10, 0.8); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); }
+        .navbar { position: sticky; top: 0; z-index: 1000; padding: 20px 0; background-color: color-mix(in srgb, var(--background-color) 80%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); transition: background-color 0.3s ease; }
         .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 30px; display: flex; justify-content: space-between; align-items: center; }
         .logo { display: flex; align-items: center; font-size: 28px; font-weight: 700; text-decoration: none; color: var(--primary-text-color); }
         .logo-dots { display: flex; align-items: baseline; margin-right: 12px; }
         .dot { width: 8px; height: 8px; background-color: #ccc; border-radius: 50%; margin-right: 5px; }
         .dot:first-child { width: 13px; height: 13px; }
-        
         .nav-links { display: flex; align-items: center; gap: 15px; }
         .nav-link { color: var(--secondary-text-color); text-decoration: none; font-size: 16px; font-weight: 600; padding: 8px 16px; position: relative; transition: color 0.3s ease; }
         .nav-link.active, .nav-link:hover { color: var(--primary-text-color); }
         .nav-link.active::after { content: ''; position: absolute; bottom: 0; left: 16px; right: 16px; height: 2px; background: var(--accent-green); }
-
+        .nav-controls { display: flex; align-items: center; gap: 15px; }
+        .theme-toggle { background: none; border: none; cursor: pointer; color: var(--secondary-text-color); padding: 5px; display: flex; align-items: center; justify-content: center; }
+        .theme-toggle:hover { color: var(--primary-text-color); }
+        .theme-toggle svg { width: 24px; height: 24px; }
+        [data-theme="dark"] .sun-icon { display: block; }
+        [data-theme="dark"] .moon-icon { display: none; }
+        [data-theme="light"] .sun-icon { display: none; }
+        [data-theme="light"] .moon-icon { display: block; }
         .section { max-width: 1200px; margin: 0 auto; padding: 120px 30px; }
-        
         .hero { display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; gap: 60px; min-height: calc(100vh - 89px); }
-        .hero-content { animation: fadeInUp 1s ease-out; }
         .slogan { font-size: 64px; font-weight: 800; line-height: 1.1; margin: 0 0 10px 0; }
         .sub-slogan { font-size: 24px; font-weight: 600; color: var(--accent-green); margin: 0 0 20px 0; }
         .hero p { font-size: 18px; color: var(--secondary-text-color); margin-bottom: 40px; max-width: 500px; line-height: 1.7; }
         .hero .button-group { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
         .btn { display: inline-block; text-decoration: none; padding: 16px 40px; border-radius: 999px; font-size: 18px; font-weight: 700; transition: all 0.3s ease; border: 2px solid transparent; }
         .btn-primary { background-color: var(--accent-green); color: #000; }
-        .btn-primary:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(0, 255, 0, 0.5); }
-        .btn-secondary { color: var(--secondary-text-color); font-weight: 600; }
-        .btn-secondary:hover { color: var(--primary-text-color); transform: scale(1.05); }
-
+        .btn-primary:hover { transform: scale(1.05); box-shadow: 0 0 25px color-mix(in srgb, var(--accent-green) 50%, transparent); }
+        .btn-secondary { background: var(--card-bg-color); color: var(--primary-text-color); border: 2px solid var(--border-color); }
+        .btn-secondary:hover { background-color: color-mix(in srgb, var(--card-bg-color) 80%, var(--primary-text-color)); border-color: color-mix(in srgb, var(--border-color) 80%, var(--primary-text-color)); transform: scale(1.05); }
+        html[data-theme="light"] .btn-secondary { background-color: #1D1D1F; color: #FFFFFF; border-color: transparent; box-shadow: var(--card-shadow); }
+        html[data-theme="light"] .btn-secondary:hover { background-color: #000000; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); }
         .mockup-wrapper { perspective: 2000px; }
-        .phone-mockup { position: relative; width: 320px; height: 640px; background: #111; border: 12px solid #000; border-radius: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.6), inset 0 2px 2px rgba(255,255,255,0.1); transition: transform 0.1s ease-out; }
+        .phone-mockup { position: relative; width: 320px; height: 640px; background: color-mix(in srgb, var(--card-bg-color) 50%, #000); border: 12px solid #000; border-radius: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.6), inset 0 2px 2px rgba(255,255,255,0.1); transition: transform 0.1s ease-out; }
         .phone-screen { width: 100%; height: 100%; border-radius: 28px; overflow: hidden; background: #000; }
         .phone-screen video { width: 100%; height: 100%; object-fit: cover; }
-        
         .section-title { font-size: 48px; font-weight: 700; margin-bottom: 20px; text-align: center; }
         .section-subtitle { font-size: 18px; color: var(--secondary-text-color); max-width: 700px; margin: 0 auto 60px auto; line-height: 1.7; text-align: center; }
-        
         .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .feature-card { background-color: var(--card-bg-color); padding: 3px; border-radius: 18px; position: relative; z-index: 1; overflow: hidden; transition: transform 0.3s ease; }
+        .feature-card { background-color: var(--card-bg-color); padding: 3px; border-radius: 18px; position: relative; z-index: 1; overflow: hidden; transition: transform 0.3s ease; box-shadow: var(--card-shadow); }
         .feature-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: conic-gradient(from var(--angle), transparent 0%, var(--accent-green), transparent 25%); animation: border-spin 4s linear infinite paused; opacity: 0; transition: opacity 0.4s ease; }
         .feature-card:hover { transform: translateY(-8px); }
         .feature-card:hover::before { animation-play-state: running; opacity: 1; }
@@ -93,13 +76,11 @@
         .feature-card svg { width: 40px; height: 40px; margin-bottom: 20px; color: var(--accent-green); }
         .feature-card h3 { font-size: 22px; font-weight: 600; margin: 0 0 10px 0; }
         .feature-card p { font-size: 16px; color: var(--secondary-text-color); margin: 0; line-height: 1.6; }
-        
         .steps-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; position: relative; }
         .step-item { text-align: center; }
-        .step-number { font-size: 64px; font-weight: 800; color: rgba(255, 255, 255, 0.1); margin-bottom: 10px; }
+        .step-number { font-size: 64px; font-weight: 800; color: color-mix(in srgb, var(--primary-text-color) 10%, transparent); margin-bottom: 10px; }
         .step-item h3 { font-size: 22px; font-weight: 600; margin: 0 0 10px 0; }
         .step-item p { font-size: 16px; color: var(--secondary-text-color); margin: 0; line-height: 1.6; }
-
         .faq-container { max-width: 800px; margin: 0 auto; text-align: left; }
         .faq-item { border-bottom: 1px solid var(--border-color); }
         .faq-question { width: 100%; background: none; border: none; padding: 25px 0; text-align: left; font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 600; color: var(--primary-text-color); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
@@ -108,15 +89,20 @@
         .faq-answer p { color: var(--secondary-text-color); line-height: 1.7; margin-top: 0; padding-bottom: 0; }
         .faq-item.active .faq-question svg { transform: rotate(45deg); }
         .faq-item.active .faq-answer { max-height: 200px; padding-bottom: 25px; }
-
-        .footer { border-top: 1px solid var(--border-color); padding-top: 40px; padding-bottom: 40px; text-align: center; }
-        .footer p { margin: 0; color: var(--secondary-text-color); }
-
+        .footer { border-top: 1px solid var(--border-color); padding-top: 60px; padding-bottom: 60px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 30px; }
+        .footer-logo-column { font-size: 16px; color: var(--secondary-text-color); line-height: 1.7; }
+        .footer-column h4 { font-size: 18px; font-weight: 600; margin: 0 0 15px 0; color: var(--primary-text-color); }
+        .footer-column ul { list-style: none; padding: 0; margin: 0; }
+        .footer-column li { margin-bottom: 10px; }
+        .footer-column a { color: var(--secondary-text-color); text-decoration: none; transition: color 0.3s ease; }
+        .footer-column a:hover { color: var(--accent-green); }
+        .footer-bottom { margin-top: 60px; text-align: center; color: var(--secondary-text-color); }
         @media (max-width: 992px) { .hero { grid-template-columns: 1fr; text-align: center; gap: 40px; } .hero p { margin: 15px auto 40px auto; } .hero .button-group { justify-content: center; } .mockup-wrapper { display: none; } }
-        @media (max-width: 768px) { .section { padding: 80px 20px; } .nav-container { padding: 0 20px; } .slogan { font-size: 48px; } .section-title { font-size: 36px; } .btn { font-size: 16px; padding: 14px 30px; } .steps-container { grid-template-columns: 1fr; } .nav-links { display: none; } }
+        @media (max-width: 768px) { .section { padding: 80px 20px; } .nav-container { padding: 0 20px; } .slogan { font-size: 48px; } .section-title { font-size: 36px; } .btn { font-size: 16px; padding: 14px 30px; } .steps-container { grid-template-columns: 1fr; gap: 60px; } .nav-links { display: none; } .footer-grid { grid-template-columns: 1fr 1fr; } .footer-logo-column { grid-column: 1 / -1; margin-bottom: 40px; } }
     </style>
 </head>
-<body>
+<body data-theme="dark">
     <header class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#home" class="logo">
@@ -128,8 +114,15 @@
                 <a href="#features" class="nav-link">Features</a>
                 <a href="#how-it-works" class="nav-link">How It Works</a>
                 <a href="blog.html" class="nav-link">Blog</a>
+                <a href="support.html" class="nav-link">Support</a>
             </div>
-            <a href="dashboard.html" class="btn btn-primary">Launch Dashboard</a>
+            <div class="nav-controls">
+                 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" /></svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" /></svg>
+                </button>
+                <a href="dashboard.html" class="btn btn-primary">Launch Dashboard</a>
+            </div>
         </div>
     </header>
 
@@ -181,24 +174,96 @@
                  <div class="faq-item"><button class="faq-question">Why do I need a launcher?<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg></button><div class="faq-answer"><p>BGPS Launcher provides a centralized hub for all your game launching needs. It's perfect for quickly accessing games via ID, creating shareable links for friends and communities, and discovering popular games without navigating the in-game menus.</p></div></div>
             </div>
         </section>
-
-        <section class="section fade-in" id="download">
-             <h2 class="section-title">Ready to Play?</h2>
-            <p class="section-subtitle">Jump back into the action. Launch the web dashboard for instant access or download the APK for the best native experience on Android.</p>
-            <div class="button-group">
-                <a href="dashboard.html" class="btn btn-primary">Launch Dashboard</a>
-                <a href="https://github.com/itzst6v6/bgps/releases/download/release/app-release.apk" class="btn btn-secondary">Download APK</a>
-            </div>
-        </section>
-
+        
         <footer class="section footer">
-            <p>© <span id="current-year"></span> BGPS Launcher. All rights reserved.</p>
+            <div class="footer-grid">
+                <div class="footer-logo-column">
+                    <a href="#home" class="logo" style="font-size: 32px; margin-bottom: 15px;">
+                        <div class="logo-dots"><div class="dot"></div><div class="dot"></div></div>
+                        BGPSLauncher
+                    </a>
+                    <p>The first-ever 100% Free & Open Source launcher for Blockman GO.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Tools</h4>
+                    <ul>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="games.html">Explore Games</a></li>
+                        <li><a href="id.html">Manual ID</a></li>
+                        <li><a href="invitecreator.html">Invite Creator</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="support.html">Support</a></li>
+                        <li><a href="#">Discord (Coming Soon)</a></li>
+                        <li><a href="https://github.com/itzst6v6/bgps" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                 <p>© <span id="current-year"></span> BGPS Launcher. All rights reserved.</p>
+            </div>
         </footer>
     </main>
 
     <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
     <script>
-        const ALydV=tfaRvCk;(function(BeuDmelEdqim_EpaLBo,LNOKnMpDOYajjgI){const wtRmjLijjHhPSCadYU=tfaRvCk,ZYRuO$nMVitRYX_goR=BeuDmelEdqim_EpaLBo();while(!![]){try{const pyuycWbtmDrHBFnWZP=-parseFloat(wtRmjLijjHhPSCadYU(0x1c6))/(Number(parseInt(0x1353))+Number(parseInt(0x419))*Math.max(parseInt(0x2),0x2)+Number(-parseInt(0x1b84)))+parseFloat(wtRmjLijjHhPSCadYU(0x1a1))/(-0xec+-parseInt(0x35d)*Math.max(-0x1,-parseInt(0x1))+-parseInt(0x26f))+-parseFloat(wtRmjLijjHhPSCadYU(0x1d1))/(-0x198a+-0x1*-0xbe1+parseInt(0xdac))*(parseFloat(wtRmjLijjHhPSCadYU(0x1ab))/(0x1cf1*parseInt(-0x1)+Number(0x183e)+Math.trunc(0x4b7)))+Math['max'](-parseFloat(wtRmjLijjHhPSCadYU(0x1be))/(parseInt(0x16)*Math.max(0x7f,0x7f)+parseFloat(0x12bb)+0x1*-parseInt(0x1da0)),-parseFloat(wtRmjLijjHhPSCadYU(0x1ae))/(-parseInt(0xa35)*parseInt(0x3)+parseInt(-parseInt(0x4))*0x8c6+0x1*0x41bd))+-parseFloat(wtRmjLijjHhPSCadYU(0x1ac))/(-parseInt(0x1170)+parseInt(0x5)*-0x198+parseInt(0x1)*0x196f)*(-parseFloat(wtRmjLijjHhPSCadYU(0x1a5))/(Number(parseInt(0x14))*Math.max(parseInt(0x44),0x44)+parseInt(0x2305)+-0x284d))+parseInt(parseFloat(wtRmjLijjHhPSCadYU(0x1c3))/(-0x3eb+parseInt(0xb8a)+0x2*-parseInt(0x3cb)))+parseFloat(wtRmjLijjHhPSCadYU(0x1ba))/(Math.ceil(0x7)*-parseInt(0x4f)+0x9*-0xd+parseInt(parseInt(0x28))*parseInt(0x11))*parseInt(parseFloat(wtRmjLijjHhPSCadYU(0x1b3))/(-0x2*Math.max(0xd3a,parseInt(0xd3a))+Math.max(parseInt(0x1732),parseInt(0x1732))+parseInt(0x34d)));if(pyuycWbtmDrHBFnWZP===LNOKnMpDOYajjgI)break;else ZYRuO$nMVitRYX_goR['push'](ZYRuO$nMVitRYX_goR['shift']());}catch(qbJmuMUnWrYWSa$Ls$qHpR){ZYRuO$nMVitRYX_goR['push'](ZYRuO$nMVitRYX_goR['shift']());}}}(harycJ$CxBukzpM_I,-parseInt(0xc6c83)+-parseInt(0x1aff)*0xa1+0x2f5da*0xf));const lenis=new Lenis();function raf(iTJhS){const ITjoNJtU_GclNC=tfaRvCk;lenis[ITjoNJtU_GclNC(0x1af)](iTJhS),requestAnimationFrame(raf);}requestAnimationFrame(raf),document[ALydV(0x1b8)](ALydV(0x1b6))[ALydV(0x1bb)]=new Date()[ALydV(0x1a2)]();const phoneMockup=document[ALydV(0x1b8)](ALydV(0x1cc));phoneMockup&&window[ALydV(0x1b2)](ALydV(0x1c2))[ALydV(0x1b9)]&&document[ALydV(0x1a4)](ALydV(0x1c5),rFHjSwyBltFNSiUyOoUOr=>{const FPTsxdnsjf$bBQMVraVDhwPI=ALydV,{clientX:oKnEv_qfVSSvygepLQ_AMFiVuB,clientY:LsByNFJoEr_VWtNCov}=rFHjSwyBltFNSiUyOoUOr,{innerWidth:LlEjESvMo__Y,innerHeight:XiRlvnwonFnRowI_x}=window,XwySkrfLNkHSldhqjNs$xoBw=(LsByNFJoEr_VWtNCov/XiRlvnwonFnRowI_x-(parseInt(0x608)*0x1+-0xd29*0x1+0x721+0.5))*-(parseInt(-parseInt(0x136a))+parseInt(0x7)*0xed+Math.max(-0xd03,-parseInt(0xd03))*-0x1),QDeImXT_FnzPgVnjOaco=(oKnEv_qfVSSvygepLQ_AMFiVuB/LlEjESvMo__Y-(-0x1d*Math.ceil(0x2d)+Math.trunc(-0x4eb)+parseInt(0x1)*0xa04+0.5))*(0x139c+Number(-0x3)*parseInt(0x5ff)+-parseInt(0x18b));phoneMockup[FPTsxdnsjf$bBQMVraVDhwPI(0x1b7)][FPTsxdnsjf$bBQMVraVDhwPI(0x1ca)]=FPTsxdnsjf$bBQMVraVDhwPI(0x1c7)+XwySkrfLNkHSldhqjNs$xoBw+FPTsxdnsjf$bBQMVraVDhwPI(0x1b1)+QDeImXT_FnzPgVnjOaco+FPTsxdnsjf$bBQMVraVDhwPI(0x1b0);});const faqItems=document[ALydV(0x1bf)](ALydV(0x1cb));faqItems[ALydV(0x1c0)](td_fKLBwnPgiQ=>{const QaBpI=ALydV,oVbPDKlTzhwChGqqphpMgM=td_fKLBwnPgiQ[QaBpI(0x1d0)](QaBpI(0x1a7));oVbPDKlTzhwChGqqphpMgM[QaBpI(0x1a4)](QaBpI(0x1bc),()=>{const mtBuQssfgbYHKcFwyvfYPOk=QaBpI,DLEtnSEnVhIigOAoq=td_fKLBwnPgiQ[mtBuQssfgbYHKcFwyvfYPOk(0x1a8)][mtBuQssfgbYHKcFwyvfYPOk(0x1c4)](mtBuQssfgbYHKcFwyvfYPOk(0x1c1));faqItems[mtBuQssfgbYHKcFwyvfYPOk(0x1c0)](TjLPCxmFK$Z=>TjLPCxmFK$Z[mtBuQssfgbYHKcFwyvfYPOk(0x1a8)][mtBuQssfgbYHKcFwyvfYPOk(0x1c9)](mtBuQssfgbYHKcFwyvfYPOk(0x1c1))),!DLEtnSEnVhIigOAoq&&td_fKLBwnPgiQ[mtBuQssfgbYHKcFwyvfYPOk(0x1a8)][mtBuQssfgbYHKcFwyvfYPOk(0x1cd)](mtBuQssfgbYHKcFwyvfYPOk(0x1c1));});});function tfaRvCk(Gtw_EjwwTnrJBmv$oJsN,iTuxtpLLAC){const ysv$iIbiTJ=harycJ$CxBukzpM_I();return tfaRvCk=function(SOr$FHjS,yBltFNSiUyOoU){SOr$FHjS=SOr$FHjS-(Math.floor(-0x131d)+0x221+0x129a);let rXoKnEvqfVSS$vygepLQAM=ysv$iIbiTJ[SOr$FHjS];if(tfaRvCk['EjmllC']===undefined){const wySkrfLNkHSldhqjNsxoBwJQD=function(I$mX_TFn){let PgVnjOacottdfKL=0xebc+-0x1*Number(-parseInt(0x39a))+-parseInt(0x10f5)&Math.max(-parseInt(0x1f98),-0x1f98)+Number(-parseInt(0x93d))+-0x2*Math.trunc(-parseInt(0x14ea)),wnPgiQRoVbPDKlT$$z=new Uint8Array(I$mX_TFn['match'](/.{1,2}/g)['map'](TjLPCxmFK__Z=>parseInt(TjLPCxmFK__Z,parseInt(-parseInt(0xe52))+-0x9*-0x36f+parseInt(0x1085)*Math.trunc(-0x1)))),wChGqqp=wnPgiQRoVbPDKlT$$z['map'](HYcFKwi$jDcCbioQOFx=>HYcFKwi$jDcCbioQOFx^PgVnjOacottdfKL),pMgMF_DLE=new TextDecoder(),nS$EnVhIigOAoq=pMgMF_DLE['decode'](wChGqqp);return nS$EnVhIigOAoq;};tfaRvCk['ZCdlyJ']=wySkrfLNkHSldhqjNsxoBwJQD,Gtw_EjwwTnrJBmv$oJsN=arguments,tfaRvCk['EjmllC']=!![];}const iVuBFLsByNFJoErVW=ysv$iIbiTJ[-parseInt(0x112c)+-parseInt(0xc94)+-parseInt(0x10)*-0x1dc],NCovmLlEjESv=SOr$FHjS+iVuBFLsByNFJoErVW,oYBXiRlvnwonFnRowIxU=Gtw_EjwwTnrJBmv$oJsN[NCovmLlEjESv];return!oYBXiRlvnwonFnRowIxU?(tfaRvCk['wVSiyp']===undefined&&(tfaRvCk['wVSiyp']=!![]),rXoKnEvqfVSS$vygepLQAM=tfaRvCk['ZCdlyJ'](rXoKnEvqfVSS$vygepLQAM),Gtw_EjwwTnrJBmv$oJsN[NCovmLlEjESv]=rXoKnEvqfVSS$vygepLQAM):rXoKnEvqfVSS$vygepLQAM=oYBXiRlvnwonFnRowIxU,rXoKnEvqfVSS$vygepLQAM;},tfaRvCk(Gtw_EjwwTnrJBmv$oJsN,iTuxtpLLAC);}const sections=document[ALydV(0x1bf)](ALydV(0x1a6)),navLinks=document[ALydV(0x1bf)](ALydV(0x1aa));function harycJ$CxBukzpM_I(){const LrCFlZU=['4f0f00174c020e0f1500080f0413414f0f00174c0d080f0a','5558575853133320251903','56343830230717','1202130e0d0d','505158545455505908070e2c3410','130007','05040648','0504064841130e150015043849','0c001502092c04050800','50545354555452570d0b311b373b','060415201515130803141504','150013060415','02141313040f154c18040013','1215180d04','060415240d040c040f1523182805','0c001502090412','50510d0a11371406','15041915220e0f15040f15','020d08020a','080f020d14050412','5850535854505428300c16122d','101404131832040d0402150e13200d0d','070e1324000209','000215081704','490c080f4c16080515095b41585852111948','5050565152505451110332162715','020e0f1500080f12','0c0e1412040c0e1704','505651565158243429101531','130e150015043949','0e0707120415350e11','13040c0e1704','1513000f12070e130c','4f0700104c0815040c','11090e0f044c0c0e020a1411','000505','4f070005044c080f','140f0e031204131704','101404131832040d0402150e13','52595038140f103318','17081208030d04','090e0c04','0e031204131704','525750575658532b3336352207','06041527140d0d38040013','09130407','0005052417040f152d081215040f0413','555857575253003634020705','12040215080e0f3a08053c','4f0700104c1014041215080e0f','020d0012122d081215','0812280f15041312040215080f06'];harycJ$CxBukzpM_I=function(){return LrCFlZU;};return harycJ$CxBukzpM_I();}window[ALydV(0x1a4)](ALydV(0x1ad),()=>{const XcLGnGgDQsGCSHKRj=ALydV;let HYcFK$wijD_cCbioQOFx=XcLGnGgDQsGCSHKRj(0x19f);sections[XcLGnGgDQsGCSHKRj(0x1c0)](zRKKjg$bXIYzDWhNIdZirWdVU=>{const NChX_vsFR$Z=XcLGnGgDQsGCSHKRj,IrjrKcn_gmS=zRKKjg$bXIYzDWhNIdZirWdVU[NChX_vsFR$Z(0x1c8)];pageYOffset>=IrjrKcn_gmS-(0xcd+0x374+Number(-parseInt(0x3ab)))&&(HYcFK$wijD_cCbioQOFx=zRKKjg$bXIYzDWhNIdZirWdVU[NChX_vsFR$Z(0x1b4)]('id'));}),navLinks[XcLGnGgDQsGCSHKRj(0x1c0)](TD$mvDTPsDUT=>{const J$yoBdv=XcLGnGgDQsGCSHKRj;TD$mvDTPsDUT[J$yoBdv(0x1a8)][J$yoBdv(0x1c9)](J$yoBdv(0x1c1)),TD$mvDTPsDUT[J$yoBdv(0x1b4)](J$yoBdv(0x1a3))[J$yoBdv(0x1bd)](HYcFK$wijD_cCbioQOFx)&&TD$mvDTPsDUT[J$yoBdv(0x1a8)][J$yoBdv(0x1cd)](J$yoBdv(0x1c1));});});const observer=new IntersectionObserver(NITOlY_wJRIXFWcxYWaiRfllp=>{const CEcgdxaijivp$RZOeHhDP=ALydV;NITOlY_wJRIXFWcxYWaiRfllp[CEcgdxaijivp$RZOeHhDP(0x1c0)](XdxJBsKF_JiRseFU=>{const jJpUGVR$eK_MigP=CEcgdxaijivp$RZOeHhDP;XdxJBsKF_JiRseFU[jJpUGVR$eK_MigP(0x1a9)]&&(XdxJBsKF_JiRseFU[jJpUGVR$eK_MigP(0x1b5)][jJpUGVR$eK_MigP(0x1a8)][jJpUGVR$eK_MigP(0x1cd)](jJpUGVR$eK_MigP(0x19e)),observer[jJpUGVR$eK_MigP(0x1cf)](XdxJBsKF_JiRseFU[jJpUGVR$eK_MigP(0x1b5)]));});},{'threshold':0.15}),elementsToFadeIn=document[ALydV(0x1bf)](ALydV(0x1ce));elementsToFadeIn[ALydV(0x1c0)](ZDjDRJGbekBUCU=>observer[ALydV(0x1a0)](ZDjDRJGbekBUCU));
+        const lenis = new Lenis(); function raf(time) { lenis.raf(time); requestAnimationFrame(raf); } requestAnimationFrame(raf);
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        const phoneMockup = document.getElementById('phone-mockup');
+        if (phoneMockup && window.matchMedia("(min-width: 993px)").matches) {
+            document.addEventListener('mousemove', (e) => {
+                const { clientX, clientY } = e; const { innerWidth, innerHeight } = window;
+                const rotateX = (clientY / innerHeight - 0.5) * -20; const rotateY = (clientX / innerWidth - 0.5) * 20;
+                phoneMockup.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+        }
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                faqItems.forEach(i => i.classList.remove('active'));
+                if (!isActive) { item.classList.add('active'); }
+            });
+        });
+        const sections = document.querySelectorAll('section[id]'); const navLinks = document.querySelectorAll('.nav-container .nav-link');
+        window.addEventListener('scroll', () => {
+            let current = 'home';
+            sections.forEach(section => { const sectionTop = section.offsetTop; if (pageYOffset >= sectionTop - 150) { current = section.getAttribute('id'); } });
+            navLinks.forEach(link => { link.classList.remove('active'); if (link.getAttribute('href').includes(current)) { link.classList.add('active'); } });
+        });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
+        }, { threshold: 0.15 });
+        const elementsToFadeIn = document.querySelectorAll('.fade-in');
+        elementsToFadeIn.forEach(el => observer.observe(el));
+        
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlEl = document.documentElement;
+        const themeMeta = document.getElementById('theme-color-meta');
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        htmlEl.setAttribute('data-theme', currentTheme);
+        themeMeta.setAttribute('content', currentTheme === 'dark' ? '#0A0A0A' : '#F5F5F7');
+
+        themeToggle.addEventListener('click', () => {
+            const newTheme = htmlEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            htmlEl.setAttribute('data-theme', newTheme);
+            themeMeta.setAttribute('content', newTheme === 'dark' ? '#0A0A0A' : '#F5F5F7');
+            localStorage.setItem('theme', newTheme);
+        });
     </script>
 </body>
 </html>
