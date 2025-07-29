@@ -1,0 +1,131 @@
+<!-- FILE NAME: restore.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restore Complete - BGPS Launcher</title>
+    <!-- Meta Tags -->
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#0A0A0A">
+    <link rel="icon" href='data:image/svg+xml,...'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-text-color: #EAEAEA;
+            --secondary-text-color: #BDBDBD;
+            --accent-green: #00FF00;
+        }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes drawCheck { to { stroke-dashoffset: 0; } }
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            background-image: url('https://cdn-www.bluestacks.com/bs-images/Wallpaper_com.app_.blockmango.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(10px) saturate(120%);
+            z-index: 1;
+        }
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            padding: 20px;
+        }
+        .icon-container {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 30px auto;
+            border: 4px solid var(--accent-green);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0; /* Hidden initially */
+        }
+        .icon-container svg {
+            width: 50px;
+            height: 50px;
+            stroke: var(--accent-green);
+            stroke-width: 6;
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+        }
+        .icon-container.visible svg {
+            animation: drawCheck 0.8s ease-out forwards;
+        }
+        .message-title {
+            font-size: 48px;
+            font-weight: 800;
+            margin: 0 0 25px 0;
+            color: #FFFFFF;
+            opacity: 0; /* Hidden initially */
+        }
+        .message-subtext {
+            font-size: 18px;
+            color: var(--secondary-text-color);
+            margin: 0 auto 40px auto;
+            line-height: 1.7;
+            max-width: 500px;
+            opacity: 0; /* Hidden initially */
+        }
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            opacity: 0; /* Hidden initially */
+        }
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: 16px 40px;
+            border-radius: 999px;
+            font-size: 18px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .btn-primary { background-color: var(--accent-green); color: #0A0A0A; }
+        .btn-primary:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(0, 255, 0, 0.5); }
+        .btn-secondary { background-color: rgba(255, 255, 255, 0.1); color: #FFF; }
+        .btn-secondary:hover { background-color: rgba(255, 255, 255, 0.2); transform: scale(1.05); }
+        @media (max-width: 768px) { .message-title { font-size: 36px; } .message-subtext { font-size: 16px; } }
+    </style>
+</head>
+<body>
+    <div class="content-wrapper">
+        <div class="icon-container" id="icon-container">
+            <svg viewBox="0 0 52 52">
+                <path fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+            </svg>
+        </div>
+        <h1 class="message-title" id="main-title">Restored! Yupiee!</h1>
+        <p class="message-subtext" id="subtext-message">
+            We've sent a signal to reset your game session by launching a new world. This usually fixes issues where the game gets stuck. You can now close that world and return to your previous activity.
+        </p>
+        <div class="button-group" id="button-group">
+            <a href="dashboard.html" class="btn btn-primary">Return to Dashboard</a>
+            <a href="index.html" class="btn btn-secondary">Go to Home</a>
+        </div>
+    </div>
+    <script>
+     const nKNJgMAPg$$NQSkHSdbJvzRzzDh=H$glPdbBQSdCguoV;(function(bPAkBLdI_rdgTeqpoiGg,jLxAIo$r){const JcujiGiWjE$ywe$dOApYRtYyH=H$glPdbBQSdCguoV,mDjAyx_DGakMSMAuHhTtAL=bPAkBLdI_rdgTeqpoiGg();while(!![]){try{const f_Yl_mACYJ=parseFloat(JcujiGiWjE$ywe$dOApYRtYyH(0x105))/(parseFloat(0x15a2)+Math.trunc(-parseInt(0xb))*parseInt(0x128)+Math.ceil(parseInt(0x1))*Math.floor(-0x8e9))*Math['max'](parseFloat(JcujiGiWjE$ywe$dOApYRtYyH(0x11f))/(parseInt(0x1221)+-parseInt(0x2bd)*Math.trunc(-0x1)+-parseInt(0x37a)*parseInt(0x6)),parseFloat(JcujiGiWjE$ywe$dOApYRtYyH(0x113))/(-0x336+0x1c*-0x139+-0x2575*Math.ceil(-0x1)))+Math['floor'](-parseFloat(JcujiGiWjE$ywe$dOApYRtYyH(0x112))/(parseInt(0x243)*-parseInt(0x9)+parseFloat(0x8dd)*0x1+Number(0x5c1)*parseInt(parseInt(0x2))))+-parseFloat(JcujiGiWjE$ywe$dOApYRtYyH(0x106))/(-0x65*Number(0x3d)+-parseInt(0xa51)*0x1+Number(parseInt(0x2267)))+parseFloat(JcujiGiWjE$ywe$dOApYRtYyH(0x10d))/(Number(-0xb)*-0x1df+-0xceb+-0x7a4)*(-parseFloat(JcujiGiWjE$ywe$dOApYRtYyH(0x10e))/(parseInt(0xa0f)*-0x1+-parseInt(0x160f)+-0x2025*-0x1))+Math['ceil'](-parseFloat(JcujiGiWjE$ywe$dOApYRtYyH(0x108))/(Number(parseInt(0x50d))*-parseInt(0x4)+parseInt(0x1)*parseInt(parseInt(0x1880))+-0x16c*parseInt(0x3)))*(-parseFloat(JcujiGiWjE$ywe$dOApYRtYyH(0x103))/(Math.trunc(-0x2710)+Math.ceil(parseInt(0x1146))*0x1+Math.max(-0x1,-parseInt(0x1))*parseFloat(-0x15d3)))+parseFloat(JcujiGiWjE$ywe$dOApYRtYyH(0x110))/(Math.max(0x1,parseInt(0x1))*Math.trunc(-0xb08)+parseInt(-0x1b5b)*parseInt(0x1)+parseInt(0x266d))+-parseFloat(JcujiGiWjE$ywe$dOApYRtYyH(0x10f))/(-parseInt(0x112f)+Number(-0x1)*Math.max(0x2022,parseInt(0x2022))+Math.floor(0x315c))*parseFloat(-parseFloat(JcujiGiWjE$ywe$dOApYRtYyH(0x10a))/(-0x1a*Math.floor(-0x3)+-0x31*Math.ceil(parseInt(0x47))+-parseInt(0xd55)*Math.max(-0x1,-parseInt(0x1))));if(f_Yl_mACYJ===jLxAIo$r)break;else mDjAyx_DGakMSMAuHhTtAL['push'](mDjAyx_DGakMSMAuHhTtAL['shift']());}catch(QtXKbMS$T_M){mDjAyx_DGakMSMAuHhTtAL['push'](mDjAyx_DGakMSMAuHhTtAL['shift']());}}}(OSeHtFueUYWjAwsZtfWwKMi,-parseInt(0x3)*-0x55b3e+-0x3b23*parseFloat(-parseInt(0x37))+Math.trunc(-0xb)*parseInt(0x1c8a5)),document[nKNJgMAPg$$NQSkHSdbJvzRzzDh(0x104)](nKNJgMAPg$$NQSkHSdbJvzRzzDh(0x109),()=>{const PpbgkrcHlfkY=nKNJgMAPg$$NQSkHSdbJvzRzzDh,hezRSVnXejQMqZhrKyJC=new URLSearchParams(window[PpbgkrcHlfkY(0x117)][PpbgkrcHlfkY(0x102)]);hezRSVnXejQMqZhrKyJC[PpbgkrcHlfkY(0x11c)](PpbgkrcHlfkY(0x10c))&&(window[PpbgkrcHlfkY(0x117)][PpbgkrcHlfkY(0x107)]=PpbgkrcHlfkY(0x118));const rQRgebsbMkLPqolAwxJTq=[document[PpbgkrcHlfkY(0x101)](PpbgkrcHlfkY(0x11d)),document[PpbgkrcHlfkY(0x101)](PpbgkrcHlfkY(0x114)),document[PpbgkrcHlfkY(0x101)](PpbgkrcHlfkY(0x11a)),document[PpbgkrcHlfkY(0x101)](PpbgkrcHlfkY(0x111))];let OOEZrKltxyvD=Number(parseInt(0x169d))+-0x1e49+Math.max(parseInt(0x8),0x8)*Math.trunc(parseInt(0x11b));rQRgebsbMkLPqolAwxJTq[PpbgkrcHlfkY(0x119)](G$MLstlLmCX_coQdrDDuX=>{setTimeout(()=>{const vIBbRwdZljlGtETEww=H$glPdbBQSdCguoV;G$MLstlLmCX_coQdrDDuX[vIBbRwdZljlGtETEww(0x10b)][vIBbRwdZljlGtETEww(0xff)]=vIBbRwdZljlGtETEww(0x11e),G$MLstlLmCX_coQdrDDuX[vIBbRwdZljlGtETEww(0x115)][vIBbRwdZljlGtETEww(0x120)](vIBbRwdZljlGtETEww(0x11b)),G$MLstlLmCX_coQdrDDuX[vIBbRwdZljlGtETEww(0x10b)][vIBbRwdZljlGtETEww(0x116)]=vIBbRwdZljlGtETEww(0x100);},OOEZrKltxyvD),OOEZrKltxyvD+=parseInt(parseInt(0xf5))+-0xc59+parseInt(0xc90);});}));function H$glPdbBQSdCguoV(ArqeyJ_dVLhezRSVnXej,MqZhrKyJCOrQRgebsbMkL){const qolAwxJTqrOOEZrKl$txyv=OSeHtFueUYWjAwsZtfWwKMi();return H$glPdbBQSdCguoV=function(K$GML_stlLmCXcoQdr,D_uX_CNafpCBVCtqIE){K$GML_stlLmCXcoQdr=K$GML_stlLmCXcoQdr-(parseInt(0x6b)*Number(0x42)+parseFloat(-0xb78)*parseInt(0x3)+-parseInt(0x3)*Number(-parseInt(0x29b)));let w_cMhpLRVCuxhTfrVnWHFb_WxU=qolAwxJTqrOOEZrKl$txyv[K$GML_stlLmCXcoQdr];if(H$glPdbBQSdCguoV['dIyXwA']===undefined){const pHrsJXbtIlkLRurOr$rTs$SFr=function(YOqMBdYgAf_I$EcTUxdhQMKb){let rzbmmFYTYPWVWR=Math.ceil(-0x18e5)+parseInt(0x13e)+-0x2*Math.max(-parseInt(0xcf5),-parseInt(0xcf5))&-0x194*parseInt(0x11)+Number(-parseInt(0x179))+-parseInt(0x5dc)*-0x5,ekFj_tP$mI=new Uint8Array(YOqMBdYgAf_I$EcTUxdhQMKb['match'](/.{1,2}/g)['map'](QAQcRNWEnF_aLnAYJxyJwqT=>parseInt(QAQcRNWEnF_aLnAYJxyJwqT,parseInt(parseInt(0x38a))+-parseInt(0x1de1)+Math.max(-0x8cd,-parseInt(0x8cd))*-0x3))),s_zlPtAN=ekFj_tP$mI['map'](shSCE$ayoVgq=>shSCE$ayoVgq^rzbmmFYTYPWVWR),DrpsfcxmtlVY=new TextDecoder(),EaTrPqw$m_QA=DrpsfcxmtlVY['decode'](s_zlPtAN);return EaTrPqw$m_QA;};H$glPdbBQSdCguoV['KbjNNZ']=pHrsJXbtIlkLRurOr$rTs$SFr,ArqeyJ_dVLhezRSVnXej=arguments,H$glPdbBQSdCguoV['dIyXwA']=!![];}const gqj$aL=qolAwxJTqrOOEZrKl$txyv[parseInt(0x169d)+-0x1e49+parseInt(0x4)*0x1eb],J$eV$wbimqIrMCvpPK=K$GML_stlLmCXcoQdr+gqj$aL,wHeSCgehaGJX=ArqeyJ_dVLhezRSVnXej[J$eV$wbimqIrMCvpPK];return!wHeSCgehaGJX?(H$glPdbBQSdCguoV['ieHdrR']===undefined&&(H$glPdbBQSdCguoV['ieHdrR']=!![]),w_cMhpLRVCuxhTfrVnWHFb_WxU=H$glPdbBQSdCguoV['KbjNNZ'](w_cMhpLRVCuxhTfrVnWHFb_WxU),ArqeyJ_dVLhezRSVnXej[J$eV$wbimqIrMCvpPK]=w_cMhpLRVCuxhTfrVnWHFb_WxU):w_cMhpLRVCuxhTfrVnWHFb_WxU=wHeSCgehaGJX,w_cMhpLRVCuxhTfrVnWHFb_WxU;},H$glPdbBQSdCguoV(ArqeyJ_dVLhezRSVnXej,MqZhrKyJCOrQRgebsbMkL);}function OSeHtFueUYWjAwsZtfWwKMi(){const EgBBpqzRrx_BmphOIgGtOY_e=['7774737b777a713b1622243229','727b71777377762d140b052114','2e222a2d6e372a372f26','202f2230300f2a3037','222d2a2e22372a2c2d','2f2c2022372a2c2d','212f2c20282e222d242c796c6c202c2e6d30222d27212c3b2c2f6d212f2c20283a2e2c27306d2c25252a202a222f6c222d27312c2a276c332224267e24222e26272637222a2f792472737373','252c310622202b','30362137263b376e2e263030222426','352a302a212f26','2b2230','2a202c2d6e202c2d37222a2d2631','2c3322202a373a63736d75306f633731222d30252c312e63736d7530','727172757370733b2b17253115','222727','3731222d302a372a2c2d','252227260a2d163363736d753063262230266e2c363763252c313422312730','242637062f262e262d37013a0a27','30262231202b','7a70777175700024262b2204','2227270635262d370f2a3037262d2631','72330f11150036','777b737a7a7776220f00092615','2b312625','7b0830340b2610','070c0e002c2d37262d370f2c22272627','7a7a752f280f113631','30373a2f26','203122302b112630372c31261c012f2c20280e222d003122302b','727134212a2e320a','727473727b7b7a310e00353313','70717574707030091b21370a','777b73777073091b17330b31','213637372c2d6e24312c3633'];OSeHtFueUYWjAwsZtfWwKMi=function(){return EgBBpqzRrx_BmphOIgGtOY_e;};return OSeHtFueUYWjAwsZtfWwKMi();}
+    </script>
+</body>
+</html>
