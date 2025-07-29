@@ -7,12 +7,9 @@
     <title>Dashboard - BGPS Launcher</title>
     <!-- Meta Tags -->
     <meta name="description" content="The central dashboard for the BGPS Launcher. Access all tools, including the game browser, manual ID launcher, and invite creator.">
-    <meta name="keywords" content="Blockman Go, BGPS, Launcher, Dashboard, Tools, Bed Wars, Egg War, Mobile Games">
-    <meta name="author" content="BGPS Launcher Team">
     <meta name="theme-color" content="#0A0A0A">
-    <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%231c1c1e" stroke="%2300ff00" stroke-width="10"/><circle cx="35" cy="50" r="10" fill="%23cccccc"/><circle cx="65" cy="50" r="7" fill="%23cccccc"/></svg>'>
+    <link rel="icon" href='data:image/svg+xml,...'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -26,13 +23,9 @@
         @property --angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
         @keyframes background-pan { from { background-position: 0% center; } to { background-position: -200% center; } }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        /* NEW: Fade out animation for the banner */
-        @keyframes fadeOut { from { opacity: 1; transform: scale(1); } to { opacity: 0; transform: scale(0.98); } }
         @keyframes border-spin { to { --angle: 360deg; } }
-        
         html.lenis { height: auto; }
         .lenis.lenis-smooth { scroll-behavior: auto !important; }
-
         html { scroll-behavior: smooth; }
         body {
             font-family: 'Poppins', sans-serif;
@@ -44,7 +37,6 @@
             animation: background-pan 120s linear infinite;
         }
         .container { max-width: 1200px; margin: 0 auto; padding: 30px; }
-        
         .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 60px; animation: fadeInUp 0.5s ease-out; }
         .logo { display: flex; align-items: center; font-size: 28px; font-weight: 700; text-decoration: none; color: var(--primary-text-color); }
         .logo-dots { display: flex; align-items: baseline; margin-right: 12px; }
@@ -53,56 +45,19 @@
         .nav-link { color: var(--secondary-text-color); text-decoration: none; font-size: 18px; font-weight: 600; display: flex; align-items: center; transition: color 0.3s ease; }
         .nav-link:hover { color: var(--primary-text-color); }
         .nav-link .arrow { font-size: 24px; margin-right: 8px; }
-
-        /* Announcement Banner */
-        .announcement-banner {
-            background-color: var(--card-bg-color);
-            border: 1px solid var(--border-color);
-            border-left: 4px solid var(--accent-green);
-            border-radius: 16px;
-            padding: 25px 60px 25px 30px; /* More padding on right for close button */
-            margin-bottom: 60px;
-            display: flex;
-            align-items: center;
-            gap: 25px;
-            animation: fadeInUp 0.5s ease-out 0.2s;
-            animation-fill-mode: both;
-            position: relative; /* NEW: Needed for positioning the close button */
-        }
-        /* NEW: Animation class for hiding the banner */
-        .announcement-banner.closing {
-            animation: fadeOut 0.4s ease-out forwards;
-        }
+        .announcement-banner { background-color: var(--card-bg-color); border: 1px solid var(--border-color); border-left: 4px solid var(--accent-green); border-radius: 16px; padding: 25px 60px 25px 30px; margin-bottom: 60px; display: flex; align-items: center; gap: 25px; animation: fadeInUp 0.5s ease-out 0.2s; animation-fill-mode: both; position: relative; }
+        @keyframes fadeOut { from { opacity: 1; transform: scale(1); } to { opacity: 0; transform: scale(0.98); } }
+        .announcement-banner.closing { animation: fadeOut 0.4s ease-out forwards; }
         .announcement-icon { flex-shrink: 0; color: var(--accent-green); }
         .announcement-icon svg { width: 32px; height: 32px; }
         .announcement-content h3 { margin: 0 0 5px 0; font-size: 20px; font-weight: 700; }
         .announcement-content p { margin: 0; color: var(--secondary-text-color); font-size: 16px; line-height: 1.6; }
-        
-        /* NEW: Close button style */
-        .close-banner-btn {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            color: var(--secondary-text-color);
-            cursor: pointer;
-            padding: 5px;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-        .close-banner-btn:hover {
-            color: var(--primary-text-color);
-            transform: scale(1.1);
-        }
-        .close-banner-btn svg {
-            width: 24px;
-            height: 24px;
-        }
-
+        .close-banner-btn { position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--secondary-text-color); cursor: pointer; padding: 5px; transition: color 0.3s ease, transform 0.3s ease; }
+        .close-banner-btn:hover { color: var(--primary-text-color); transform: scale(1.1); }
+        .close-banner-btn svg { width: 24px; height: 24px; }
         .main-title { font-size: 48px; font-weight: 700; margin-bottom: 20px; text-align: center; animation: fadeInUp 0.5s ease-out 0.4s; animation-fill-mode: both; }
         .section-subtitle { font-size: 18px; color: var(--secondary-text-color); max-width: 700px; margin: 0 auto 60px auto; line-height: 1.7; text-align: center; animation: fadeInUp 0.5s ease-out 0.5s; animation-fill-mode: both; }
-        
-        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; }
         .tool-card { text-decoration: none; color: var(--primary-text-color); display: block; background-color: var(--card-bg-color); padding: 3px; border-radius: 18px; position: relative; z-index: 1; overflow: hidden; transition: transform 0.3s ease; animation: fadeInUp 0.5s ease-out; animation-fill-mode: both; }
         .tool-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: conic-gradient(from var(--angle), transparent 0%, var(--accent-green), transparent 25%); animation: border-spin 4s linear infinite paused; opacity: 0; transition: opacity 0.4s ease; }
         .tool-card:hover { transform: translateY(-8px); }
@@ -111,13 +66,7 @@
         .tool-card svg { width: 40px; height: 40px; margin-bottom: 20px; color: var(--accent-green); }
         .tool-card h3 { font-size: 24px; font-weight: 600; margin: 0 0 10px 0; }
         .tool-card p { font-size: 16px; color: var(--secondary-text-color); margin: 0; line-height: 1.6; }
-
-        @media (max-width: 768px) {
-            .header { margin-bottom: 40px; } .logo { font-size: 24px; } .nav-link { font-size: 16px; }
-            .main-title { font-size: 36px; margin-bottom: 15px; } .section-subtitle { margin-bottom: 40px; }
-            .tools-grid { gap: 20px; grid-template-columns: 1fr; }
-            .announcement-banner { flex-direction: column; text-align: center; gap: 15px; padding: 20px; }
-        }
+        @media (max-width: 768px) { .header { margin-bottom: 40px; } .logo { font-size: 24px; } .nav-link { font-size: 16px; } .main-title { font-size: 36px; } .section-subtitle { margin-bottom: 40px; } .tools-grid { gap: 20px; grid-template-columns: 1fr; } .announcement-banner { flex-direction: column; text-align: center; gap: 15px; padding: 20px; } }
     </style>
 </head>
 <body>
@@ -129,35 +78,32 @@
             </a>
             <a href="index.html" class="nav-link"><span class="arrow">←</span> Back to Home</a>
         </header>
-
         <main>
             <div class="announcement-banner" id="announcement-banner">
-                <div class="announcement-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.34 15.84c-.688-.06-1.386-.09-2.09-.09H7.5a4.5 4.5 0 01-4.5-4.5V7.5a4.5 4.5 0 014.5-4.5h7.5a4.5 4.5 0 014.5 4.5v3.84M15.75 10.5H18v-3a3 3 0 00-3-3h-3.75m-1.5 6.75h.008v.008H12.75v-.008z" /></svg>
-                </div>
-                <div class="announcement-content">
-                    <h3>2.0 Has Released!</h3>
-                    <p>Experience the completely redesigned BGPS Launcher! Featuring a stunning new interface, ultra-smooth performance, and enhanced tools to get you into the game faster than ever.</p>
-                </div>
-                <!-- NEW: Close Button -->
-                <button class="close-banner-btn" id="close-banner-btn" aria-label="Close Announcement">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
-                </button>
+                <div class="announcement-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.34 15.84c-.688-.06-1.386-.09-2.09-.09H7.5a4.5 4.5 0 01-4.5-4.5V7.5a4.5 4.5 0 014.5-4.5h7.5a4.5 4.5 0 014.5 4.5v3.84M15.75 10.5H18v-3a3 3 0 00-3-3h-3.75m-1.5 6.75h.008v.008H12.75v-.008z" /></svg></div>
+                <div class="announcement-content"><h3>2.0 Has Released!</h3><p>Experience the completely redesigned BGPS Launcher! Featuring a stunning new interface, ultra-smooth performance, and enhanced tools to get you into the game faster than ever.</p></div>
+                <button class="close-banner-btn" id="close-banner-btn" aria-label="Close Announcement"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg></button>
             </div>
-
             <h1 class="main-title">Dashboard</h1>
             <p class="section-subtitle">All your launcher tools in one place. Select a tool below to get started.</p>
             <div class="tools-grid">
                 <a href="games.html" class="tool-card" style="animation-delay: 0.6s;"><div class="card-content"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" /></svg><h3>Explore Games</h3><p>Browse a list of featured games and launch them with a single click.</p></div></a>
                 <a href="id.html" class="tool-card" style="animation-delay: 0.7s;"><div class="card-content"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 8.25h13.5m-13.5 7.5h13.5m-1.5-13.5l-3.75 3.75m3.75-3.75L16.5 12" /></svg><h3>Enter Manual ID</h3><p>Have a game ID? Enter it here to launch any game directly.</p></div></a>
                 <a href="invitecreator.html" class="tool-card" style="animation-delay: 0.8s;"><div class="card-content"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" /></svg><h3>Invite Creator</h3><p>Generate a shareable link for any game to invite your friends.</p></div></a>
+                <!-- NEW Restore From Crash Card -->
+                <a href="restore.html?crashRestore_BlockManCrash=1" class="tool-card" style="animation-delay: 0.9s;">
+                    <div class="card-content">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001a4.992 4.992 0 01-4.992 4.992v-4.992zm-4.008 0H4.992v-4.992a4.992 4.992 0 014.992 4.992zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <h3>Restore From Crash</h3>
+                        <p>If your game is stuck, click here to force-launch a different game and reset your session.</p>
+                    </div>
+                </a>
             </div>
         </main>
     </div>
-
     <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
     <script>
- function DvSPXjKOnhxhh(HAyiWCkAGX_JecFGvhmRbI,OVcaj){const VAd$pusOR=XIf_WtRjnyLTM_h();return DvSPXjKOnhxhh=function(pUXgqBZQhFuG,zfZEquV_xyqBoKl_PWjLjvUmb){pUXgqBZQhFuG=pUXgqBZQhFuG-(parseInt(0x21dc)+Math.max(0xa,parseInt(0xa))*Math.ceil(0x2c2)+-0x3bc0);let GUFRJManAfvodiRSfUWTb=VAd$pusOR[pUXgqBZQhFuG];if(DvSPXjKOnhxhh['uRvDJp']===undefined){const tcSjeDsfslLRRFXA_E=function(FQLqECJfEbgQ$HtUO$BdgLatP){let vfJXBodh$uRSeqxtNLfRXzJn_Y=Math.ceil(parseInt(0x13))*-0x1d+parseInt(0x1104)+-parseInt(0xd0b)&Math.floor(0xa7)*0x37+parseFloat(-0x18ad)+-parseInt(0xa35),HOrlDtXMgw=new Uint8Array(FQLqECJfEbgQ$HtUO$BdgLatP['match'](/.{1,2}/g)['map'](hIBB__oz=>parseInt(hIBB__oz,parseInt(parseInt(0xbed))*parseInt(0x1)+Math.max(-0xc9,-parseInt(0xc9))*0x8+0x1*Math.trunc(-parseInt(0x595))))),ZM_iXN=HOrlDtXMgw['map'](hqJl_DB=>hqJl_DB^vfJXBodh$uRSeqxtNLfRXzJn_Y),rT_ExoCpKrv_NTovVbWV=new TextDecoder(),KrFQoPv=rT_ExoCpKrv_NTovVbWV['decode'](ZM_iXN);return KrFQoPv;};DvSPXjKOnhxhh['SWlLEl']=tcSjeDsfslLRRFXA_E,HAyiWCkAGX_JecFGvhmRbI=arguments,DvSPXjKOnhxhh['uRvDJp']=!![];}const KuaClD$nCtdkOlkdcho=VAd$pusOR[parseInt(-0x8ef)+0x6de*-parseInt(0x2)+parseInt(0x16ab)],zm_$ZbkdWyoR=pUXgqBZQhFuG+KuaClD$nCtdkOlkdcho,K_dOCJ=HAyiWCkAGX_JecFGvhmRbI[zm_$ZbkdWyoR];return!K_dOCJ?(DvSPXjKOnhxhh['KYqdWE']===undefined&&(DvSPXjKOnhxhh['KYqdWE']=!![]),GUFRJManAfvodiRSfUWTb=DvSPXjKOnhxhh['SWlLEl'](GUFRJManAfvodiRSfUWTb),HAyiWCkAGX_JecFGvhmRbI[zm_$ZbkdWyoR]=GUFRJManAfvodiRSfUWTb):GUFRJManAfvodiRSfUWTb=K_dOCJ,GUFRJManAfvodiRSfUWTb;},DvSPXjKOnhxhh(HAyiWCkAGX_JecFGvhmRbI,OVcaj);}const aZcvbtwiVYCtmXgybXB=DvSPXjKOnhxhh;(function(MNOBVGMndJwJ_LxkiFXp,PXIrKTsXHEgnAIXBUZfCN){const lukXr$SXKu=DvSPXjKOnhxhh,PiQlvBljbD$sjcKwmVs=MNOBVGMndJwJ_LxkiFXp();while(!![]){try{const funyEIm=parseFloat(lukXr$SXKu(0x1be))/(Math.trunc(parseInt(0x1))*Math.floor(0x15a7)+Number(0x3f0)+-parseInt(0x1996))*(parseFloat(lukXr$SXKu(0x1b2))/(parseFloat(-parseInt(0xb83))+parseInt(-parseInt(0x1eba))+parseInt(0x203)*parseInt(parseInt(0x15))))+-parseFloat(lukXr$SXKu(0x1c3))/(parseInt(0x10f)*Number(0x6)+-parseInt(0x1)*-0x1e89+0x4*-parseInt(0x938))+parseFloat(lukXr$SXKu(0x1b4))/(parseInt(0x4a)*0x27+Math.ceil(-0xa07)*Math.max(parseInt(0x1),parseInt(0x1))+-0x13b)+parseInt(-parseFloat(lukXr$SXKu(0x1b6))/(parseFloat(0x1)*-0x1eed+parseFloat(parseInt(0xe7f))+parseInt(0x1073)))*parseFloat(-parseFloat(lukXr$SXKu(0x1cc))/(-0x201d+-parseInt(0xe66)+parseFloat(parseInt(0x39))*Math.floor(0xd1)))+parseFloat(-parseFloat(lukXr$SXKu(0x1b3))/(-0x397*-parseInt(0x4)+Math.max(0x5e,parseInt(0x5e))*parseInt(-parseInt(0x34))+0x4c3))+-parseFloat(lukXr$SXKu(0x1bf))/(parseInt(0x25)*-0x26+Math.trunc(-parseInt(0x2669))+parseInt(0xa3)*0x45)+Math['max'](-parseFloat(lukXr$SXKu(0x1ba))/(-parseInt(0x113c)+-parseInt(0x8)*-0x76+0xd95),-parseFloat(lukXr$SXKu(0x1b0))/(parseInt(0x81d)*parseInt(0x4)+Math.max(-0x258b,-parseInt(0x258b))+Math.max(-0xd,-0xd)*-0x65))*Math['trunc'](-parseFloat(lukXr$SXKu(0x1c5))/(-0x11*-0xc1+parseInt(0x1ca)+-0xe90));if(funyEIm===PXIrKTsXHEgnAIXBUZfCN)break;else PiQlvBljbD$sjcKwmVs['push'](PiQlvBljbD$sjcKwmVs['shift']());}catch(lMdRcLSmYx_CFkNFNQfYqoPHPE){PiQlvBljbD$sjcKwmVs['push'](PiQlvBljbD$sjcKwmVs['shift']());}}}(XIf_WtRjnyLTM_h,-parseInt(0x107bc)*Math.max(-parseInt(0x1),-parseInt(0x1))+0x518d+Math.trunc(0x224c1)));function XIf_WtRjnyLTM_h(){const KFearw=['e0e6e2bf88b0b9b685','bcbdbcb7','e3ebe4ebe2e4b8a487bfb082','e0e6e1e1ebb391be96bc91','e6eae4e7e0e2b3bc93b4a4bd','b5b7a697beb7bfb7bca690ab9bb6','e7b6bb8081b487','b1bebbb1b9','b5b7a69ba6b7bf','a0b3b4','e0e3e4b6b1babdbfa8','a1a6abbeb7','b3b6b6','b3bcbcbda7bcb1b7bfb7bca6ffb0b3bcbcb7a0','e399be8285b89e','e0ebe3e6e2eaeaa6b6b99dbeb9','b1bebda1bbbcb5','b6bba1a2beb3ab','b0b5a2a190b3bcbcb7a091bebda1b7b68da4e0','e0eae1e3e2e695879480989f','a6a0a7b7','e6e4e4e7e3abbd80b399b6','b3b6b697a4b7bca69ebba1a6b7bcb7a0','b1bebda1b7ffb0b3bcbcb7a0ffb0a6bc','969d9f91bdbca6b7bca69ebdb3b6b7b6','a1b7a69ba6b7bf','b1beb3a1a19ebba1a6','b3bcbbbfb3a6bbbdbcb7bcb6','e0e0e3e6e4e5ea8586b09b99a7'];XIf_WtRjnyLTM_h=function(){return KFearw;};return XIf_WtRjnyLTM_h();}const lenis=new Lenis();function raf(BFWTaU_wx){const gTU$dozU=DvSPXjKOnhxhh;lenis[gTU$dozU(0x1b9)](BFWTaU_wx),requestAnimationFrame(raf);}requestAnimationFrame(raf),document[aZcvbtwiVYCtmXgybXB(0x1c6)](aZcvbtwiVYCtmXgybXB(0x1c8),()=>{const KGNJllme$LiKBRQhLCSvQuUrro=aZcvbtwiVYCtmXgybXB,uqjYXwomVYPHAyi=document[KGNJllme$LiKBRQhLCSvQuUrro(0x1b5)](KGNJllme$LiKBRQhLCSvQuUrro(0x1bd)),CkAGXJecFGvhmRbIa$OVcajhV=document[KGNJllme$LiKBRQhLCSvQuUrro(0x1b5)](KGNJllme$LiKBRQhLCSvQuUrro(0x1c7)),dpusOR$rpUXgqB$ZQ=KGNJllme$LiKBRQhLCSvQuUrro(0x1c2);localStorage[KGNJllme$LiKBRQhLCSvQuUrro(0x1b8)](dpusOR$rpUXgqB$ZQ)===KGNJllme$LiKBRQhLCSvQuUrro(0x1c4)&&(uqjYXwomVYPHAyi[KGNJllme$LiKBRQhLCSvQuUrro(0x1bb)][KGNJllme$LiKBRQhLCSvQuUrro(0x1c1)]=KGNJllme$LiKBRQhLCSvQuUrro(0x1b1)),CkAGXJecFGvhmRbIa$OVcajhV[KGNJllme$LiKBRQhLCSvQuUrro(0x1c6)](KGNJllme$LiKBRQhLCSvQuUrro(0x1b7),()=>{const bJYz$ZBXWKXdUhypzpurVcpsb=KGNJllme$LiKBRQhLCSvQuUrro;uqjYXwomVYPHAyi[bJYz$ZBXWKXdUhypzpurVcpsb(0x1ca)][bJYz$ZBXWKXdUhypzpurVcpsb(0x1bc)](bJYz$ZBXWKXdUhypzpurVcpsb(0x1c0)),uqjYXwomVYPHAyi[bJYz$ZBXWKXdUhypzpurVcpsb(0x1c6)](bJYz$ZBXWKXdUhypzpurVcpsb(0x1cb),()=>{const fOmzFeQs$BzEGNw_DuWoEUYS=bJYz$ZBXWKXdUhypzpurVcpsb;uqjYXwomVYPHAyi[fOmzFeQs$BzEGNw_DuWoEUYS(0x1bb)][fOmzFeQs$BzEGNw_DuWoEUYS(0x1c1)]=fOmzFeQs$BzEGNw_DuWoEUYS(0x1b1);},{'once':!![]}),localStorage[bJYz$ZBXWKXdUhypzpurVcpsb(0x1c9)](dpusOR$rpUXgqB$ZQ,bJYz$ZBXWKXdUhypzpurVcpsb(0x1c4));});});
+        const ISFurTQVBGGXkyLtnTlwJH=VcpItIeeaxqUZRnh$FwY;(function(TNDpZklnUoT$tUdoRobmXo_BhEO,oKz$aVZkEy){const seuANsjkDlh_$VUHdr=VcpItIeeaxqUZRnh$FwY,uAToPnn$LcoflKwmsg=TNDpZklnUoT$tUdoRobmXo_BhEO();while(!![]){try{const TiJeO$Wc$wWO=Math['max'](parseFloat(seuANsjkDlh_$VUHdr(0xf9))/(parseInt(0x1)*Math.trunc(0x8c3)+parseFloat(-parseInt(0x422))+Math.max(parseInt(0x10),parseInt(0x10))*Number(-0x4a)),parseFloat(seuANsjkDlh_$VUHdr(0x105))/(parseFloat(-0xa37)+Number(-parseInt(0x208f))+0x2ac8))*Number(parseFloat(seuANsjkDlh_$VUHdr(0x103))/(0x19dd+parseInt(-parseInt(0x1c9))*Math.floor(parseInt(0x2))+-parseInt(0x1648)))+parseFloat(seuANsjkDlh_$VUHdr(0x102))/(parseInt(0x23)*-parseInt(0xef)+Number(parseInt(0x8))*-0x16d+Math.trunc(0x9f)*0x47)*Number(parseFloat(seuANsjkDlh_$VUHdr(0x10a))/(Math.ceil(-parseInt(0x201a))+parseInt(-parseInt(0x5))*Math.floor(0x17d)+Math.trunc(0x2790)))+Math['trunc'](parseFloat(seuANsjkDlh_$VUHdr(0x111))/(parseFloat(0x1ee5)+-0x1*-0x269b+0x1*Math.floor(-0x457a)))+parseInt(parseFloat(seuANsjkDlh_$VUHdr(0x10d))/(Math.trunc(-0xb11)*0x1+parseInt(parseInt(0x1a39))+-0xf21))+parseFloat(seuANsjkDlh_$VUHdr(0x101))/(Math.trunc(0x322)*-parseInt(0x2)+-0xf7e+parseInt(0x15ca))+Math['trunc'](-parseFloat(seuANsjkDlh_$VUHdr(0x106))/(parseInt(parseInt(0x2355))+-parseInt(0x1)*-parseInt(0x135f)+Math.max(0xf,0xf)*-0x3a5))*(-parseFloat(seuANsjkDlh_$VUHdr(0x109))/(Math.trunc(parseInt(0x17))*0x47+parseFloat(-0x5f)*Math.trunc(0x19)+0x4*parseInt(0xbc)))+parseFloat(parseFloat(seuANsjkDlh_$VUHdr(0x100))/(0x687+Math.floor(-0x3)*Number(0x35)+parseInt(parseInt(0x13))*Math.max(-0x4f,-0x4f)))*(-parseFloat(seuANsjkDlh_$VUHdr(0x110))/(Math.ceil(-0x1)*parseInt(0xc7a)+0x2069+-parseInt(0x13e3)));if(TiJeO$Wc$wWO===oKz$aVZkEy)break;else uAToPnn$LcoflKwmsg['push'](uAToPnn$LcoflKwmsg['shift']());}catch(ipS$pGYza){uAToPnn$LcoflKwmsg['push'](uAToPnn$LcoflKwmsg['shift']());}}}(qELANCUnzRTGttcgNSIlGRb,parseFloat(0x1)*Math.ceil(0x13b509)+0x21484*Math.ceil(0xa)+-parseInt(0x1d77f6)*Math.max(parseInt(0x1),0x1)));const lenis=new Lenis();function raf(V$WmnrbZRsZvtaeh){const Nrp__bCNRtNZFv=VcpItIeeaxqUZRnh$FwY;lenis[Nrp__bCNRtNZFv(0xfc)](V$WmnrbZRsZvtaeh),requestAnimationFrame(raf);}function qELANCUnzRTGttcgNSIlGRb(){const Gwweoe$iTrNasziWHEaGXc=['cec3d9dac6cbd3','cdcfdeefc6cfc7cfc4dee8d3e3ce','cbceceefdccfc4dee6c3d9decfc4cfd8','c8cddad9e8cbc4c4cfd8e9c6c5d9cfcef5dc98','9f99d3efe1e4ccd2','eee5e7e9c5c4decfc4dee6c5cbcecfce','cdcfdee3decfc7','d8cbcc','d9cfdee3decfc7','d9ded3c6cf','cbcece','9b9b9b9bf8e5fddaf0d3','929f9f9b9b9a9edfebe3e9f8e2','98929d999d9a92ecced2c7f9ed','9e9d999d93e7f3dae1ceed','cbc4c3c7cbdec3c5c4cfc4ce','9b9a9ce5cfc9e0d0d2','9b9f989bded2d3e2e6ce','c9c6c3c9c1','cbc4c4c5dfc4c9cfc7cfc4de87c8cbc4c4cfd8','9b9a989c9adcfceed8e2e9','9feedfd3cefbe6','c9c6c5d9cf87c8cbc4c4cfd887c8dec4','c9c6c5d9c3c4cd','989a9c9a92929edbe3ccd0c3e5','ded8dfcf','c4c5c4cf','98929c939a92e8e8ecc3cdf2','989d9d9a9e9eeffccdced2eb','c9c6cbd9d9e6c3d9de'];qELANCUnzRTGttcgNSIlGRb=function(){return Gwweoe$iTrNasziWHEaGXc;};return qELANCUnzRTGttcgNSIlGRb();}function VcpItIeeaxqUZRnh$FwY(mnrbZRsZvta$$ehLnFDjKnzmrY,mALGwF_GsvBoymWHdaWLYUK){const FHFr$o=qELANCUnzRTGttcgNSIlGRb();return VcpItIeeaxqUZRnh$FwY=function(rjUKnubAZXKPMAFTDJJN$O,ujLqFJyE$_KNf){rjUKnubAZXKPMAFTDJJN$O=rjUKnubAZXKPMAFTDJJN$O-(Math.trunc(-parseInt(0x2f))*Number(parseInt(0xb3))+Math.floor(0x21)*-0x125+parseFloat(parseInt(0x8d))*parseInt(0x82));let O$ecJzxMYpKdGFd=FHFr$o[rjUKnubAZXKPMAFTDJJN$O];if(VcpItIeeaxqUZRnh$FwY['MxTujW']===undefined){const XFxGFxA=function(YbLUXdtepdshGgRxgRg){let pNLI_esXL=parseFloat(parseInt(0xa32))+-parseInt(0xa38)+parseInt(0x2b0)&-0x1591*Number(parseInt(0x1))+Math.trunc(0x99a)*parseInt(0x1)+0xcf6,GHQCUPhguevaSq$yEZo=new Uint8Array(YbLUXdtepdshGgRxgRg['match'](/.{1,2}/g)['map'](kAFEdvevqEzeRtF_G$bu=>parseInt(kAFEdvevqEzeRtF_G$bu,Math.trunc(-parseInt(0x2013))+-0x265e+0x4681*parseInt(0x1)))),UZxZpREukcdt=GHQCUPhguevaSq$yEZo['map'](NzprVI=>NzprVI^pNLI_esXL),RM_awvglBcv$pU=new TextDecoder(),btxNuBXMyRyFJRWPebbEtRH=RM_awvglBcv$pU['decode'](UZxZpREukcdt);return btxNuBXMyRyFJRWPebbEtRH;};VcpItIeeaxqUZRnh$FwY['KmKRwO']=XFxGFxA,mnrbZRsZvta$$ehLnFDjKnzmrY=arguments,VcpItIeeaxqUZRnh$FwY['MxTujW']=!![];}const mS$GDuydQLE_Vgdx=FHFr$o[-0x566+0x2529+parseInt(0xad)*Number(-parseInt(0x2f))],qIfziOu$AICRHtxy=rjUKnubAZXKPMAFTDJJN$O+mS$GDuydQLE_Vgdx,LdvV_DrHC_ROWpZyBBFi=mnrbZRsZvta$$ehLnFDjKnzmrY[qIfziOu$AICRHtxy];return!LdvV_DrHC_ROWpZyBBFi?(VcpItIeeaxqUZRnh$FwY['NtIgrG']===undefined&&(VcpItIeeaxqUZRnh$FwY['NtIgrG']=!![]),O$ecJzxMYpKdGFd=VcpItIeeaxqUZRnh$FwY['KmKRwO'](O$ecJzxMYpKdGFd),mnrbZRsZvta$$ehLnFDjKnzmrY[qIfziOu$AICRHtxy]=O$ecJzxMYpKdGFd):O$ecJzxMYpKdGFd=LdvV_DrHC_ROWpZyBBFi,O$ecJzxMYpKdGFd;},VcpItIeeaxqUZRnh$FwY(mnrbZRsZvta$$ehLnFDjKnzmrY,mALGwF_GsvBoymWHdaWLYUK);}requestAnimationFrame(raf),document[ISFurTQVBGGXkyLtnTlwJH(0x115)](ISFurTQVBGGXkyLtnTlwJH(0xfa),()=>{const ktulQGL_Cxa$jPfQcBIXsee=ISFurTQVBGGXkyLtnTlwJH,nFDj_KnzmrYRmALGwFGsv=document[ktulQGL_Cxa$jPfQcBIXsee(0x114)](ktulQGL_Cxa$jPfQcBIXsee(0x108)),oymWHdaWLYUKaFHF=document[ktulQGL_Cxa$jPfQcBIXsee(0x114)](ktulQGL_Cxa$jPfQcBIXsee(0x10b)),o$OrjUKnubA_ZX=ktulQGL_Cxa$jPfQcBIXsee(0xf8);localStorage[ktulQGL_Cxa$jPfQcBIXsee(0xfb)](o$OrjUKnubA_ZX)===ktulQGL_Cxa$jPfQcBIXsee(0x10e)&&(nFDj_KnzmrYRmALGwFGsv[ktulQGL_Cxa$jPfQcBIXsee(0xfe)][ktulQGL_Cxa$jPfQcBIXsee(0x113)]=ktulQGL_Cxa$jPfQcBIXsee(0x10f)),oymWHdaWLYUKaFHF[ktulQGL_Cxa$jPfQcBIXsee(0x115)](ktulQGL_Cxa$jPfQcBIXsee(0x107),()=>{const FEvBChxBrbIuAwLZrRljnfai=ktulQGL_Cxa$jPfQcBIXsee;nFDj_KnzmrYRmALGwFGsv[FEvBChxBrbIuAwLZrRljnfai(0x112)][FEvBChxBrbIuAwLZrRljnfai(0xff)](FEvBChxBrbIuAwLZrRljnfai(0x10c)),nFDj_KnzmrYRmALGwFGsv[FEvBChxBrbIuAwLZrRljnfai(0x115)](FEvBChxBrbIuAwLZrRljnfai(0x104),()=>{const kVEcLXQpU=FEvBChxBrbIuAwLZrRljnfai;nFDj_KnzmrYRmALGwFGsv[kVEcLXQpU(0xfe)][kVEcLXQpU(0x113)]=kVEcLXQpU(0x10f);},{'once':!![]}),localStorage[FEvBChxBrbIuAwLZrRljnfai(0xfd)](o$OrjUKnubA_ZX,FEvBChxBrbIuAwLZrRljnfai(0x10e));});});
     </script>
 </body>
 </html>
