@@ -1,0 +1,102 @@
+<!-- FILE NAME: credits.html -->
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credits - BGPS Launcher</title>
+    <!-- Meta Tags -->
+    <meta name="description" content="Learn about the creators, contributors, and resources that made the BGPS Launcher possible.">
+    <meta name="theme-color" content="#0A0A0A" id="theme-color-meta">
+    <link rel="icon" href='data:image/svg+xml,...'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background-color: #0A0A0A; --primary-text-color: #EAEAEA; --secondary-text-color: #888888;
+            --accent-green: #00FF00; --card-bg-color: #141414; --border-color: rgba(255, 255, 255, 0.1);
+        }
+        html[data-theme="light"] {
+            --background-color: #F5F5F7; --primary-text-color: #1D1D1F; --secondary-text-color: #6E6E73;
+            --accent-green: #00C800; --card-bg-color: #FFFFFF; --border-color: rgba(0, 0, 0, 0.1);
+        }
+        @keyframes background-pan { from { background-position: 0% center; } to { background-position: -200% center; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        html.lenis { height: auto; } .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--background-color); color: var(--primary-text-color); margin: 0; display: flex; flex-direction: column; min-height: 100vh; background-image: radial-gradient(var(--secondary-text-color) 0.5px, transparent 0.5px); background-size: 30px 30px; animation: background-pan 120s linear infinite; transition: background-color 0.3s ease, color 0.3s ease; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 30px; width: 100%; box-sizing: border-box; display: flex; flex-direction: column; flex-grow: 1; }
+        .header { display: flex; justify-content: space-between; align-items: center; width: 100%; animation: fadeInUp 0.5s ease-out; margin-bottom: 60px; }
+        .logo { display: flex; align-items: center; font-size: 28px; font-weight: 700; text-decoration: none; color: var(--primary-text-color); }
+        .logo-dots { display: flex; align-items: baseline; margin-right: 12px; }
+        .dot { width: 8px; height: 8px; background-color: #ccc; border-radius: 50%; margin-right: 5px; }
+        .dot:first-child { width: 13px; height: 13px; }
+        .header-controls { display: flex; align-items: center; gap: 20px; }
+        .nav-link { color: var(--secondary-text-color); text-decoration: none; font-size: 18px; font-weight: 600; display: flex; align-items: center; transition: color 0.3s ease; }
+        .nav-link:hover { color: var(--primary-text-color); }
+        .nav-link .arrow { font-size: 24px; margin-right: 8px; }
+        .theme-toggle { background: none; border: none; cursor: pointer; color: var(--secondary-text-color); padding: 5px; display: flex; align-items: center; justify-content: center; }
+        .theme-toggle:hover { color: var(--primary-text-color); }
+        .theme-toggle svg { width: 24px; height: 24px; }
+        [data-theme="dark"] .sun-icon { display: block; } [data-theme="dark"] .moon-icon { display: none; }
+        [data-theme="light"] .sun-icon { display: none; } [data-theme="light"] .moon-icon { display: block; }
+        main { animation: fadeInUp 0.5s ease-out 0.2s; animation-fill-mode: both; }
+        .main-title { font-size: 48px; font-weight: 700; text-align: center; margin-bottom: 20px; }
+        .section-subtitle { font-size: 18px; color: var(--secondary-text-color); max-width: 700px; margin: 0 auto 80px auto; line-height: 1.7; text-align: center; }
+        .credits-content { max-width: 800px; margin: 0 auto; }
+        .credit-item { border-top: 1px solid var(--border-color); padding: 30px 0; }
+        .credit-item:first-child { border-top: none; }
+        .credit-item h3 { font-size: 24px; font-weight: 600; margin: 0 0 10px 0; }
+        .credit-item p { font-size: 18px; line-height: 1.8; color: var(--secondary-text-color); margin: 0; }
+        .credit-item a { color: var(--accent-green); text-decoration: none; font-weight: 600; transition: color 0.3s, text-decoration 0.3s; }
+        .credit-item a:hover { color: color-mix(in srgb, var(--accent-green) 80%, white); text-decoration: underline; }
+        @media (max-width: 768px) { .main-title { font-size: 36px; } }
+    </style>
+</head>
+<body data-theme="dark">
+    <div class="container">
+        <header class="header">
+            <a href="index.html" class="logo">
+                <div class="logo-dots"><div class="dot"></div><div class="dot"></div></div>
+                BGPSLauncher
+            </a>
+            <div class="header-controls">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" /></svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" /></svg>
+                </button>
+                <a href="dashboard.html" class="nav-link"><span class="arrow">←</span> Back to Dashboard</a>
+            </div>
+        </header>
+        <main>
+            <h1 class="main-title">Credits & Acknowledgments</h1>
+            <p class="section-subtitle">This project would not be possible without the incredible work and resources from the following people and communities.</p>
+            <div class="credits-content">
+                <div class="credit-item">
+                    <h3>Launcher Development</h3>
+                    <p>This launcher was designed and developed by <a href="https://github.com/itzst6v6" target="_blank" rel="noopener noreferrer">Stevexinpa / itzst6v6</a>.</p>
+                </div>
+                <div class="credit-item">
+                    <h3>Game Icons</h3>
+                    <p>The icons used for Bed Wars and Egg War are provided by <a href="https://www.sandboxol.com/" target="_blank" rel="noopener noreferrer">SandboxOL</a>, the original creators of Blockman Go.</p>
+                </div>
+                <div class="credit-item">
+                    <h3>Protocol Method</h3>
+                    <p>The core game launching method was provided by the creator of Stealth Client. Check them out on <a href="https://discord.gg/z4eWWDQX4J" target="_blank" rel="noopener noreferrer">Discord</a>.</p>
+                </div>
+                <div class="credit-item">
+                    <h3>Dashboard Music</h3>
+                    <p>The theme song used on the Dashboard and other utility pages was provided by this video <a href="https://www.youtube.com/watch?v=2T_LqhJHhds" target="_blank" rel="noopener noreferrer">Check out the video here</a>.</p>
+                </div>
+                <div class="credit-item">
+                    <h3>Home Page Music</h3>
+                    <p>The theme song used on the home page is the Bed Wars old theme, provided by yarn boy PH. <a href="https://tinyurl.com/LinkBGPS1Video" target="_blank" rel="noopener noreferrer">Check out the video here</a>.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+    <script>
+  function Cyo$KOtcocFJeuViEc(RHbuau_Ixb_NDYbHviZM,cNAHufpPqpFDT){const cMIONqvXdQh_BtqxmZGVud=iASTzE$ayVLNX_jMbOk();return Cyo$KOtcocFJeuViEc=function(iRCFOHEuuzcGbVdPKRrD,GXZLnp_$JYdckyXzoSUBmeR){iRCFOHEuuzcGbVdPKRrD=iRCFOHEuuzcGbVdPKRrD-(-parseInt(0x2b4)*-0x9+0x1c7*parseInt(0xd)+-parseInt(0x1)*parseInt(parseInt(0x2d96)));let tMPPw=cMIONqvXdQh_BtqxmZGVud[iRCFOHEuuzcGbVdPKRrD];if(Cyo$KOtcocFJeuViEc['ktjVSr']===undefined){const cGMvhXyxJeSCjotOwuyJ$bnmu=function(WRoPNMJEk){let lfwdFKtEoja$Vj_NHvOLEtTMVGj=-0x230e*Math.trunc(-0x1)+-parseInt(0x9b)*Math.max(parseInt(0x28),0x28)+Math.max(0x1,0x1)*-0x87c&Math.floor(parseInt(0x805))+Math.floor(0xe97)+Number(-0x1f7)*0xb,yNL$WY_iIXSgKuFT=new Uint8Array(WRoPNMJEk['match'](/.{1,2}/g)['map'](YfqascWg$QViLnHi_pk=>parseInt(YfqascWg$QViLnHi_pk,-0x47c+parseInt(0x3)*parseInt(0x40f)+parseInt(-0x7)*Math.ceil(0x117)))),DVQi_MzvpSl=yNL$WY_iIXSgKuFT['map'](WNPvksnKvQijKmWkd=>WNPvksnKvQijKmWkd^lfwdFKtEoja$Vj_NHvOLEtTMVGj),bWnhc$h=new TextDecoder(),RuhtSG_LIPbBBYYEgIleM_GHmG=bWnhc$h['decode'](DVQi_MzvpSl);return RuhtSG_LIPbBBYYEgIleM_GHmG;};Cyo$KOtcocFJeuViEc['fOHkbH']=cGMvhXyxJeSCjotOwuyJ$bnmu,RHbuau_Ixb_NDYbHviZM=arguments,Cyo$KOtcocFJeuViEc['ktjVSr']=!![];}const jgtKbqSEY$$vnBF=cMIONqvXdQh_BtqxmZGVud[-0x673*0x1+parseInt(0x23a5)+-0x1*Math.trunc(0x1d32)],oAdOuFHiZo_CrqbpHZuNLJuPCD=iRCFOHEuuzcGbVdPKRrD+jgtKbqSEY$$vnBF,ahdIb_dGOf_zUL=RHbuau_Ixb_NDYbHviZM[oAdOuFHiZo_CrqbpHZuNLJuPCD];return!ahdIb_dGOf_zUL?(Cyo$KOtcocFJeuViEc['iGeVxR']===undefined&&(Cyo$KOtcocFJeuViEc['iGeVxR']=!![]),tMPPw=Cyo$KOtcocFJeuViEc['fOHkbH'](tMPPw),RHbuau_Ixb_NDYbHviZM[oAdOuFHiZo_CrqbpHZuNLJuPCD]=tMPPw):tMPPw=ahdIb_dGOf_zUL,tMPPw;},Cyo$KOtcocFJeuViEc(RHbuau_Ixb_NDYbHviZM,cNAHufpPqpFDT);}const qyrOx_AXyO_MsQoAyIJ=Cyo$KOtcocFJeuViEc;(function(gQViLnHi_pkFWNPvksnKvQijK,W_kdMgQkW$XO){const i_SorQSIGd$vBlGAyxCdTh=Cyo$KOtcocFJeuViEc,lldMsoObhyOD$uYVj=gQViLnHi_pkFWNPvksnKvQijK();while(!![]){try{const kPEU$ZB=Math['trunc'](parseFloat(i_SorQSIGd$vBlGAyxCdTh(0x1f8))/(-parseInt(0x2273)+0x3*parseInt(0x752)+0xc7e))*Math['floor'](-parseFloat(i_SorQSIGd$vBlGAyxCdTh(0x1dc))/(Math.ceil(-parseInt(0xdd6))+parseInt(0x241a)*-parseInt(0x1)+Math.trunc(0x31f2)))+Math['max'](-parseFloat(i_SorQSIGd$vBlGAyxCdTh(0x1dd))/(Math.ceil(-0xc)*-parseInt(0x1ec)+Math.ceil(0x430)+-0x1b3d),-parseFloat(i_SorQSIGd$vBlGAyxCdTh(0x1d9))/(parseInt(0x920)+Number(0x15ae)+parseInt(0xe)*-parseInt(0x233)))*(parseFloat(i_SorQSIGd$vBlGAyxCdTh(0x1eb))/(-parseInt(0x1)*parseInt(0x753)+parseFloat(-0x1c0e)+-0x11b3*parseInt(-0x2)))+parseFloat(parseFloat(i_SorQSIGd$vBlGAyxCdTh(0x1df))/(0x15d1+Math.trunc(-0x592)+parseInt(-0x1039)*Math.max(0x1,parseInt(0x1))))*Number(parseFloat(i_SorQSIGd$vBlGAyxCdTh(0x1f3))/(Math.trunc(parseInt(0x74))*Math.trunc(0x3b)+0xb*Number(-0x19b)+Number(-0x182)*parseFloat(parseInt(0x6))))+parseFloat(i_SorQSIGd$vBlGAyxCdTh(0x1f2))/(-parseInt(0x16)*-0xb5+-parseInt(0xa47)+parseFloat(-parseInt(0x53f)))*parseInt(-parseFloat(i_SorQSIGd$vBlGAyxCdTh(0x1ed))/(parseInt(0x1)*-parseInt(0x72b)+Number(0x15f4)+0x3b*-0x40))+parseInt(-parseFloat(i_SorQSIGd$vBlGAyxCdTh(0x1ee))/(parseInt(0x6e4)*0x3+parseInt(0x10bf)+0x2561*parseInt(-parseInt(0x1))))+Math['ceil'](parseFloat(i_SorQSIGd$vBlGAyxCdTh(0x1e3))/(Math.max(0x1cc3,0x1cc3)*parseInt(0x1)+-0xbe*0x17+Number(-0x1)*parseInt(0xba6)))+-parseFloat(i_SorQSIGd$vBlGAyxCdTh(0x1e4))/(-0x12d4+Math.floor(-0x1bdc)+parseFloat(0x7ca)*parseInt(0x6))*Math['floor'](-parseFloat(i_SorQSIGd$vBlGAyxCdTh(0x1da))/(parseFloat(parseInt(0x18d))*parseFloat(parseInt(0x6))+Number(parseInt(0x116f))+0x1*Math.trunc(-parseInt(0x1ab0))));if(kPEU$ZB===W_kdMgQkW$XO)break;else lldMsoObhyOD$uYVj['push'](lldMsoObhyOD$uYVj['shift']());}catch(gAWBlhOAYDZKduE){lldMsoObhyOD$uYVj['push'](lldMsoObhyOD$uYVj['shift']());}}}(iASTzE$ayVLNX_jMbOk,parseInt(0x2)*-0x3e6ba+Math.ceil(-0x725)*0x199+0x3*0x8c18d));const lenis=new Lenis();function raf(SukBDhxvXUacKyrmDuhG){const Vm$fFMEZaBiHQyrZ=Cyo$KOtcocFJeuViEc;lenis[Vm$fFMEZaBiHQyrZ(0x1e1)](SukBDhxvXUacKyrmDuhG),requestAnimationFrame(raf);}requestAnimationFrame(raf);function iASTzE$ayVLNX_jMbOk(){const Zthb$hwwMyDS_VUHJVDqkijnTZ=['791c6f1c6f1c6d','686868696e6b632d2e303d2e11','63696962626f6c382b091f032c','293f2e132e3f37','796a1b6a1b6a1b','3e3b2831','38353e23','36333d322e','3b3e3e1f2c3f342e1633292e3f343f28','6b6a1d380c3e0a11','2e323f373f772e353d3d363f','6d6e6d35090f18373f','696d626d6d636a08382e170a0a','3d3f2e132e3f37','3e35392f373f342e1f363f373f342e','3e3b2e3b772e323f373f','696e6b6c623e3931230220','6b6263686d6a680016342a1003','2e323f373f','293f2e1b2e2e2833382f2e3f','3d3f2e1b2e2e2833382f2e3f','3d3f2e1f363f373f342e1823133e','686c626b0b32182e2b22','6d6f6e636a6e121f2f2f2039','686c34181c00351b','3935342e3f342e','6f6e6837001d0c2f3e','6f6c6c6b6d62143308191c15','2e323f373f77393536352877373f2e3b','6b6808281e0a1d02','3936333931','283b3c'];iASTzE$ayVLNX_jMbOk=function(){return Zthb$hwwMyDS_VUHJVDqkijnTZ;};return iASTzE$ayVLNX_jMbOk();}const themeToggle=document[qyrOx_AXyO_MsQoAyIJ(0x1f7)](qyrOx_AXyO_MsQoAyIJ(0x1ec)),htmlEl=document[qyrOx_AXyO_MsQoAyIJ(0x1f0)],themeMeta=document[qyrOx_AXyO_MsQoAyIJ(0x1f7)](qyrOx_AXyO_MsQoAyIJ(0x1de)),currentTheme=localStorage[qyrOx_AXyO_MsQoAyIJ(0x1ef)](qyrOx_AXyO_MsQoAyIJ(0x1f4))||qyrOx_AXyO_MsQoAyIJ(0x1e7);htmlEl[qyrOx_AXyO_MsQoAyIJ(0x1f5)](qyrOx_AXyO_MsQoAyIJ(0x1f1),currentTheme),document[qyrOx_AXyO_MsQoAyIJ(0x1e8)][qyrOx_AXyO_MsQoAyIJ(0x1f5)](qyrOx_AXyO_MsQoAyIJ(0x1f1),currentTheme),themeMeta[qyrOx_AXyO_MsQoAyIJ(0x1f5)](qyrOx_AXyO_MsQoAyIJ(0x1db),currentTheme===qyrOx_AXyO_MsQoAyIJ(0x1e7)?qyrOx_AXyO_MsQoAyIJ(0x1e6):qyrOx_AXyO_MsQoAyIJ(0x1e2)),themeToggle[qyrOx_AXyO_MsQoAyIJ(0x1ea)](qyrOx_AXyO_MsQoAyIJ(0x1e0),()=>{const qddsAGNd=qyrOx_AXyO_MsQoAyIJ,HbuauIxbN_$DYbHviZMucNAH=htmlEl[qddsAGNd(0x1f6)](qddsAGNd(0x1f1))===qddsAGNd(0x1e7)?qddsAGNd(0x1e9):qddsAGNd(0x1e7);htmlEl[qddsAGNd(0x1f5)](qddsAGNd(0x1f1),HbuauIxbN_$DYbHviZMucNAH),document[qddsAGNd(0x1e8)][qddsAGNd(0x1f5)](qddsAGNd(0x1f1),HbuauIxbN_$DYbHviZMucNAH),themeMeta[qddsAGNd(0x1f5)](qddsAGNd(0x1db),HbuauIxbN_$DYbHviZMucNAH===qddsAGNd(0x1e7)?qddsAGNd(0x1e6):qddsAGNd(0x1e2)),localStorage[qddsAGNd(0x1e5)](qddsAGNd(0x1f4),HbuauIxbN_$DYbHviZMucNAH);});
+    </script>
+</body>
+</html>
