@@ -5,205 +5,202 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BGPS Launcher - The First Blockman GO Launcher</title>
-
     <!-- Meta Tags -->
-    <meta name="description" content="Welcome to BGPS Launcher, the first-ever launcher for Blockman Go. Browse games, create invites, and launch directly into the action. Download the APK for the best experience.">
-    <meta name="keywords" content="Blockman Go, BGPS, Launcher, Bed Wars, Egg War, Mobile Games, BG, BMGO">
+    <meta name="description" content="Welcome to BGPS Launcher, the first-ever 100% Free launcher for Blockman Go. Browse games, create invites, and launch directly into the action on web or mobile.">
+    <meta name="keywords" content="Blockman Go, BGPS, Launcher, Free, Bed Wars, Egg War, Mobile Games, BG, BMGO">
     <meta name="author" content="BGPS Launcher Team">
-    <meta property="og:title" content="BGPS Launcher - Home">
-    <meta property="og:description" content="The ultimate launcher for Blockman Go. Browse featured games, create invites, or enter a manual ID.">
+    <meta property="og:title" content="BGPS Launcher - 100% Free">
+    <meta property="og:description" content="The first-ever launcher for Blockman Go. Browse featured games, create invites, or enter a manual ID for free.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://your-website-url.com/">
     <meta property="og:image" content="https://your-website-url.com/social-preview.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="theme-color" content="#1c1c1e">
+    <meta name="theme-color" content="#0A0A0A">
     <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%231c1c1e" stroke="%2300ff00" stroke-width="10"/><circle cx="35" cy="50" r="10" fill="%23cccccc"/><circle cx="65" cy="50" r="7" fill="%23cccccc"/></svg>'>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --background-color: #1c1c1e;
-            --primary-text-color: #f0f0f0;
-            --secondary-text-color: #a0a0a0;
-            --accent-green: #00ff00;
-            --card-bg-color: #2c2c2e;
+            --background-color: #0A0A0A;
+            --primary-text-color: #EAEAEA;
+            --secondary-text-color: #888888;
+            --accent-green: #00FF00;
+            --card-bg-color: #141414;
+            --border-color: rgba(255, 255, 255, 0.1);
         }
-
-        /* Lenis Smooth Scroll CSS */
+        @property --angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+        @keyframes background-pan { from { background-position: 0% center; } to { background-position: -200% center; } }
+        @keyframes border-spin { to { --angle: 360deg; } }
+        
         html.lenis { height: auto; }
         .lenis.lenis-smooth { scroll-behavior: auto !important; }
-        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
-        .lenis.lenis-stopped { overflow: hidden; }
-        
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Poppins', sans-serif; background-color: var(--background-color); color: var(--primary-text-color); margin: 0; }
 
-        /* Scroll Animations */
-        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--primary-text-color);
+            margin: 0;
+            background-image: radial-gradient(var(--secondary-text-color) 0.5px, transparent 0.5px);
+            background-size: 30px 30px;
+            animation: background-pan 120s linear infinite;
+        }
+        .fade-in { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        /* Navbar */
-        .navbar {
-            position: sticky;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 20px 0;
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
-        }
-        .navbar.is-sticky {
-            background-color: rgba(28, 28, 30, 0.8);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        }
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo { display: flex; align-items: center; font-size: 28px; font-weight: 600; text-decoration: none; color: var(--primary-text-color); }
+        .navbar { position: sticky; top: 0; z-index: 1000; padding: 20px 0; background-color: rgba(10, 10, 10, 0.8); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 30px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; font-size: 28px; font-weight: 700; text-decoration: none; color: var(--primary-text-color); }
         .logo-dots { display: flex; align-items: baseline; margin-right: 12px; }
         .dot { width: 8px; height: 8px; background-color: #ccc; border-radius: 50%; margin-right: 5px; }
         .dot:first-child { width: 13px; height: 13px; }
-
-        /* Section Base */
-        .section { padding: 80px 30px; max-width: 1200px; margin: 0 auto; text-align: center; }
+        .section { max-width: 1200px; margin: 0 auto; padding: 120px 30px; }
         
-        /* Hero Section */
-        .hero { display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: calc(100vh - 88px); box-sizing: border-box; }
-        .slogan { font-size: 52px; font-weight: 700; margin: 20px 0 15px 0; line-height: 1.2; }
-        .hero p { font-size: 18px; color: var(--secondary-text-color); margin-bottom: 40px; max-width: 600px; }
+        .hero { display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; gap: 60px; min-height: calc(100vh - 89px); }
+        .hero-content { animation: fadeInUp 1s ease-out; }
+        .slogan { font-size: 64px; font-weight: 800; line-height: 1.1; margin: 0 0 10px 0; }
+        .sub-slogan { font-size: 24px; font-weight: 600; color: var(--accent-green); margin: 0 0 20px 0; }
+        .hero p { font-size: 18px; color: var(--secondary-text-color); margin-bottom: 40px; max-width: 500px; line-height: 1.7; }
+        .hero .button-group { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+        .btn { display: inline-block; text-decoration: none; padding: 16px 40px; border-radius: 999px; font-size: 18px; font-weight: 700; transition: all 0.3s ease; border: 2px solid transparent; }
+        .btn-primary { background-color: var(--accent-green); color: #000; }
+        .btn-primary:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(0, 255, 0, 0.5); }
+        .btn-secondary { color: var(--secondary-text-color); font-weight: 600; }
+        .btn-secondary:hover { color: var(--primary-text-color); transform: scale(1.05); }
 
-        /* Buttons with Cursor Glow Effect */
-        .btn { display: inline-block; text-decoration: none; padding: 16px 40px; border-radius: 999px; font-size: 20px; font-weight: 700; transition: all 0.3s ease; box-sizing: border-box; position: relative; overflow: hidden; z-index: 1; }
-        .btn-primary { background-color: var(--accent-green); color: #121212; border: 2px solid var(--accent-green); }
-        .btn-secondary { background: transparent; color: var(--primary-text-color); border: 2px solid #444; }
-        .btn-secondary:hover { background-color: var(--card-bg-color); border-color: #555; }
-        .btn-glow::before {
-            content: '';
-            position: absolute;
-            top: var(--y); left: var(--x);
-            transform: translate(-50%, -50%);
-            width: 0; height: 0;
-            background: radial-gradient(circle closest-side, rgba(255, 255, 255, 0.25), transparent);
-            transition: width 0.3s ease, height 0.3s ease;
-        }
-        .btn-glow:hover::before { width: 200px; height: 200px; }
-        .btn-glow span { position: relative; z-index: 2; } /* Keep text above glow */
-
-        /* Section Titles */
-        .section-title { font-size: 36px; font-weight: 700; margin-bottom: 20px; }
-        .section-subtitle { font-size: 18px; color: var(--secondary-text-color); max-width: 700px; margin: 0 auto 60px auto; }
-
-        /* Features Section */
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; text-align: left; }
-        .feature-card { background-color: var(--card-bg-color); padding: 30px; border-radius: 16px; border: 1px solid #333; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .feature-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-        .feature-card svg { width: 48px; height: 48px; margin-bottom: 20px; color: var(--accent-green); }
+        .mockup-wrapper { perspective: 2000px; }
+        .phone-mockup { position: relative; width: 320px; height: 640px; background: #111; border: 12px solid #000; border-radius: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.6), inset 0 2px 2px rgba(255,255,255,0.1); transition: transform 0.1s ease-out; }
+        .phone-screen { width: 100%; height: 100%; border-radius: 28px; overflow: hidden; background: #000; }
+        .phone-screen video { width: 100%; height: 100%; object-fit: cover; }
+        
+        .section-title { font-size: 48px; font-weight: 700; margin-bottom: 20px; text-align: center; }
+        .section-subtitle { font-size: 18px; color: var(--secondary-text-color); max-width: 700px; margin: 0 auto 60px auto; line-height: 1.7; text-align: center; }
+        
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .feature-card { background-color: var(--card-bg-color); padding: 3px; border-radius: 18px; position: relative; z-index: 1; overflow: hidden; transition: transform 0.3s ease; }
+        .feature-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: conic-gradient(from var(--angle), transparent 0%, var(--accent-green), transparent 25%); animation: border-spin 4s linear infinite paused; opacity: 0; transition: opacity 0.4s ease; }
+        .feature-card:hover { transform: translateY(-8px); }
+        .feature-card:hover::before { animation-play-state: running; opacity: 1; }
+        .card-content { background: var(--card-bg-color); padding: 30px; border-radius: 16px; height: 100%; box-sizing: border-box; }
+        .feature-card svg { width: 40px; height: 40px; margin-bottom: 20px; color: var(--accent-green); }
         .feature-card h3 { font-size: 22px; font-weight: 600; margin: 0 0 10px 0; }
         .feature-card p { font-size: 16px; color: var(--secondary-text-color); margin: 0; line-height: 1.6; }
-
-        /* CTA Section */
-        .cta-section { background-color: var(--card-bg-color); border-radius: 20px; padding: 60px 40px; }
         
-        /* Tools Section */
-        .tools-container { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        /* How It Works Section */
+        .steps-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; position: relative; }
+        .step-item { text-align: center; }
+        .step-number { font-size: 64px; font-weight: 800; color: rgba(255, 255, 255, 0.1); margin-bottom: 10px; }
+        .step-item h3 { font-size: 22px; font-weight: 600; margin: 0 0 10px 0; }
+        .step-item p { font-size: 16px; color: var(--secondary-text-color); margin: 0; line-height: 1.6; }
 
-        /* Footer */
-        .footer { border-top: 1px solid #333; padding-top: 40px; padding-bottom: 40px; }
+        /* FAQ Section */
+        .faq-container { max-width: 800px; margin: 0 auto; text-align: left; }
+        .faq-item { border-bottom: 1px solid var(--border-color); }
+        .faq-question { width: 100%; background: none; border: none; padding: 25px 0; text-align: left; font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 600; color: var(--primary-text-color); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .faq-question svg { width: 24px; height: 24px; transition: transform 0.3s ease; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out, padding-bottom 0.4s ease-out; }
+        .faq-answer p { color: var(--secondary-text-color); line-height: 1.7; margin-top: 0; padding-bottom: 0; }
+        .faq-item.active .faq-question svg { transform: rotate(45deg); }
+        .faq-item.active .faq-answer { max-height: 200px; padding-bottom: 25px; }
+
+        .footer { border-top: 1px solid var(--border-color); padding-top: 40px; padding-bottom: 40px; text-align: center; }
         .footer p { margin: 0; color: var(--secondary-text-color); }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .section { padding: 60px 20px; }
-            .nav-container { padding: 0 20px; }
-            .slogan { font-size: 36px; }
-            .section-title { font-size: 30px; }
-            .btn { font-size: 18px; padding: 14px 30px; }
-        }
-        @media (max-width: 600px) {
-            .logo { font-size: 24px; }
-            .navbar .btn { display: none; } /* Hide navbar button on small screens */
-        }
+        @media (max-width: 992px) { .hero { grid-template-columns: 1fr; text-align: center; gap: 40px; } .hero p { margin: 15px auto 40px auto; } .hero .button-group { justify-content: center; } .mockup-wrapper { display: none; } }
+        @media (max-width: 768px) { .section { padding: 80px 20px; } .nav-container { padding: 0 20px; } .slogan { font-size: 48px; } .section-title { font-size: 36px; } .btn { font-size: 16px; padding: 14px 30px; } .steps-container { grid-template-columns: 1fr; } }
+        @media (max-width: 600px) { .logo { font-size: 24px; } .navbar .btn { display: none; } }
     </style>
 </head>
 <body>
-
-    <!-- Navbar -->
     <header class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#" class="logo">
                 <div class="logo-dots"><div class="dot"></div><div class="dot"></div></div>
                 BGPSLauncher
             </a>
-            <a href="dashboard.html" class="btn btn-primary btn-glow"><span>Launch Dashboard</span></a>
+            <a href="dashboard.html" class="btn btn-primary">Launch Dashboard</a>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero section fade-in">
-        <h1 class="slogan">First Blockman GO Launcher Ever.</h1>
-        <p>Your all-in-one utility for browsing, launching, and sharing games. Access all tools and features from a single, powerful dashboard.</p>
-        <a href="dashboard.html" class="btn btn-primary btn-glow"><span>Launch Dashboard</span></a>
-    </section>
-
-    <!-- Features Section -->
-    <section class="section fade-in" id="features">
-        <h2 class="section-title">Launcher Features</h2>
-        <p class="section-subtitle">Everything you need to enhance your Blockman Go experience, all in one place.</p>
-        <div class="features-grid">
-            <div class="feature-card fade-in">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" /></svg>
-                <h3>Browse Featured Games</h3>
-                <p>Discover and launch popular games like Bed Wars and Egg War with a single click from our curated list.</p>
+    <main>
+        <section class="hero section">
+            <div class="hero-content fade-in">
+                <h1 class="slogan">First Blockman GO Launcher Ever.</h1>
+                <h2 class="sub-slogan">100% Free & Open Source.</h2>
+                <p>An all-in-one utility for browsing, launching, and sharing games. Access all tools and features from a single, powerful dashboard, for free, forever.</p>
+                <div class="button-group">
+                    <a href="dashboard.html" class="btn btn-primary">Launch Dashboard</a>
+                    <a href="https://github.com/itzst6v6/bgps/releases/download/release/app-release.apk" class="btn btn-secondary">Download APK</a>
+                </div>
             </div>
-            <div class="feature-card fade-in">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" /></svg>
-                <h3>Instant Manual Launch</h3>
-                <p>Have a specific Game ID? Enter it directly to bypass menus and jump straight into any game instantly.</p>
+            <div class="mockup-wrapper fade-in" style="transition-delay: 0.2s;">
+                <div class="phone-mockup" id="phone-mockup">
+                    <div class="phone-screen"><video autoplay loop muted playsinline src="https://i.imgur.com/8N4gUre.mp4"></video></div>
+                </div>
             </div>
-            <div class="feature-card fade-in">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" /></svg>
-                <h3>Create Shareable Invites</h3>
-                <p>Generate clean, shareable links for any game ID. Send them to your friends so they can launch the game directly.</p>
+        </section>
+
+        <section class="section fade-in" id="features">
+            <h2 class="section-title">Everything You Need</h2>
+            <p class="section-subtitle">A powerful suite of tools designed to enhance your Blockman Go experience, available on web and mobile.</p>
+            <div class="features-grid">
+                <div class="feature-card fade-in" style="transition-delay: 0.1s;"><div class="card-content"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" /></svg><h3>Explore Games</h3><p>Discover and launch popular games like Bed Wars and Egg War with a single click from our curated list.</p></div></div>
+                <div class="feature-card fade-in" style="transition-delay: 0.2s;"><div class="card-content"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" /></svg><h3>Instant Manual Launch</h3><p>Have a specific Game ID? Enter it directly to bypass menus and jump straight into any game instantly.</p></div></div>
+                <div class="feature-card fade-in" style="transition-delay: 0.3s;"><div class="card-content"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" /></svg><h3>Create Shareable Invites</h3><p>Generate clean, shareable links for any game ID. Send them to your friends so they can launch the game directly.</p></div></div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- CTA Section -->
-    <section class="section fade-in" id="download">
-        <div class="cta-section">
-            <h2 class="section-title">Get the Native Experience</h2>
-            <p class="section-subtitle">For the best performance and a seamless experience on Android, download the official launcher APK.</p>
-            <a href="https://github.com/itzst6v6/bgps/releases/download/release/app-release.apk" class="btn btn-primary btn-glow"><span>Download Launcher APK</span></a>
-        </div>
-    </section>
+        <section class="section fade-in" id="how-it-works">
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">Get started in seconds with our simple, intuitive process.</p>
+            <div class="steps-container">
+                <div class="step-item fade-in" style="transition-delay: 0.1s;">
+                    <div class="step-number">01</div>
+                    <h3>Launch the Dashboard</h3>
+                    <p>Open the web dashboard or download the APK for the best native experience on Android.</p>
+                </div>
+                <div class="step-item fade-in" style="transition-delay: 0.2s;">
+                    <div class="step-number">02</div>
+                    <h3>Find Your Game</h3>
+                    <p>Browse our list of featured games, or use one of our tools to enter a manual ID or create an invite.</p>
+                </div>
+                <div class="step-item fade-in" style="transition-delay: 0.3s;">
+                    <div class="step-number">03</div>
+                    <h3>Play Instantly</h3>
+                    <p>Click "Play Game" to launch directly into Blockman Go on your mobile device, no hassle required.</p>
+                </div>
+            </div>
+        </section>
 
-    <!-- Tools Section -->
-    <section class="section fade-in" id="tools">
-        <h2 class="section-title">Launcher Tools</h2>
-        <p class="section-subtitle">Need to use a specific utility? Access our standalone tools directly from here.</p>
-        <div class="tools-container">
-            <a href="id.html" class="btn btn-secondary btn-glow"><span>Enter Manual ID</span></a>
-            <a href="invitecreator.html" class="btn btn-secondary btn-glow"><span>Invite Creator</span></a>
-        </div>
-    </section>
+        <section class="section fade-in" id="faq">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Have questions? We've got answers. If you need more help, feel free to reach out to our team.</p>
+            <div class="faq-container">
+                <div class="faq-item"><button class="faq-question">Is BGPS Launcher safe to use?<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg></button><div class="faq-answer"><p>Absolutely. The launcher is open source and simply uses Blockman Go's official URL scheme to launch games. It does not modify the game or require any special permissions. Your account and device are completely safe.</p></div></div>
+                <div class="faq-item"><button class="faq-question">Is this really 100% free?<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg></button><div class="faq-answer"><p>Yes! BGPS Launcher is a community-driven project and will always be free to use. There are no ads, no subscriptions, and no hidden costs. Our goal is to provide a useful tool for the Blockman Go community.</p></div></div>
+                <div class="faq-item"><button class="faq-question">Does this work on iOS (iPhone/iPad)?<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg></button><div class="faq-answer"><p>Currently, the launcher relies on the Android URL scheme for Blockman Go. While you can browse the website on any device, the game launching feature will only work on Android phones and emulators. iOS support may be considered in the future if it becomes possible.</p></div></div>
+                 <div class="faq-item"><button class="faq-question">Why do I need a launcher?<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg></button><div class="faq-answer"><p>BGPS Launcher provides a centralized hub for all your game launching needs. It's perfect for quickly accessing games via ID, creating shareable links for friends and communities, and discovering popular games without navigating the in-game menus.</p></div></div>
+            </div>
+        </section>
 
-    <!-- Footer -->
-    <footer class="section footer">
-        <p>© <span id="current-year"></span> BGPS Launcher. All rights reserved.</p>
-    </footer>
+        <section class="section fade-in" id="get-started">
+             <h2 class="section-title">Ready to Play?</h2>
+            <p class="section-subtitle">Jump back into the action. Launch the web dashboard for instant access or download the APK for the best native experience on Android.</p>
+            <div class="button-group">
+                <a href="dashboard.html" class="btn btn-primary">Launch Dashboard</a>
+                <a href="https://github.com/itzst6v6/bgps/releases/download/release/app-release.apk" class="btn btn-secondary">Download APK</a>
+            </div>
+        </section>
 
-    <!-- Lenis Smooth Scroll Library -->
+        <footer class="section footer">
+            <p>© <span id="current-year"></span> BGPS Launcher. All rights reserved.</p>
+        </footer>
+    </main>
+
     <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
-
     <script>
-     const chWXfhcrx$bFVZ$vQNaUi=wfnkqnmAhMgqyQ;(function(IgFrsutaFNZQKlmFOYPrs,apQxCoQ$YG_fCWacyEVO){const HQhhAVZorSkQagISEnoQQ=wfnkqnmAhMgqyQ,tBpbkmw_ntEMzWF=IgFrsutaFNZQKlmFOYPrs();while(!![]){try{const T$gBTCSeyxMrSdsUJcLktz$Y=Number(parseFloat(HQhhAVZorSkQagISEnoQQ(0x199))/(-0x1ee7+Number(0x1f52)+parseFloat(parseInt(0x35))*parseInt(-0x2)))*(parseFloat(HQhhAVZorSkQagISEnoQQ(0x197))/(0x17e4+0x2cf+parseInt(0x1)*parseFloat(-0x1ab1)))+-parseFloat(HQhhAVZorSkQagISEnoQQ(0x17c))/(-parseInt(0x24fc)+parseFloat(0x4d9)*Number(0x1)+Number(0x2026))+Math['ceil'](parseFloat(HQhhAVZorSkQagISEnoQQ(0x189))/(Math.ceil(-0x1)*parseFloat(-0x7b1)+parseInt(0x2d)*parseInt(0x13)+-0xb04))*Math['ceil'](-parseFloat(HQhhAVZorSkQagISEnoQQ(0x178))/(Math.max(-0x1703,-parseInt(0x1703))+Math.floor(0x4b)*Math.max(0xf,0xf)+parseInt(0x16f)*0xd))+Math['max'](-parseFloat(HQhhAVZorSkQagISEnoQQ(0x191))/(Number(-parseInt(0x129a))*Math.floor(-0x2)+-parseInt(0x2c9)*-parseInt(0x3)+-parseInt(0x2d89)),-parseFloat(HQhhAVZorSkQagISEnoQQ(0x179))/(-0x452+parseInt(0x3)*-parseInt(0xaae)+parseFloat(parseInt(0x2463))))+-parseFloat(HQhhAVZorSkQagISEnoQQ(0x177))/(Math.trunc(-0x3f1)*parseInt(0x2)+parseInt(-parseInt(0xe2f))*-0x1+-parseInt(0x141)*parseInt(0x5))*Math['trunc'](-parseFloat(HQhhAVZorSkQagISEnoQQ(0x186))/(-parseInt(0x8fe)*parseFloat(0x4)+parseInt(0x1d9c)+Number(0x665)))+-parseFloat(HQhhAVZorSkQagISEnoQQ(0x19b))/(Math.floor(parseInt(0x14b5))+Math.trunc(-parseInt(0xb5b))+-parseInt(0x950))+parseFloat(parseFloat(HQhhAVZorSkQagISEnoQQ(0x188))/(parseFloat(parseInt(0xdce))+0x1*-parseInt(0x525)+0x44f*Number(-0x2)));if(T$gBTCSeyxMrSdsUJcLktz$Y===apQxCoQ$YG_fCWacyEVO)break;else tBpbkmw_ntEMzWF['push'](tBpbkmw_ntEMzWF['shift']());}catch(OfQtCnLnhdDQCaMRtnSbdhwKS){tBpbkmw_ntEMzWF['push'](tBpbkmw_ntEMzWF['shift']());}}}(AtgI$e,-parseInt(0xcbb)*parseInt(-0x9d)+0x27afd*0x5+-0xbbebb));const lenis=new Lenis();function raf(wUKqYdgA$RJ_FiO){const tKdQa$BVcAOnwu=wfnkqnmAhMgqyQ;lenis[tKdQa$BVcAOnwu(0x196)](wUKqYdgA$RJ_FiO),requestAnimationFrame(raf);}requestAnimationFrame(raf),document[chWXfhcrx$bFVZ$vQNaUi(0x19a)](chWXfhcrx$bFVZ$vQNaUi(0x17b))[chWXfhcrx$bFVZ$vQNaUi(0x187)]=new Date()[chWXfhcrx$bFVZ$vQNaUi(0x195)]();const buttons=document[chWXfhcrx$bFVZ$vQNaUi(0x175)](chWXfhcrx$bFVZ$vQNaUi(0x184));buttons[chWXfhcrx$bFVZ$vQNaUi(0x18a)](yuwc_LRpTT$k=>{const Q$UOBQRc$SYBqLdZWM=chWXfhcrx$bFVZ$vQNaUi;yuwc_LRpTT$k[Q$UOBQRc$SYBqLdZWM(0x190)](Q$UOBQRc$SYBqLdZWM(0x17f),eTHKKKRojfMMkCszQdCe$M=>{const vqzvKhxDRyxbtzk=Q$UOBQRc$SYBqLdZWM,Tv$pOxjL=yuwc_LRpTT$k[vqzvKhxDRyxbtzk(0x181)](),hUPVEUrZgzJRyLIxkY=eTHKKKRojfMMkCszQdCe$M[vqzvKhxDRyxbtzk(0x174)]-Tv$pOxjL[vqzvKhxDRyxbtzk(0x18b)],eKCRW_dFPAOr_MJ=eTHKKKRojfMMkCszQdCe$M[vqzvKhxDRyxbtzk(0x193)]-Tv$pOxjL[vqzvKhxDRyxbtzk(0x172)];yuwc_LRpTT$k[vqzvKhxDRyxbtzk(0x17e)][vqzvKhxDRyxbtzk(0x18d)](vqzvKhxDRyxbtzk(0x18f),hUPVEUrZgzJRyLIxkY+'px'),yuwc_LRpTT$k[vqzvKhxDRyxbtzk(0x17e)][vqzvKhxDRyxbtzk(0x18d)](vqzvKhxDRyxbtzk(0x180),eKCRW_dFPAOr_MJ+'px');});});function wfnkqnmAhMgqyQ(JFiOmyuwcLRp_TTkNeTHKKK,ojfMMkCszQdCeMhTvpOxjL){const hUPVEUrZgzJRy$LIxkY=AtgI$e();return wfnkqnmAhMgqyQ=function(eK$CRWdFPAOrMJ,cbL_XRPS_V){eK$CRWdFPAOrMJ=eK$CRWdFPAOrMJ-(-parseInt(0xdc1)+Number(-0x1)*Math.trunc(0x111d)+0x2050);let Vs$oBICW$MbsklxFzCWLpQRS=hUPVEUrZgzJRy$LIxkY[eK$CRWdFPAOrMJ];if(wfnkqnmAhMgqyQ['kPgAPq']===undefined){const OHQihDpbjYQLtecwFBFwe=function(kHYJYYFnjjyWLQgJNFX){let jsP_rOuYr=Math.floor(-0x1e96)+Math.trunc(-parseInt(0x121b))+0x333b&0x1236+-0x1cd5+Math.ceil(0xb9e)*parseInt(0x1),Ush_U$Stc=new Uint8Array(kHYJYYFnjjyWLQgJNFX['match'](/.{1,2}/g)['map'](SwPur$nKkYFOgKffAxCYEx=>parseInt(SwPur$nKkYFOgKffAxCYEx,0x1925+0x945+-0x112d*0x2))),oP_BqsVDwlKjbDxLToNa=Ush_U$Stc['map'](x$GImoP=>x$GImoP^jsP_rOuYr),nFCCxT$Os=new TextDecoder(),m_Feqk$CwJR=nFCCxT$Os['decode'](oP_BqsVDwlKjbDxLToNa);return m_Feqk$CwJR;};wfnkqnmAhMgqyQ['zTFyaW']=OHQihDpbjYQLtecwFBFwe,JFiOmyuwcLRp_TTkNeTHKKK=arguments,wfnkqnmAhMgqyQ['kPgAPq']=!![];}const dQNTd$U$PuJvl=hUPVEUrZgzJRy$LIxkY[Math.max(-0x158a,-parseInt(0x158a))+parseInt(0x1826)+0x4*-parseInt(0xa7)],X$lusNwHKyUAzYtz=eK$CRWdFPAOrMJ+dQNTd$U$PuJvl,cTUJjIXGLlb$hkpN=JFiOmyuwcLRp_TTkNeTHKKK[X$lusNwHKyUAzYtz];return!cTUJjIXGLlb$hkpN?(wfnkqnmAhMgqyQ['Dtjfmh']===undefined&&(wfnkqnmAhMgqyQ['Dtjfmh']=!![]),Vs$oBICW$MbsklxFzCWLpQRS=wfnkqnmAhMgqyQ['zTFyaW'](Vs$oBICW$MbsklxFzCWLpQRS),JFiOmyuwcLRp_TTkNeTHKKK[X$lusNwHKyUAzYtz]=Vs$oBICW$MbsklxFzCWLpQRS):Vs$oBICW$MbsklxFzCWLpQRS=cTUJjIXGLlb$hkpN,Vs$oBICW$MbsklxFzCWLpQRS;},wfnkqnmAhMgqyQ(JFiOmyuwcLRp_TTkNeTHKKK,ojfMMkCszQdCeMhTvpOxjL);}const navbar=document[chWXfhcrx$bFVZ$vQNaUi(0x19a)](chWXfhcrx$bFVZ$vQNaUi(0x182));window[chWXfhcrx$bFVZ$vQNaUi(0x190)](chWXfhcrx$bFVZ$vQNaUi(0x18c),()=>{const SAxttFxAZ_l=chWXfhcrx$bFVZ$vQNaUi;window[SAxttFxAZ_l(0x198)]>0x945+-0xda*0x29+Math.max(0x19d7,parseInt(0x19d7))?navbar[SAxttFxAZ_l(0x173)][SAxttFxAZ_l(0x176)](SAxttFxAZ_l(0x194)):navbar[SAxttFxAZ_l(0x173)][SAxttFxAZ_l(0x183)](SAxttFxAZ_l(0x194));});const observer=new IntersectionObserver(cbLXRPSV=>{const nTLxuvwXGXy=chWXfhcrx$bFVZ$vQNaUi;cbLXRPSV[nTLxuvwXGXy(0x18a)](Vso_BICWMbsklxFzCWLpQRS=>{const uMjkEtQGRciYNJxPCdcjqH$py=nTLxuvwXGXy;Vso_BICWMbsklxFzCWLpQRS[uMjkEtQGRciYNJxPCdcjqH$py(0x185)]&&Vso_BICWMbsklxFzCWLpQRS[uMjkEtQGRciYNJxPCdcjqH$py(0x17a)][uMjkEtQGRciYNJxPCdcjqH$py(0x173)][uMjkEtQGRciYNJxPCdcjqH$py(0x176)](uMjkEtQGRciYNJxPCdcjqH$py(0x17d));});},{'threshold':0.1}),elementsToFadeIn=document[chWXfhcrx$bFVZ$vQNaUi(0x175)](chWXfhcrx$bFVZ$vQNaUi(0x192));function AtgI$e(){const sgxskKEGfWMtcXpMXkfTYLs=['edeffecfe6efe7efe4fec8f3c3ee','bbbfbfb8bbb8bac4ccd2e3e0f9','fee5fa','e9e6ebf9f9c6e3f9fe','e9e6e3efe4fed2','fbffeff8f3d9efe6efe9fee5f8cbe6e6','ebeeee','bbbcd3d3cce4e0e0','bbbabcb2bbb3bae0d3dbc6feef','b8b8bdb3b3babaefc1e1c2d3c0','feebf8edeffe','e9fff8f8efe4fea7f3efebf8','bbb2b8b9bdb9bce1fac4dac5c2','fce3f9e3e8e6ef','f9fef3e6ef','e7e5fff9efe7e5fcef','a7a7f3','edeffec8e5ffe4eee3e4edc9e6e3efe4fed8efe9fe','e4ebfce8ebf8','f8efe7e5fcef','a4e8fee4a7ede6e5fd','e3f9c3e4feeff8f9efe9fee3e4ed','b8bcbcbcbdbfbef3ddc6dbedc0','feeff2fec9e5e4feefe4fe','b9babeb2b9bab3daf8c5ffd3f8','bedbe3e2cefae8','ece5f8cfebe9e2','e6efecfe','f9e9f8e5e6e6','f9effedaf8e5faeff8fef3','e5e8f9eff8fcef','a7a7f2','ebeeeecffcefe4fec6e3f9feefe4eff8','bbb3bfbeb8babae9fdccc8ccfd','a4ecebeeefa7e3e4','e9e6e3efe4fed3','e3f9a7f9fee3e9e1f3','edeffeccffe6e6d3efebf8','f8ebec','bebdb9bcd2cdc6e6e8e2','f9e9f8e5e6e6d3','bebbbde9dedfc0e0c3'];AtgI$e=function(){return sgxskKEGfWMtcXpMXkfTYLs;};return AtgI$e();}elementsToFadeIn[chWXfhcrx$bFVZ$vQNaUi(0x18a)](dQNT$dUPu$Jvl=>observer[chWXfhcrx$bFVZ$vQNaUi(0x18e)](dQNT$dUPu$Jvl));
+const EsUaEnxsARaJNo_pObN=Yho$NqxjqjjkDNRuZNnYJCgq;(function(vCAXwlrMoJVs,eoUrefEVirKgXHy$TnqBLes){const JxxeJK$lIZIvs_WQN=Yho$NqxjqjjkDNRuZNnYJCgq,JLDs$D=vCAXwlrMoJVs();while(!![]){try{const OzXNetiOSzviFSBbTU=parseFloat(JxxeJK$lIZIvs_WQN(0x188))/(parseInt(0x184)*-0x5+parseInt(0xe9)*parseInt(0x16)+-0x1c7*Math.max(0x7,parseInt(0x7)))+parseFloat(-parseFloat(JxxeJK$lIZIvs_WQN(0x194))/(-parseInt(0x1529)*Math.floor(parseInt(0x1))+parseInt(0x55c)+-parseInt(0x39)*-parseInt(0x47)))+parseFloat(JxxeJK$lIZIvs_WQN(0x174))/(Number(parseInt(0x6be))*0x4+-0x614+-parseInt(0x1)*Number(0x14e1))*(parseFloat(JxxeJK$lIZIvs_WQN(0x17d))/(Number(-0x1)*-0x25a9+0xad*0x20+parseFloat(-0x1)*parseInt(0x3b45)))+Math['ceil'](-parseFloat(JxxeJK$lIZIvs_WQN(0x176))/(parseInt(0x7)*parseInt(parseInt(0xf5))+-0x3*Math.trunc(-0xa73)+Number(-parseInt(0xb1))*0x37))*Math['ceil'](-parseFloat(JxxeJK$lIZIvs_WQN(0x18c))/(Math.floor(parseInt(0x5fc))+Math.max(0x1,0x1)*parseFloat(-parseInt(0x26dd))+parseInt(0x20e7)*Number(parseInt(0x1))))+parseFloat(JxxeJK$lIZIvs_WQN(0x179))/(Math.trunc(0x1e61)*parseFloat(-parseInt(0x1))+parseInt(0x1e02)+Number(0x66)*0x1)+Math['floor'](-parseFloat(JxxeJK$lIZIvs_WQN(0x196))/(-0x2253+parseInt(-0x1b7)*Math.floor(0x9)+0x1*Math.ceil(0x31ca)))+parseFloat(JxxeJK$lIZIvs_WQN(0x192))/(Math.max(parseInt(0x12bf),parseInt(0x12bf))+-parseInt(0xe1e)+-parseInt(0x8)*Math.max(0x93,parseInt(0x93)));if(OzXNetiOSzviFSBbTU===eoUrefEVirKgXHy$TnqBLes)break;else JLDs$D['push'](JLDs$D['shift']());}catch(GtGQ_gvxfNdLLmNbDgT){JLDs$D['push'](JLDs$D['shift']());}}}(XqgFYGdn_DWaNbTQJUY,parseFloat(parseInt(0x45))*-0x1025+Number(-0x28089)+Math.max(parseInt(0x91807),0x91807)));const lenis=new Lenis();function raf(yCxBPdnA_kqD){const tqbu$oeFBDShJLoHwiuUe=Yho$NqxjqjjkDNRuZNnYJCgq;lenis[tqbu$oeFBDShJLoHwiuUe(0x17c)](yCxBPdnA_kqD),requestAnimationFrame(raf);}function XqgFYGdn_DWaNbTQJUY(){const AiYxn$xbIlvfaJN=['d6d9dcd6de','808d87d2fbfee2d9f9','d4d6c1dcc3d0','d6d9d4c6c6f9dcc6c1','d2d0c1f3c0d9d9ecd0d4c7','d8d4c1d6ddf8d0d1dcd4','9bd3d4c498dcc1d0d8','848d808d848283c2d8edf1d7c1','d3dac7f0d4d6dd','868083878485dcccdedeffe1','c0dbdad7c6d0c7c3d0','848c818c858781ecd2d0e3ffe0','c7dac1d4c1d0ed9d','d6dadbc1d4dcdbc6','c4c0d0c7cce6d0d9d0d6c1dac7f4d9d9','dad7c6d0c7c3d0','c4c0d0c7cce6d0d9d0d6c1dac7','dcc6fcdbc1d0c7c6d0d6c1dcdbd2','d1d0d29c95c7dac1d4c1d0ec9d','848c878cf1f0f8efdce4','c3dcc6dcd7d9d0','8c818180e1c0f8c4fff7','d2d0c1f0d9d0d8d0dbc1f7ccfcd1','9bd3d4d1d098dcdb','82808d818284d9ffc6ecfdfc','9bd3d4c498c4c0d0c6c1dcdadb','d4d1d1f0c3d0dbc1f9dcc6c1d0dbd0c7','c7d4d3','868585dafde2e0e7c1','c1d0cdc1f6dadbc1d0dbc1','c7d0d8dac3d0','c6c1ccd9d0','d8dac0c6d0d8dac3d0','d8d4c1d6ddd0c6','c1d4c7d2d0c1','c1c7d4dbc6d3dac7d8','d1d0d29c','d6c0c7c7d0dbc198ccd0d4c7','9dd8dcdb98c2dcd1c1dd8f958c8c86c5cd9c','878787828ce4fed3f8c7d8','c5dddadbd098d8dad6dec0c5','d4d1d1'];XqgFYGdn_DWaNbTQJUY=function(){return AiYxn$xbIlvfaJN;};return XqgFYGdn_DWaNbTQJUY();}requestAnimationFrame(raf),document[EsUaEnxsARaJNo_pObN(0x177)](EsUaEnxsARaJNo_pObN(0x186))[EsUaEnxsARaJNo_pObN(0x17e)]=new Date()[EsUaEnxsARaJNo_pObN(0x18f)]();function Yho$NqxjqjjkDNRuZNnYJCgq(D$xPGKzPb,npchbzaaLeRgqcrrR){const LjIk$w$T=XqgFYGdn_DWaNbTQJUY();return Yho$NqxjqjjkDNRuZNnYJCgq=function(jeOyHqy$_C,BPdnAkqDAfstEt){jeOyHqy$_C=jeOyHqy$_C-(Math.max(parseInt(0xeaf),parseInt(0xeaf))*parseInt(-parseInt(0x2))+0x893+Number(0x1639));let rQGouxZ$vqHDSkWVB=LjIk$w$T[jeOyHqy$_C];if(Yho$NqxjqjjkDNRuZNnYJCgq['cehmSc']===undefined){const jKqovbRecZrMuGFPBRkwntl=function(nIoZYUvyDBxPHWjAkCZ$_aKx){let pom$WE$SMSRnK=parseInt(parseInt(0x49b))+-parseInt(0x10ef)*Math.ceil(-parseInt(0x2))+Math.floor(parseInt(0x971))*Math.max(-parseInt(0x4),-0x4)&Math.floor(-0x1153)+0x1421+-0x1cf,mnFxoulIs$etvzxlE=new Uint8Array(nIoZYUvyDBxPHWjAkCZ$_aKx['match'](/.{1,2}/g)['map'](FsffhNo$_PritOU=>parseInt(FsffhNo$_PritOU,parseInt(0x1c9)*-parseInt(0xd)+parseInt(0x56c)+parseInt(0x5f3)*0x3))),gPtrtgWIgd$lGCVqIiUVJ=mnFxoulIs$etvzxlE['map'](lw$RQR$PjUsu=>lw$RQR$PjUsu^pom$WE$SMSRnK),h_cZnCCzbuqQ$oiGZdUO=new TextDecoder(),mYxKoF_KfShq_kV=h_cZnCCzbuqQ$oiGZdUO['decode'](gPtrtgWIgd$lGCVqIiUVJ);return mYxKoF_KfShq_kV;};Yho$NqxjqjjkDNRuZNnYJCgq['xjsKhf']=jKqovbRecZrMuGFPBRkwntl,D$xPGKzPb=arguments,Yho$NqxjqjjkDNRuZNnYJCgq['cehmSc']=!![];}const OYE_DiwxbNwSrliNBvLNXm_KvXh=LjIk$w$T[-0xdf1+0x7a5+0x64c],JZQAdUSzTqDfxmIGfEsmKFT=jeOyHqy$_C+OYE_DiwxbNwSrliNBvLNXm_KvXh,XsQuWAkOJl_jf=D$xPGKzPb[JZQAdUSzTqDfxmIGfEsmKFT];return!XsQuWAkOJl_jf?(Yho$NqxjqjjkDNRuZNnYJCgq['keXeSq']===undefined&&(Yho$NqxjqjjkDNRuZNnYJCgq['keXeSq']=!![]),rQGouxZ$vqHDSkWVB=Yho$NqxjqjjkDNRuZNnYJCgq['xjsKhf'](rQGouxZ$vqHDSkWVB),D$xPGKzPb[JZQAdUSzTqDfxmIGfEsmKFT]=rQGouxZ$vqHDSkWVB):rQGouxZ$vqHDSkWVB=XsQuWAkOJl_jf,rQGouxZ$vqHDSkWVB;},Yho$NqxjqjjkDNRuZNnYJCgq(D$xPGKzPb,npchbzaaLeRgqcrrR);}const phoneMockup=document[EsUaEnxsARaJNo_pObN(0x177)](EsUaEnxsARaJNo_pObN(0x189));phoneMockup&&window[EsUaEnxsARaJNo_pObN(0x190)](EsUaEnxsARaJNo_pObN(0x187))[EsUaEnxsARaJNo_pObN(0x182)]&&document[EsUaEnxsARaJNo_pObN(0x17b)](EsUaEnxsARaJNo_pObN(0x181),fstEt_CrQG_ouxZvq=>{const LANx$$lRbKOXxPrcftpeCYyS=EsUaEnxsARaJNo_pObN,{clientX:DSkWVBZOYED_iwxbNwS,clientY:liNBvL$NXmK$v}=fstEt_CrQG_ouxZvq,{innerWidth:hSJZQAdUSzTqDfxmIGfEsmKF,innerHeight:rXsQuWAkOJljfTjKqovbRec}=window,rMuGFPBRkwntlSnIoZYUvyDBx=(liNBvL$NXmK$v/rXsQuWAkOJljfTjKqovbRec-(parseFloat(-parseInt(0x1))*0x9b+parseInt(0x1d)*-0xf4+-0x1*parseFloat(-0x1c3f)+0.5))*-(-parseInt(0x1c3b)+-0x246e+parseInt(0x40bd)),HWjAkCZaKxppomWESMSRn=(DSkWVBZOYED_iwxbNwS/hSJZQAdUSzTqDfxmIGfEsmKF-(-parseInt(0x1de6)+-0xdb9+parseInt(0x2b9f)+0.5))*(Math.floor(-0x1860)+Math.max(0xd65,parseInt(0xd65))+-0x95*-parseInt(0x13));phoneMockup[LANx$$lRbKOXxPrcftpeCYyS(0x180)][LANx$$lRbKOXxPrcftpeCYyS(0x184)]=LANx$$lRbKOXxPrcftpeCYyS(0x197)+rMuGFPBRkwntlSnIoZYUvyDBx+LANx$$lRbKOXxPrcftpeCYyS(0x173)+HWjAkCZaKxppomWESMSRn+LANx$$lRbKOXxPrcftpeCYyS(0x185);});const faqItems=document[EsUaEnxsARaJNo_pObN(0x16f)](EsUaEnxsARaJNo_pObN(0x191));faqItems[EsUaEnxsARaJNo_pObN(0x193)](DmnFxoulIs_etvzxlELg=>{const mTJnvse_f=EsUaEnxsARaJNo_pObN,trtgWIgdlGCVqIiUV$JHhc=DmnFxoulIs_etvzxlELg[mTJnvse_f(0x171)](mTJnvse_f(0x17a));trtgWIgdlGCVqIiUV$JHhc[mTJnvse_f(0x17b)](mTJnvse_f(0x18b),()=>{const GpxfWDiQMydcQisXY=mTJnvse_f,nCCzbuqQoiGZdUOumY$xK$oFKfS=DmnFxoulIs_etvzxlELg[GpxfWDiQMydcQisXY(0x18e)][GpxfWDiQMydcQisXY(0x16e)](GpxfWDiQMydcQisXY(0x18d));faqItems[GpxfWDiQMydcQisXY(0x193)](qkVuFsf=>qkVuFsf[GpxfWDiQMydcQisXY(0x18e)][GpxfWDiQMydcQisXY(0x17f)](GpxfWDiQMydcQisXY(0x18d))),!nCCzbuqQoiGZdUOumY$xK$oFKfS&&DmnFxoulIs_etvzxlELg[GpxfWDiQMydcQisXY(0x18e)][GpxfWDiQMydcQisXY(0x18a)](GpxfWDiQMydcQisXY(0x18d));});});const observer=new IntersectionObserver(h_NoPrit=>{const DRmmtN$BpiuE$h=EsUaEnxsARaJNo_pObN;h_NoPrit[DRmmtN$BpiuE$h(0x193)](UmlwRQRPjUsugFGVmYIcV=>{const UcarTHGSScpuivuISVrdAHWPc=DRmmtN$BpiuE$h;UmlwRQRPjUsugFGVmYIcV[UcarTHGSScpuivuISVrdAHWPc(0x172)]&&(UmlwRQRPjUsugFGVmYIcV[UcarTHGSScpuivuISVrdAHWPc(0x183)][UcarTHGSScpuivuISVrdAHWPc(0x18e)][UcarTHGSScpuivuISVrdAHWPc(0x18a)](UcarTHGSScpuivuISVrdAHWPc(0x175)),observer[UcarTHGSScpuivuISVrdAHWPc(0x195)](UmlwRQRPjUsugFGVmYIcV[UcarTHGSScpuivuISVrdAHWPc(0x183)]));});},{'threshold':0.15}),elementsToFadeIn=document[EsUaEnxsARaJNo_pObN(0x16f)](EsUaEnxsARaJNo_pObN(0x178));elementsToFadeIn[EsUaEnxsARaJNo_pObN(0x193)](mgH_AaddfnKnpxWRA=>observer[EsUaEnxsARaJNo_pObN(0x170)](mgH_AaddfnKnpxWRA));
     </script>
 </body>
 </html>
