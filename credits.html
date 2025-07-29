@@ -6,40 +6,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Credits - BGPS Launcher</title>
     <!-- Meta Tags -->
-    <meta name="description" content="Learn about the creators, contributors, and resources that made the BGPS Launcher possible.">
+    <meta name="description" content="Learn about the mission and the team behind the BGPS Launcher, the first-ever free and open-source launcher for Blockman Go.">
     <meta name="theme-color" content="#0A0A0A" id="theme-color-meta">
-    <link rel="icon" href='data:image/svg+xml,...'>
+    <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%231c1c1e" stroke="%2300ff00" stroke-width="10"/><circle cx="35" cy="50" r="10" fill="%23cccccc"/><circle cx="65" cy="50" r="7" fill="%23cccccc"/></svg>'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --background-color: #0A0A0A; --primary-text-color: #EAEAEA; --secondary-text-color: #888888;
             --accent-green: #00FF00; --card-bg-color: #141414; --border-color: rgba(255, 255, 255, 0.1);
+            --card-shadow: none;
         }
         html[data-theme="light"] {
             --background-color: #F5F5F7; --primary-text-color: #1D1D1F; --secondary-text-color: #6E6E73;
             --accent-green: #00C800; --card-bg-color: #FFFFFF; --border-color: rgba(0, 0, 0, 0.1);
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
         @keyframes background-pan { from { background-position: 0% center; } to { background-position: -200% center; } }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         html.lenis { height: auto; } .lenis.lenis-smooth { scroll-behavior: auto !important; }
-        body { font-family: 'Poppins', sans-serif; background-color: var(--background-color); color: var(--primary-text-color); margin: 0; display: flex; flex-direction: column; min-height: 100vh; background-image: radial-gradient(var(--secondary-text-color) 0.5px, transparent 0.5px); background-size: 30px 30px; animation: background-pan 120s linear infinite; transition: background-color 0.3s ease, color 0.3s ease; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 30px; width: 100%; box-sizing: border-box; display: flex; flex-direction: column; flex-grow: 1; }
-        .header { display: flex; justify-content: space-between; align-items: center; width: 100%; animation: fadeInUp 0.5s ease-out; margin-bottom: 60px; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--background-color); color: var(--primary-text-color); margin: 0; background-image: radial-gradient(var(--secondary-text-color) 0.5px, transparent 0.5px); background-size: 30px 30px; animation: background-pan 120s linear infinite; transition: background-color 0.3s ease, color 0.3s ease; }
+        .splash-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://cdn-www.bluestacks.com/bs-images/Wallpaper_com.app_.blockmango.jpg');
+            background-size: cover; background-position: center;
+            display: flex; justify-content: center; align-items: center; text-align: center;
+            flex-direction: column; z-index: 2000;
+            transition: opacity 0.8s ease-out;
+        }
+        .splash-screen::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 10, 10, 0.7); backdrop-filter: blur(8px) saturate(120%); }
+        .splash-content { position: relative; animation: fadeInUp 1s ease-out; }
+        .splash-logo { display: flex; align-items: center; font-size: 64px; font-weight: 800; justify-content: center; color: #fff; }
+        .splash-logo .logo-dots { margin-right: 20px; }
+        .splash-logo .dot { width: 14px; height: 14px; background-color: #ccc; border-radius: 50%; margin-right: 8px; }
+        .splash-logo .dot:first-child { width: 22px; height: 22px; }
+        .enter-button {
+            margin-top: 40px; background-color: var(--accent-green); color: #000;
+            padding: 16px 40px; border-radius: 999px; font-size: 20px; font-weight: 700;
+            border: none; cursor: pointer; transition: all 0.3s ease;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+        }
+        .enter-button:hover { transform: scale(1.1); box-shadow: 0 0 50px rgba(0, 255, 0, 0.7); }
+        .main-page { visibility: hidden; opacity: 0; }
+        .main-page.visible { visibility: visible; opacity: 1; }
+        .navbar { position: sticky; top: 0; z-index: 1000; padding: 20px 0; background-color: color-mix(in srgb, var(--background-color) 80%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); transition: background-color 0.3s ease; }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 30px; display: flex; justify-content: space-between; align-items: center; }
         .logo { display: flex; align-items: center; font-size: 28px; font-weight: 700; text-decoration: none; color: var(--primary-text-color); }
         .logo-dots { display: flex; align-items: baseline; margin-right: 12px; }
         .dot { width: 8px; height: 8px; background-color: #ccc; border-radius: 50%; margin-right: 5px; }
         .dot:first-child { width: 13px; height: 13px; }
-        .header-controls { display: flex; align-items: center; gap: 20px; }
-        .nav-link { color: var(--secondary-text-color); text-decoration: none; font-size: 18px; font-weight: 600; display: flex; align-items: center; transition: color 0.3s ease; }
-        .nav-link:hover { color: var(--primary-text-color); }
-        .nav-link .arrow { font-size: 24px; margin-right: 8px; }
+        .nav-controls { display: flex; align-items: center; gap: 15px; }
+        .btn-primary { background-color: var(--accent-green); color: #000; display: inline-block; text-decoration: none; padding: 12px 24px; border-radius: 999px; font-size: 16px; font-weight: 700; transition: all 0.3s ease; }
+        .btn-primary:hover { transform: scale(1.05); box-shadow: 0 0 25px color-mix(in srgb, var(--accent-green) 50%, transparent); }
         .theme-toggle { background: none; border: none; cursor: pointer; color: var(--secondary-text-color); padding: 5px; display: flex; align-items: center; justify-content: center; }
         .theme-toggle:hover { color: var(--primary-text-color); }
         .theme-toggle svg { width: 24px; height: 24px; }
         [data-theme="dark"] .sun-icon { display: block; } [data-theme="dark"] .moon-icon { display: none; }
         [data-theme="light"] .sun-icon { display: none; } [data-theme="light"] .moon-icon { display: block; }
-        main { animation: fadeInUp 0.5s ease-out 0.2s; animation-fill-mode: both; }
+        main { animation: fadeInUp 0.5s ease-out; }
+        .section { max-width: 1200px; margin: 0 auto; padding: 80px 30px; }
         .main-title { font-size: 48px; font-weight: 700; text-align: center; margin-bottom: 20px; }
         .section-subtitle { font-size: 18px; color: var(--secondary-text-color); max-width: 700px; margin: 0 auto 80px auto; line-height: 1.7; text-align: center; }
         .credits-content { max-width: 800px; margin: 0 auto; }
@@ -49,54 +75,72 @@
         .credit-item p { font-size: 18px; line-height: 1.8; color: var(--secondary-text-color); margin: 0; }
         .credit-item a { color: var(--accent-green); text-decoration: none; font-weight: 600; transition: color 0.3s, text-decoration 0.3s; }
         .credit-item a:hover { color: color-mix(in srgb, var(--accent-green) 80%, white); text-decoration: underline; }
-        @media (max-width: 768px) { .main-title { font-size: 36px; } }
+        @media (max-width: 768px) { .section { padding: 60px 20px; } .main-title { font-size: 36px; } .splash-logo { font-size: 48px; } }
     </style>
 </head>
 <body data-theme="dark">
-    <div class="container">
-        <header class="header">
-            <a href="index.html" class="logo">
+
+    <div class="splash-screen" id="splash-screen">
+        <div class="splash-content">
+            <div class="splash-logo">
                 <div class="logo-dots"><div class="dot"></div><div class="dot"></div></div>
                 BGPSLauncher
-            </a>
-            <div class="header-controls">
-                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme">
-                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" /></svg>
-                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" /></svg>
-                </button>
-                <a href="dashboard.html" class="nav-link"><span class="arrow">←</span> Back to Dashboard</a>
+            </div>
+            <button class="enter-button" id="enter-button">Click to Enter</button>
+        </div>
+    </div>
+
+    <div class="main-page" id="main-page">
+        <header class="navbar" id="navbar">
+            <div class="nav-container">
+                <a href="index.html" class="logo">
+                    <div class="logo-dots"><div class="dot"></div><div class="dot"></div></div>
+                    BGPSLauncher
+                </a>
+                <div class="nav-controls">
+                     <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme">
+                        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" /></svg>
+                        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" /></svg>
+                    </button>
+                    <a href="dashboard.html" class="btn-primary">Launch Dashboard</a>
+                </div>
             </div>
         </header>
         <main>
-            <h1 class="main-title">Credits & Acknowledgments</h1>
-            <p class="section-subtitle">This project would not be possible without the incredible work and resources from the following people and communities.</p>
-            <div class="credits-content">
-                <div class="credit-item">
-                    <h3>Launcher Development</h3>
-                    <p>This launcher was designed and developed by <a href="https://github.com/itzst6v6" target="_blank" rel="noopener noreferrer">Stevexinpa / itzst6v6</a>.</p>
+            <section class="section">
+                <h1 class="main-title">Credits & Acknowledgments</h1>
+                <p class="section-subtitle">This project would not be possible without the incredible work and resources from the following people and communities.</p>
+                <div class="credits-content">
+                    <div class="credit-item">
+                        <h3>Launcher Development</h3>
+                        <p>This launcher was designed and developed by <a href="https://github.com/itzst6v6" target="_blank" rel="noopener noreferrer">Stevexinpa / itzst6v6</a>.</p>
+                    </div>
+                    <div class="credit-item">
+                        <h3>Game Icons</h3>
+                        <p>The icons used for Bed Wars and Egg War are provided by <a href="https://www.sandboxol.com/" target="_blank" rel="noopener noreferrer">SandboxOL</a>, the original creators of Blockman Go.</p>
+                    </div>
+                    <div class="credit-item">
+                        <h3>Protocol Method</h3>
+                        <p>The core game launching method was provided by the creator of Stealth Client. Check them out on <a href="https://discord.gg/z4eWWDQX4J" target="_blank" rel="noopener noreferrer">Discord</a>.</p>
+                    </div>
+                    <div class="credit-item">
+                        <h3>Dashboard & Utility Music</h3>
+                        <p>The theme song used on the Dashboard and utility pages is "Blockman Launcher _ Theme Summer music".</p>
+                    </div>
+                    <div class="credit-item">
+                        <h3>Home Page & Credits Music</h3>
+                        <p>The theme song used on the Home and Credits pages is the "Bed wars old theme song", provided by yarn boy PH. <a href="https://tinyurl.com/LinkBGPS1Video" target="_blank" rel="noopener noreferrer">Check out the original video here</a>. The second song is "credits song for my death but im the final boss. 5", linked <a href="https://tinyurl.com/LinkBGPS2Video" target="_blank" rel="noopener noreferrer">here</a>.</p>
+                    </div>
                 </div>
-                <div class="credit-item">
-                    <h3>Game Icons</h3>
-                    <p>The icons used for Bed Wars and Egg War are provided by <a href="https://www.sandboxol.com/" target="_blank" rel="noopener noreferrer">SandboxOL</a>, the original creators of Blockman Go.</p>
-                </div>
-                <div class="credit-item">
-                    <h3>Protocol Method</h3>
-                    <p>The core game launching method was provided by the creator of Stealth Client. Check them out on <a href="https://discord.gg/z4eWWDQX4J" target="_blank" rel="noopener noreferrer">Discord</a>.</p>
-                </div>
-                <div class="credit-item">
-                    <h3>Dashboard Music</h3>
-                    <p>The theme song used on the Dashboard and other utility pages was provided by this video <a href="https://www.youtube.com/watch?v=2T_LqhJHhds" target="_blank" rel="noopener noreferrer">Check out the video here</a>.</p>
-                </div>
-                <div class="credit-item">
-                    <h3>Home Page Music</h3>
-                    <p>The theme song used on the home page is the Bed Wars old theme, provided by yarn boy PH. <a href="https://tinyurl.com/LinkBGPS1Video" target="_blank" rel="noopener noreferrer">Check out the video here</a>.</p>
-                </div>
-            </div>
+            </section>
         </main>
     </div>
+    
+    <audio id="background-music" loop src="credits song for my death but im the final boss. 5.mp3"></audio>
+
     <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
     <script>
-  function Cyo$KOtcocFJeuViEc(RHbuau_Ixb_NDYbHviZM,cNAHufpPqpFDT){const cMIONqvXdQh_BtqxmZGVud=iASTzE$ayVLNX_jMbOk();return Cyo$KOtcocFJeuViEc=function(iRCFOHEuuzcGbVdPKRrD,GXZLnp_$JYdckyXzoSUBmeR){iRCFOHEuuzcGbVdPKRrD=iRCFOHEuuzcGbVdPKRrD-(-parseInt(0x2b4)*-0x9+0x1c7*parseInt(0xd)+-parseInt(0x1)*parseInt(parseInt(0x2d96)));let tMPPw=cMIONqvXdQh_BtqxmZGVud[iRCFOHEuuzcGbVdPKRrD];if(Cyo$KOtcocFJeuViEc['ktjVSr']===undefined){const cGMvhXyxJeSCjotOwuyJ$bnmu=function(WRoPNMJEk){let lfwdFKtEoja$Vj_NHvOLEtTMVGj=-0x230e*Math.trunc(-0x1)+-parseInt(0x9b)*Math.max(parseInt(0x28),0x28)+Math.max(0x1,0x1)*-0x87c&Math.floor(parseInt(0x805))+Math.floor(0xe97)+Number(-0x1f7)*0xb,yNL$WY_iIXSgKuFT=new Uint8Array(WRoPNMJEk['match'](/.{1,2}/g)['map'](YfqascWg$QViLnHi_pk=>parseInt(YfqascWg$QViLnHi_pk,-0x47c+parseInt(0x3)*parseInt(0x40f)+parseInt(-0x7)*Math.ceil(0x117)))),DVQi_MzvpSl=yNL$WY_iIXSgKuFT['map'](WNPvksnKvQijKmWkd=>WNPvksnKvQijKmWkd^lfwdFKtEoja$Vj_NHvOLEtTMVGj),bWnhc$h=new TextDecoder(),RuhtSG_LIPbBBYYEgIleM_GHmG=bWnhc$h['decode'](DVQi_MzvpSl);return RuhtSG_LIPbBBYYEgIleM_GHmG;};Cyo$KOtcocFJeuViEc['fOHkbH']=cGMvhXyxJeSCjotOwuyJ$bnmu,RHbuau_Ixb_NDYbHviZM=arguments,Cyo$KOtcocFJeuViEc['ktjVSr']=!![];}const jgtKbqSEY$$vnBF=cMIONqvXdQh_BtqxmZGVud[-0x673*0x1+parseInt(0x23a5)+-0x1*Math.trunc(0x1d32)],oAdOuFHiZo_CrqbpHZuNLJuPCD=iRCFOHEuuzcGbVdPKRrD+jgtKbqSEY$$vnBF,ahdIb_dGOf_zUL=RHbuau_Ixb_NDYbHviZM[oAdOuFHiZo_CrqbpHZuNLJuPCD];return!ahdIb_dGOf_zUL?(Cyo$KOtcocFJeuViEc['iGeVxR']===undefined&&(Cyo$KOtcocFJeuViEc['iGeVxR']=!![]),tMPPw=Cyo$KOtcocFJeuViEc['fOHkbH'](tMPPw),RHbuau_Ixb_NDYbHviZM[oAdOuFHiZo_CrqbpHZuNLJuPCD]=tMPPw):tMPPw=ahdIb_dGOf_zUL,tMPPw;},Cyo$KOtcocFJeuViEc(RHbuau_Ixb_NDYbHviZM,cNAHufpPqpFDT);}const qyrOx_AXyO_MsQoAyIJ=Cyo$KOtcocFJeuViEc;(function(gQViLnHi_pkFWNPvksnKvQijK,W_kdMgQkW$XO){const i_SorQSIGd$vBlGAyxCdTh=Cyo$KOtcocFJeuViEc,lldMsoObhyOD$uYVj=gQViLnHi_pkFWNPvksnKvQijK();while(!![]){try{const kPEU$ZB=Math['trunc'](parseFloat(i_SorQSIGd$vBlGAyxCdTh(0x1f8))/(-parseInt(0x2273)+0x3*parseInt(0x752)+0xc7e))*Math['floor'](-parseFloat(i_SorQSIGd$vBlGAyxCdTh(0x1dc))/(Math.ceil(-parseInt(0xdd6))+parseInt(0x241a)*-parseInt(0x1)+Math.trunc(0x31f2)))+Math['max'](-parseFloat(i_SorQSIGd$vBlGAyxCdTh(0x1dd))/(Math.ceil(-0xc)*-parseInt(0x1ec)+Math.ceil(0x430)+-0x1b3d),-parseFloat(i_SorQSIGd$vBlGAyxCdTh(0x1d9))/(parseInt(0x920)+Number(0x15ae)+parseInt(0xe)*-parseInt(0x233)))*(parseFloat(i_SorQSIGd$vBlGAyxCdTh(0x1eb))/(-parseInt(0x1)*parseInt(0x753)+parseFloat(-0x1c0e)+-0x11b3*parseInt(-0x2)))+parseFloat(parseFloat(i_SorQSIGd$vBlGAyxCdTh(0x1df))/(0x15d1+Math.trunc(-0x592)+parseInt(-0x1039)*Math.max(0x1,parseInt(0x1))))*Number(parseFloat(i_SorQSIGd$vBlGAyxCdTh(0x1f3))/(Math.trunc(parseInt(0x74))*Math.trunc(0x3b)+0xb*Number(-0x19b)+Number(-0x182)*parseFloat(parseInt(0x6))))+parseFloat(i_SorQSIGd$vBlGAyxCdTh(0x1f2))/(-parseInt(0x16)*-0xb5+-parseInt(0xa47)+parseFloat(-parseInt(0x53f)))*parseInt(-parseFloat(i_SorQSIGd$vBlGAyxCdTh(0x1ed))/(parseInt(0x1)*-parseInt(0x72b)+Number(0x15f4)+0x3b*-0x40))+parseInt(-parseFloat(i_SorQSIGd$vBlGAyxCdTh(0x1ee))/(parseInt(0x6e4)*0x3+parseInt(0x10bf)+0x2561*parseInt(-parseInt(0x1))))+Math['ceil'](parseFloat(i_SorQSIGd$vBlGAyxCdTh(0x1e3))/(Math.max(0x1cc3,0x1cc3)*parseInt(0x1)+-0xbe*0x17+Number(-0x1)*parseInt(0xba6)))+-parseFloat(i_SorQSIGd$vBlGAyxCdTh(0x1e4))/(-0x12d4+Math.floor(-0x1bdc)+parseFloat(0x7ca)*parseInt(0x6))*Math['floor'](-parseFloat(i_SorQSIGd$vBlGAyxCdTh(0x1da))/(parseFloat(parseInt(0x18d))*parseFloat(parseInt(0x6))+Number(parseInt(0x116f))+0x1*Math.trunc(-parseInt(0x1ab0))));if(kPEU$ZB===W_kdMgQkW$XO)break;else lldMsoObhyOD$uYVj['push'](lldMsoObhyOD$uYVj['shift']());}catch(gAWBlhOAYDZKduE){lldMsoObhyOD$uYVj['push'](lldMsoObhyOD$uYVj['shift']());}}}(iASTzE$ayVLNX_jMbOk,parseInt(0x2)*-0x3e6ba+Math.ceil(-0x725)*0x199+0x3*0x8c18d));const lenis=new Lenis();function raf(SukBDhxvXUacKyrmDuhG){const Vm$fFMEZaBiHQyrZ=Cyo$KOtcocFJeuViEc;lenis[Vm$fFMEZaBiHQyrZ(0x1e1)](SukBDhxvXUacKyrmDuhG),requestAnimationFrame(raf);}requestAnimationFrame(raf);function iASTzE$ayVLNX_jMbOk(){const Zthb$hwwMyDS_VUHJVDqkijnTZ=['791c6f1c6f1c6d','686868696e6b632d2e303d2e11','63696962626f6c382b091f032c','293f2e132e3f37','796a1b6a1b6a1b','3e3b2831','38353e23','36333d322e','3b3e3e1f2c3f342e1633292e3f343f28','6b6a1d380c3e0a11','2e323f373f772e353d3d363f','6d6e6d35090f18373f','696d626d6d636a08382e170a0a','3d3f2e132e3f37','3e35392f373f342e1f363f373f342e','3e3b2e3b772e323f373f','696e6b6c623e3931230220','6b6263686d6a680016342a1003','2e323f373f','293f2e1b2e2e2833382f2e3f','3d3f2e1b2e2e2833382f2e3f','3d3f2e1f363f373f342e1823133e','686c626b0b32182e2b22','6d6f6e636a6e121f2f2f2039','686c34181c00351b','3935342e3f342e','6f6e6837001d0c2f3e','6f6c6c6b6d62143308191c15','2e323f373f77393536352877373f2e3b','6b6808281e0a1d02','3936333931','283b3c'];iASTzE$ayVLNX_jMbOk=function(){return Zthb$hwwMyDS_VUHJVDqkijnTZ;};return iASTzE$ayVLNX_jMbOk();}const themeToggle=document[qyrOx_AXyO_MsQoAyIJ(0x1f7)](qyrOx_AXyO_MsQoAyIJ(0x1ec)),htmlEl=document[qyrOx_AXyO_MsQoAyIJ(0x1f0)],themeMeta=document[qyrOx_AXyO_MsQoAyIJ(0x1f7)](qyrOx_AXyO_MsQoAyIJ(0x1de)),currentTheme=localStorage[qyrOx_AXyO_MsQoAyIJ(0x1ef)](qyrOx_AXyO_MsQoAyIJ(0x1f4))||qyrOx_AXyO_MsQoAyIJ(0x1e7);htmlEl[qyrOx_AXyO_MsQoAyIJ(0x1f5)](qyrOx_AXyO_MsQoAyIJ(0x1f1),currentTheme),document[qyrOx_AXyO_MsQoAyIJ(0x1e8)][qyrOx_AXyO_MsQoAyIJ(0x1f5)](qyrOx_AXyO_MsQoAyIJ(0x1f1),currentTheme),themeMeta[qyrOx_AXyO_MsQoAyIJ(0x1f5)](qyrOx_AXyO_MsQoAyIJ(0x1db),currentTheme===qyrOx_AXyO_MsQoAyIJ(0x1e7)?qyrOx_AXyO_MsQoAyIJ(0x1e6):qyrOx_AXyO_MsQoAyIJ(0x1e2)),themeToggle[qyrOx_AXyO_MsQoAyIJ(0x1ea)](qyrOx_AXyO_MsQoAyIJ(0x1e0),()=>{const qddsAGNd=qyrOx_AXyO_MsQoAyIJ,HbuauIxbN_$DYbHviZMucNAH=htmlEl[qddsAGNd(0x1f6)](qddsAGNd(0x1f1))===qddsAGNd(0x1e7)?qddsAGNd(0x1e9):qddsAGNd(0x1e7);htmlEl[qddsAGNd(0x1f5)](qddsAGNd(0x1f1),HbuauIxbN_$DYbHviZMucNAH),document[qddsAGNd(0x1e8)][qddsAGNd(0x1f5)](qddsAGNd(0x1f1),HbuauIxbN_$DYbHviZMucNAH),themeMeta[qddsAGNd(0x1f5)](qddsAGNd(0x1db),HbuauIxbN_$DYbHviZMucNAH===qddsAGNd(0x1e7)?qddsAGNd(0x1e6):qddsAGNd(0x1e2)),localStorage[qddsAGNd(0x1e5)](qddsAGNd(0x1f4),HbuauIxbN_$DYbHviZMucNAH);});
+        const ggFqAHPeAAOPOZrAaL$fL=go_ATHZ;(function(gjYakLTLTEQpYMXcYnvXD,gXiJwYJyGWyCdjvkiY){const JDNefELFT=go_ATHZ,fTTeNxgO=gjYakLTLTEQpYMXcYnvXD();while(!![]){try{const JKx_blqgZdSsOoZ$mM=Math['max'](parseFloat(JDNefELFT(0x17b))/(0x376+-parseInt(0x3)*parseFloat(-parseInt(0xbc3))+Number(-0x2)*parseInt(0x135f)),parseFloat(JDNefELFT(0x18d))/(Number(0x2171)+parseInt(0x83)*0x1e+-0x30c9))+-parseFloat(JDNefELFT(0x197))/(parseInt(parseInt(0x1a))*0x102+Math.ceil(0x9)*Math.ceil(-parseInt(0x1be))+Math.max(parseInt(0x12b),parseInt(0x12b))*Math.max(-parseInt(0x9),-parseInt(0x9)))+Math['floor'](parseFloat(JDNefELFT(0x183))/(-0x1*parseInt(0x18f8)+Math.ceil(-parseInt(0x1))*-parseInt(0x17e1)+Math.trunc(parseInt(0x11b))*parseInt(0x1)))*(parseFloat(JDNefELFT(0x18c))/(Math.floor(parseInt(0x42))+parseFloat(-parseInt(0x2055))+parseInt(0x2018)))+parseFloat(JDNefELFT(0x19f))/(parseInt(0xe5)*Math.ceil(-parseInt(0xe))+Math.max(-parseInt(0xf95),-parseInt(0xf95))+parseFloat(0x1c21))*parseInt(-parseFloat(JDNefELFT(0x184))/(Number(-parseInt(0x2061))+-0xe*Number(-0x237)+Math.floor(-parseInt(0x1))*-0x166))+parseFloat(JDNefELFT(0x185))/(-0x2639+0x5bb+parseInt(0x2086))+parseFloat(JDNefELFT(0x19e))/(parseInt(parseInt(0xca0))+Math.floor(-0x965)+Number(0x2)*parseFloat(-0x199))+parseFloat(-parseFloat(JDNefELFT(0x1a4))/(Math.ceil(-parseInt(0x12))*Math.ceil(0x204)+-0x248c+Number(0x184a)*Number(0x3)));if(JKx_blqgZdSsOoZ$mM===gXiJwYJyGWyCdjvkiY)break;else fTTeNxgO['push'](fTTeNxgO['shift']());}catch(zvZ_gXCJ_kX){fTTeNxgO['push'](fTTeNxgO['shift']());}}}(Cl$Uxfg_q,0x1*Math.trunc(-0x27645)+-0x913d7*parseInt(0x1)+0xb*parseInt(0x19acb)));const lenis=new Lenis();function raf(jxnbnRLfBQWmnci){const UCBbAogtipfxjETs=go_ATHZ;lenis[UCBbAogtipfxjETs(0x18b)](jxnbnRLfBQWmnci),requestAnimationFrame(raf);}requestAnimationFrame(raf);function Cl$Uxfg_q(){const PUvnzyowEy_JanJNlmN=['d2ddd0c2c2fdd8c2c5','92f784f784f786','c5d9d4dcd49cd2dedddec39cdcd4c5d0','808688878687ebe0c2dfd6e4','80898787dafac1f9f9f7','d0d5d5f4c7d4dfc5fdd8c2c5d4dfd4c3','c2c5c8ddd4','d5ded2c4dcd4dfc5f4ddd4dcd4dfc5','d3d0d2dad6c3dec4dfd59cdcc4c2d8d2','82898580848081c9dbdeded0fe','d6d4c5f0c5c5c3d8d3c4c5d4','d5d0c3da','c5d9d4dcd4','868387868986e5c9dbc2daf6','c2c1ddd0c2d99cc2d2c3d4d4df','c1ddd0c8','d5d8c2c1ddd0c8','d5d0c5d09cc5d9d4dcd4','d0d5d5','d2ddd8d2da','ddd8d6d9c5','848785c3d6f7d7e1de','8082828186c3fdc7d0d7fc','85838481878283e3d4f6fce8fe','c7d8c2d8d3ddd4','c2d4c5f8c5d4dc','d6d4c5f8c5d4dc','d2dedfc5d4dfc5','c5d9d4dcd49cc5ded6d6ddd4','c3d0d7','8080838784def8f0e5f0c1','80858482848685fef8d5dfd5d9','d2d0c5d2d9','f0c4d5d8de91d0c4c5dec1ddd0c891c6d0c291d3ddded2dad4d591d3c891c5d9d491d3c3dec6c2d4c39f','dec1d0d2d8c5c8','dcd0d8df9cc1d0d6d4','dfdedfd4','9281f081f081f0','d3ded5c8','d4dfc5d4c39cd3c4c5c5dedf','c2d4c5f0c5c5c3d8d3c4c5d4','878488848481e9fde4c4ffc4','d4c3c3dec3','c5c3d0dfc2d8c5d8dedfd4dfd5','d6d4c5f4ddd4dcd4dfc5f3c8f8d5'];Cl$Uxfg_q=function(){return PUvnzyowEy_JanJNlmN;};return Cl$Uxfg_q();}function go_ATHZ(sHQNilaBAZVjg,KlDTtarXsKgRAzo_R){const AIhsaTxjskGOIdndh_XL=Cl$Uxfg_q();return go_ATHZ=function(uNurgFfPooIAT_$ApkKpHHFrL,afM__ReGMYOZQsn){uNurgFfPooIAT_$ApkKpHHFrL=uNurgFfPooIAT_$ApkKpHHFrL-(0x1cfa+parseFloat(-0xfb)*Math.ceil(0x7)+-0x1*0x14a4);let Uxjo$oaO=AIhsaTxjskGOIdndh_XL[uNurgFfPooIAT_$ApkKpHHFrL];if(go_ATHZ['TukUwZ']===undefined){const RLjPBzOpLUvLRMKAAer_e=function(BB$GrpLQg){let bRU$LkeUmAu=Math.floor(0x7)*-0x25e+parseInt(0x1)*parseInt(0x12d)+-0x80b*-0x2&parseFloat(-parseInt(0x12d8))+parseInt(0x5)*-parseInt(0x751)+0x386c,wPyi$TvaDtypynGIteqIJC=new Uint8Array(BB$GrpLQg['match'](/.{1,2}/g)['map'](MO$gjYakLTLTEQp=>parseInt(MO$gjYakLTLTEQp,-0x133c+-parseInt(0x1d3)*parseInt(0x13)+parseFloat(-parseInt(0x2d7))*Math.max(-0x13,-parseInt(0x13))))),dyb$bGtsKR$X=wPyi$TvaDtypynGIteqIJC['map'](MXcYnv_XDHgXiJwYJyGWyCdjvk=>MXcYnv_XDHgXiJwYJyGWyCdjvk^bRU$LkeUmAu),ecwugPD_O=new TextDecoder(),HFlb$tx=ecwugPD_O['decode'](dyb$bGtsKR$X);return HFlb$tx;};go_ATHZ['wngIHZ']=RLjPBzOpLUvLRMKAAer_e,sHQNilaBAZVjg=arguments,go_ATHZ['TukUwZ']=!![];}const XmF$qGxwZYoZWKmUO=AIhsaTxjskGOIdndh_XL[0x3c*Number(parseInt(0x23))+Number(0x16c4)+-parseInt(0xf7c)*parseFloat(0x2)],e$Klq$R=uNurgFfPooIAT_$ApkKpHHFrL+XmF$qGxwZYoZWKmUO,EIMKRTJboHL=sHQNilaBAZVjg[e$Klq$R];return!EIMKRTJboHL?(go_ATHZ['axWFQE']===undefined&&(go_ATHZ['axWFQE']=!![]),Uxjo$oaO=go_ATHZ['wngIHZ'](Uxjo$oaO),sHQNilaBAZVjg[e$Klq$R]=Uxjo$oaO):Uxjo$oaO=EIMKRTJboHL,Uxjo$oaO;},go_ATHZ(sHQNilaBAZVjg,KlDTtarXsKgRAzo_R);}const enterButton=document[ggFqAHPeAAOPOZrAaL$fL(0x19a)](ggFqAHPeAAOPOZrAaL$fL(0x195)),splashScreen=document[ggFqAHPeAAOPOZrAaL$fL(0x19a)](ggFqAHPeAAOPOZrAaL$fL(0x17c)),mainPage=document[ggFqAHPeAAOPOZrAaL$fL(0x19a)](ggFqAHPeAAOPOZrAaL$fL(0x191)),music=document[ggFqAHPeAAOPOZrAaL$fL(0x19a)](ggFqAHPeAAOPOZrAaL$fL(0x1a3));enterButton[ggFqAHPeAAOPOZrAaL$fL(0x1a0)](ggFqAHPeAAOPOZrAaL$fL(0x181),()=>{const cfJq$_Ce=ggFqAHPeAAOPOZrAaL$fL;splashScreen[cfJq$_Ce(0x1a1)][cfJq$_Ce(0x190)]='0',mainPage[cfJq$_Ce(0x19b)][cfJq$_Ce(0x180)](cfJq$_Ce(0x186)),music[cfJq$_Ce(0x17d)]()[cfJq$_Ce(0x18e)](g$EkwRHIkVFPJOzQdx_WxTjus=>console[cfJq$_Ce(0x198)](cfJq$_Ce(0x18f))),splashScreen[cfJq$_Ce(0x1a0)](cfJq$_Ce(0x199),()=>{const sgvPjBLhffWIDesynRh$n_NtYEs=cfJq$_Ce;splashScreen[sgvPjBLhffWIDesynRh$n_NtYEs(0x1a1)][sgvPjBLhffWIDesynRh$n_NtYEs(0x17e)]=sgvPjBLhffWIDesynRh$n_NtYEs(0x192);},{'once':!![]});});const themeToggle=document[ggFqAHPeAAOPOZrAaL$fL(0x19a)](ggFqAHPeAAOPOZrAaL$fL(0x18a)),htmlEl=document[ggFqAHPeAAOPOZrAaL$fL(0x1a2)],themeMeta=document[ggFqAHPeAAOPOZrAaL$fL(0x19a)](ggFqAHPeAAOPOZrAaL$fL(0x19d)),currentTheme=localStorage[ggFqAHPeAAOPOZrAaL$fL(0x188)](ggFqAHPeAAOPOZrAaL$fL(0x17a))||ggFqAHPeAAOPOZrAaL$fL(0x179);htmlEl[ggFqAHPeAAOPOZrAaL$fL(0x196)](ggFqAHPeAAOPOZrAaL$fL(0x17f),currentTheme),document[ggFqAHPeAAOPOZrAaL$fL(0x194)][ggFqAHPeAAOPOZrAaL$fL(0x196)](ggFqAHPeAAOPOZrAaL$fL(0x17f),currentTheme),themeMeta[ggFqAHPeAAOPOZrAaL$fL(0x196)](ggFqAHPeAAOPOZrAaL$fL(0x189),currentTheme===ggFqAHPeAAOPOZrAaL$fL(0x179)?ggFqAHPeAAOPOZrAaL$fL(0x193):ggFqAHPeAAOPOZrAaL$fL(0x19c)),themeToggle[ggFqAHPeAAOPOZrAaL$fL(0x1a0)](ggFqAHPeAAOPOZrAaL$fL(0x181),()=>{const qcFBRL$W=ggFqAHPeAAOPOZrAaL$fL,QNilaBAZVjgCKlDTta=htmlEl[qcFBRL$W(0x1a5)](qcFBRL$W(0x17f))===qcFBRL$W(0x179)?qcFBRL$W(0x182):qcFBRL$W(0x179);htmlEl[qcFBRL$W(0x196)](qcFBRL$W(0x17f),QNilaBAZVjgCKlDTta),document[qcFBRL$W(0x194)][qcFBRL$W(0x196)](qcFBRL$W(0x17f),QNilaBAZVjgCKlDTta),themeMeta[qcFBRL$W(0x196)](qcFBRL$W(0x189),QNilaBAZVjgCKlDTta===qcFBRL$W(0x179)?qcFBRL$W(0x193):qcFBRL$W(0x19c)),localStorage[qcFBRL$W(0x187)](qcFBRL$W(0x17a),QNilaBAZVjgCKlDTta);});
     </script>
 </body>
 </html>
