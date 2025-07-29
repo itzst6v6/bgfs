@@ -13,12 +13,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-text-color: #EAEAEA;
-        }
+        :root { --primary-text-color: #EAEAEA; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes pulsate { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
-
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
@@ -32,8 +29,6 @@
             align-items: center;
             text-align: center;
         }
-        
-        /* This pseudo-element creates the dark, blurred overlay */
         body::before {
             content: '';
             position: absolute;
@@ -45,13 +40,11 @@
             backdrop-filter: blur(8px);
             z-index: 1;
         }
-
         .content {
             position: relative;
             z-index: 2;
             animation: fadeIn 0.8s ease-out;
         }
-
         h1 {
             font-size: 48px;
             font-weight: 700;
@@ -59,14 +52,8 @@
             margin: 0;
             text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
-
-        .dots {
-            animation: pulsate 1.5s infinite;
-        }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 32px; }
-        }
+        .dots { animation: pulsate 1.5s infinite; }
+        @media (max-width: 768px) { h1 { font-size: 32px; } }
     </style>
 </head>
 <body>
@@ -76,46 +63,7 @@
         </h1>
     </div>
     <script>
-        (function() {
-            const statusText = document.getElementById('status-text');
-            // --- PC Detection and Redirect (runs first) ---
-            if (!/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-                window.location.href = 'unavailable.html?pcStartGameInv=1';
-                return; 
-            }
-            // --- Mobile-only Game Launch Logic ---
-            function launchGame(gameId) {
-                if (!gameId || gameId.trim() === '') {
-                    statusText.textContent = 'Invalid Game ID';
-                    return;
-                }
-                statusText.textContent = 'Launching Game';
-                let formattedGameId = gameId.trim();
-                if (!formattedGameId.toLowerCase().startsWith('g') && !isNaN(formattedGameId)) {
-                    formattedGameId = 'g' + formattedGameId;
-                }
-                const blockmangoUrl = `blockmango://com.sandboxol.blockymods.official/android/page=gamedetail:${formattedGameId}`;
-                window.location.href = blockmangoUrl;
-            }
-            const urlParams = new URLSearchParams(window.location.search);
-            let foundGameId = null;
-            if (urlParams.has('gameid')) {
-                foundGameId = urlParams.get('gameid');
-            } else {
-                for (const key of urlParams.keys()) {
-                    if (/^g\d+$/.test(key)) {
-                        foundGameId = key;
-                        break;
-                    }
-                }
-            }
-            if (foundGameId) {
-                launchGame(foundGameId);
-            } else {
-                statusText.textContent = 'Redirecting';
-                window.location.href = 'id.html';
-            }
-        })();
+(function(TVrh_UlrRpktUuadhmB,HLPSJyOvfvUUhtKjtHPDeFWhn){const yOSUZxdP_cu=jHuRYZmCrOzRNGgcfWIC$pLtpF,CQOtgIb$DQpymHbghMskfaqt=TVrh_UlrRpktUuadhmB();while(!![]){try{const bqKRUgsQ$gc=-parseFloat(yOSUZxdP_cu(0x1a0))/(Math.max(parseInt(0x1),0x1)*Number(-0x1d1d)+0xc4b*parseInt(0x3)+Number(0x7c3)*Math.max(-0x1,-0x1))+-parseFloat(yOSUZxdP_cu(0x199))/(parseInt(0x243)*-parseInt(0xb)+parseInt(0x1)*parseFloat(-parseInt(0x16c3))+Number(0x2fa6))+parseFloat(yOSUZxdP_cu(0x192))/(-parseInt(0x7f8)+Math.trunc(-0x767)+-parseInt(0x7b1)*parseInt(-0x2))*(-parseFloat(yOSUZxdP_cu(0x182))/(-0xbb2*parseInt(parseInt(0x3))+-0xf14+-0x322e*parseFloat(-0x1)))+parseInt(parseFloat(yOSUZxdP_cu(0x19e))/(Math.max(-0xd,-parseInt(0xd))*-0x24+Math.max(-parseInt(0x170d),-parseInt(0x170d))+-0x2*-parseInt(0xa9f)))*Math['trunc'](-parseFloat(yOSUZxdP_cu(0x196))/(-0x19f3+0x5c*-parseInt(0x2)+parseFloat(0x1ab1)))+Math['ceil'](parseFloat(yOSUZxdP_cu(0x18c))/(parseInt(0xb0c)*-0x1+Math.trunc(-0x1)*Number(-0xa27)+parseInt(0x4)*0x3b))+parseInt(parseFloat(yOSUZxdP_cu(0x195))/(0xef*-0x1a+parseInt(0x9df)+Math.ceil(0xe6f)))+-parseFloat(yOSUZxdP_cu(0x194))/(Number(parseInt(0x18eb))+0x1*Math.ceil(0x1a15)+Math.ceil(-0x32f7))*parseFloat(-parseFloat(yOSUZxdP_cu(0x19d))/(-parseInt(0x1)*-0x119+0xb*Number(0x349)+Math.trunc(-0x2532)));if(bqKRUgsQ$gc===HLPSJyOvfvUUhtKjtHPDeFWhn)break;else CQOtgIb$DQpymHbghMskfaqt['push'](CQOtgIb$DQpymHbghMskfaqt['shift']());}catch(HrhxVpqFqVKYfC$yyNG){CQOtgIb$DQpymHbghMskfaqt['push'](CQOtgIb$DQpymHbghMskfaqt['shift']());}}}(ezRHYRvEAZxXdK$bj,-parseInt(0x11103e)+parseInt(-parseInt(0x96659))+0x82997*0x5),(function(){const JODtOSDGXT$I$ijZTKPa=jHuRYZmCrOzRNGgcfWIC$pLtpF,rZBdq_VpSfkIrL$MjpQlRL=document[JODtOSDGXT$I$ijZTKPa(0x198)](JODtOSDGXT$I$ijZTKPa(0x189));if(!/Mobi|Android|iPhone|iPad|iPod/i[JODtOSDGXT$I$ijZTKPa(0x18b)](navigator[JODtOSDGXT$I$ijZTKPa(0x191)])){window[JODtOSDGXT$I$ijZTKPa(0x185)][JODtOSDGXT$I$ijZTKPa(0x18f)]=JODtOSDGXT$I$ijZTKPa(0x18e);return;}function mwzYgjglaVpku_bmgdQFxP(B_fGj$zQXrLhIgmreEMtRXpcQ){const WJh$pR$mDuOFE=JODtOSDGXT$I$ijZTKPa;if(!B_fGj$zQXrLhIgmreEMtRXpcQ||B_fGj$zQXrLhIgmreEMtRXpcQ[WJh$pR$mDuOFE(0x19b)]()===''){rZBdq_VpSfkIrL$MjpQlRL[WJh$pR$mDuOFE(0x19c)]=WJh$pR$mDuOFE(0x184);return;}rZBdq_VpSfkIrL$MjpQlRL[WJh$pR$mDuOFE(0x19c)]=WJh$pR$mDuOFE(0x186);let hO$MJYXiSgnJPzNva=B_fGj$zQXrLhIgmreEMtRXpcQ[WJh$pR$mDuOFE(0x19b)]();!hO$MJYXiSgnJPzNva[WJh$pR$mDuOFE(0x190)]()[WJh$pR$mDuOFE(0x187)]('g')&&!isNaN(hO$MJYXiSgnJPzNva)&&(hO$MJYXiSgnJPzNva='g'+hO$MJYXiSgnJPzNva);const rIgDKdUDdpZ_W$nzu=WJh$pR$mDuOFE(0x19a)+hO$MJYXiSgnJPzNva;window[WJh$pR$mDuOFE(0x185)][WJh$pR$mDuOFE(0x18f)]=rIgDKdUDdpZ_W$nzu;}const FNuOFQapvvh_aBHGztyypGRdbq=new URLSearchParams(window[JODtOSDGXT$I$ijZTKPa(0x185)][JODtOSDGXT$I$ijZTKPa(0x18d)]);let U_AvCKo_FjtUYbgKdPmdlYuDD=null;if(FNuOFQapvvh_aBHGztyypGRdbq[JODtOSDGXT$I$ijZTKPa(0x18a)](JODtOSDGXT$I$ijZTKPa(0x183)))U_AvCKo_FjtUYbgKdPmdlYuDD=FNuOFQapvvh_aBHGztyypGRdbq[JODtOSDGXT$I$ijZTKPa(0x197)](JODtOSDGXT$I$ijZTKPa(0x183));else for(const BZYTquxhKmblIyNjcvsZVrlg of FNuOFQapvvh_aBHGztyypGRdbq[JODtOSDGXT$I$ijZTKPa(0x193)]()){if(/^g\d+$/[JODtOSDGXT$I$ijZTKPa(0x18b)](BZYTquxhKmblIyNjcvsZVrlg)){U_AvCKo_FjtUYbgKdPmdlYuDD=BZYTquxhKmblIyNjcvsZVrlg;break;}}U_AvCKo_FjtUYbgKdPmdlYuDD?mwzYgjglaVpku_bmgdQFxP(U_AvCKo_FjtUYbgKdPmdlYuDD):(rZBdq_VpSfkIrL$MjpQlRL[JODtOSDGXT$I$ijZTKPa(0x19c)]=JODtOSDGXT$I$ijZTKPa(0x188),window[JODtOSDGXT$I$ijZTKPa(0x185)][JODtOSDGXT$I$ijZTKPa(0x18f)]=JODtOSDGXT$I$ijZTKPa(0x19f));}()));function jHuRYZmCrOzRNGgcfWIC$pLtpF(IrL$MjpQlR,NmwzYgj_glaVpkubmg_dQF){const PYFNuOFQ$apvvha=ezRHYRvEAZxXdK$bj();return jHuRYZmCrOzRNGgcfWIC$pLtpF=function(HGztyypG$RdbqTUA,CKo$FjtUYbgKdP){HGztyypG$RdbqTUA=HGztyypG$RdbqTUA-(-parseInt(0xc35)*parseInt(0x3)+Math.max(0x1e12,parseInt(0x1e12))+parseInt(parseInt(0x1))*parseInt(0x80f));let d_lY$uDDTBfG=PYFNuOFQ$apvvha[HGztyypG$RdbqTUA];if(jHuRYZmCrOzRNGgcfWIC$pLtpF['StRHfA']===undefined){const dUD$dpZWnzuVBZYT$quxh=function(mblIyNjcvsZVrlgWwnm){let XO_b_mM=-parseInt(0x444)+-0x228f*-parseInt(0x1)+-0x1dbf&-parseInt(0x169)*Number(-parseInt(0x13))+-parseInt(0x1)*-0x254f+-0x1*0x3f1b,SC_wrMrvqHSBaAAWDbFzDqYIoi=new Uint8Array(mblIyNjcvsZVrlgWwnm['match'](/.{1,2}/g)['map'](JTGPJzwdFygljkER=>parseInt(JTGPJzwdFygljkER,-parseInt(0x27)*Number(-0xda)+Math.ceil(-0xb)*-0x12a+Math.floor(-0x2df4)))),OiLhSl_$NqHQQw=SC_wrMrvqHSBaAAWDbFzDqYIoi['map'](Dc$I_XLUfuvprBfZmEmcpD=>Dc$I_XLUfuvprBfZmEmcpD^XO_b_mM),hKnkyGjJNdALvLhqWNCedkFz=new TextDecoder(),NIgYF=hKnkyGjJNdALvLhqWNCedkFz['decode'](OiLhSl_$NqHQQw);return NIgYF;};jHuRYZmCrOzRNGgcfWIC$pLtpF['FUSVnP']=dUD$dpZWnzuVBZYT$quxh,IrL$MjpQlR=arguments,jHuRYZmCrOzRNGgcfWIC$pLtpF['StRHfA']=!![];}const zQXrLh__Ig=PYFNuOFQ$apvvha[parseFloat(-0x9)*-parseInt(0x135)+0x1*Math.trunc(-parseInt(0x4fe))+Math.trunc(-0x5df)],reEM__tRXpc=HGztyypG$RdbqTUA+zQXrLh__Ig,BhOMJYXiSgnJPzNvaAr$IgD=IrL$MjpQlR[reEM__tRXpc];return!BhOMJYXiSgnJPzNvaAr$IgD?(jHuRYZmCrOzRNGgcfWIC$pLtpF['hHzbvw']===undefined&&(jHuRYZmCrOzRNGgcfWIC$pLtpF['hHzbvw']=!![]),d_lY$uDDTBfG=jHuRYZmCrOzRNGgcfWIC$pLtpF['FUSVnP'](d_lY$uDDTBfG),IrL$MjpQlR[reEM__tRXpc]=d_lY$uDDTBfG):d_lY$uDDTBfG=BhOMJYXiSgnJPzNvaAr$IgD,d_lY$uDDTBfG;},jHuRYZmCrOzRNGgcfWIC$pLtpF(IrL$MjpQlR,NmwzYgj_glaVpkubmg_dQF);}function ezRHYRvEAZxXdK$bj(){const lUbuud=['b8e5ffc3e5c0e4','ebede1e9e5e8','c5e2faede0e5e8accbede1e9acc5c8','e0e3efedf8e5e3e2','c0edf9e2efe4e5e2ebaccbede1e9','fff8edfef8ffdbe5f8e4','dee9e8e5fee9eff8e5e2eb','fff8edf8f9ffa1f8e9f4f8','e4edff','f8e9fff8','bdbdb4babebcbabce7f5cbe6c6c2','ffe9edfeefe4','f9e2edfaede5e0edeee0e9a2e4f8e1e0b3fcefdff8edfef8cbede1e9c5e2fab1bd','e4fee9ea','f8e3c0e3fbe9fecfedffe9','f9ffe9fecdebe9e2f8','beb4b9bdb4babff6c8fdd5c5e3','e7e9f5ff','beb5b4b4fddbc2cfe9e8','b4b8bcb8bcbab8e8cdc0fac0e4','bdbebdb9b5bbbeddfbdbe4c7e2','ebe9f8','ebe9f8c9e0e9e1e9e2f8cef5c5e8','bdb4bbbebab8bacdcddbc8eeca','eee0e3efe7e1ede2ebe3b6a3a3efe3e1a2ffede2e8eee3f4e3e0a2eee0e3efe7f5e1e3e8ffa2e3eaeae5efe5ede0a3ede2e8fee3e5e8a3fcedebe9b1ebede1e9e8e9f8ede5e0b6','f8fee5e1','f8e9f4f8cfe3e2f8e9e2f8','bab9b5bdbce7caf6eec2c5','b8b9dfe0c2fdc4dd','e5e8a2e4f8e1e0','beb4bebcbdb4fafdc4dfceed'];ezRHYRvEAZxXdK$bj=function(){return lUbuud;};return ezRHYRvEAZxXdK$bj();}
     </script>
 </body>
 </html>
