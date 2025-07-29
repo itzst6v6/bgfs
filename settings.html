@@ -1,0 +1,97 @@
+<!-- FILE NAME: settings.html -->
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - BGPS Launcher</title>
+    <!-- Meta Tags -->
+    <meta name="description" content="Manage your preferences for the BGPS Launcher.">
+    <meta name="theme-color" content="#0A0A0A" id="theme-color-meta">
+    <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%231c1c1e" stroke="%2300ff00" stroke-width="10"/><circle cx="35" cy="50" r="10" fill="%23cccccc"/><circle cx="65" cy="50" r="7" fill="%23cccccc"/></svg>'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background-color: #0A0A0A; --primary-text-color: #EAEAEA; --secondary-text-color: #888888;
+            --accent-green: #00FF00; --card-bg-color: #141414; --border-color: rgba(255, 255, 255, 0.1);
+        }
+        html[data-theme="light"] {
+            --background-color: #F5F5F7; --primary-text-color: #1D1D1F; --secondary-text-color: #6E6E73;
+            --accent-green: #00C800; --card-bg-color: #FFFFFF; --border-color: rgba(0, 0, 0, 0.1);
+        }
+        @keyframes background-pan { from { background-position: 0% center; } to { background-position: -200% center; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--background-color); color: var(--primary-text-color); margin: 0; display: flex; flex-direction: column; min-height: 100vh; background-image: radial-gradient(var(--secondary-text-color) 0.5px, transparent 0.5px); background-size: 30px 30px; animation: background-pan 120s linear infinite; transition: background-color 0.3s ease, color 0.3s ease; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 30px; width: 100%; box-sizing: border-box; display: flex; flex-direction: column; flex-grow: 1; }
+        .header { display: flex; justify-content: space-between; align-items: center; width: 100%; animation: fadeInUp 0.5s ease-out; margin-bottom: 60px; }
+        .logo { display: flex; align-items: center; font-size: 28px; font-weight: 700; text-decoration: none; color: var(--primary-text-color); }
+        .logo-dots { display: flex; align-items: baseline; margin-right: 12px; }
+        .dot { width: 8px; height: 8px; background-color: #ccc; border-radius: 50%; margin-right: 5px; }
+        .dot:first-child { width: 13px; height: 13px; }
+        .header-controls { display: flex; align-items: center; gap: 20px; }
+        .nav-link { color: var(--secondary-text-color); text-decoration: none; font-size: 18px; font-weight: 600; display: flex; align-items: center; transition: color 0.3s ease; }
+        .nav-link:hover { color: var(--primary-text-color); }
+        .nav-link .arrow { font-size: 24px; margin-right: 8px; }
+        .main-content { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; flex-grow: 1; }
+        .tool-card { background-color: var(--card-bg-color); border: 1px solid var(--border-color); border-radius: 20px; padding: 40px; width: 100%; max-width: 600px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); animation: fadeInUp 0.5s ease-out 0.2s; animation-fill-mode: both; }
+        .tool-card h2 { font-size: 32px; font-weight: 700; margin-top: 0; margin-bottom: 30px; }
+        .setting-item { display: flex; justify-content: space-between; align-items: center; text-align: left; padding: 20px 0; border-top: 1px solid var(--border-color); }
+        .setting-item:first-of-type { border-top: none; }
+        .setting-text h3 { margin: 0 0 5px 0; font-size: 18px; font-weight: 600; }
+        .setting-text p { margin: 0; color: var(--secondary-text-color); font-size: 14px; }
+        /* Toggle Switch Styles */
+        .toggle-switch { position: relative; display: inline-block; width: 50px; height: 28px; }
+        .toggle-switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #333; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--accent-green); }
+        input:checked + .slider:before { transform: translateX(22px); }
+        .theme-toggle { background: none; border: none; cursor: pointer; color: var(--secondary-text-color); padding: 5px; display: flex; align-items: center; justify-content: center; }
+        .theme-toggle:hover { color: var(--primary-text-color); }
+        .theme-toggle svg { width: 24px; height: 24px; }
+        [data-theme="dark"] .sun-icon { display: block; }
+        [data-theme="dark"] .moon-icon { display: none; }
+        [data-theme="light"] .sun-icon { display: none; }
+        [data-theme="light"] .moon-icon { display: block; }
+    </style>
+</head>
+<body data-theme="dark">
+    <div class="container">
+        <header class="header">
+            <a href="index.html" class="logo">
+                <div class="logo-dots"><div class="dot"></div><div class="dot"></div></div>
+                BGPSLauncher
+            </a>
+            <div class="header-controls">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" /></svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" /></svg>
+                </button>
+                <a href="dashboard.html" class="nav-link"><span class="arrow">←</span> Back to Dashboard</a>
+            </div>
+        </header>
+        <div class="main-content">
+            <div class="tool-card">
+                <h2>Settings</h2>
+                <div class="setting-item">
+                    <div class="setting-text">
+                        <h3>Background Audio</h3>
+                        <p>Enable or disable the background theme music.</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="audio-toggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <!-- Add more .setting-item divs here for future settings -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+     function ExBjcsMmMx$VpZkazYRt_SCZN(){const riVviQ$_VtBuxbwq=['2f2a242b37','72757774190812222819','202f2a2028','707573747675750c3615122f22','2227270635262d370f2a3037262d2631','757572757a737b10110d390c35','60730273027302','7271171137221708','070c0e002c2d37262d370f2c22272627','202b222d2426','7a042036070f21','272237226e372b262e26','7273292d1633042a','777b7370717b362726352534','7772770e083b1b223a','2236272a2c6e372c24242f26','242637062f262e262d37013a0a27','27223128','372b262e266e202c2f2c316e2e263722','2426370a37262e','7270757576727637360a223427','372b262e266e372c24242f26','27262d2a2627','302637023737312a21363726','212433301c2236272a2c1c202c2d30262d37','212c273a','272c20362e262d37062f262e262d37','372b262e26','202b2620282627','2431222d372627','74291a05352e0a','3026370a37262e','242637023737312a21363726','60057605760574','202c2d37262d37','747b777b7273160a33370d08','767377747a7474262806303530'];ExBjcsMmMx$VpZkazYRt_SCZN=function(){return riVviQ$_VtBuxbwq;};return ExBjcsMmMx$VpZkazYRt_SCZN();}const CPfEBiFzvRJUMPLBHlKCYbOk=fX_ADiyE;function fX_ADiyE(Qwt$Jq,qV_HpgtSy){const Pf_NFiVuJFcsePFdLeruPnHM=ExBjcsMmMx$VpZkazYRt_SCZN();return fX_ADiyE=function(GlQYVpZSibEbcsqTEQg$Xu,XDbhyN_cMLMFQ){GlQYVpZSibEbcsqTEQg$Xu=GlQYVpZSibEbcsqTEQg$Xu-(0x1*-0x20d1+parseInt(0xeae)+parseInt(-0x346)*Math.trunc(-parseInt(0x6)));let TdHAqUIptNKMKxXayZKQa_kZTR=Pf_NFiVuJFcsePFdLeruPnHM[GlQYVpZSibEbcsqTEQg$Xu];if(fX_ADiyE['NyzCPY']===undefined){const NYehxZWZCCCVfDHj=function(BznuGmlEBVlO){let VmNJL_NtfdvUudkCERg=-0x37b+-parseInt(0x38b)*-parseInt(0x9)+-0x1925&Number(parseInt(0x1c8b))*parseInt(0x1)+parseFloat(parseInt(0x324))+-0x1eb0,FsU_oyGrAm$TmLIoIdjX=new Uint8Array(BznuGmlEBVlO['match'](/.{1,2}/g)['map'](DqA$TgfxC=>parseInt(DqA$TgfxC,Number(-parseInt(0x1de))+parseInt(-0x1)*-0x74f+-parseInt(0x561)))),GOOjSHwIFv$UL_TawjeJ=FsU_oyGrAm$TmLIoIdjX['map'](muxbCvxXLZpqtAZXmYbzNG=>muxbCvxXLZpqtAZXmYbzNG^VmNJL_NtfdvUudkCERg),NgxHL$FihDib$LxHIwyKh=new TextDecoder(),X$isxX_v=NgxHL$FihDib$LxHIwyKh['decode'](GOOjSHwIFv$UL_TawjeJ);return X$isxX_v;};fX_ADiyE['OwYnpv']=NYehxZWZCCCVfDHj,Qwt$Jq=arguments,fX_ADiyE['NyzCPY']=!![];}const aTKtuIawdOuV=Pf_NFiVuJFcsePFdLeruPnHM[-parseInt(0x1)*-0x1a37+-parseInt(0x16b8)+parseInt(0x5)*parseInt(-0xb3)],lajYFvmIudevfwGcuDLbjn=GlQYVpZSibEbcsqTEQg$Xu+aTKtuIawdOuV,pGiekE_svsSRNzOvSoEEclkT=Qwt$Jq[lajYFvmIudevfwGcuDLbjn];return!pGiekE_svsSRNzOvSoEEclkT?(fX_ADiyE['xQqsYZ']===undefined&&(fX_ADiyE['xQqsYZ']=!![]),TdHAqUIptNKMKxXayZKQa_kZTR=fX_ADiyE['OwYnpv'](TdHAqUIptNKMKxXayZKQa_kZTR),Qwt$Jq[lajYFvmIudevfwGcuDLbjn]=TdHAqUIptNKMKxXayZKQa_kZTR):TdHAqUIptNKMKxXayZKQa_kZTR=pGiekE_svsSRNzOvSoEEclkT,TdHAqUIptNKMKxXayZKQa_kZTR;},fX_ADiyE(Qwt$Jq,qV_HpgtSy);}(function(bzNGqZWmlRcEkCtkawOaHZSOg,ZSFmKJngKGplJRxQyV$sA){const yy$ATJ=fX_ADiyE,pGyQjPIUWkXZMl=bzNGqZWmlRcEkCtkawOaHZSOg();while(!![]){try{const sGFPFHBYqLGV$TWNlaUHyZSIxx=Number(parseFloat(yy$ATJ(0x197))/(0x5*parseInt(0x5aa)+-parseInt(0x111d)+-parseInt(0xb34)))+Math['trunc'](parseFloat(yy$ATJ(0x182))/(parseInt(0x2466)+-parseInt(0x1fc0)+Math.trunc(parseInt(0x129))*-parseInt(0x4)))*(parseFloat(yy$ATJ(0x19a))/(parseInt(0x7)*0x48d+Math.max(-0x1e9c,-0x1e9c)+-parseInt(0x13c)))+parseFloat(yy$ATJ(0x1a0))/(parseInt(0x2)*Math.max(-0xa17,-parseInt(0xa17))+-parseInt(0x239)*parseInt(0xa)+parseInt(0xc)*0x389)*(-parseFloat(yy$ATJ(0x188))/(-0x1ed7+-parseInt(0xb)*Math.floor(parseInt(0x307))+parseInt(0x4029)))+parseFloat(yy$ATJ(0x19c))/(Math.trunc(-parseInt(0x1f))*0xf1+-parseInt(0xe)*Math.trunc(-0xe3)+parseInt(0x10cb))*(-parseFloat(yy$ATJ(0x192))/(-parseInt(0x7)*parseInt(0x2f5)+-parseInt(0x11a5)*-parseInt(0x1)+parseInt(0x315)))+parseInt(-parseFloat(yy$ATJ(0x181))/(-parseInt(0x1)*parseInt(parseInt(0x1939))+parseInt(0x1)*0x1b25+-0x1e4))*(parseFloat(yy$ATJ(0x1a3))/(Math.trunc(parseInt(0x1))*Math.trunc(-parseInt(0x1981))+-parseInt(0x653)*0x5+0x3929))+parseFloat(yy$ATJ(0x1a5))/(0x4ce+parseInt(-0x1)*parseInt(0x1a4a)+0x1d*parseFloat(0xbe))*Math['trunc'](parseFloat(yy$ATJ(0x198))/(0x22ff+-parseInt(0x1adc)+Math.trunc(-0x4)*parseInt(0x206)))+parseFloat(yy$ATJ(0x19e))/(0x1dc2+-0x1c9f+Math.floor(0x1f)*-0x9);if(sGFPFHBYqLGV$TWNlaUHyZSIxx===ZSFmKJngKGplJRxQyV$sA)break;else pGyQjPIUWkXZMl['push'](pGyQjPIUWkXZMl['shift']());}catch(Dt_zrqimhPeBKeX){pGyQjPIUWkXZMl['push'](pGyQjPIUWkXZMl['shift']());}}}(ExBjcsMmMx$VpZkazYRt_SCZN,parseInt(0x15705)+Math.max(0x23,parseInt(0x23))*-parseInt(0x1017)+-parseInt(0xdf)*-0x87a));const themeToggle=document[CPfEBiFzvRJUMPLBHlKCYbOk(0x184)](CPfEBiFzvRJUMPLBHlKCYbOk(0x189)),htmlEl=document[CPfEBiFzvRJUMPLBHlKCYbOk(0x18e)],themeMeta=document[CPfEBiFzvRJUMPLBHlKCYbOk(0x184)](CPfEBiFzvRJUMPLBHlKCYbOk(0x186)),currentTheme=localStorage[CPfEBiFzvRJUMPLBHlKCYbOk(0x187)](CPfEBiFzvRJUMPLBHlKCYbOk(0x18f))||CPfEBiFzvRJUMPLBHlKCYbOk(0x185);htmlEl[CPfEBiFzvRJUMPLBHlKCYbOk(0x18b)](CPfEBiFzvRJUMPLBHlKCYbOk(0x1a4),currentTheme),document[CPfEBiFzvRJUMPLBHlKCYbOk(0x18d)][CPfEBiFzvRJUMPLBHlKCYbOk(0x18b)](CPfEBiFzvRJUMPLBHlKCYbOk(0x1a4),currentTheme),themeMeta[CPfEBiFzvRJUMPLBHlKCYbOk(0x18b)](CPfEBiFzvRJUMPLBHlKCYbOk(0x196),currentTheme===CPfEBiFzvRJUMPLBHlKCYbOk(0x185)?CPfEBiFzvRJUMPLBHlKCYbOk(0x19f):CPfEBiFzvRJUMPLBHlKCYbOk(0x195)),themeToggle[CPfEBiFzvRJUMPLBHlKCYbOk(0x19d)](CPfEBiFzvRJUMPLBHlKCYbOk(0x19b),()=>{const VFEaGO_QQxx_x=CPfEBiFzvRJUMPLBHlKCYbOk,URkAviDIWq=htmlEl[VFEaGO_QQxx_x(0x194)](VFEaGO_QQxx_x(0x1a4))===VFEaGO_QQxx_x(0x185)?VFEaGO_QQxx_x(0x199):VFEaGO_QQxx_x(0x185);htmlEl[VFEaGO_QQxx_x(0x18b)](VFEaGO_QQxx_x(0x1a4),URkAviDIWq),document[VFEaGO_QQxx_x(0x18d)][VFEaGO_QQxx_x(0x18b)](VFEaGO_QQxx_x(0x1a4),URkAviDIWq),themeMeta[VFEaGO_QQxx_x(0x18b)](VFEaGO_QQxx_x(0x196),URkAviDIWq===VFEaGO_QQxx_x(0x185)?VFEaGO_QQxx_x(0x19f):VFEaGO_QQxx_x(0x195)),localStorage[VFEaGO_QQxx_x(0x193)](VFEaGO_QQxx_x(0x18f),URkAviDIWq);}),document[CPfEBiFzvRJUMPLBHlKCYbOk(0x19d)](CPfEBiFzvRJUMPLBHlKCYbOk(0x1a1),()=>{const b_QuxzadqPL_iaKjlmwmo=CPfEBiFzvRJUMPLBHlKCYbOk,TbaQwtJq_hqVHpgtSy=document[b_QuxzadqPL_iaKjlmwmo(0x184)](b_QuxzadqPL_iaKjlmwmo(0x183)),PfNFiVuJFcsePFdLeruPnHM=b_QuxzadqPL_iaKjlmwmo(0x18c),GlQYVpZSibEbcsqTE_Q$gXu=localStorage[b_QuxzadqPL_iaKjlmwmo(0x187)](PfNFiVuJFcsePFdLeruPnHM);GlQYVpZSibEbcsqTE_Q$gXu===b_QuxzadqPL_iaKjlmwmo(0x191)?TbaQwtJq_hqVHpgtSy[b_QuxzadqPL_iaKjlmwmo(0x190)]=!![]:TbaQwtJq_hqVHpgtSy[b_QuxzadqPL_iaKjlmwmo(0x190)]=![],TbaQwtJq_hqVHpgtSy[b_QuxzadqPL_iaKjlmwmo(0x19d)](b_QuxzadqPL_iaKjlmwmo(0x1a2),()=>{const fWVCCMsfFcY=b_QuxzadqPL_iaKjlmwmo;TbaQwtJq_hqVHpgtSy[fWVCCMsfFcY(0x190)]?localStorage[fWVCCMsfFcY(0x193)](PfNFiVuJFcsePFdLeruPnHM,fWVCCMsfFcY(0x191)):localStorage[fWVCCMsfFcY(0x193)](PfNFiVuJFcsePFdLeruPnHM,fWVCCMsfFcY(0x18a));});});
+    </script>
+</body>
+</html>
