@@ -2,7 +2,7 @@
     { "id": "g1001", "name": "Survival Games", "category": "Action" },
     { "id": "g1002", "name": "Sky Wars", "category": "Action" },
     { "id": "g1007", "name": "Bow Spleef", "category": "Action" },
-    { "id": "g1008", "name": "Bedwars (old)", "category": "Action" },
+    { "id": "g1008", "name": "Bedwars", "category": "Action" },
     { "id": "g1009", "name": "Murder Mystery", "category": "Adventure" },
     { "id": "g1010", "name": "TNT Run", "category": "Action" },
     { "id": "g1013", "name": "Zombie Infecting", "category": "Action" },
