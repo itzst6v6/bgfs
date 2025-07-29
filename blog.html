@@ -1,0 +1,185 @@
+<!-- FILE NAME: blog.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - BGPS Launcher</title>
+    <!-- Meta Tags -->
+    <meta name="description" content="The official blog for the BGPS Launcher. Get the latest news, updates, and insights about new features and the future of the project.">
+    <meta name="theme-color" content="#0A0A0A">
+    <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%231c1c1e" stroke="%2300ff00" stroke-width="10"/><circle cx="35" cy="50" r="10" fill="%23cccccc"/><circle cx="65" cy="50" r="7" fill="%23cccccc"/></svg>'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --background-color: #0A0A0A; --primary-text-color: #EAEAEA; --secondary-text-color: #888888; --accent-green: #00FF00; --card-bg-color: #141414; --border-color: rgba(255, 255, 255, 0.1); }
+        @property --angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+        @keyframes background-pan { from { background-position: 0% center; } to { background-position: -200% center; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes border-spin { to { --angle: 360deg; } }
+        html.lenis { height: auto; } .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--background-color); color: var(--primary-text-color); margin: 0; background-image: radial-gradient(var(--secondary-text-color) 0.5px, transparent 0.5px); background-size: 30px 30px; animation: background-pan 120s linear infinite; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 30px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 60px; animation: fadeInUp 0.5s ease-out; }
+        .logo { display: flex; align-items: center; font-size: 28px; font-weight: 700; text-decoration: none; color: var(--primary-text-color); }
+        .logo-dots { display: flex; align-items: baseline; margin-right: 12px; }
+        .dot { width: 8px; height: 8px; background-color: #ccc; border-radius: 50%; margin-right: 5px; }
+        .dot:first-child { width: 13px; height: 13px; }
+        .nav-link { color: var(--secondary-text-color); text-decoration: none; font-size: 18px; font-weight: 600; display: flex; align-items: center; transition: color 0.3s ease; }
+        .nav-link:hover { color: var(--primary-text-color); }
+        .nav-link .arrow { font-size: 24px; margin-right: 8px; }
+        .main-title { font-size: 48px; font-weight: 700; text-align: center; margin-bottom: 20px; animation: fadeInUp 0.5s ease-out 0.2s; animation-fill-mode: both; }
+        .section-subtitle { font-size: 18px; color: var(--secondary-text-color); max-width: 700px; margin: 0 auto 60px auto; line-height: 1.7; text-align: center; animation: fadeInUp 0.5s ease-out 0.3s; animation-fill-mode: both; }
+        
+        /* Search Bar */
+        .search-container { position: relative; max-width: 600px; margin: 0 auto 60px auto; animation: fadeInUp 0.5s ease-out 0.4s; animation-fill-mode: both; }
+        #searchInput { width: 100%; background: var(--card-bg-color); border: 1px solid var(--border-color); color: var(--primary-text-color); border-radius: 999px; padding: 15px 25px; font-size: 16px; font-family: 'Poppins', sans-serif; box-sizing: border-box; transition: all 0.3s ease; }
+        #searchInput:focus { outline: none; border-color: var(--accent-green); box-shadow: 0 0 15px rgba(0, 255, 0, 0.3); }
+
+        /* Blog Grid */
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; animation: fadeInUp 0.5s ease-out 0.5s; animation-fill-mode: both; }
+        .blog-card { cursor: pointer; background-color: var(--card-bg-color); padding: 3px; border-radius: 18px; position: relative; z-index: 1; overflow: hidden; transition: transform 0.3s ease; }
+        .blog-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: conic-gradient(from var(--angle), transparent 0%, var(--accent-green), transparent 25%); animation: border-spin 4s linear infinite paused; opacity: 0; transition: opacity 0.4s ease; }
+        .blog-card:hover { transform: translateY(-8px); }
+        .blog-card:hover::before { animation-play-state: running; opacity: 1; }
+        .card-content { background: var(--card-bg-color); padding: 30px; border-radius: 16px; height: 100%; box-sizing: border-box; display: flex; flex-direction: column; text-align: left; }
+        .post-meta { font-size: 14px; color: var(--secondary-text-color); margin-bottom: 15px; }
+        .card-content h3 { margin: 0 0 10px 0; font-size: 22px; font-weight: 600; }
+        .card-content p { margin: 0; color: var(--secondary-text-color); font-size: 16px; line-height: 1.6; flex-grow: 1; }
+        #no-results { display: none; text-align: center; font-size: 18px; color: var(--secondary-text-color); padding: 40px; }
+
+        /* Modal */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(8px); display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 1000; }
+        .modal-overlay.visible { opacity: 1; pointer-events: all; }
+        .modal-content { background: var(--card-bg-color); padding: 40px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.4); text-align: left; width: 700px; max-width: 90%; position: relative; transform: scale(0.95); transition: transform 0.3s ease; display: flex; flex-direction: column; max-height: 90vh; border: 1px solid var(--border-color); }
+        .modal-overlay.visible .modal-content { transform: scale(1); }
+        .close-modal { position: absolute; top: 15px; right: 15px; font-size: 28px; color: var(--secondary-text-color); cursor: pointer; line-height: 1; transition: color 0.3s ease, transform 0.3s ease; }
+        .close-modal:hover { color: var(--primary-text-color); transform: rotate(90deg); }
+        #modal-post-title { font-size: 32px; font-weight: 700; margin: 0 0 10px 0; }
+        #modal-post-meta { color: var(--secondary-text-color); margin-bottom: 30px; }
+        .modal-scrollable-content { overflow-y: auto; padding-right: 15px; margin-right: -15px; }
+        .modal-scrollable-content h3 { font-size: 22px; color: var(--accent-green); margin-top: 30px; margin-bottom: 15px; }
+        .modal-scrollable-content p, .modal-scrollable-content li { font-size: 16px; line-height: 1.8; color: #d0d0d0; }
+        .modal-scrollable-content ul { padding-left: 25px; }
+        .modal-scrollable-content { scrollbar-width: thin; scrollbar-color: #555 var(--card-bg-color); }
+        .modal-scrollable-content::-webkit-scrollbar { width: 8px; } .modal-scrollable-content::-webkit-scrollbar-track { background: var(--card-bg-color); }
+        .modal-scrollable-content::-webkit-scrollbar-thumb { background-color: #555; border-radius: 10px; border: 2px solid var(--card-bg-color); }
+        @media (max-width: 768px) { .main-title { font-size: 36px; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <a href="index.html" class="logo">
+                <div class="logo-dots"><div class="dot"></div><div class="dot"></div></div>
+                BGPSLauncher
+            </a>
+            <a href="dashboard.html" class="nav-link"><span class="arrow">←</span> Back to Dashboard</a>
+        </header>
+        <main>
+            <h1 class="main-title">The BGPS Blog</h1>
+            <p class="section-subtitle">Get the latest news, updates, and insights about the BGPS Launcher project.</p>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search posts...">
+            </div>
+            <div class="blog-grid" id="blog-grid">
+                <!-- Blog Post 1: 2.0 Update -->
+                <div class="blog-card"
+                     data-title="Welcome to BGPS Launcher 2.0: A New Era"
+                     data-author="The BGPS Team"
+                     data-date="October 26, 2023"
+                     data-summary="We are thrilled to announce the biggest update in our history. Version 2.0 is a complete, ground-up rebuild focused on a stunning user experience, buttery-smooth performance, and enhanced tools..."
+                     data-content="
+                        <p>Welcome to the next chapter of the BGPS Launcher! We are incredibly excited to pull back the curtain on version 2.0, an update that represents a complete revolution in design, performance, and user experience. This isn't just a fresh coat of paint; it's a ground-up rebuild designed to be the ultimate companion for every Blockman Go player.</p>
+                        <h3>A Visual Revolution</h3>
+                        <p>The first thing you'll notice is the brand-new interface. We've moved to a sleek, modern aesthetic inspired by high-end software design. Our goal was to create a space that feels professional, polished, and intuitive. From the animated 'tech grid' background to the stunning 'gradient border' cards that light up on hover, every element has been crafted to be visually engaging.</p>
+                        <h3>Ultra-Smooth Experience</h3>
+                        <p>Looks are nothing without feel. That's why we integrated a professional-grade smooth scrolling library (Lenis) across the entire site. Navigating the launcher now feels fluid and cinematic. We've also added: </p>
+                        <ul>
+                           <li>Graceful fade-in animations for all content sections.</li>
+                           <li>An interactive 3D phone mockup on the landing page that reacts to your cursor.</li>
+                           <li>A consistent and beautiful design language across every single page.</li>
+                        </ul>
+                        <h3>Enhanced & Centralized Tools</h3>
+                        <p>We've streamlined the entire user journey. The new Dashboard is now the central hub for all launcher activities. From there, you can easily access our three core tools, which have also been rebuilt to match the new aesthetic:</p>
+                        <ol>
+                           <li><b>Explore Games:</b> Browse featured games in a beautiful new card layout.</li>
+                           <li><b>Manual Launch:</b> A focused, clean interface for when you know exactly where you're going.</li>
+                           <li><b>Invite Creator:</b> The easiest way to generate and share direct game links with your friends.</li>
+                        </ol>
+                        <p>This is just the beginning. Version 2.0 lays the foundation for many more exciting features to come. Thank you for being a part of our community. We can't wait to see what you think!</p>
+                     ">
+                    <div class="card-content">
+                        <div class="post-meta">July 29, 2025 • By The BGPS Team</div>
+                        <h3>Welcome to BGPS Launcher 2.0: A New Era</h3>
+                        <p>We are thrilled to announce the biggest update in our history. Version 2.0 is a complete, ground-up rebuild focused on a stunning user experience, buttery-smooth performance, and enhanced tools...</p>
+                    </div>
+                </div>
+                <!-- Add more .blog-card divs here for future posts -->
+            </div>
+            <p id="no-results">No posts found matching your search.</p>
+        </main>
+    </div>
+
+    <!-- Blog Post Modal -->
+    <div id="blog-modal-overlay" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal">×</span>
+            <h2 id="modal-post-title"></h2>
+            <div id="modal-post-meta"></div>
+            <div class="modal-scrollable-content">
+                <div id="modal-post-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+    <script>
+        // --- Lenis Smooth Scroll ---
+        const lenis = new Lenis();
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+
+        // --- DOM Elements ---
+        const searchInput = document.getElementById('searchInput');
+        const blogGrid = document.getElementById('blog-grid');
+        const blogCards = document.querySelectorAll('.blog-card');
+        const noResultsMessage = document.getElementById('no-results');
+        const blogModalOverlay = document.getElementById('blog-modal-overlay');
+
+        // --- Search/Filter Logic ---
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            let visibleCount = 0;
+            blogCards.forEach(card => {
+                const title = card.dataset.title.toLowerCase();
+                const summary = card.dataset.summary.toLowerCase();
+                const isVisible = title.includes(searchTerm) || summary.includes(searchTerm);
+                card.style.display = isVisible ? 'block' : 'none';
+                if (isVisible) visibleCount++;
+            });
+            noResultsMessage.style.display = visibleCount === 0 ? 'block' : 'none';
+        });
+
+        // --- Modal Logic ---
+        document.querySelectorAll('.blog-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const data = card.dataset;
+                document.getElementById('modal-post-title').textContent = data.title;
+                document.getElementById('modal-post-meta').innerHTML = `${data.date} • By ${data.author}`;
+                document.getElementById('modal-post-content').innerHTML = data.content;
+                blogModalOverlay.classList.add('visible');
+            });
+        });
+
+        // --- Generic Modal Closing Logic ---
+        function closeModal(modal) { modal.classList.remove('visible'); }
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', (event) => { if (event.target === overlay) closeModal(overlay); });
+            overlay.querySelector('.close-modal').addEventListener('click', () => closeModal(overlay));
+        });
+    </script>
+</body>
+</html>
